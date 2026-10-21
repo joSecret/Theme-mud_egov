@@ -40,44 +40,14 @@
   ]
 %}
 
-{% set block_id = plugin_id|clean_class %}
-{% set block_btn_att = create_attribute().setAttribute('style', 'anchor-name: --' ~ block_id ~ ';')
-                                         .setAttribute('popovertarget', block_id) %}
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
-{%- if component_variant == 'global--dropdown' -%}
-  <div{{ attributes.addClass(classes) }}>
-    {{- title_prefix -}}
-
-    {{- title_suffix -}}
-
-    {%- include "mud_egov:button" with {
-      label: label,
-      variant: 'secondary',
-      icon: dropdown_icon,
-      icon_position: 'left',
-      shape: 'circular',
-      button_uc: ['btn-header'],
-      button_att: block_btn_att,
-    } -%}
-
-    {%- include "mud_egov:popover" with {
-      popover_id: block_id,
-      popover_content: content,
-      popover_mobile_panel: true,
-    } -%}
-  </div>
-
-{%- else -%}
-  {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-
-  {%- include "mud_egov:block" with {
-    block_label_visible: configuration.label_display is same as('visible'),
-    block_label_tag: content.field_headings.0['#markup'] ?? heading_level,
-    block_label: configuration.label,
-    block_content: content|without('field_headings'),
-    block_uc: classes,
-    block_att: attributes.setAttribute('aria-labelledby', heading_id).setAttribute('role', 'navigation'),
-    block_label_att: title_attributes.setAttribute('id', heading_id),
-  } -%}
-{%- endif -%}
-
+{%- include "mud_egov:block" with {
+  block_label_visible: configuration.label_display is same as('visible'),
+  block_label_tag: content.field_headings.0['#markup'] ?? 'h3',
+  block_label: configuration.label,
+  block_content: content|without('field_headings'),
+  block_uc: classes,
+  block_att: attributes.setAttribute('aria-labelledby', heading_id).setAttribute('role', 'navigation'),
+  block_label_att: title_attributes.setAttribute('id', heading_id),
+} -%}

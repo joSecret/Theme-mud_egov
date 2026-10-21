@@ -30,12 +30,3 @@
   }
 }
 
-.c--block.block--p-none { --block_p: 0; }
-.c--block.block--p-sm   { --block_p: 0.5rem; }
-.c--block.block--p-lg   { --block_p: 2rem; }
-.c--block.block--p-xl   { --block_p: 3rem; }
-
-.c--block.block--fz-sm  { --block_fz: 0.875rem; }
-.c--block.block--fz-md  { --block_fz: 1rem; }
-.c--block.block--fz-lg  { --block_fz: 1.125rem; }
-.c--block.block--fz-xl  { --block_fz: 1.25rem; }

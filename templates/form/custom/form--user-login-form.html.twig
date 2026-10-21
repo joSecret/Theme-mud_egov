@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * mud_egov theme implementation for a 'form' element.
+ */
+#}
+
+{% embed "mud_egov:form" with {
+  form_att: attributes,
+} %}
+  {% block slot_content %}
+    {{ children }}
+  {% endblock %}
+{% endembed %}

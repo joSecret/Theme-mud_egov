@@ -42,7 +42,7 @@ props:
         type: object
         properties:
           text:
-            type: ['string', 'object', 'null']
+            type: string
             title: 'Item text'
           url:
             type: ['string', 'null']

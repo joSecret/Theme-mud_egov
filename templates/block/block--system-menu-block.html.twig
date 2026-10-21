@@ -14,66 +14,13 @@
 
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
-{% set block_base = {
+{% include "mud_egov:block" with {
   block_tag: 'nav',
   block_label_visible: configuration.label_display is same as('visible'),
-  block_label_tag: heading_level,
+  block_label_tag: 'h3',
   block_label: configuration.label,
+  block_content: content,
   block_uc: classes,
   block_att: attributes.setAttribute('aria-labelledby', heading_id).setAttribute('role', 'navigation'),
   block_label_att: title_attributes.setAttribute('id', heading_id),
 } %}
-
-{% if component_variant == 'global--dropdown' %}
-
-  {% set block_id = plugin_id|clean_class %}
-  {% set block_btn_att = create_attribute()
-    .setAttribute('style', 'anchor-name: --' ~ block_id ~ ';')
-    .setAttribute('popovertarget', block_id) %}
-
-  <div{{ attributes.addClass(classes) }}>
-    {{ title_prefix }}
-    {{ title_suffix }}
-    {% include "mud_egov:button" with {
-      label: configuration.label,
-      variant: 'secondary',
-      icon: dropdown_icon,
-      icon_position: 'left',
-      shape: 'circular',
-      button_uc: ['btn-header'],
-      button_att: block_btn_att,
-    } %}
-
-    {% include "mud_egov:popover" with {
-      popover_id: block_id,
-      popover_menu_items: menu_items_dropdown,
-    } %}
-  </div>
-
-{% elseif component_variant == 'c--menu--vertical' %}
-
-  {% embed "mud_egov:block" with block_base %}
-    {% block slot_content %}
-      {% include 'mud_egov:menu' with {
-        menu_items: menu_items_raw,
-        menu_variant: 'vertical',
-      } %}
-    {% endblock %}
-  {% endembed %}
-
-{% elseif component_variant == 'c--menu--horizontal' %}
-
-  {% embed "mud_egov:block" with block_base %}
-    {% block slot_content %}
-      {% include 'mud_egov:menu' with {
-        menu_items: menu_items_raw,
-        menu_variant: 'horizontal',
-      } %}
-    {% endblock %}
-  {% endembed %}
-
-{% else %}
-
-  {% include "mud_egov:block" with block_base|merge({block_content: content}) %}
-
-{% endif %}

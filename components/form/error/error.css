@@ -1,0 +1,63 @@
+/**
+ * @file
+ * Error component styles.
+ */
+
+.c--error {
+  --_error-c: var(--error_color, var(--color-danger_500));
+  --_error_m-b-s: var(--error_m-b-s, 0.25rem);
+  --_error_f-s: var(--error_f-s, 0.875em);
+  --_error_l-h: var(--error_l-h, 1.5);
+
+  color: var(--_error-c);
+  margin-block-start: var(--_error_m-b-s);
+  font-size: var(--_error_f-s);
+  line-height: var(--_error_l-h);
+  display: block;
+
+  .invalid-feedback {
+    color: var(--error_invalid_c, var(--_error-c));
+    font-size: var(--error_invalid_f-s, var(--_error_f-s));
+    margin-block-start: var(--error_invalid_m-b-s, var(--_error_m-b-s));
+    display: block;
+    width: 100%;
+  }
+}
+
+/* When used with form controls */
+.form-item .c--error {
+  margin-top: var(--error-form-item-margin-top, 0.25rem);
+}
+
+/* Icon support (optional) */
+.c--error::before {
+  content: var(--error-icon, "⚠");
+  margin-right: 0.25rem;
+  font-weight: bold;
+}
+
+/* Error type variants */
+.c--error.has-type_critical {
+  color: var(--error-critical-color, var(--c_danger_fg));
+  font-weight: var(--error-critical-font-weight, 600);
+}
+
+.c--error.has-type_warning {
+  color: var(--error-warning_color, var(--c_warning_fg));
+}
+
+/* Animation */
+@keyframes errorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.c--error {
+  animation: errorFadeIn 0.2s ease-in-out;
+}

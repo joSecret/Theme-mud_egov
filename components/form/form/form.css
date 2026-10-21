@@ -1,0 +1,45 @@
+/**
+ * Form Component Styles
+ *
+ * Wrapper for the HTML <form> element.
+*/
+
+.c--form {
+  --_form_w: var(--form_m-w, min(calc(100% - var(--gutter) * 2), var(--_form_m-w)));
+  --_form_bg: var(--form_bg, transparent);
+  --_form_f-s: var(--form_f-s, var(--f-s_base));
+  --_form_f-w: var(--form_f-w, var(--f-w_light));
+  --_form_p-b: var(--form_p-b, 0px);
+  --_form_p-i: var(--form_p-i, 0px);
+  --_form_d: var(--form_d, flex);
+  --_form_gap: var(--form_gap, var(--size_400));
+  --_form_m-b: var(--form_m-b, 0px);
+  --_form_m-i: var(--form_m-i, auto);
+  --_form_b-r: var(--form_b-r, var(--b-r));
+
+  width: var(--_form_w);
+  background: var(--_form_bg);
+  padding-block: var(--_form_p-b);
+  padding-inline: var(--_form_p-i);
+  font-size: var(--_form_f-s);
+  font-weight: var(--_form_f-w);
+  display: var(--_form_d);
+  gap: var(--_form_gap);
+  margin-block: var(--_form_m-b);
+  margin-inline: var(--_form_m-i);
+  border-radius: var(--_form_b-r);
+
+  flex-direction: column;
+
+  &.is-limited {
+    --_form_m-w:var(--form_m-w, 610px);
+  }
+
+  @container body (576px < width) {
+    --_form_w: var(--form_w_desktop);
+  }
+
+  &:has(.c--search-input-circular) {
+    --form_w_desktop: 112px;
+  }
+}

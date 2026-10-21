@@ -1,0 +1,70 @@
+{#-
+/**
+ * @file
+ * Template for the Footer component.
+ *
+ * Available variations
+ *
+ * Available values
+ *
+ * Available Utility classes -> uc
+ * - footer_uc (array) (default: [''])
+ *
+ * Available attributes -> att
+ * - footer_att (Drupal\Core\Template\Attribute)
+ *
+ * Available slots:
+ * - slot_footer
+ * - slot_footer_middle_left
+ * - slot_footer_middle_right
+ * - slot_footer_bottom_left
+ * - slot_footer_bottom_right
+ *
+ * usage example: @see README.md
+ */
+-#}
+
+{#- Set default value -#}
+
+{#- Create attributes -#}
+{% set footer_att = footer_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set footer_classes = [
+  'c--footer',
+]|merge(footer_uc ?: []) %}
+
+{#- Render component -#}
+<footer{{ footer_att.addClass(footer_classes) }}>
+  {%- if block('slot_footer_left') is not empty
+        or page.footer_left
+        or block('slot_footer') is not empty
+        or page.footer
+        or block('slot_footer_right') is not empty
+        or page.footer_right
+  -%}
+    <div class="wrapper grid-footer">
+      {%- block slot_footer_left -%}
+        {{- page.footer_left -}}
+      {%- endblock -%}
+
+      {%- block slot_footer -%}
+        {{- page.footer -}}
+      {%- endblock -%}
+
+      {%- block slot_footer_right -%}
+        {{- page.footer_right -}}
+      {%- endblock -%}
+    </div>
+  {%- endif -%}
+
+  {%- if block('slot_footer_middle') is not empty or page.footer_middle -%}
+    {%- block slot_footer_middle -%}
+      {{- page.footer_middle -}}
+    {%- endblock -%}
+  {%- endif -%}
+
+  {%- block slot_footer_bottom -%}
+    {{- page.footer_bottom -}}
+  {%- endblock -%}
+</footer>

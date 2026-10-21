@@ -1,0 +1,32 @@
+{#-
+/**
+ * @file
+ * Plus Minus icon component.
+ *
+ * Available properties:
+ * - plus_minus_open (boolean) (default: false): Shows minus state when true.
+ * - plus_minus_uc (array) (default: [])
+ * - plus_minus_att (Drupal\Core\Template\Attribute)
+ *
+ * CSS variables (set from parent):
+ * - --plus-minus_s    size (default: 50px)
+ * - --plus-minus_c    bar color (default: currentColor)
+ * - --plus-minus_bw   bar thickness (default: 2px)
+ * - --plus-minus_tt   transition duration (default: 0.2s)
+ *
+ * @see plus-minus.md
+ */
+-#}
+
+{% set plus_minus_att = plus_minus_att ?: create_attribute() %}
+{%
+  set plus_minus_classes = [
+    'plus-minus',
+    plus_minus_open ? 'plus-minus--open',
+  ]|merge(plus_minus_uc ?: [])
+%}
+
+<div{{ plus_minus_att.addClass(plus_minus_classes) }}>
+  <span class="plus-minus__horiz"></span>
+  <span class="plus-minus__vert"></span>
+</div>

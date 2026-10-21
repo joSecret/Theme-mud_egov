@@ -1,0 +1,104 @@
+{#-
+/**
+ * @file
+ * Template for the Service Button component.
+ *
+ * Props:
+ * - service_button_label: (string) required — visible label text
+ * - service_button_description: (string|null) default: (null)
+ * - service_button_url: (string|null) default: (null) — renders as <a>
+ * - service_button_icon: (string|null) default: (null) — mud-logo asset name
+ * - service_button_target: (string|null) default: (null)
+ * - service_button_rel: (string|null) default: (null)
+ * - service_button_aria_label: (string|null) default: (null)
+ * - service_button_variant: (string|null) default: (null) — primary | neutral
+ * - service_button_external: (boolean) default: (false)
+ * - service_button_disabled: (boolean) default: (false)
+ * - service_button_full_width: (boolean) default: (false)
+ *
+ * Utility classes: service_button_uc
+ * Attributes: service_button_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set service_button_label = service_button_label|default('') %}
+{% set service_button_description = service_button_description|default(null) %}
+{% set service_button_url = service_button_url|default(null) %}
+{% set service_button_icon = service_button_icon|default(null) %}
+{% set service_button_variant = service_button_variant|default(null) %}
+{% set service_button_external = service_button_external|default(false) %}
+{% set service_button_disabled = service_button_disabled|default(false) %}
+{% set service_button_full_width = service_button_full_width|default(false) %}
+{% set service_button_aria_label = service_button_aria_label|default(null) %}
+
+{#- Tag resolution -#}
+{% set tag = service_button_url ? 'a' : 'button' %}
+
+{#- Create attributes -#}
+{% set service_button_att = service_button_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set service_button_classes = [
+  'c--service-button',
+  service_button_variant ? 'c--service-button--' ~ service_button_variant,
+  service_button_disabled ? 'c--service-button--disabled',
+  service_button_full_width ? 'c--service-button--full-width',
+]|merge(service_button_uc ?: []) %}
+
+{#- Link attributes -#}
+{%- if service_button_url -%}
+  {% set service_button_att = service_button_att.setAttribute('href', service_button_url) %}
+  {%- if service_button_external -%}
+    {% set service_button_att = service_button_att
+      .setAttribute('target', '_blank')
+      .setAttribute('rel', 'noopener noreferrer')
+    %}
+  {%- else -%}
+    {%- if service_button_target -%}
+      {% set service_button_att = service_button_att.setAttribute('target', service_button_target) %}
+    {%- endif -%}
+    {%- if service_button_rel -%}
+      {% set service_button_att = service_button_att.setAttribute('rel', service_button_rel) %}
+    {%- endif -%}
+  {%- endif -%}
+{%- else -%}
+  {% set service_button_att = service_button_att.setAttribute('type', 'button') %}
+{%- endif -%}
+
+{#- Disabled -#}
+{%- if service_button_disabled -%}
+  {%- if tag == 'button' -%}
+    {% set service_button_att = service_button_att.setAttribute('disabled', true) %}
+  {%- else -%}
+    {% set service_button_att = service_button_att
+      .setAttribute('aria-disabled', 'true')
+      .setAttribute('tabindex', '-1')
+    %}
+  {%- endif -%}
+{%- endif -%}
+
+{#- Accessible name -#}
+{%- if service_button_aria_label -%}
+  {% set service_button_att = service_button_att.setAttribute('aria-label', service_button_aria_label) %}
+{%- endif -%}
+
+{#- Render component -#}
+<{{ tag }}{{ service_button_att.addClass(service_button_classes) }}>
+  {%- if service_button_icon -%}
+    <span class="c--service-button__badge" aria-hidden="true">
+      <mud-logo name="{{ service_button_icon }}"></mud-logo>
+    </span>
+  {%- endif -%}
+
+  <span class="c--service-button__content">
+    <span class="c--service-button__label">{{ service_button_label }}</span>
+    {%- if service_button_description -%}
+      <span class="c--service-button__description">{{ service_button_description }}</span>
+    {%- endif -%}
+  </span>
+
+  {%- if service_button_external -%}
+    <span class="visually-hidden">(se deschide într-un tab nou)</span>
+  {%- endif -%}
+</{{ tag }}>

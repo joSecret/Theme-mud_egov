@@ -1,0 +1,43 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: LinksList
+status: stable
+group: Globals
+version: 1.0.0
+description: Renders an unordered list of links. Each item can be a rendered link, text with attributes, or plain text.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    links_links:
+      type: array
+      title: Links
+      default: []
+      description: Array of link items. Each item may have link (rendered markup), text, attributes (for <li>), and text_attributes (for <span>).
+
+    # component variations
+    links_orientation:
+      type: ['string', 'null']
+      title: Orientation
+      default: null
+      enum: [null, vertical, horizontal]
+      description: Layout direction of the list items.
+
+    # uc -> utility_classes
+    links_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the <ul> element.
+
+    # att -> attributes
+    links_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the <ul> element.
+
+# Slots.

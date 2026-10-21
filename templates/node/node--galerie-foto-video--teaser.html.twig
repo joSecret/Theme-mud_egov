@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for Galerie Foto/Video nodes in the 'teaser' view mode.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node_type_' ~ node.bundle|clean_class,
+    view_mode ? 'node_' ~ node.bundle|clean_class ~ '_' ~ view_mode|clean_class,
+    view_mode ? 'node_view-mode_' ~ view_mode|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+
+{%- include 'mud_egov:teaser' with {
+  teaser_att: attributes.addClass(classes),
+  teaser_title: label,
+  teaser_link: url,
+  teaser_image: content.field_cover_image,
+  teaser_date: node.getCreatedTime|format_date('custom', 'd. F Y'),
+} -%}

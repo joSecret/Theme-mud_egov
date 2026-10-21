@@ -1,0 +1,19 @@
+.view {
+  .views-view-responsive-grid__item-inner {
+    height: 100%;
+    display: grid;
+  }
+
+  .c--pagination {
+    margin-block-start: 24px;
+    padding-block:24px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.views-view-responsive-grid {
+  &:has(.node_activitati_teaser) {
+    --views-responsive-grid--column-count: 2 !important;
+  }
+}

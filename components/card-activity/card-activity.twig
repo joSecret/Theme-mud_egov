@@ -1,0 +1,61 @@
+{#-
+/**
+ * @file
+ * Card Activity component.
+ *
+ * Props:
+ * - card_activity_title (string|null)
+ * - card_activity_image (string|array|null)
+ * - card_activity_url (string|null)   — whole-card stretched link
+ * - card_activity_uc (array)
+ * - card_activity_att (Attribute)
+ *
+ * Slots:
+ * - slot_image
+ * - slot_title
+ */
+-#}
+
+{% set card_activity_att = card_activity_att ?: create_attribute() %}
+{% set is_clickable = card_activity_url is not empty %}
+
+{% set card_activity_classes = [
+  'c--card-activity',
+  is_clickable ? 'is-link',
+]|merge(card_activity_uc ?: []) %}
+
+<article{{ card_activity_att.addClass(card_activity_classes) }}>
+  {{- title_prefix -}}
+  {{- title_suffix -}}
+
+  {% block slot_image %}
+    {%- if card_activity_image -%}
+      <div class="card-activity-image">
+        {{- card_activity_image -}}
+      </div>
+    {%- endif -%}
+  {% endblock %}
+
+  {% block slot_title %}
+    {%- if card_activity_title -%}
+      {% set title_content %}
+        {%- if is_clickable -%}
+          <a class="card-activity-link stretched-link" href="{{ card_activity_url }}">
+            {{- card_activity_title -}}
+          </a>
+        {%- else -%}
+          {{- card_activity_title -}}
+        {%- endif -%}
+      {% endset %}
+
+      {% embed 'mud_egov:heading' with {
+        heading_level: 3,
+        heading_uc: ['card-activity-title'],
+      } %}
+        {% block slot_content %}
+          {{- title_content -}}
+        {% endblock %}
+      {% endembed %}
+    {%- endif -%}
+  {% endblock %}
+</article>

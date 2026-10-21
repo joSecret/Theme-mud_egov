@@ -1,0 +1,29 @@
+/* ============================================================
+   Button Close — overrides only what differs from base .button
+   Inherits color from parent context via currentColor.
+   ============================================================ */
+
+.button-close {
+  --btn-color_c: currentColor;
+  --_btn_c: currentColor;
+  --btn-text_o-c: currentColor;
+
+  opacity: 0.8;
+  margin-left: auto;
+
+  &:hover {
+    opacity: 1;
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+  }
+
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  & > svg {
+    width: var(--button-close_svg-s, 16px);
+    height: var(--button-close_svg-s, 16px);
+    fill: currentColor;
+    pointer-events: none;
+  }
+}

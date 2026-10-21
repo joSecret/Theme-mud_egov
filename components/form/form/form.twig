@@ -1,0 +1,71 @@
+{#-
+/**
+  * @file
+  * Form component.
+  *
+  * Component variations:
+  * - form_method (string) (default: 'post') — HTTP method: 'post' | 'get'
+  * - form_max_width (bool|null) (default: true)
+  *
+  * Available values:
+  * - form_action (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - form_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - form_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The form fields and elements rendered inside the form.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set form_method = form_method|default('post') %}
+{%- if form_max_width is null -%}
+  {% set form_max_width = form_max_width|default(true) %}
+{%- endif -%}
+{% set form_action = form_action|default(null) -%}
+
+{#- Create attributes -#}
+{% set form_att = form_att ?: create_attribute() %}
+
+
+
+{#- Component classes -#}
+{% set form_classes = [
+  'c--form',
+]|merge(form_uc ?: []) %}
+
+{#- Change attributes -#}
+{%- if not form_att['method'] -%}
+  {% set form_att = form_att.setAttribute('method', form_method) %}
+{%- endif -%}
+
+{%- if form_action -%}
+  {% set form_att = form_att.setAttribute('action', form_action) %}
+{%- endif -%}
+
+{#- Render component -#}
+<form{{ form_att.addClass(form_classes) }}>
+  {%- if block('slot_title') is not empty -%}
+    <h2 class="form--title">
+      {%- block slot_title -%}
+      {%- endblock -%}
+    </h2>
+  {%- endif -%}
+
+  {%- if block('slot_tabs') is not empty -%}
+    <div class="form--tabs">
+      {%- block slot_tabs -%}
+      {%- endblock -%}
+    </div>
+  {%- endif -%}
+
+  {% block slot_content -%}
+    {{ children }}
+  {% endblock %}
+</form>

@@ -1,0 +1,79 @@
+{#-
+/**
+  * @file
+  * Menu component.
+  *
+  * Available variations:
+  * - menu_variant (string) (default: 'horizontal')
+  *
+  * Available values:
+  * - menu_items (array) required
+  *
+  * Available Utility classes -> uc
+  * - menu_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - menu_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The content for the button
+  *
+  * usage example: @see README.md
+  *
+  */
+-#}
+
+{#- Set default value -#}
+{% set menu_tag_nav = menu_tag_nav|default(false) %}
+{% set menu_variant = menu_variant|default('horizontal') %}
+
+{#- Create attributes -#}
+{% set menu_att = menu_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set menu_classes = [
+  'c--menu',
+  menu_variant ? 'has-direction_' ~ menu_variant|clean_class,
+]|merge(menu_uc ?: []) %}
+
+{#- Change attributes -#}
+{%- if not menu_tag_nav -%}
+  {% set menu_current_att = menu_att.addClass(menu_classes) %}
+{%- endif -%}
+
+{#- Render component -#}
+{%- if menu_tag_nav -%}
+<nav{{ menu_att.addClass(menu_classes) }}>
+{%- endif -%}
+  {%- import _self as menus -%}
+  {{- menus.menu_links(menu_items, menu_current_att, 0) -}}
+{%- if menu_tag_nav -%}
+</nav>
+{%- endif -%}
+
+{%- macro menu_links(menu_items, menu_current_att, menu_level) -%}
+  {%- import _self as menus -%}
+  {%- if menu_items -%}
+    {%- if menu_level == 0 -%}
+      <ul{{ menu_current_att }}>
+    {%- else -%}
+      <ul>
+    {%- endif -%}
+
+    {%- for item in menu_items -%}
+      {%- set link_classes = [
+          item.in_active_trail ? 'is-link_active-trail',
+          item.below ? 'is-link_has-children',
+        ]
+      -%}
+
+      <li{{ item.attributes }}>
+        {{- link(item.title, item.url, {'class': link_classes}) -}}
+        {%- if item.below -%}
+          {{- menus.menu_links(item.below, menu_current_att, menu_level + 1) -}}
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endmacro -%}

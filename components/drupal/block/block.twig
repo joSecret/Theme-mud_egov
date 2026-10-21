@@ -1,0 +1,77 @@
+{#-
+/**
+  * @file
+  * Block component.
+  *
+  * Available variations:
+  * - block_tag (string|null) (default: 'div')
+  * - block_label_tag (string|null) (default: 'h3')
+  * - block_label_visible (boolean) (default: true)
+  *
+  * Available values:
+  * - block_label (string|null) (default: label)
+  * - block_content (string|null) (default: content)
+  *
+  * Available Utility classes -> uc
+  * - block_label_uc (array) (default: [''])
+  * - block_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - block_label_att (Drupal\Core\Template\Attribute)
+  * - block_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_label: The content for the block label
+  * - slot_content: The content for the block content
+  */
+-#}
+
+{#- Set default value -#}
+{% set block_tag = block_tag ?: 'div' %}
+{% set block_label_tag = block_label_tag ?: 'h3' %}
+{% set block_label = block_label|default(label) %}
+{% set block_content = block_content|default(content) %}
+{% set block_label_visible = block_label_visible is same as(null) ? true : block_label_visible %}
+
+{#- Create attributes -#}
+{% set block_label_att = block_label_att ?: create_attribute() %}
+{% set block_att = block_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set block_classes = [
+  'c--block',
+  configuration.provider ? 'block-' ~ configuration.provider|clean_class,
+  plugin_id ? 'block-' ~ plugin_id|clean_class,
+]|merge(block_uc ?: []) %}
+
+{% set block_label_classes = [
+  'block-label',
+  not block_label_visible ? 'visually-hidden',
+]|merge(block_label_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<{{ block_tag }} {{ block_att.addClass(block_classes) }}>
+  {{- title_prefix -}}
+
+  {%- block block_label -%}
+    <{{ block_label_tag }}{{ block_label_att.addClass(block_label_classes) }}>
+      {{- block_label -}}
+    </{{ block_label_tag }}>
+  {%- endblock -%}
+
+  {{- title_suffix -}}
+
+  {%- if slot_description is not empty or block_description -%}
+    {%- block slot_description -%}
+      <div class="block-description">
+        {{- block_description -}}
+      </div>
+    {%- endblock -%}
+  {%- endif -%}
+
+  {%- block slot_content -%}
+    {{- block_content -}}
+  {%- endblock -%}
+</{{ block_tag }}>

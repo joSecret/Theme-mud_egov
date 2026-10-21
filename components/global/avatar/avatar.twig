@@ -1,0 +1,77 @@
+{#-
+/**
+ * @file
+ * Template for the Avatar component.
+ *
+ * Available variations:
+ * - avatar_type (null|string) (photo|initials|icon) (default: initials)
+ * - avatar_size (null|string) (xs|sm|md|lg|xl) (default: md)
+ * - avatar_shape (null|string) (circular|square) (default: circular)
+ * - avatar_color (null|string) (primary|secondary|success|danger|warning|info) (default: null)
+ *
+ * Available values:
+ * - avatar_src (string|null) (default: null)
+ * - avatar_alt (string|null) (default: null)
+ * - avatar_initials (string|null) (default: null)
+ * - avatar_name (string|null) (default: null)
+ * - avatar_icon (string|null) (default: null)
+ *
+ * Available Utility classes -> uc
+ * - avatar_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - avatar_att (Drupal\Core\Template\Attribute)
+ *
+ * usage example: @see avatar.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set avatar_type = avatar_type|default('initials') %}
+{% set avatar_size = avatar_size|default('md') %}
+{% set avatar_shape = avatar_shape|default('circular') %}
+{% set avatar_color = avatar_color|default(null) %}
+{% set avatar_src = avatar_src|default(null) %}
+{% set avatar_alt = avatar_alt|default(avatar_name) %}
+{% set avatar_name = avatar_name|default(null) %}
+{% set avatar_icon = avatar_icon|default(null) %}
+
+{#- Derive initials from name when not provided -#}
+{%- if not avatar_initials and avatar_name -%}
+  {% set avatar_initials = avatar_name|split(' ')|map(w => w|slice(0, 1))|join('')|upper|slice(0, 2) %}
+{%- endif -%}
+
+{#- Create attributes -#}
+{% set avatar_att = avatar_att ?: create_attribute() -%}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'avatar',
+    'avatar-' ~ avatar_type,
+    avatar_size ? 'avatar-' ~ avatar_size,
+    avatar_shape ? 'avatar-' ~ avatar_shape,
+    avatar_color ? 'avatar-' ~ avatar_color,
+  ]|merge(avatar_uc ?: [])
+%}
+
+{#- Accessible label -#}
+{% set aria_label = avatar_alt ?: avatar_name ?: avatar_initials ?: 'User avatar' %}
+
+<div{{ avatar_att.addClass(classes).setAttribute('role', 'img').setAttribute('aria-label', aria_label) }}>
+  {%- if avatar_type == 'photo' and avatar_src -%}
+    <img class="avatar__photo" src="{{ avatar_src }}" alt="{{ avatar_alt ?: '' }}" aria-hidden="true" />
+  {%- elseif avatar_type == 'initials' and avatar_initials -%}
+    <span class="avatar__initials" aria-hidden="true">{{ avatar_initials }}</span>
+  {%- else -%}
+    <span class="avatar__icon" aria-hidden="true">
+      {%- if avatar_icon -%}
+        {{ avatar_icon|raw }}
+      {%- else -%}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</div>

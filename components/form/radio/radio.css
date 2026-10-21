@@ -1,0 +1,104 @@
+/**
+ * Radio Component Styles
+ *
+ * Aligned with MUD radio tokens from @egov-moldova/mud.
+ */
+
+.c--radio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--radio-gap-radio-label);
+  font-family: var(--radio-label-font-family, Onest);
+
+  .radio-input {
+    flex-shrink: 0;
+    width: var(--radio-container-size-md);
+    height: var(--radio-container-size-md);
+    border: var(--radio-container-border-width) solid var(--radio-border-default);
+    border-radius: var(--radio-container-border-radius);
+    transition:
+      border-color var(--radio-container-transition-duration) var(--radio-container-transition-timing-function),
+      background-color var(--radio-container-transition-duration) var(--radio-container-transition-timing-function);
+    cursor: pointer;
+    appearance: none;
+    background-color: var(--radio-background-default);
+
+    &:hover:not(:disabled) {
+      border-color: var(--radio-border-hover);
+    }
+
+    &:checked {
+      border-color: var(--radio-border-checked);
+      background-color: var(--radio-dot-color-default);
+      background-image: radial-gradient(circle, var(--radio-background-default) 35%, transparent 36%);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow:
+        0 0 0 var(--radio-focus-ring-inner-width) var(--radio-focus-ring-inner-color),
+        0 0 0 calc(var(--radio-focus-ring-inner-width) + var(--radio-focus-ring-outer-width)) var(--radio-focus-ring-outer-color);
+    }
+
+    &:disabled {
+      border-color: var(--radio-border-disabled);
+      background-color: var(--radio-background-disabled);
+      cursor: not-allowed;
+    }
+
+    &:disabled:checked {
+      background-color: var(--radio-dot-color-disabled);
+      background-image: radial-gradient(circle, var(--radio-background-disabled) 35%, transparent 36%);
+    }
+  }
+
+  .radio-label {
+    font-family: var(--radio-label-font-family, Onest);
+    font-weight: var(--radio-label-font-weight, 500);
+    font-size: var(--radio-label-font-size-md);
+    line-height: var(--radio-label-line-height-md);
+    color: var(--radio-label-color-default);
+    cursor: pointer;
+  }
+
+  .radio-required {
+    color: var(--c_danger);
+    margin-inline-start: var(--size_50, 4px);
+  }
+}
+
+/* Error state */
+.c--radio.radio-error .radio-input {
+  border-color: var(--radio-border-error);
+
+  &:checked {
+    background-color: var(--radio-dot-color-error);
+    background-image: radial-gradient(circle, var(--radio-background-default) 35%, transparent 36%);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 var(--radio-focus-ring-inner-width) var(--radio-focus-ring-inner-color),
+      0 0 0 calc(var(--radio-focus-ring-inner-width) + var(--radio-focus-ring-outer-width)) var(--radio-focus-ring-outer-color);
+  }
+}
+
+/* Disabled label */
+.c--radio.is-disabled .radio-label {
+  color: var(--radio-label-color-disabled, #b2b2b2);
+  cursor: not-allowed;
+}
+
+/* Size — sm */
+.c--radio.c--radio--sm {
+  .radio-input {
+    width: var(--radio-container-size-sm);
+    height: var(--radio-container-size-sm);
+  }
+
+  .radio-label {
+    font-size: var(--radio-label-font-size-sm);
+    line-height: var(--radio-label-line-height-sm);
+  }
+}

@@ -1,0 +1,96 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Layout Full node
+status: experimental
+version: 1.0.0
+group: Layout
+description: 'Full node layout component for displaying a node in full view mode.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # component variations
+    layoutFn_tag:
+      type: string
+      title: Layout Full node Tag
+      description: The HTML tag to use for the component wrapper.
+      default: 'div'
+      enum:
+        - 'div'
+        - 'section'
+        - 'article'
+
+    # component values
+
+    # uc -> utility_classes
+    layoutFn_uc:
+      type: array
+      items:
+        type: string
+      title: Layout Full node Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    layoutFn_banner_uc:
+      type: array
+      items:
+        type: string
+      title: Layout Full node Banner Utility Classes
+      description: An array of utility classes for the banner section.
+      default: []
+
+    layoutFn_content_uc:
+      type: array
+      items:
+        type: string
+      title: Layout Full node Content Utility Classes
+      description: An array of utility classes for the content section.
+      default: []
+
+    layoutFn_sidebar_uc:
+      type: array
+      items:
+        type: string
+      title: Layout Full node Sidebar Utility Classes
+      description: An array of utility classes for the sidebar section.
+      default: []
+
+    # att -> attributes
+    layoutFn_att:
+      type: Drupal\Core\Template\Attribute
+      title: Layout Full node Attributes
+      description: A list of HTML attributes for the component.
+
+      default: null
+    layoutFn_banner_att:
+      type: Drupal\Core\Template\Attribute
+      title: Layout Full node Banner Attributes
+      description: A list of HTML attributes for the banner section.
+
+      default: null
+    layoutFn_content_att:
+      type: Drupal\Core\Template\Attribute
+      title: Layout Full node Content Attributes
+      description: A list of HTML attributes for the content section.
+
+      default: null
+    layoutFn_sidebar_att:
+      type: Drupal\Core\Template\Attribute
+      title: Layout Full node Sidebar Attributes
+      description: A list of HTML attributes for the sidebar section.
+
+      default: null
+# Slots.
+slots:
+  slot_banner:
+    title: Banner
+    description: Node banner area (e.g. title, featured image).
+
+  slot_content:
+    title: Content
+    description: Main node content area.
+
+  slot_sidebar:
+    title: Sidebar
+    description: Node sidebar area (e.g. tags, author info).

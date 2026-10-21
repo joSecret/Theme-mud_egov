@@ -1,0 +1,112 @@
+{#-
+/**
+ * @file
+ * Template for the Chip component.
+ *
+ * Available variations:
+ * - chip_type (null|string) (filter|input) (default: filter)
+ * - chip_size (null|string) (sm|md) (default: md)
+ * - chip_selection_mode (null|string) (mono|multi) (default: mono)
+ * - chip_selected (boolean) (default: false)
+ * - chip_removable (boolean) (default: false)
+ * - chip_disabled (boolean) (default: false)
+ *
+ * Available values:
+ * - chip_label (string|null) (default: null)
+ * - chip_count (integer|null) (default: null)
+ * - chip_icon (string|null) SVG markup (default: null)
+ *
+ * Available Utility classes -> uc
+ * - chip_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - chip_att (Drupal\Core\Template\Attribute)
+ *
+ * usage example: @see chip.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set chip_type = chip_type|default('filter') %}
+{% set chip_size = chip_size|default('md') %}
+{% set chip_selection_mode = chip_selection_mode|default('mono') %}
+{% set chip_selected = chip_selected|default(false) %}
+{% set chip_removable = chip_removable|default(false) %}
+{% set chip_disabled = chip_disabled|default(false) %}
+{% set chip_label = chip_label|default(null) %}
+{% set chip_count = chip_count|default(null) %}
+{% set chip_icon = chip_icon|default(null) %}
+
+{#- Create attributes -#}
+{% set chip_att = chip_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'chip',
+    chip_type ? 'chip-' ~ chip_type,
+    chip_size ? 'chip-' ~ chip_size,
+    chip_selected ? 'is-selected',
+    chip_removable and chip_type == 'input' ? 'chip-removable',
+    chip_disabled ? 'is-disabled',
+    chip_icon ? 'chip-has-icon',
+    chip_selection_mode == 'multi' and chip_selected ? 'chip-shows-check',
+  ]|merge(chip_uc ?: [])
+%}
+
+{#- Button attributes -#}
+{% set chip_att = chip_att.setAttribute('data-chip', '') %}
+{%- if chip_disabled -%}
+  {% set chip_att = chip_att.setAttribute('aria-disabled', 'true') %}
+{%- endif -%}
+{%- if chip_type == 'filter' -%}
+  {% set chip_att = chip_att.setAttribute('aria-pressed', chip_selected ? 'true' : 'false') %}
+{%- endif -%}
+{%- if chip_label and not chip_icon -%}
+  {% set chip_att = chip_att.setAttribute('aria-label', chip_label) %}
+{%- endif -%}
+
+<div{{ chip_att.addClass(classes) }}>
+  <button
+    class="chip__control"
+    type="button"
+    {%- if chip_disabled -%}disabled aria-disabled="true"{%- endif -%}
+    {%- if chip_type == 'filter' -%}aria-pressed="{{ chip_selected ? 'true' : 'false' }}"{%- endif -%}
+  >
+    {%- if chip_icon -%}
+      <span class="chip__icon" aria-hidden="true">{{ chip_icon|raw }}</span>
+    {%- endif -%}
+
+    {%- if chip_selection_mode == 'multi' and chip_selected -%}
+      <span class="chip__check" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+        </svg>
+      </span>
+    {%- endif -%}
+
+    {%- if chip_label -%}
+      <span class="chip__label">{{ chip_label }}</span>
+    {%- endif -%}
+
+    {%- if chip_count is not null -%}
+      <span class="chip__count" aria-hidden="true">{{ chip_count }}</span>
+    {%- endif -%}
+  </button>
+
+  {%- if chip_removable and chip_type == 'input' -%}
+    <button
+      class="chip__remove"
+      type="button"
+      aria-label="Remove {{ chip_label ~ '' }}"
+      data-chip-remove
+      {%- if chip_disabled -%}disabled aria-disabled="true"{%- endif -%}
+    >
+      <span class="chip__remove-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </span>
+    </button>
+  {%- endif -%}
+</div>

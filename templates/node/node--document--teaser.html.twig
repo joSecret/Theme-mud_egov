@@ -1,0 +1,89 @@
+{#
+/**
+ * @file
+ * Teaser for node of type "document".
+ *
+ * Extracts data directly from node.field_links / node.field_documents and
+ * renders the mud_egov:card-document SDC component.
+ *
+ * Data assumption (verified in DB): a node has EITHER links OR documents,
+ * never both at the same time.
+ */
+#}
+
+{% set attributes = attributes.addClass('node', 'node_type_document', 'node_view-mode_teaser') %}
+
+{# ── Macro: format "EXT · SIZE" from a file entity ───────────────── #}
+{% macro file_meta(file) -%}
+  {%- set ext = file.filename.value|split('.')|last|upper -%}
+  {%- set bytes = file.filesize.value -%}
+  {%- if bytes >= 1073741824 -%}
+    {%- set size = (bytes / 1073741824)|number_format(2) ~ ' GB' -%}
+  {%- elseif bytes >= 1048576 -%}
+    {%- set size = (bytes / 1048576)|number_format(2) ~ ' MB' -%}
+  {%- elseif bytes >= 1024 -%}
+    {%- set size = (bytes / 1024)|number_format(2) ~ ' KB' -%}
+  {%- else -%}
+    {%- set size = bytes ~ ' B' -%}
+  {%- endif -%}
+  {{- ext ~ ' · ' ~ size -}}
+{%- endmacro %}
+
+{% import _self as doc %}
+
+{% set link_count = node.field_links|length %}
+{% set doc_count = node.field_documents|length %}
+
+{% set card_type = doc_count > 0 ? 'document' : 'link' %}
+{% set card_url = null %}
+{% set card_meta = null %}
+{% set card_items = [] %}
+
+{# ── Links ───────────────────────────────────────────────────────── #}
+{% if link_count == 1 %}
+  {% set card_url = node.field_links.0.uri %}
+
+{% elseif link_count > 1 %}
+  {% for item in node.field_links %}
+    {% set card_items = card_items|merge([{
+      url: item.uri,
+      title: item.title ?: item.uri,
+      meta: null,
+      type: 'link',
+    }]) %}
+  {% endfor %}
+
+{# ── Documents (media:document → file) ───────────────────────────── #}
+{% elseif doc_count == 1 %}
+  {% set file = node.field_documents.entity.field_media_document.entity %}
+  {% if file %}
+    {% set card_url = file_url(file.uri.value) %}
+    {% set card_meta = doc.file_meta(file)|trim %}
+  {% endif %}
+
+{% elseif doc_count > 1 %}
+  {% for item in node.field_documents %}
+    {% set file = item.entity.field_media_document.entity %}
+    {% if file %}
+      {% set card_items = card_items|merge([{
+        url: file_url(file.uri.value),
+        title: item.entity.label,
+        meta: doc.file_meta(file)|trim,
+        type: 'document',
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<article{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {{ include('mud_egov:card-document', {
+    card_doc_title: label,
+    card_doc_url: card_url,
+    card_doc_meta: card_meta,
+    card_doc_type: card_type,
+    card_doc_items: card_items,
+  }) }}
+</article>

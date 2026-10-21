@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * MUD eGov Theme (MUD eGov) theme implementation to display a single page.
+#}
+
+{% embed "mud_egov:page-layout" %}
+  {% block slot_main %}
+    {% include "mud_egov:section-main" with {
+      section_main_container: page_layout_main_container,
+    } %}
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,178 @@
+/* ============================================================
+   Banner — full-width system notification bar
+   Aligned with mud-banner (variant: info|warning|error,
+   emphasis: subtle|strong, dismissible)
+   ============================================================ */
+
+.banner {
+  /* External custom properties (consumer API) */
+  --banner_bg: initial;
+  --banner_c: initial;
+  --banner_b: initial;
+  --banner_p-b: initial;
+  --banner_p-i: initial;
+  --banner_b-r: initial;
+  --banner_icon-s: initial;
+  --banner_title-f-s: initial;
+  --banner_title-f-w: initial;
+  --banner_body-f-s: initial;
+  --banner_close-s: initial;
+
+  /* Internal resolved properties */
+  --_banner_bg: var(--banner_bg, var(--banner-subtle-info-background, var(--color-background-info-secondary, #e0f2fe)));
+  --_banner_c: var(--banner_c, var(--banner-subtle-info-text, var(--color-foreground-info-default, #026aa2)));
+  --_banner_b: var(--banner_b, none);
+  --_banner_p-b: var(--banner_p-b, var(--banner-container-padding-block, 12px));
+  --_banner_p-i: var(--banner_p-i, var(--banner-container-padding-inline, 16px));
+  --_banner_b-r: var(--banner_b-r, 0);
+  --_banner_icon-s: var(--banner_icon-s, var(--banner-icon-size, 20px));
+  --_banner_title-f-s: var(--banner_title-f-s, var(--banner-title-font-size, 14px));
+  --_banner_title-f-w: var(--banner_title-f-w, var(--banner-title-font-weight, 600));
+  --_banner_body-f-s: var(--banner_body-f-s, var(--banner-body-font-size, 14px));
+  --_banner_close-s: var(--banner_close-s, var(--banner-close-icon-size, 16px));
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  background-color: var(--_banner_bg);
+  color: var(--_banner_c);
+  border: var(--_banner_b);
+  border-radius: var(--_banner_b-r);
+  padding-block: var(--_banner_p-b);
+  padding-inline: var(--_banner_p-i);
+  box-sizing: border-box;
+  font-size: var(--_banner_body-f-s);
+}
+
+/* Inner layout: icon + body */
+.banner-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.banner-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--_banner_icon-s);
+  height: var(--_banner_icon-s);
+  color: inherit;
+}
+
+.banner-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+}
+
+.banner-title {
+  margin: 0;
+  font-size: var(--_banner_title-f-s);
+  font-weight: var(--_banner_title-f-w);
+  color: inherit;
+  width: 100%;
+}
+
+.banner-message {
+  color: inherit;
+}
+
+.banner-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Close button */
+.banner-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--_banner_close-s);
+  height: var(--_banner_close-s);
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.banner-close svg {
+  width: var(--_banner_close-s);
+  height: var(--_banner_close-s);
+  fill: currentColor;
+}
+
+/* Dismissible — extra trailing padding to avoid overlap */
+.banner-dismissible {
+  padding-inline-end: calc(var(--_banner_p-i) + var(--_banner_close-s) + 8px);
+}
+
+/* ============================================================
+   Variant × subtle (default)
+   ============================================================ */
+
+.banner-info.banner-subtle,
+.banner-info:not(.banner-strong) {
+  --_banner_bg: var(--banner_bg, var(--banner-subtle-info-background, var(--color-background-info-secondary, #e0f2fe)));
+  --_banner_c: var(--banner_c, var(--banner-subtle-info-text, var(--color-foreground-info-default, #026aa2)));
+}
+
+.banner-warning.banner-subtle,
+.banner-warning:not(.banner-strong) {
+  --_banner_bg: var(--banner_bg, var(--banner-subtle-warning-background, var(--color-background-warning-secondary, #feefc6)));
+  --_banner_c: var(--banner_c, var(--banner-subtle-warning-text, var(--color-foreground-warning-default, #b54708)));
+}
+
+.banner-error.banner-subtle,
+.banner-error:not(.banner-strong) {
+  --_banner_bg: var(--banner_bg, var(--banner-subtle-error-background, var(--color-background-danger-secondary, #fee4e2)));
+  --_banner_c: var(--banner_c, var(--banner-subtle-error-text, var(--color-foreground-danger-default, #b42318)));
+}
+
+/* ============================================================
+   Variant × strong (filled, on-color text)
+   ============================================================ */
+
+.banner-info.banner-strong {
+  --_banner_bg: var(--banner_bg, var(--banner-strong-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_banner_c: var(--banner_c, var(--banner-strong-info-text, #fff));
+}
+
+.banner-warning.banner-strong {
+  --_banner_bg: var(--banner_bg, var(--banner-strong-warning-background, var(--color-background-warning-default, #fdb022)));
+  --_banner_c: var(--banner_c, var(--banner-strong-warning-text, #1a1a1a));
+}
+
+.banner-error.banner-strong {
+  --_banner_bg: var(--banner_bg, var(--banner-strong-error-background, var(--color-background-danger-default, #f04438)));
+  --_banner_c: var(--banner_c, var(--banner-strong-error-text, #fff));
+}

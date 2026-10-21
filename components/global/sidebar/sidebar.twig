@@ -1,0 +1,116 @@
+{#-
+/**
+ * @file
+ * Sidebar component — slide-in side panel / drawer.
+ *
+ * Props:
+ * - sidebar_title: (string|null) default: null
+ * - sidebar_id: (string|null) default: null
+ * - sidebar_close_label: (string) default: 'Închide'
+ * - sidebar_open: (boolean) default: false
+ * - sidebar_overlay: (boolean) default: true
+ * - sidebar_position: (string|null) enum: start|end default: null
+ * - sidebar_size: (string|null) enum: sm|md|lg default: null
+ * - sidebar_collapsed: (boolean) default: false
+ * - sidebar_uc: (array) default: []
+ * - sidebar_att: (Drupal\Core\Template\Attribute) default: null
+ *
+ * Slots:
+ * - slot_header: Custom header (overrides sidebar_title)
+ * - slot_content: Body content
+ * - slot_footer: Footer content/actions
+ *
+ * @see sidebar.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set sidebar_title = sidebar_title|default(null) %}
+{% set sidebar_id = sidebar_id|default('sidebar-' ~ random()) %}
+{% set sidebar_close_label = sidebar_close_label|default('Închide') %}
+{% set sidebar_open = sidebar_open|default(false) %}
+{% set sidebar_overlay = sidebar_overlay is defined ? sidebar_overlay : true %}
+{% set sidebar_position = sidebar_position|default('start') %}
+{% set sidebar_size = sidebar_size|default(null) %}
+{% set sidebar_collapsed = sidebar_collapsed|default(false) %}
+
+{% set title_id = sidebar_id ~ '-title' %}
+
+{#- Create attributes -#}
+{% set sidebar_att = sidebar_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set sidebar_classes = [
+  'c--sidebar',
+  sidebar_position ? 'has-position_' ~ sidebar_position,
+  sidebar_size ? 'has-size_' ~ sidebar_size,
+  sidebar_open ? 'is-open',
+  sidebar_collapsed ? 'is-collapsed',
+]|merge(sidebar_uc ?: []) %}
+
+{#- Panel attributes -#}
+{% set sidebar_att = sidebar_att
+  .setAttribute('data-sidebar', '')
+  .setAttribute('id', sidebar_id)
+  .setAttribute('role', 'dialog')
+  .setAttribute('aria-modal', 'true')
+  .setAttribute('aria-labelledby', title_id)
+%}
+{%- if not sidebar_open -%}
+  {% set sidebar_att = sidebar_att.setAttribute('aria-hidden', 'true') %}
+{%- endif -%}
+{%- if sidebar_overlay -%}
+  {% set sidebar_att = sidebar_att.setAttribute('data-sidebar-overlay', '') %}
+{%- endif -%}
+
+{#- Render -#}
+<div class="c--sidebar__wrapper {{ sidebar_open ? 'is-open' }}" data-sidebar-wrapper>
+
+  {%- if sidebar_overlay -%}
+    <div class="c--sidebar__overlay" data-sidebar-overlay-el aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div{{ sidebar_att.addClass(sidebar_classes) }}>
+    <div class="c--sidebar__surface">
+
+      {#- Header -#}
+      <div class="c--sidebar__header">
+        {%- if slot_header -%}
+          {{- slot_header -}}
+        {%- elseif sidebar_title -%}
+          <h2 class="c--sidebar__title" id="{{ title_id }}">{{ sidebar_title }}</h2>
+        {%- else -%}
+          <span id="{{ title_id }}"></span>
+        {%- endif -%}
+
+        <button
+          class="c--sidebar__close"
+          type="button"
+          data-sidebar-close
+          aria-label="{{ sidebar_close_label }}"
+        >
+          <span class="c--sidebar__close-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      {#- Body -#}
+      <div class="c--sidebar__body">
+        {{- slot_content -}}
+      </div>
+
+      {#- Footer -#}
+      {%- if slot_footer -%}
+        <div class="c--sidebar__footer">
+          {{- slot_footer -}}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+</div>

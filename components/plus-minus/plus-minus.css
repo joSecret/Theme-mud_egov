@@ -1,0 +1,50 @@
+.plus-minus {
+  --_plus-minus_s: var(--plus-minus_s, 50px);
+  --_plus-minus_c: var(--plus-minus_c, currentColor);
+  --_plus-minus_tt: var(--plus-minus_tt, 0.2s);
+  --_plus-minus_rotate: var(--plus-minus_rotate, 0deg);
+  --_plus-minus_horiz_o: var(--plus-minus_horiz_o, 1);
+
+  --_plus-minus_item_bw: var(--plus-minus_item_bw, 2px);
+  --_plus-minus_span_w: var(--plus-minus_span_w, 12px);
+
+  width: var(--_plus-minus_s);
+  height: var(--_plus-minus_s);
+  display: grid;
+  grid-template-areas: "stack";
+  align-items: center;
+  justify-items: center;
+  transform: rotate(var(--_plus-minus_rotate));
+  transition: transform var(--_plus-minus_tt) ease-in-out;
+
+  & > span {
+    grid-area: stack;
+    background: var(--_plus-minus_c);
+    border-radius: 3px;
+    position: absolute;
+  }
+}
+
+
+.plus-minus__horiz {
+  height: var(--_plus-minus_item_bw);
+  width: var(--_plus-minus_span_w);
+  opacity: var(--_plus-minus_horiz_o);
+  transition: opacity var(--_plus-minus_tt) ease-out;
+}
+
+.plus-minus__vert {
+  width: var(--_plus-minus_item_bw);
+  height: var(--_plus-minus_span_w);
+  margin-left: calc(var(--_plus-minus_item_bw) / -2);
+}
+
+.plus-minus:hover,
+[open] .plus-minus {
+  --_plus-minus_rotate: 90deg;
+  --_plus-minus_horiz_o: 0;
+}
+
+summary .plus-minus {
+  pointer-events: none;
+}

@@ -1,0 +1,112 @@
+{#-
+/**
+  * @file
+  * Notification component — semantic toast message.
+  *
+  * Aligned with mud-notification API (variant: info|success|warning|error,
+  * closable/dismissible, titleText, actions slot).
+  *
+  * Props:
+  * - notification_title (string|null)       Optional bold heading.
+  * - notification_message (string|null)     Body text.
+  * - notification_icon (string|null)        SVG string for the leading icon.
+  * - notification_close_label (string)      Close button accessible label.
+  * - notification_variant (string|null)     info | success | warning | error.
+  * - notification_dismissible (bool)        Show close button.
+  * - notification_uc (array)               Utility classes.
+  * - notification_att (Attribute)           Extra HTML attributes.
+  *
+  * Slots:
+  * - slot_content: Overrides notification_message with rich content.
+  * - slot_actions: Optional inline actions below the body.
+  *
+  * @see notification.md
+  */
+-#}
+
+{#- Defaults -#}
+{% set notification_variant = notification_variant|default('info') %}
+{% set notification_emphasis = notification_emphasis|default('solid') %}
+{% set notification_dismissible = notification_dismissible|default(false) %}
+{% set notification_close_label = notification_close_label|default('Close') %}
+
+{#- Live region: info/success → polite/status, warning/error → assertive/alert -#}
+{% set is_assertive = notification_variant in ['warning', 'error'] %}
+{% set notification_role = is_assertive ? 'alert' : 'status' %}
+{% set notification_live = is_assertive ? 'assertive' : 'polite' %}
+
+{#- Attributes -#}
+{% set notification_att = notification_att ?: create_attribute() %}
+{% set notification_att = notification_att
+  .setAttribute('role', notification_role)
+  .setAttribute('aria-live', notification_live)
+%}
+{% if notification_dismissible %}
+  {% set notification_att = notification_att.setAttribute('data-dismissable', '') %}
+{% endif %}
+
+{%
+  set notification_classes = [
+    'notification',
+    notification_variant ? 'notification-' ~ notification_variant,
+    notification_emphasis ? 'notification-emphasis-' ~ notification_emphasis,
+    notification_dismissible ? 'notification-dismissible',
+  ]|merge(notification_uc ?: [])
+%}
+
+<div{{ notification_att.addClass(notification_classes) }}>
+  {%- if notification_icon -%}
+    <span class="notification-icon" aria-hidden="true">
+      {{- notification_icon|raw -}}
+    </span>
+  {%- endif -%}
+
+  <div class="notification-body">
+    {%- if notification_sr_heading -%}
+      <h2 class="visually-hidden">
+        {{- notification_sr_heading -}}
+      </h2>
+    {%- endif -%}
+
+    {%- if notification_title -%}
+      <p class="notification-title">
+        {{- notification_title -}}
+      </p>
+    {%- endif -%}
+
+    {% block slot_content -%}
+      {%- if slot_content -%}
+        {{ slot_content }}
+      {%- elseif notification_message -%}
+        {%- set messages = notification_message is iterable ? notification_message : [notification_message] -%}
+        {%- if messages|length > 1 -%}
+          <ul class="notification-list">
+            {%- for message in messages -%}
+              <li class="notification-list-item">
+                {{- message -}}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- else -%}
+          <span class="notification-message">
+            {{- messages|first -}}
+          </span>
+        {%- endif -%}
+      {%- endif -%}
+    {% endblock -%}
+
+    {% block slot_actions %}
+      {%- if slot_actions -%}
+        <div class="notification-actions">
+          {{- slot_actions -}}
+        </div>
+      {%- endif -%}
+    {% endblock -%}
+  </div>
+
+  {%- if notification_dismissible -%}
+    {% include "mud_egov:button-close" with {
+      button_close_label: notification_close_label,
+    } only %}
+  {%- endif -%}
+</div>

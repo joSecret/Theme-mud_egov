@@ -1,0 +1,81 @@
+{#-
+/**
+ * @file
+ * Template for a Section main with sidebar component.
+ * Available variations:
+ * - section_main_sidebar_container [boolean|null] (default: true)
+ *
+ * Available config:
+ * - section_main_sidebar_uc: (optional) Utility classes for main element.
+ * - section_main_sidebar_main_uc: (optional) Utility classes for inner section.
+ * - section_main_sidebar_left_uc: (optional) Utility classes for left sidebar.
+ * - section_main_sidebar_right_uc: (optional) Utility classes for right sidebar.
+ * - section_main_sidebar_att: (optional) Attributes for main element.
+ * - section_main_sidebar_main_att: (optional) Attributes for inner section.
+ * - section_main_sidebar_content_att: (optional) Attributes for content element.
+ * - section_main_sidebar_left_att: (optional) Attributes for left sidebar.
+ * - section_main_sidebar_right_att: (optional) Attributes for right sidebar.
+*/
+-#}
+
+{#- Set default value -#}
+{% set sms_container = section_main_sidebar_container|default(true) %}
+
+{#- Create attributes -#}
+{% set sms_att = section_main_sidebar_att ?: create_attribute() %}
+{% set sms_main_att = section_main_sidebar_main_att ?: create_attribute() %}
+{% set sms_content_att = section_main_sidebar_content_att ?: create_attribute() %}
+{% set sms_left_att = section_main_sidebar_left_att ?: create_attribute() %}
+{% set sms_right_att = section_main_sidebar_right_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set sms_classes = [
+  'c--sms',
+  sms_container ? 'wrapper',
+]|merge(section_main_sidebar_uc ?: []) %}
+
+{% set sms_w_classes = [
+  'c--sms_w',
+]|merge(section_main_sidebar_main_uc ?: []) %}
+
+{% set content_classes = [
+  'sms_content',
+]|merge(section_main_sidebar_main_uc ?: []) %}
+
+{% set sidebar_left_classes = [
+  'c--sms_sidebar',
+  'c--sms_sidebar_left',
+]|merge(section_main_sidebar_left_uc ?: []) %}
+
+{% set sidebar_right_classes = [
+  'c--sms_sidebar',
+  'c--sms_sidebar_right',
+]|merge(section_main_sidebar_right_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set sms_main_att = sms_main_att.setAttribute('role', 'main') %}
+
+{#- Render component -#}
+<main {{ sms_att.addClass(sms_classes) }}>
+  {{- page.hero -}}
+
+  {% block slot_highlighted %}
+    {{- page.highlighted -}}
+  {% endblock %}
+
+  {% block slot_content %}
+    <section{{ sms_main_att.addClass(sms_w_classes) }}>
+      {{- page.sidebar|merge({'#attributes': sms_left_att.addClass(sidebar_left_classes)}) -}}
+      {{- page.content|merge({'#attributes': sms_content_att.addClass(content_classes)}) -}}
+      {{- page.sidebar_right|merge({'#attributes': sms_right_att.addClass(sidebar_right_classes)}) -}}
+    </section>
+  {% endblock %}
+
+  {% block slot_bottom %}
+    {% if page.content_bottom %}
+      <section class="content-bottom">
+        {{- page.content_bottom -}}
+      </section>
+    {% endif %}
+  {% endblock %}
+</main>

@@ -1,0 +1,80 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: File Item
+status: stable
+group: Forms
+version: 1.0.0
+description: Displays a single uploaded file row with filename, size, state indicator, and optional remove button.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    file_item_name:
+      type: ['string', 'null']
+      title: File Name
+      description: Visible filename.
+      default: null
+
+    file_item_size:
+      type: ['string', 'null']
+      title: File Size
+      description: Human-readable file size (e.g. 2.4 MB).
+      default: null
+
+    file_item_type:
+      type: ['string', 'null']
+      title: File Type
+      description: MIME type or extension hint (e.g. pdf, image/png).
+      default: null
+
+    file_item_error_message:
+      type: ['string', 'null']
+      title: Error Message
+      description: Per-item error message shown instead of size when state is error.
+      default: null
+
+    # component variations
+    file_item_status:
+      type: ['string', 'null']
+      title: Status
+      description: Lifecycle state. Drives icon color and border treatment.
+      default: 'uploaded'
+      enum:
+        - uploaded
+        - uploading
+        - success
+        - error
+
+    file_item_progress:
+      type: ['number', 'null']
+      title: Progress
+      description: Upload progress percentage (0–100). Displayed when status is uploading.
+      default: null
+
+    file_item_removable:
+      type: boolean
+      title: Removable
+      description: Shows the remove button.
+      default: true
+
+    file_item_disabled:
+      type: boolean
+      title: Disabled
+      description: Disables the remove button.
+      default: false
+
+    # uc -> utility_classes
+    file_item_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    file_item_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

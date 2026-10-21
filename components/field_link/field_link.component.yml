@@ -1,0 +1,46 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Field Link
+status: stable
+version: 1.0.0
+group: Components
+description: 'A link field rendered as a stacked list of links, each prefixed with an external or internal icon.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # fields values
+    fieldLink_items:
+      type: array
+      title: Items
+      description: 'List of link items. Each item: { content: renderable, is_external: boolean }.'
+      default: []
+
+    fieldLink_label:
+      type: ['string', 'object', 'null']
+      title: Label
+      description: 'Optional field label displayed above the links.'
+      default: null
+
+    fieldLink_label_hidden:
+      type: boolean
+      title: Hide label
+      description: 'When true, the label is not rendered.'
+      default: false
+
+    # uc -> utility classes
+    fieldLink_uc:
+      type: array
+      title: Field Link Utility Classes
+      description: 'Extra classes merged onto the wrapper.'
+      default: []
+
+    # att -> attributes
+    fieldLink_att:
+      type: Drupal\Core\Template\Attribute
+      title: Field Link Attributes
+      description: 'HTML attributes for the component wrapper.'
+      default: null
+
+# Slots.

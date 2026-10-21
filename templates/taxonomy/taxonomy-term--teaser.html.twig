@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a taxonomy term in the 'teaser' view mode.
+ *
+ * Renders the term as a Term Teaser component: image/svg on top, name below.
+ *
+ * The image slot is fed from `content`, so the fields visible in the teaser
+ * view mode (e.g. field_icon) are rendered inside the image area. Hide the
+ * term name in the view mode — it is rendered by the component via `name`.
+ *
+ * Available variables:
+ * - url: URL of the current term.
+ * - name: Name of the current term.
+ * - content: Rendered fields for the teaser view mode.
+ * - attributes: HTML attributes for the wrapper.
+ * - term: The taxonomy term entity.
+ *
+ * @see template_preprocess_taxonomy_term()
+ */
+#}
+{% include 'mud_egov:term-teaser' with {
+  term_att: attributes.setAttribute('id', 'taxonomy-term-' ~ term.id),
+  term_uc: ['vocabulary-' ~ term.bundle|clean_class],
+  term_title: name,
+  term_url: url,
+  term_image: content,
+} %}

@@ -1,0 +1,41 @@
+{#-
+/**
+ * @file
+ * Template for the Heading component.
+ *
+ * Props:
+ * - heading_level: (integer) 1–6, semantic HTML tag. default: 2
+ * - heading_display: (integer | null) visual size override. default: null
+ * - heading_text: (string | null) text content. default: null
+ *
+ * Utility classes: heading_uc
+ * Attributes: heading_att
+ *
+ * Slots:
+ * - slot_content: Rich content (used instead of heading_text).
+ */
+-#}
+
+{#- Defaults -#}
+{% set heading_level = heading_level|default(2) %}
+{% set heading_display = heading_display|default(null) %}
+{% set tag = 'h' ~ heading_level %}
+{% set display_class = heading_display ? 'heading-display-' ~ heading_display %}
+
+{#- Create attributes -#}
+{% set heading_att = heading_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set heading_classes = [
+    'heading',
+    display_class,
+  ]|merge(heading_uc ?: [])
+%}
+
+{#- Render -#}
+<{{tag}}{{heading_att.addClass(heading_classes)}}>
+  {%- block slot_content -%}
+    {{- heading_text -}}
+  {%- endblock -%}
+</{{tag}}>

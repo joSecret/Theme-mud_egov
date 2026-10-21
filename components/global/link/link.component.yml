@@ -1,0 +1,127 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Link
+status: stable
+group: Globals
+version: 1.0.0
+description: Interactive navigational link atom rendered as an anchor tag with size, variant and underline options.
+
+# Props.
+props:
+  type: object
+  required:
+    - link_label
+
+  properties:
+    # fields values
+    link_label:
+      type: string
+      title: Label
+      description: Visible link text.
+      default: ''
+
+    link_url:
+      type: ['string', 'null']
+      title: URL
+      description: Anchor href. Required for navigation; omit only when using a callback-driven link.
+      default: null
+
+    link_target:
+      type: ['string', 'null']
+      title: Target
+      description: Anchor target attribute (e.g. `_blank`).
+      default: null
+
+    link_rel:
+      type: ['string', 'null']
+      title: Rel
+      description: Anchor rel attribute. When target is `_blank` and this is null, `noopener noreferrer` is applied automatically.
+      default: null
+
+    link_download:
+      type: ['string', 'null']
+      title: Download
+      description: When set, triggers a file download instead of navigation.
+      default: null
+
+    link_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible label. Required when the link contains only an icon with no text.
+      default: null
+
+    # component variations
+    link_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: "Color treatment: primary (default blue), strict (ink black), white (for dark backgrounds)."
+      default: null
+      enum:
+        - null
+        - primary
+        - strict
+        - white
+
+    link_size:
+      type: ['string', 'null']
+      title: Size
+      description: "Visual size rung mapped to body type scale: xs=12, sm=14, md=16, lg=18."
+      default: null
+      enum:
+        - null
+        - xs
+        - sm
+        - md
+        - lg
+
+    link_underline:
+      type: ['string', 'null']
+      title: Underline
+      description: "Underline treatment: always (default), hover (on hover/focus only), none (use sparingly)."
+      default: null
+      enum:
+        - null
+        - always
+        - hover
+        - none
+
+    link_standalone:
+      type: boolean
+      title: Standalone
+      description: Enlarges the interactive target to 32px (pointer) / 40px (touch) for navigation lists and CTA links.
+      default: false
+
+    link_disabled:
+      type: boolean
+      title: Disabled
+      description: Makes the link inert — no navigation, hover or focus ring. Sets aria-disabled.
+      default: false
+
+    link_external:
+      type: boolean
+      title: External indicator
+      description: When true (default) and target is `_blank`, renders an external-link icon after the label.
+      default: true
+
+    # uc -> utility_classes
+    link_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    link_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_icon_start:
+    title: Icon Start
+    description: Optional leading icon (mud-icon or inline SVG).
+
+  slot_icon_end:
+    title: Icon End
+    description: Optional trailing icon. Suppressed when the external-link indicator is rendered.

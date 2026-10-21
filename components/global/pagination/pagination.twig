@@ -1,0 +1,210 @@
+{#-
+/**
+ * @file
+ * Pagination component.
+ *
+ * Two modes:
+ *
+ * 1. Standalone — pass pagination_current + pagination_total (+ optional
+ *    pagination_base_url). Component computes the window and URLs itself.
+ *
+ * 2. Items — pass pagination_items (shape matches Drupal's pager:
+ *    { previous: {href}, next: {href}, pages: {N: {href}}, first: {href},
+ *      last: {href} }) and pagination_ellipses ({previous: bool, next: bool}).
+ *    Component uses the precomputed hrefs — no URL building happens.
+ *
+ * Props:
+ * - pagination_current (int, 1-indexed)
+ * - pagination_total (int) — standalone mode only
+ * - pagination_base_url (string|null) — standalone mode only
+ * - pagination_items (object|null) — items mode
+ * - pagination_ellipses (object|null) — items mode
+ * - pagination_prev_label, pagination_next_label, pagination_nav_label
+ * - pagination_size (md|sm|null)
+ * - pagination_uc (array), pagination_att (Attribute)
+ */
+-#}
+
+{%- set pagination_current = pagination_current|default(1) -%}
+{%- set pagination_total = pagination_total|default(1) -%}
+{%- set pagination_base_url = pagination_base_url|default(null) -%}
+{%- set pagination_items = pagination_items|default(null) -%}
+{%- set pagination_ellipses = pagination_ellipses|default(null) -%}
+{%- set pagination_prev_label = pagination_prev_label|default('Previous'|t) -%}
+{%- set pagination_next_label = pagination_next_label|default('Next'|t) -%}
+{%- set pagination_nav_label = pagination_nav_label|default('Pagination'|t) -%}
+{%- set pagination_size = pagination_size|default(null) -%}
+
+{#- Helper: build URL for a page number from base_url (standalone mode). -#}
+{% macro page_url(base, page) -%}
+  {%- if base -%}{{ base }}?page={{ page }}{%- else -%}?page={{ page }}{%- endif -%}
+{%- endmacro %}
+
+{% import _self as helpers %}
+
+{#- Normalise inputs into a single list of render items. -#}
+{%- set render_items = [] -%}
+
+{%- if pagination_items -%}
+
+  {#- ── Items mode (Drupal) ─────────────────────────────────── -#}
+  {%- set ellipsis_prev = pagination_ellipses and pagination_ellipses.previous -%}
+  {%- set ellipsis_next = pagination_ellipses and pagination_ellipses.next -%}
+
+  {#- Previous button. -#}
+  {%- if pagination_items.previous -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'prev',
+      href: pagination_items.previous.href,
+    }]) -%}
+  {%- endif -%}
+
+  {#- First page + ellipsis (only when window doesn't start at 1). -#}
+  {%- if pagination_items.first and ellipsis_prev -%}
+    {%- set render_items = render_items|merge([
+      { kind: 'page', page: 1, href: pagination_items.first.href, is_current: false },
+      { kind: 'ellipsis' }
+    ]) -%}
+  {%- endif -%}
+
+  {#- Window pages. -#}
+  {%- for key, p in pagination_items.pages -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'page',
+      page: key,
+      href: p.href,
+      is_current: key == pagination_current,
+    }]) -%}
+  {%- endfor -%}
+
+  {#- Ellipsis + last page (only when window doesn't reach the end). -#}
+  {%- if pagination_items.last and ellipsis_next -%}
+    {#- Parse last page number from last.href (`?page=N` → N + 1). -#}
+    {%- set last_parts = pagination_items.last.href|default('')|split('page=') -%}
+    {%- set last_page = last_parts|length > 1 ? (last_parts|last|split('&')|first + 1) : null -%}
+    {%- if last_page -%}
+      {%- set render_items = render_items|merge([
+        { kind: 'ellipsis' },
+        { kind: 'page', page: last_page, href: pagination_items.last.href, is_current: false }
+      ]) -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {#- Next button. -#}
+  {%- if pagination_items.next -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'next',
+      href: pagination_items.next.href,
+    }]) -%}
+  {%- endif -%}
+
+{%- elseif pagination_total > 1 -%}
+
+  {#- ── Standalone mode (compute everything) ────────────────── -#}
+  {%- set window_start = max(pagination_current - 2, 1) -%}
+  {%- set window_end = min(pagination_current + 2, pagination_total) -%}
+
+  {%- if pagination_current > 1 -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'prev',
+      href: helpers.page_url(pagination_base_url, pagination_current - 1),
+    }]) -%}
+  {%- endif -%}
+
+  {%- if window_start > 1 -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'page', page: 1,
+      href: helpers.page_url(pagination_base_url, 1),
+      is_current: false,
+    }]) -%}
+    {%- if window_start > 2 -%}
+      {%- set render_items = render_items|merge([{ kind: 'ellipsis' }]) -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- for page in range(window_start, window_end) -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'page', page: page,
+      href: helpers.page_url(pagination_base_url, page),
+      is_current: page == pagination_current,
+    }]) -%}
+  {%- endfor -%}
+
+  {%- if window_end < pagination_total -%}
+    {%- if window_end < pagination_total - 1 -%}
+      {%- set render_items = render_items|merge([{ kind: 'ellipsis' }]) -%}
+    {%- endif -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'page', page: pagination_total,
+      href: helpers.page_url(pagination_base_url, pagination_total),
+      is_current: false,
+    }]) -%}
+  {%- endif -%}
+
+  {%- if pagination_current < pagination_total -%}
+    {%- set render_items = render_items|merge([{
+      kind: 'next',
+      href: helpers.page_url(pagination_base_url, pagination_current + 1),
+    }]) -%}
+  {%- endif -%}
+
+{%- endif -%}
+
+{#- Classes + attributes. -#}
+{%- set pagination_att = pagination_att ?: create_attribute() -%}
+{%- set pagination_classes = [
+  'c--pagination',
+  pagination_size ? 'has-size_' ~ pagination_size,
+]|merge(pagination_uc ?: []) -%}
+{%- set pagination_att = pagination_att.setAttribute('aria-label', pagination_nav_label ~ '') -%}
+
+{%- if render_items|length > 0 -%}
+  <nav{{ pagination_att.addClass(pagination_classes) }}>
+    <ul class="pagination__list" role="list">
+      {%- for item in render_items -%}
+        {%- if item.kind == 'prev' -%}
+          <li class="pagination__item is--prev">
+            <a href="{{ item.href }}" class="pagination__link is--nav" rel="prev" aria-label="{{ 'Go to previous page'|t }}">
+              <span class="pagination__nav-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="pagination__nav-label">{{ pagination_prev_label }}</span>
+            </a>
+          </li>
+
+        {%- elseif item.kind == 'next' -%}
+          <li class="pagination__item is--next">
+            <a href="{{ item.href }}" class="pagination__link is--nav" rel="next" aria-label="{{ 'Go to next page'|t }}">
+              <span class="pagination__nav-label">{{ pagination_next_label }}</span>
+              <span class="pagination__nav-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+
+        {%- elseif item.kind == 'ellipsis' -%}
+          <li class="pagination__item is--ellipsis" aria-hidden="true">
+            <span class="pagination__ellipsis">&hellip;</span>
+          </li>
+
+        {%- elseif item.kind == 'page' -%}
+          {%- if item.is_current -%}
+            <li class="pagination__item is-current">
+              <span class="pagination__link is-current" aria-current="page" aria-label="{{ 'Page @page, current'|t({'@page': item.page}) }}">
+                {{- item.page -}}
+              </span>
+            </li>
+          {%- else -%}
+            <li class="pagination__item">
+              <a href="{{ item.href }}" class="pagination__link" aria-label="{{ 'Go to page @page'|t({'@page': item.page}) }}">{{ item.page }}</a>
+            </li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </nav>
+{%- endif -%}

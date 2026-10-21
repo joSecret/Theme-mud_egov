@@ -1,0 +1,149 @@
+.c--carousel {
+  --_carousel_bg: var(--carousel_bg, #E8F0FB);
+  --_carousel_br: var(--carousel_br, 0px);
+  --_carousel-min-h: var(--carousel-min-h, 420px);
+  --_carousel-p-b: var(--carousel-p-b, 0px);
+
+  --_carousel-btn-s: var(--carousel-btn-s, 48px);
+  --_carousel-btn-bg: var(--carousel-btn-bg, #fff);
+  --_carousel-btn-c: var(--carousel-btn-c, var(--c_primary, #1a3a6b));
+  --_carousel-btn-shadow: var(--carousel-btn-shadow, 0 2px 8px rgba(0, 0, 0, 0.12));
+  --_carousel-btn-offset: var(--carousel-btn-offset, 16px);
+
+  --_carousel-dot_bg: var(--carousel-dot_bg, #fff);
+  --_carousel-dot_w: var(--carousel-dot_w, 32px);
+  --_carousel-dot_h: var(--carousel-dot_h, 6px);
+  --_carousel-dot_gap: var(--carousel-dot_gap, 8px);
+  --_carousel-dot_p-b: var(--carousel-dot_p-b, 24px);
+
+  isolation: isolate;
+  display: grid;
+  grid-template-areas: "stack";
+  grid-template-columns: 1fr;
+  background: var(--_carousel_bg);
+  border-radius: var(--_carousel_br);
+  container-type: inline-size;
+
+  & > * {
+    grid-area: stack;
+    pointer-events: none;
+
+    a, button {
+      pointer-events: auto;
+    }
+  }
+
+  /* ── Viewport ── */
+  .carousel-viewport {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    pointer-events: auto;
+    display: flex;
+
+    * {
+      pointer-events: auto;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* ── Slide wrapper ── */
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding-block: var(--_carousel-p-b);
+    min-height: var(--_carousel-min-h);
+  }
+
+
+  /* ── Arrow buttons ── */
+  .carousel-btns {
+    display: var(--carousel_btns, none);
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 40px;
+  }
+
+  .carousel-btn {
+    z-index: 1;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.35s ease;
+
+    color: var(--_carousel-btn-c);
+    width: var(--_carousel-btn-s);
+    background: rgba(from var(--_carousel-btn-bg) r g b / var(--carousel-btn_bg-o, 0.4));
+    box-shadow: var(--_carousel-btn-shadow);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    &:hover:not(:disabled) {
+      --carousel-btn_bg-o: 1;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+
+  /* ── Dots ── */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: var(--_carousel-dot_gap);
+    padding-block-end: var(--_carousel-dot_p-b);
+  }
+
+  .carousel-dot {
+    z-index: 1;
+    display: block;
+    width: var(--_carousel-dot_w);
+    height: var(--_carousel-dot_h);
+    border-radius: 5rem;
+    background: var(--_carousel-dot_bg);
+    opacity: 0.4;
+    transition: opacity 0.35s linear;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  @container (768px <= width) {
+    --carousel-slide_m-w: auto;
+  }
+
+  @container (768px < width) {
+    --carousel_btns: flex;
+  }
+
+  /* ── Active dot (set via JS IntersectionObserver) ── */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-viewport {
+      scroll-behavior: auto;
+    }
+  }
+}
+

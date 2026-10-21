@@ -1,0 +1,40 @@
+{#-
+/**
+ * @file
+ * Template for the Spinner component.
+ *
+ * Props:
+ * - size: (string | null) default: (null)
+ *    enum: null | xs | sm | md | lg
+ * - variant: (string | null) default: (null)
+ *    enum: null | brand | dark | light | light-on-color
+ * - label: (string) default: ('Loading')
+ *
+ * Utility classes: spinner_uc
+ * Attributes: spinner_att
+ */
+-#}
+
+{% set size = size|default(null) %}
+{% set variant = variant|default(null) %}
+{% set label = label|default('Loading') %}
+
+{% set spinner_att = spinner_att ?: create_attribute() %}
+
+{%
+  set spinner_classes = [
+    'spinner',
+    size ? 'spinner-' ~ size,
+    variant ? 'spinner-' ~ variant,
+  ]|merge(spinner_uc ?: [])
+%}
+
+{% set spinner_att = spinner_att
+  .setAttribute('role', 'status')
+  .setAttribute('aria-label', label)
+  .setAttribute('aria-live', 'polite')
+%}
+
+<span{{ spinner_att.addClass(spinner_classes) }}>
+  <span class="arc" aria-hidden="true"></span>
+</span>

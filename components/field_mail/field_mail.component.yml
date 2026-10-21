@@ -1,0 +1,27 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Field Icon
+status: stable
+version: 1.0.0
+group: Components
+description: 'A field row with an icon on the left and content on the right.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # fields values
+    fieldMail_value:
+      type: ['string', 'null']
+      title: Value
+      description: 'The value displayed next to the icon.'
+      default: null
+
+    # att -> attributes
+    fieldMail_att:
+      type: Drupal\Core\Template\Attribute
+      title: Field Icon Attributes
+      description: A list of HTML attributes for the component wrapper.
+      default: null
+
+# Slots.

@@ -1,0 +1,99 @@
+{#-
+/**
+ * @file
+ * Template for the File Item component (MUD-aligned).
+ *
+ * Props:
+ * - file_item_name (string|null) — visible filename
+ * - file_item_size (string|null) — human-readable size (e.g. "2.4 MB")
+ * - file_item_type (string|null) — MIME type or extension
+ * - file_item_error_message (string|null) — shown instead of size when status=error
+ * - file_item_status (string|null) — uploaded | uploading | success | error
+ * - file_item_progress (number|null) — 0–100, shown when uploading
+ * - file_item_removable (boolean) — show remove button
+ * - file_item_disabled (boolean) — disable remove button
+ */
+-#}
+
+{% set file_item_name = file_item_name|default('') %}
+{% set file_item_status = file_item_status|default('uploaded') %}
+{% set file_item_removable = file_item_removable|default(true) %}
+{% set file_item_disabled = file_item_disabled|default(false) %}
+
+{% set file_item_att = file_item_att ?: create_attribute() %}
+
+{%
+  set classes = [
+    'file-item',
+    'file-item-' ~ file_item_status,
+    file_item_disabled ? 'is-disabled',
+  ]|merge(file_item_uc ?: [])
+%}
+
+<div{{ file_item_att.addClass(classes) }}>
+  {#- Icon -#}
+  <span class="file-item-icon" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+
+  {#- Info -#}
+  <div class="file-item-info">
+    <span class="file-item-name">{{ file_item_name }}</span>
+
+    <span class="file-item-meta">
+      {%- if file_item_status == 'error' and file_item_error_message -%}
+        <span class="file-item-error">{{ file_item_error_message }}</span>
+      {%- elseif file_item_status == 'uploading' and file_item_progress is not null -%}
+        <span class="file-item-progress-label">{{ file_item_progress ~ '' }}%</span>
+      {%- elseif file_item_size -%}
+        {{ file_item_size }}
+      {%- endif -%}
+    </span>
+
+    {%- if file_item_status == 'uploading' and file_item_progress is not null -%}
+      <span
+        class="file-item-progress-bar"
+        role="progressbar"
+        aria-valuenow="{{ file_item_progress ~ '' }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <span class="file-item-progress-fill" style="width: {{ file_item_progress ~ '' }}%"></span>
+      </span>
+    {%- endif -%}
+  </div>
+
+  {#- Status icon -#}
+  {%- if file_item_status == 'success' -%}
+    <span class="file-item-status-icon file-item-status-success" aria-label="Încărcat cu succes">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  {%- elseif file_item_status == 'error' -%}
+    <span class="file-item-status-icon file-item-status-error" aria-label="Eroare la încărcare">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 8v4m0 4h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
+  {%- endif -%}
+
+  {#- Remove button -#}
+  {%- if file_item_removable -%}
+    <button
+      type="button"
+      class="file-item-remove"
+      aria-label="Elimină fișierul {{ file_item_name }}"
+      {%- if file_item_disabled -%} disabled aria-disabled="true"{%- endif -%}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  {%- endif -%}
+</div>

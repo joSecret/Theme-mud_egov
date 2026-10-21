@@ -1,0 +1,48 @@
+{#-
+/**
+ * @file
+ * Statistics Item component.
+ *
+ * Props:
+ * - item_number (string|null)
+ * - item_label (string|null)
+ * - item_digital_badge (string|null)
+ * - item_is_digital (bool) default: false
+ */
+-#}
+
+{% set item_att = item_att ?: create_attribute() %}
+{% set item_classes = ['c--statistics-item']
+  |merge(item_is_digital ? ['is-digital'] : [])
+  |merge(item_uc ?: []) %}
+
+<div{{ item_att.addClass(item_classes) }}>
+  <div class="item-number-row">
+    {%- if item_is_digital -%}
+      <span class="item-star" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.68082 17.791C4.68082 16.67 4.92798 15.9046 5.41614 15.4165C5.90431 14.9283 6.66969 14.6811 7.7907 14.6811L7.7907 14.3153C6.66969 14.3153 5.90431 14.0681 5.41614 13.5799C4.92798 13.0918 4.68082 12.3264 4.68082 11.2054L4.31495 11.2054C4.31495 12.3264 4.06779 13.0918 3.57963 13.5799C3.09147 14.0681 2.32608 14.3153 1.20508 14.3153L1.20508 14.6811C2.32608 14.6811 3.09147 14.9283 3.57963 15.4165C4.06779 15.9046 4.31495 16.67 4.31495 17.791L4.68082 17.791Z" fill="#0058D2"/>
+          <path d="M14.5969 10.613C15.6834 9.54606 17.2468 8.90266 19.3433 8.66178L19.7451 8.66178L19.7451 7.82845L19.3437 7.82845C17.2132 7.5793 15.6804 6.93553 14.6175 5.87268C13.5547 4.80984 12.9109 3.27702 12.6618 1.14651L12.6618 0.745117L11.8284 0.745117L11.8284 1.14694C11.5876 3.2434 10.9442 4.8068 9.87725 5.89336C8.81194 6.97829 7.27617 7.63679 5.15201 7.82845L4.74512 7.82845L4.74512 8.66178L5.15247 8.66178C7.24297 8.84568 8.80907 9.5035 9.8979 10.5923C10.9867 11.6812 11.6445 13.2473 11.8284 15.3377L11.8284 15.7451L12.6618 15.7451L12.6618 15.3382C12.8534 13.214 13.5119 11.6783 14.5969 10.613Z" fill="#0058D2"/>
+        </svg>
+      </span>
+    {%- endif -%}
+
+    {%- if item_number -%}
+      <span class="item-number">
+        {{- item_number -}}
+      </span>
+    {%- endif -%}
+
+    {%- if item_digital_badge -%}
+      <span class="item-badge">
+        {{- item_digital_badge -}}
+      </span>
+    {%- endif -%}
+  </div>
+
+  {%- if item_label -%}
+    <span class="item-label">
+      {{- item_label -}}
+    </span>
+  {%- endif -%}
+</div>

@@ -1,0 +1,29 @@
+:where(.dialog-off-canvas-main-canvas) > * {
+  --wrapper_w: calc(100% - 40px);
+
+  @container body (320px < width <= 576px) {
+    /* --wrapper_w: 288px; */
+  }
+
+  @container body (576px < width <= 768px) {
+    /* --wrapper_w: 544px; */
+  }
+
+  @container body (768px < width <= 992px) {
+    --wrapper_w: 720px;
+  }
+
+  @container body (992px < width <= 1248px) {
+    --wrapper_w: 944px;
+  }
+
+  @container body (1248px < width) {
+    --wrapper_w: 1200px;
+  }
+}
+
+.wrapper {
+  container: wrapper / inline-size;
+  width: var(--wrapper_w);
+  margin-inline: auto;
+}

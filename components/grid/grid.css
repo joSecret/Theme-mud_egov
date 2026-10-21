@@ -1,0 +1,16 @@
+.c--grid {
+  --grid--layout-gap: var(--grid_l-gap, 24px);
+  --grid--column-count: var(--grid_col-count, 4);
+  --grid--cell-min-width: var(--grid_cell-min-width, 240px);
+
+  /** Calculated values.  */
+  --grid--gap-count: calc(var(--grid--column-count) - 1);
+  --grid--total-gap-width: calc(var(--grid--gap-count) * var(--grid--layout-gap));
+  --grid-item--max-width: calc((100% - var(--grid--total-gap-width)) / var(--grid--column-count));
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(max(var(--grid--cell-min-width), var(--grid-item--max-width)), 100%), 1fr));
+  gap: var(--grid--layout-gap);
+  padding-block: var(--grid_p-b, 34px);
+  padding-inline: var(--grid_p-i, 0px);
+}

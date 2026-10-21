@@ -1,0 +1,27 @@
+/**
+ * Field Documents Component Styles
+ *
+ * A documents field rendered as a stacked list of document items.
+ */
+
+.c--fieldDocuments {
+  --_fieldDocuments_m-b-s: var(--fieldDocuments_m-b-s, clamp(16px, calc(13.091px + 0.909vw), 24px));
+  --_fieldDocuments_g: var(--fieldDocuments_g, clamp(16px, calc(13.091px + 0.909vw), 24px));
+
+  /* Variables — item */
+  --_fieldDocuments-item_g: var(--fieldDocuments-item_g, 12px);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_fieldDocuments_g);
+
+  &:not(:first-child) {
+    margin-block-start: var(--_fieldDocuments_m-b-s);
+  }
+
+  .fieldDocuments__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--_fieldDocuments-item_g);
+  }
+}

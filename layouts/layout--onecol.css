@@ -1,0 +1,7 @@
+.layout__region{
+}
+
+.layout__region--content {
+  container-name: region;
+  container-type: inline-size;
+}

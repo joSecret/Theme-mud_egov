@@ -1,0 +1,75 @@
+.c--segmented-control {
+  --_segmented-control_bg: var(--segmented-control_bg, var(--color-background-base-tertiary, #f1f5f9));
+  --_segmented-control_b-r: var(--segmented-control_b-r, var(--border-radius-8, 8px));
+  --_segmented-control_p: var(--segmented-control_p, 4px);
+  --_segmented-control_gap: var(--segmented-control_gap, 4px);
+  --_segmented-control_h: var(--segmented-control_h, 40px);
+
+  display: inline-flex;
+  align-items: center;
+  background: var(--_segmented-control_bg);
+  border-radius: var(--_segmented-control_b-r);
+  padding: var(--_segmented-control_p);
+  gap: var(--_segmented-control_gap);
+}
+
+.c--segmented-control--fluid {
+  display: flex;
+  width: 100%;
+}
+
+.c--segmented-control--fluid .segmented-control-segment {
+  flex: 1;
+}
+
+.c--segmented-control--sm {
+  --_segmented-control_h: var(--segmented-control_sm_h, 32px);
+}
+
+.c--segmented-control.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.segmented-control-segment {
+  --_seg_bg: var(--segmented-control_seg_bg, transparent);
+  --_seg_c: var(--segmented-control_seg_c, var(--color-text-base-secondary, #64748b));
+  --_seg_f-s: var(--segmented-control_seg_f-s, 14px);
+  --_seg_f-w: var(--segmented-control_seg_f-w, 500);
+  --_seg_b-r: var(--segmented-control_seg_b-r, var(--border-radius-6, 6px));
+  --_seg_p-i: var(--segmented-control_seg_p-i, 12px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--_segmented-control_h);
+  padding-inline: var(--_seg_p-i);
+  background: var(--_seg_bg);
+  color: var(--_seg_c);
+  font-size: var(--_seg_f-s);
+  font-weight: var(--_seg_f-w);
+  border-radius: var(--_seg_b-r);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-brand-default, #3b82f6);
+    outline-offset: -2px;
+  }
+
+  &.is-selected {
+    --_seg_bg: var(--segmented-control_seg_selected_bg, var(--color-background-base-primary, #fff));
+    --_seg_c: var(--segmented-control_seg_selected_c, var(--color-text-base-default, #0f172a));
+
+    box-shadow: var(--segmented-control_seg_selected_shadow, 0 1px 3px 0 rgb(0 0 0 / 0.12));
+  }
+
+  &.is-disabled {
+    --_seg_c: var(--segmented-control_seg_disabled_c, var(--color-text-base-disabled, #94a3b8));
+
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

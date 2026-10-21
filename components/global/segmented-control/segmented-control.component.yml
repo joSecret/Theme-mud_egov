@@ -1,0 +1,86 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Segmented Control
+status: stable
+group: Globals
+version: 1.0.0
+description: Single-select horizontal switcher aligned with MUD mud-segmented-control, with roving tabindex keyboard navigation and ARIA radiogroup semantics.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    segmented_control_options:
+      type: array
+      title: Options
+      description: Array of segment objects — each with value, label, and optional disabled flag.
+      default: []
+      items:
+        type: object
+        properties:
+          value:
+            type: string
+            title: Value
+          label:
+            type: string
+            title: Label
+          disabled:
+            type: boolean
+            title: Disabled
+            default: false
+
+    segmented_control_value:
+      type: ['string', 'null']
+      title: Selected Value
+      description: Value of the currently selected segment.
+      default: null
+
+    segmented_control_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    segmented_control_label:
+      type: ['string', 'null']
+      title: Accessible Label
+      description: aria-label for the radiogroup when no external label is present.
+      default: null
+
+    # component variations
+    segmented_control_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | sm — matches MUD SEGMENTED_CONTROL_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - sm
+
+    segmented_control_disabled:
+      type: boolean
+      title: Disabled
+      description: Disables all segments.
+      default: false
+
+    segmented_control_fluid:
+      type: boolean
+      title: Fluid
+      description: Expands the control to fill its container; segments stretch to equal shares.
+      default: false
+
+    # uc -> utility_classes
+    segmented_control_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    segmented_control_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

@@ -1,0 +1,91 @@
+.c--carousel-slide {
+  --_slide-gap: var(--slide-gap, var(--carousel-gap, 0px));
+  --_slide-media-max-w: var(--slide-media-max-w, var(--wrapper_w, 1200px));
+
+  --_slide-heading_fs: var(--slide-heading_fs, 48px);
+  --_slide-desc_fs: var(--slide-desc_fs, 18px);
+
+  display: grid;
+  grid-template-columns: var(--carousel-slide_g-t-c, 20px 1fr 20px);
+  align-items: center;
+  gap: var(--_slide-gap);
+  height: 100%;
+
+  /* ── Media ── */
+  .slide-media {
+    --media_img_p-b: 0px;
+
+    grid-area: var(--slide-media_g-a, 1 / 1 / 3 / 5);
+    height: 100%;
+    position: relative;
+
+    & > div {
+      position: absolute;
+      inset: 0;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &:has(.slide-text) {
+    /* ── Media ── */
+    .slide-media {
+      --media_img_p-b: 0px;
+      --slide-media_g-a: var(--slide-media_text_g-a2, / 1 / 3 / 4);
+
+      height: var(--slide-media_h, 320px);
+      align-self: flex-end;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: var(--slide-media_gradient_w, 100%);
+        height: var(--slide-media_gradient_h, 160px);
+        background: var(--slide-media_gradient_bg, linear-gradient(to top, transparent 2%, var(--_carousel_bg) 100%));
+        pointer-events: none;
+      }
+
+      & > div {
+        position: absolute;
+        inset: 0;
+      }
+    }
+
+    /* ── Text ── */
+    .slide-text {
+      grid-area: var(--slide-text_g-a, 1 / 2 / 2 / 3);
+      padding-block: 72px;
+      padding-inline: var(--slide-text_p-i, 0px);
+      display: grid;
+      justify-items: flex-start;
+      gap: 24px;
+
+      & > * {
+        max-width: 480px;
+      }
+    }
+
+    .slide-heading {
+      font-size: var(--_slide-heading_fs);
+    }
+
+    .slide-description {
+      font-size: var(--_slide-desc_fs);
+    }
+  }
+
+  @container (768px < width) {
+    --carousel-slide_g-t-c: 1fr calc(var(--_slide-media-max-w)/2) calc(var(--_slide-media-max-w)/2) 1fr;
+    --slide-text_p-i: 0px 40px;
+    --slide-media_h: 100%;
+    --slide-media_text_g-a2: 1 / 3 / 2 / 5;
+    --slide-media_gradient_w: max(448px, 50%);
+    --slide-media_gradient_h: 100%;
+    --slide-media_gradient_bg: linear-gradient(to left, transparent 2%, var(--_carousel_bg) 100%);
+  }
+}

@@ -1,0 +1,74 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Header
+status: stable
+group: Globals
+version: 1.0.0
+description: Site header / navigation bar aligned with the MUD mud-header component.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    header_government_label:
+      type: ['string', 'null']
+      title: Government Label
+      description: Government label shown in the pre-header band.
+      default: null
+
+    header_language:
+      type: ['string', 'null']
+      title: Active Language
+      description: Active language code (e.g. "ro"). Defaults to the first entry in header_languages.
+      default: null
+
+    header_nav_label:
+      type: ['string', 'null']
+      title: Nav Aria Label
+      description: Accessible name for the primary navigation landmark.
+      default: null
+
+    # component variations
+    header_sticky:
+      type: boolean
+      title: Sticky
+      description: Makes the header stick to the top of the viewport on scroll.
+      default: false
+
+    header_bordered:
+      type: boolean
+      title: Bordered
+      description: Adds a bottom border to the header.
+      default: false
+
+    # uc -> utility_classes
+    header_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    header_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_logo:
+    title: Logo
+    description: Main product logo slot (e.g. mud-logo element).
+
+  slot_nav:
+    title: Navigation
+    description: Primary navigation items slot.
+
+  slot_actions:
+    title: Actions
+    description: Trailing action icons and CTA buttons slot.
+
+  slot_mobile_menu:
+    title: Mobile Menu
+    description: Mobile navigation menu slot.

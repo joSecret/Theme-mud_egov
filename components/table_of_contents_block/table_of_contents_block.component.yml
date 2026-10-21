@@ -1,0 +1,56 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Table of Contents Block
+status: stable
+
+version: 1.0.0
+group: Navigation
+description: 'A block that automatically generates a Table of Contents based on h2 elements found on the page, with scrollspy functionality.'
+
+# Props.
+props:
+  type: object
+  required:
+    - table_of_contents_block_content
+
+  properties:
+    # component variations
+    # fields values
+    table_of_contents_block_label:
+      type: ['string', 'null']
+      title: Label
+      description: 'The block label/title.'
+      default: null
+
+    table_of_contents_block_content:
+      type: ['string', 'null']
+      title: Content
+      description: 'The content for the table of contents navigation.'
+      default: null
+
+    # uc -> utility_classes
+    table_of_contents_block_uc:
+      type: array
+      items:
+        type: string
+      title: Table of Contents Block Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    table_of_contents_block_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the table of contents block element.
+
+      default: null
+    table_of_contents_block_title_att:
+      type: Drupal\Core\Template\Attribute
+      title: Title Attributes
+      description: A list of HTML attributes for the title element.
+
+      default: null
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: 'The content slot for the table of contents navigation.'

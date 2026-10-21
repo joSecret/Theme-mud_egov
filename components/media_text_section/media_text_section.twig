@@ -1,0 +1,88 @@
+{#-
+/**
+  * @file
+  * Media & Text Section component.
+  *
+  * Available variations:
+  * mediaText_title_tag (string) Default: 'h3'.
+  *
+  * Available values:
+  * - mediaText_title (string|null) (default: null)
+  * - mediaText_media (string|object|array) (default: null) required
+  * - mediaText_text (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - mediaText_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - mediaText_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_title: The title content for the Media & Text Section.
+  * - slot_media: The media content for the Media & Text Section.
+  * - slot_text: The text content for the Media & Text Section.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set mediaText_title_tag = mediaText_title_tag|default('h3') %}
+{% set mediaText_title = mediaText_title|default(null) %}
+{% set mediaText_text = mediaText_text|default(null) %}
+
+{#- Create attributes -#}
+{% set mediaText_att = mediaText_att ?: create_attribute() %}
+{% set mediaText_title_att = mediaText_title_att ?: create_attribute() %}
+{% set mediaText_media_att = mediaText_media_att ?: create_attribute() %}
+{% set mediaText_text_att = mediaText_text_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set mediaText_classes = [
+  'c--mediaText',
+]|merge(mediaText_uc ?: []) %}
+
+{% set mediaText_title_classes = [
+  'mediaText-title',
+]|merge(mediaText_title_uc ?: []) %}
+
+{% set mediaText_media_classes = [
+  'mediaText-media',
+]|merge(mediaText_media_uc ?: []) %}
+
+{% set mediaText_text_classes = [
+  'mediaText-text',
+]|merge(mediaText_text_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<div{{ mediaText_att.addClass(mediaText_classes) }}>
+  {%- if slot_title is not empty or mediaText_title -%}
+    <{{ mediaText_title_tag -}}
+      {{- mediaText_title_att.addClass(mediaText_title_classes) }}
+    >
+      {% block slot_title %}
+        {{- mediaText_title -}}
+      {% endblock %}
+    </{{ mediaText_title_tag }}>
+  {%- endif -%}
+
+  <div class="wrap">
+    {%- if slot_media is not empty or mediaText_media -%}
+      <div{{ mediaText_media_att.addClass(mediaText_media_classes) }}>
+        {% block slot_media %}
+          {{- mediaText_media -}}
+        {% endblock %}
+      </div>
+    {%- endif -%}
+
+    {%- if slot_text is not empty or mediaText_text -%}
+      <div{{ mediaText_text_att.addClass(mediaText_text_classes) }}>
+        {% block slot_text %}
+          {{- mediaText_text -}}
+        {% endblock %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

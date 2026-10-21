@@ -1,0 +1,101 @@
+{#-
+/**
+  * @file
+  * Info Box component — inline content callout.
+  *
+  * Aligned with mud-info-box API (variant: info|info-moderate|warning|error,
+  * emphasis: subtle|strong, closable, hideIcon, titleText, actions slot).
+  *
+  * Unlike mud-notification (fixed-width toast) or mud-banner (page bar),
+  * the info box sits inside the content column, fills container width,
+  * and is NOT an ARIA live region.
+  *
+  * Props:
+  * - info_box_title (string|null)       Optional bold heading.
+  * - info_box_icon (string|null)        SVG string for the leading icon.
+  * - info_box_close_label (string)      Close button accessible label.
+  * - info_box_variant (string|null)     info | info-moderate | warning | error.
+  * - info_box_emphasis (string|null)    subtle | strong.
+  * - info_box_closable (bool)           Show close button.
+  * - info_box_hide_icon (bool)          Suppress the leading icon.
+  * - info_box_uc (array)               Utility classes.
+  * - info_box_att (Attribute)           Extra HTML attributes.
+  *
+  * Slots:
+  * - slot_content: Body content.
+  * - slot_actions: Optional inline actions below the body.
+  *
+  * @see info-box.md
+  */
+-#}
+
+{#- Defaults -#}
+{% set info_box_variant = info_box_variant|default('info') %}
+{% set info_box_emphasis = info_box_emphasis|default('subtle') %}
+{% set info_box_closable = info_box_closable|default(false) %}
+{% set info_box_hide_icon = info_box_hide_icon|default(false) %}
+{% set info_box_close_label = info_box_close_label|default('Închide') %}
+
+{#- Attributes -#}
+{% set info_box_att = info_box_att ?: create_attribute() %}
+
+{%
+  set info_box_classes = [
+    'info-box',
+    info_box_variant ? 'info-box-' ~ info_box_variant,
+    info_box_emphasis ? 'info-box-' ~ info_box_emphasis,
+    info_box_closable ? 'info-box-closable',
+    info_box_hide_icon ? 'info-box-no-icon',
+  ]|merge(info_box_uc ?: [])
+%}
+
+<div{{ info_box_att.addClass(info_box_classes) }}>
+  {%- if not info_box_hide_icon -%}
+    <span class="info-box-icon" aria-hidden="true">
+      {%- if info_box_icon -%}
+        {{ info_box_icon|raw }}
+      {%- else -%}
+        {#- Default per-variant icons (decorative) -#}
+        {%- if info_box_variant == 'warning' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" clip-rule="evenodd"/></svg>
+        {%- elseif info_box_variant == 'error' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM8.28 7.22a.75.75 0 0 0-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 1 0 1.06 1.06L10 11.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L11.06 10l1.72-1.72a.75.75 0 0 0-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"/></svg>
+        {%- elseif info_box_variant == 'info-moderate' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9z" clip-rule="evenodd"/></svg>
+        {%- else -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9z" clip-rule="evenodd"/></svg>
+        {%- endif -%}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+
+  <div class="info-box-body">
+    {%- if info_box_title -%}
+      <p class="info-box-heading">{{ info_box_title }}</p>
+    {%- endif -%}
+
+    {% block slot_content -%}
+      {%- if slot_content -%}
+        {{ slot_content }}
+      {%- endif -%}
+    {% endblock -%}
+
+    {% block slot_actions %}
+      {%- if slot_actions -%}
+        <div class="info-box-actions">{{ slot_actions }}</div>
+      {%- endif -%}
+    {% endblock -%}
+  </div>
+
+  {%- if info_box_closable -%}
+    <button
+      type="button"
+      class="info-box-close"
+      aria-label="{{ info_box_close_label }}"
+    >
+      <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z"/>
+      </svg>
+    </button>
+  {%- endif -%}
+</div>

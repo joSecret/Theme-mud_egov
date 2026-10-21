@@ -1,0 +1,78 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Info Box
+status: stable
+group: Globals
+version: 1.0.0
+description: Inline information callout with optional heading, body, actions, and close button — fills the content column width.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    info_box_title:
+      type: ["string", "null"]
+      title: Title
+      description: Optional bold heading rendered above the body.
+      default: null
+
+    info_box_icon:
+      type: ["string", "null"]
+      title: Icon
+      description: SVG icon string override. Include aria-hidden="true".
+      default: null
+
+    info_box_close_label:
+      type: ["string", "null"]
+      title: Close Label
+      description: Accessible label for the close button.
+      default: "Închide"
+
+    # component variations
+    info_box_variant:
+      type: ["string", "null"]
+      title: Variant
+      default: null
+      enum: [null, info, info-moderate, warning, error]
+
+    info_box_emphasis:
+      type: ["string", "null"]
+      title: Emphasis
+      description: subtle (neutral grey surface) or strong (tinted semantic surface).
+      default: null
+      enum: [null, subtle, strong]
+
+    info_box_closable:
+      type: boolean
+      title: Closable
+      description: Renders a trailing close button when true.
+      default: false
+
+    info_box_hide_icon:
+      type: boolean
+      title: Hide Icon
+      description: Suppress the leading icon entirely.
+      default: false
+
+    # uc -> utility_classes
+    info_box_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    info_box_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_content:
+    title: Content
+    description: Body content — plain text or rich inline/block content.
+  slot_actions:
+    title: Actions
+    description: Optional inline action group rendered below the body.

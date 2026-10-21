@@ -1,0 +1,13 @@
+
+// Date Range Component
+// Note: CSS classes work only when date_range_remove_wrapper is false
+
+.comp--date_range {
+  --_c-dr_c: var(--c_dr-c, currentColor);
+  --_c-dr_bg: var(--c_dr-bg, transparent);
+  --_c-dr_f-s: var(--c_dr-f-s, inherit);
+
+  color: var(--_c-dr_c);
+  background: var(--_c-dr_bg);
+  font-size: var(--_c-dr_f-s);
+}

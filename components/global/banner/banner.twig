@@ -1,0 +1,102 @@
+{#-
+/**
+  * @file
+  * Banner component — full-width, top-of-page system message.
+  *
+  * Aligned with mud-banner API (variant: info|warning|error,
+  * emphasis: subtle|strong, dismissible).
+  *
+  * Props:
+  * - banner_title (string|null)       Optional heading.
+  * - banner_message (string|null)     Body text.
+  * - banner_icon (string|null)        SVG string for the leading icon.
+  * - banner_link_text (string|null)   Inline link label.
+  * - banner_link_href (string|null)   Inline link URL (defaults to #).
+  * - banner_close_label (string)      Close button accessible label.
+  * - banner_variant (string|null)     info | warning | error.
+  * - banner_emphasis (string|null)    subtle | strong.
+  * - banner_dismissible (bool)        Show close button.
+  * - banner_uc (array)                Utility classes.
+  * - banner_att (Attribute)           Extra HTML attributes.
+  *
+  * Slots:
+  * - slot_content: Overrides banner_message with rich content.
+  *
+  * @see banner.md
+  */
+-#}
+
+{#- Defaults -#}
+{% set banner_variant = banner_variant|default('info') %}
+{% set banner_emphasis = banner_emphasis|default('subtle') %}
+{% set banner_dismissible = banner_dismissible|default(false) %}
+{% set banner_close_label = banner_close_label|default('Închide') %}
+
+{#- Live region: info → polite/status, warning/error → assertive/alert -#}
+{% set is_assertive = banner_variant in ['warning', 'error'] %}
+{% set banner_role = is_assertive ? 'alert' : 'status' %}
+{% set banner_live = is_assertive ? 'assertive' : 'polite' %}
+
+{#- Attributes -#}
+{% set banner_att = banner_att ?: create_attribute() %}
+{% set banner_att = banner_att
+  .setAttribute('role', banner_role)
+  .setAttribute('aria-live', banner_live)
+%}
+
+{#-
+  Classes:
+  banner
+  banner-{variant}
+  banner-{emphasis}
+  banner-dismissible (when dismissible)
+-#}
+{%
+  set banner_classes = [
+    'banner',
+    banner_variant ? 'banner-' ~ banner_variant,
+    banner_emphasis ? 'banner-' ~ banner_emphasis,
+    banner_dismissible ? 'banner-dismissible',
+  ]|merge(banner_uc ?: [])
+%}
+
+<div{{ banner_att.addClass(banner_classes) }}>
+  <div class="banner-inner">
+    {%- if banner_icon -%}
+      <span class="banner-icon" aria-hidden="true">{{ banner_icon|raw }}</span>
+    {%- endif -%}
+
+    <div class="banner-body">
+      {%- if banner_title -%}
+        <p class="banner-title">{{ banner_title }}</p>
+      {%- endif -%}
+
+      {% block slot_content -%}
+        {%- if slot_content -%}
+          {{ slot_content }}
+        {%- elseif banner_message -%}
+          <span class="banner-message">{{ banner_message }}</span>
+        {%- endif -%}
+      {% endblock -%}
+
+      {%- if banner_link_text -%}
+        <a
+          class="banner-link"
+          href="{{ banner_link_href ?: '#' }}"
+        >{{ banner_link_text }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if banner_dismissible -%}
+    <button
+      type="button"
+      class="banner-close"
+      aria-label="{{ banner_close_label }}"
+    >
+      <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z"/>
+      </svg>
+    </button>
+  {%- endif -%}
+</div>

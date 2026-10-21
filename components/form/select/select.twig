@@ -1,0 +1,128 @@
+{#-
+/**
+  * @file
+  * Select component.
+  *
+  * Available variations:
+  * - select_size (string|null) Default: null — sm | lg
+  *
+  * Available values:
+  * - select_name (string) required
+  * - select_id (string|null) (default: null)
+  * - select_label (string|null) (default: null)
+  * - select_options (array) (default: []) — [{value, label, selected, disabled}]
+  * - select_placeholder (string|null) (default: null)
+  * - select_description (string|null) (default: null)
+  * - select_required (boolean|null) (default: false)
+  * - select_disabled (boolean|null) (default: false)
+  * - select_multiple (boolean|null) (default: false)
+  * - select_rows (integer|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - select_uc (array) (default: [''])
+  * - select_field_uc (array) (default: [''])
+  * - select_label_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - select_att (Drupal\Core\Template\Attribute)
+  * - select_field_att (Drupal\Core\Template\Attribute)
+  * - select_label_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_options: Custom <option> or <optgroup> markup inside the select.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set select_size = select_size|default(null) %}
+{% set select_id = select_id|default(select_name) %}
+{% set select_label = select_label|default(null) %}
+{% set select_options = select_options|default([]) %}
+{% set select_placeholder = select_placeholder|default(null) %}
+{% set select_description = select_description|default(null) %}
+{% set select_required = select_required|default(false) %}
+{% set select_disabled = select_disabled|default(false) %}
+{% set select_multiple = select_multiple|default(false) %}
+{% set select_rows = select_rows|default(null) %}
+
+{#- Create attributes -#}
+{% set select_att = select_att ?: create_attribute() %}
+{% set select_field_att = select_field_att ?: create_attribute() %}
+{% set select_label_att = select_label_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set select_classes = [
+  'c--select',
+  select_size ? 'has-size_' ~ select_size,
+]|merge(select_uc ?: []) %}
+
+{% set select_field_classes = [
+  'select-field',
+  'form-select',
+  select_size ? 'form-select-' ~ select_size,
+]|merge(select_field_uc ?: []) %}
+
+{% set select_label_classes = [
+  'select-label',
+  'form-label',
+]|merge(select_label_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set select_field_att = select_field_att
+  .setAttribute('name', select_multiple ? select_name ~ '[]' : select_name)
+  .setAttribute('id', select_id) %}
+{%- if select_required -%}
+  {% set select_field_att = select_field_att.setAttribute('required', true) %}
+{%- endif -%}
+
+{%- if select_disabled -%}
+  {% set select_field_att = select_field_att.setAttribute('disabled', true) %}
+{%- endif -%}
+
+{%- if select_multiple -%}
+  {% set select_field_att = select_field_att.setAttribute('multiple', true) %}
+{%- endif -%}
+
+{%- if select_rows -%}
+  {% set select_field_att = select_field_att.setAttribute('size', select_rows) %}
+{%- endif -%}
+
+{%- if select_description -%}
+  {% set select_field_att = select_field_att.setAttribute('aria-describedby', select_id ~ '-description') %}
+{%- endif -%}
+
+{#- Render component -#}
+<div{{ select_att.addClass(select_classes) }}>
+  {%- if select_label -%}
+    {% include 'mud_egov:label' with {
+      label_text: select_label,
+      label_for: select_id,
+      label_required: select_required,
+      label_att: select_label_att,
+    } only %}
+  {%- endif -%}
+
+  <select{{ select_field_att.addClass(select_field_classes) }}>
+    {%- if select_placeholder -%}
+      <option value="" disabled selected>{{ select_placeholder }}</option>
+    {%- endif -%}
+
+    {% for option in select_options -%}
+      <option
+        value="{{ option.value }}"
+        {%- if option.selected -%} selected{%- endif -%}
+        {%- if option.disabled -%} disabled{%- endif -%}
+      >{{ option.label }}</option>
+    {% endfor -%}
+
+    {% block slot_options %}{% endblock %}
+  </select>
+
+  {%- if select_description -%}
+    <div class="select-description form-text" id="{{ select_id }}-description">
+      {{- select_description -}}
+    </div>
+  {%- endif -%}
+</div>

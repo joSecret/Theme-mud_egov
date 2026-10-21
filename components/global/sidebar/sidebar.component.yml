@@ -1,0 +1,97 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Sidebar
+status: stable
+group: Globals
+version: 1.0.0
+description: Slide-in side panel/drawer with overlay, focus trap, and Escape-to-close support.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    sidebar_title:
+      type: ['string', 'null']
+      title: Title
+      description: Sidebar panel title.
+      default: null
+
+    sidebar_id:
+      type: ['string', 'null']
+      title: ID
+      description: Unique ID for the sidebar element.
+      default: null
+
+    sidebar_close_label:
+      type: string
+      title: Close label
+      description: Accessible label for the close button.
+      default: 'Închide'
+
+    sidebar_open:
+      type: boolean
+      title: Open
+      description: Server-side initial open state.
+      default: false
+
+    sidebar_overlay:
+      type: boolean
+      title: Overlay
+      description: Show a dimmed backdrop behind the sidebar.
+      default: true
+
+    # component variations
+    sidebar_position:
+      type: ['string', 'null']
+      title: Position
+      description: Which side the panel slides in from.
+      default: null
+      enum:
+        - null
+        - start
+        - end
+
+    sidebar_size:
+      type: ['string', 'null']
+      title: Size
+      description: Panel width.
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+        - lg
+
+    sidebar_collapsed:
+      type: boolean
+      title: Collapsed
+      description: Collapse to icon-only compact rail (MUD sidebar collapsed mode).
+      default: false
+
+    # uc -> utility_classes
+    sidebar_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    sidebar_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_header:
+    title: Header
+    description: Custom header content (overrides sidebar_title).
+
+  slot_content:
+    title: Content
+    description: Main panel body content.
+
+  slot_footer:
+    title: Footer
+    description: Footer content/actions.

@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * mud_egov override for field_documents — renders via the field_documents
+ * component. Each item.content keeps its original rendered markup from
+ * Drupal's formatter (media entity view).
+ */
+#}
+
+{% set doc_items = [] %}
+{% for item in items %}
+  {% set doc_items = doc_items|merge([{
+    content: item.content,
+  }]) %}
+{% endfor %}
+
+{% set classes = [
+  field_name|clean_class,
+  'has-type_' ~ field_type|clean_class,
+  'has-label_' ~ label_display|clean_class,
+] %}
+
+{% include 'mud_egov:field_documents' with {
+  fieldDocuments_items: doc_items,
+  fieldDocuments_label: label,
+  fieldDocuments_label_hidden: label_hidden,
+  fieldDocuments_uc: classes,
+  fieldDocuments_att: attributes,
+} only %}

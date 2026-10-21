@@ -1,0 +1,38 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Card Icon
+status: stable
+version: 1.0.0
+group: Content
+description: 'Card with an icon, title and description.'
+
+props:
+  type: object
+  properties:
+    card_title:
+      type: ['string', 'null']
+      title: Title
+      default: null
+
+    card_description:
+      type: ['string', 'null']
+      title: Description
+      default: null
+
+    # uc -> utility_classes
+    card_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    card_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+
+slots:
+  card_icon:
+    title: Icon
+    description: 'Rendered icon field.'

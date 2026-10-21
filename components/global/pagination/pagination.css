@@ -1,0 +1,126 @@
+/**
+ * @file
+ * Pagination component styles — global/pagination.
+ */
+
+.c--pagination {
+  --_pagination-item_s: var(--pagination-item_s, var(--pagination-item-size-md));
+  --_pagination_item_c: var(--pagination_item_c, var(--pagination-item-unselected-label-default, inherit));
+  --_pagination_item_c_hover: var(--pagination_item_c_hover, var(--pagination-item-unselected-label-hover, var(--_pagination_item_c)));
+  --_pagination_item_bg: var(--pagination_item_bg, var(--pagination-item-unselected-background-default));
+  --_pagination_item_bg_hover: var(--pagination_item_bg_hover, var(--pagination-item-unselected-background-hover, var(--_pagination_item_bg)));
+  --_pagination_item_c_current: var(--pagination_item_c_current, var(--pagination-item-selected-label-default));
+  --_pagination_item_bg_current: var(--pagination_item_bg_current, var(--pagination-item-selected-background-default, #005c99));
+  --_pagination_gap: var(--pagination_gap, var(--pagination-container-gap-md));
+
+  --_pagination_nav_c: var(--pagination_nav_c, var(--pagination-item-unselected-label-default));
+  --_pagination_nav_bg: var(--pagination_nav_bg, var(--pagination-nav-background-default));
+  --_pagination_nav_bg_hover: var(--pagination_nav_bg_hover, var(--pagination-nav-background-hover, var(--_pagination_nav_bg)));
+  --_pagination_border_r: var(--pagination-item-border-radius, 6px);
+  --_pagination_transition: background-color var(--pagination-container-transition-duration) var(--pagination-container-transition-timing-function),
+    color var(--pagination-container-transition-duration) var(--pagination-container-transition-timing-function);
+
+  font-family: var(--pagination-item-font-family, inherit);
+  font-size: var(--pagination-item-font-size, inherit);
+  font-weight: var(--pagination-item-font-weight, inherit);
+  line-height: var(--pagination-item-line-height, inherit);
+
+  /* Size modifier */
+  &.has-size_sm {
+    --_pagination-item_s: var(--pagination-item-size-sm);
+    --_pagination_gap: var(--pagination-container-gap-sm, 2px);
+  }
+}
+
+/* List */
+.pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--_pagination_gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.pagination__item {
+  display: flex;
+}
+
+/* Page links and current-page span */
+.pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--_pagination-item_s);
+  height: var(--_pagination-item_s);
+  padding-inline: var(--pagination-nav-padding-inline-md);
+  border-radius: var(--_pagination_border_r);
+  border: var(--pagination-item-border-width-default, 1px) solid var(--pagination-item-unselected-border-default);
+  color: var(--_pagination_item_c);
+  background: var(--_pagination_item_bg);
+  text-decoration: none;
+  transition: var(--_pagination_transition);
+  cursor: pointer;
+  gap: 6px;
+
+  &:hover {
+    color: var(--_pagination_item_c_hover);
+    background: var(--_pagination_item_bg_hover);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--pagination-item-unselected-border-focus, #005c99);
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px var(--pagination-item-unselected-border-focus, #005c99);
+  }
+
+  &.is-current {
+    color: var(--_pagination_item_c_current);
+    background: var(--_pagination_item_bg_current);
+    border-color: transparent;
+    font-weight: 600;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Ellipsis */
+  &.is--ellipsis {
+    align-items: center;
+  }
+
+  /* Prev / Next nav links */
+  .is--nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding-inline: 12px;
+    min-width: auto;
+    color: var(--_pagination_nav_c);
+    background: var(--_pagination_nav_bg);
+    border: var(--pagination-nav-border-default, 1px solid transparent);
+    border-radius: var(--pagination-nav-border-radius, var(--_pagination_border_r));
+
+    &:hover {
+      background: var(--_pagination_nav_bg_hover);
+    }
+  }
+}
+
+.pagination__nav-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--_pagination-item_s);
+  height: var(--_pagination-item_s);
+  color: var(--_pagination_item_c);
+  user-select: none;
+}

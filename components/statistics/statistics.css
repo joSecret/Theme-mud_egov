@@ -1,0 +1,34 @@
+.c--statistics {
+  container-type: inline-size;
+  display: grid;
+  gap: var(--spacing-80, 80px);
+  grid-template-columns: var(--statistics_g-t-c, 1fr);
+  padding-block: var(--statistics_p-b, 64px);
+  padding-inline: var(--statistics_p-i, 0px);
+
+  .heading {
+    max-width: 510px;
+  }
+
+  @container body (992px < width) {
+    --statistics_g-t-c: repeat(2, 1fr);
+  }
+
+  @container (528px < width) {
+    --statistics-item_g-t-c: repeat(2, 1fr);
+  }
+}
+
+.statistics-intro {
+  align-content: flex-start;
+  flex: 0 0 50%;
+  display: grid;
+  gap: var(--spacing-24);
+}
+
+.statistics-grid {
+  flex: 0 0 50%;
+  display: grid;
+  grid-template-columns: var(--statistics-item_g-t-c, 1fr);
+  gap: var(--spacing-48);
+}

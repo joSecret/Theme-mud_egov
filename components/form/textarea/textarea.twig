@@ -1,0 +1,93 @@
+{#-
+/**
+ * @file
+ * Template for the Textarea component (MUD-aligned).
+ *
+ * Props:
+ * - textarea_label (string|null) default: null
+ * - textarea_name (string|null) default: null
+ * - textarea_id (string|null) default: null
+ * - textarea_placeholder (string|null) default: null
+ * - textarea_value (string|null) default: null
+ * - textarea_rows (integer|null) default: 4
+ * - textarea_helper_text (string|null) default: null
+ * - textarea_error_message (string|null) default: null
+ * - textarea_disabled (boolean) default: false
+ * - textarea_readonly (boolean) default: false
+ * - textarea_required (boolean) default: false
+ * - textarea_error (boolean) default: false
+ *
+ * Variations:
+ * - textarea_size (string|null) default: null — md | lg
+ * - textarea_resize (string|null) default: null — vertical | none | horizontal | both
+ *
+ * Utility classes: textarea_uc
+ * Attributes: textarea_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set textarea_id = textarea_id|default(textarea_name) %}
+{% set textarea_rows = textarea_rows|default(4) %}
+{% set textarea_disabled = textarea_disabled|default(false) %}
+{% set textarea_readonly = textarea_readonly|default(false) %}
+{% set textarea_required = textarea_required|default(false) %}
+{% set textarea_error = textarea_error|default(false) %}
+
+{#- IDs for aria wiring -#}
+{% set helper_id = textarea_id ? textarea_id ~ '-helper' : null %}
+{% set error_id = textarea_id ? textarea_id ~ '-error' : null %}
+
+{#- Create attributes -#}
+{% set textarea_att = textarea_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set textarea_classes = [
+    'c--textarea',
+    textarea_size ? 'c--textarea--' ~ textarea_size,
+    textarea_error ? 'textarea-error',
+    textarea_disabled ? 'is-disabled',
+  ]|merge(textarea_uc ?: [])
+%}
+
+{#- aria-describedby -#}
+{% set described_by = [] %}
+{%- if textarea_error and textarea_error_message and error_id -%}
+  {% set described_by = described_by|merge([error_id]) %}
+{%- elseif textarea_helper_text and helper_id -%}
+  {% set described_by = described_by|merge([helper_id]) %}
+{%- endif -%}
+
+{#- Inline resize style -#}
+{% set resize_style = textarea_resize ? 'resize: ' ~ textarea_resize ~ ';' : null -%}
+
+{#- Render -#}
+<div{{ textarea_att.addClass(textarea_classes) }}>
+  {%- if textarea_label -%}
+    <label class="textarea-label" for="{{ textarea_id }}">
+      {{- textarea_label -}}
+      {%- if textarea_required -%}<span class="textarea-required" aria-hidden="true">*</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+
+  <textarea
+    class="textarea-field"
+    {%- if textarea_id -%} id="{{ textarea_id }}"{%- endif -%}
+    {%- if textarea_name -%} name="{{ textarea_name }}"{%- endif -%}
+    rows="{{ textarea_rows }}"
+    {%- if textarea_placeholder -%} placeholder="{{ textarea_placeholder }}"{%- endif -%}
+    {%- if textarea_required -%} required aria-required="true"{%- endif -%}
+    {%- if textarea_disabled -%} disabled{%- endif -%}
+    {%- if textarea_readonly -%} readonly{%- endif -%}
+    {%- if textarea_error -%} aria-invalid="true"{%- endif -%}
+    {%- if described_by is not empty -%} aria-describedby="{{ described_by|join(' ') }}"{%- endif -%}
+    {%- if resize_style -%} style="{{ resize_style }}"{%- endif -%}
+  >{{ textarea_value }}</textarea>
+
+  {%- if textarea_error and textarea_error_message -%}
+    <p class="textarea-error-message" id="{{ error_id }}" role="alert">{{- textarea_error_message -}}</p>
+  {%- elseif textarea_helper_text -%}
+    <p class="textarea-helper-text" id="{{ helper_id }}">{{- textarea_helper_text -}}</p>
+  {%- endif -%}
+</div>

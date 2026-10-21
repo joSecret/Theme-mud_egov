@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Accordion Item
+status: stable
+description: 'Single accordion item using native <details>/<summary>'
+props:
+  type: object
+  properties:
+    item_title:
+      type: string
+      title: Item Title
+      description: The summary/trigger text.
+      default: ''
+
+    item_icon:
+      type: ['object', 'string', 'null']
+      title: Item Icon
+      description: Pre-rendered icon or illustration (field_illustration_or_icon).
+      default: ''
+
+    item_description:
+      type: string
+      title: Item Description
+      description: Short description shown in the summary (field_description).
+      default: ''
+
+    item_content:
+      type: string
+      title: Item Content
+      description: Pre-rendered body content of the accordion item.
+      default: ''
+
+    item_name:
+      type: ['string', 'null']
+      title: Group Name
+      description: 'Sets the name attribute on <details>. Items sharing the same name are exclusive (only one open at a time).'
+      default: null
+
+    item_open:
+      type: boolean
+      title: Open
+      description: Whether the item is open by default.
+      default: false
+
+    item_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    item_att:
+      type: object
+      title: Attributes
+      default: null

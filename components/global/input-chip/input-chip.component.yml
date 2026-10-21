@@ -1,0 +1,100 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Input Chip
+status: stable
+group: Globals
+version: 1.0.0
+description: Multi-value text-entry control where each confirmed value renders as a removable chip. Aligned with mud-input-chip.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    input_chip_label:
+      type: ['string', 'null']
+      title: Label
+      default: null
+
+    input_chip_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      default: null
+
+    input_chip_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name (submitted as JSON array).
+      default: null
+
+    input_chip_chips:
+      type: array
+      title: Chips
+      description: "Pre-populated chip values: array of strings."
+      default: []
+      items:
+        type: string
+
+    input_chip_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      default: null
+
+    input_chip_error_text:
+      type: ['string', 'null']
+      title: Error Text
+      default: null
+
+    input_chip_max:
+      type: ['number', 'null']
+      title: Max Chips
+      description: Maximum number of chips accepted.
+      default: null
+
+    # component variations
+    input_chip_size:
+      type: ['string', 'null']
+      title: Size
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    input_chip_variant:
+      type: ['string', 'null']
+      title: Variant
+      default: null
+      enum:
+        - null
+        - default
+        - destructive
+
+    input_chip_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    input_chip_required:
+      type: boolean
+      title: Required
+      default: false
+
+    input_chip_invalid:
+      type: boolean
+      title: Invalid
+      default: false
+
+    # uc -> utility_classes
+    input_chip_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    input_chip_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

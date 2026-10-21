@@ -1,0 +1,180 @@
+/* ============================================================
+   Info Box — inline content callout
+   Aligned with mud-info-box (variant: info|info-moderate|warning|error,
+   emphasis: subtle|strong, closable, hideIcon)
+   Token names map to --info-box-* from core.tokens.css
+   ============================================================ */
+
+.info-box {
+  /* External custom properties (consumer API) */
+  --info-box_bg: initial;
+  --info-box_c: initial;
+  --info-box_icon-c: initial;
+  --info-box_b-r: initial;
+  --info-box_p-b: initial;
+  --info-box_p-i: initial;
+  --info-box_gap: initial;
+  --info-box_icon-s: initial;
+  --info-box_heading-f-s: initial;
+  --info-box_heading-f-w: initial;
+  --info-box_body-f-s: initial;
+  --info-box_close-s: initial;
+
+  /* Internal resolved properties */
+  --_info-box_bg: var(--info-box_bg, var(--info-box-subtle-info-background, var(--color-background-neutral-secondary, #f5f5f5)));
+  --_info-box_c: var(--info-box_c, var(--info-box-subtle-info-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-subtle-info-icon, var(--color-foreground-neutral-secondary, #525252)));
+  --_info-box_b-r: var(--info-box_b-r, var(--info-box-container-border-radius, 8px));
+  --_info-box_p-b: var(--info-box_p-b, var(--info-box-container-padding-block));
+  --_info-box_p-i: var(--info-box_p-i, var(--info-box-container-padding-inline, 16px));
+  --_info-box_gap: var(--info-box_gap, var(--info-box-container-gap, 12px));
+  --_info-box_icon-s: var(--info-box_icon-s, var(--info-box-icon-size, 20px));
+  --_info-box_heading-f-s: var(--info-box_heading-f-s, var(--info-box-heading-font-size, 16px));
+  --_info-box_heading-f-w: var(--info-box_heading-f-w, var(--info-box-heading-font-weight, 600));
+  --_info-box_body-f-s: var(--info-box_body-f-s, var(--info-box-body-font-size, 14px));
+  --_info-box_close-s: var(--info-box_close-s, var(--info-box-close-icon-size, 16px));
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--_info-box_gap);
+  width: 100%;
+  background-color: var(--_info-box_bg);
+  color: var(--_info-box_c);
+  border-radius: var(--_info-box_b-r);
+  padding-block: var(--_info-box_p-b);
+  padding-inline: var(--_info-box_p-i);
+  box-sizing: border-box;
+  font-size: var(--_info-box_body-f-s);
+  font-family: var(--info-box-body-font-family, inherit);
+  line-height: var(--info-box-body-line-height, 20px);
+}
+
+.info-box-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--_info-box_icon-s);
+  height: var(--_info-box_icon-s);
+  color: var(--_info-box_icon-c);
+}
+
+.info-box-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.info-box-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--info-box-container-heading-gap, 4px);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.info-box-heading {
+  margin: 0;
+  font-size: var(--_info-box_heading-f-s);
+  font-weight: var(--_info-box_heading-f-w);
+  font-family: var(--info-box-heading-font-family, inherit);
+  line-height: var(--info-box-heading-line-height, 24px);
+  color: inherit;
+}
+
+.info-box-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Close button */
+.info-box-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--info-box-close-size-pointer, 32px);
+  height: var(--info-box-close-size-pointer, 32px);
+  padding: 0;
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--_info-box_icon-c);
+  cursor: pointer;
+  border-radius: var(--info-box-close-border-radius, 4px);
+
+  &:hover {
+    background-color: var(--info-box-close-background-hover, rgba(0, 0, 0, 0.06));
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.info-box-close svg {
+  width: var(--_info-box_close-s);
+  height: var(--_info-box_close-s);
+  fill: currentColor;
+}
+
+/* ============================================================
+   Subtle emphasis (default)
+   ============================================================ */
+
+.info-box-info.info-box-subtle,
+.info-box-info:not(.info-box-strong) {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-subtle-info-background, var(--color-background-neutral-secondary, #f5f5f5)));
+  --_info-box_c: var(--info-box_c, var(--info-box-subtle-info-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-subtle-info-icon, var(--color-foreground-neutral-secondary, #525252)));
+}
+
+.info-box-info-moderate.info-box-subtle,
+.info-box-info-moderate:not(.info-box-strong) {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-subtle-info-moderate-background, var(--color-background-neutral-secondary, #f5f5f5)));
+  --_info-box_c: var(--info-box_c, var(--info-box-subtle-info-moderate-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-subtle-info-moderate-icon, var(--color-background-brand-default, #1570ef)));
+}
+
+.info-box-warning.info-box-subtle,
+.info-box-warning:not(.info-box-strong) {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-subtle-warning-background, var(--color-background-warning-secondary, #feefc6)));
+  --_info-box_c: var(--info-box_c, var(--info-box-subtle-warning-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-subtle-warning-icon, var(--color-foreground-warning-default, #b54708)));
+}
+
+.info-box-error.info-box-subtle,
+.info-box-error:not(.info-box-strong) {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-subtle-error-background, var(--color-background-danger-secondary, #fee4e2)));
+  --_info-box_c: var(--info-box_c, var(--info-box-subtle-error-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-subtle-error-icon, var(--color-foreground-danger-default, #b42318)));
+}
+
+/* ============================================================
+   Strong emphasis (tinted semantic surface)
+   ============================================================ */
+
+.info-box-info.info-box-strong {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-strong-info-background, var(--color-background-info-secondary, #e0f2fe)));
+  --_info-box_c: var(--info-box_c, var(--info-box-strong-info-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-strong-info-icon, var(--color-foreground-info-default, #026aa2)));
+}
+
+.info-box-info-moderate.info-box-strong {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-strong-info-moderate-background, var(--color-background-info-secondary, #e0f2fe)));
+  --_info-box_c: var(--info-box_c, var(--info-box-strong-info-moderate-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-strong-info-moderate-icon, var(--color-background-brand-default, #1570ef)));
+}
+
+.info-box-warning.info-box-strong {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-strong-warning-background, var(--color-background-warning-secondary, #feefc6)));
+  --_info-box_c: var(--info-box_c, var(--info-box-strong-warning-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-strong-warning-icon, var(--color-foreground-warning-default, #b54708)));
+}
+
+.info-box-error.info-box-strong {
+  --_info-box_bg: var(--info-box_bg, var(--info-box-strong-error-background, var(--color-background-danger-secondary, #fee4e2)));
+  --_info-box_c: var(--info-box_c, var(--info-box-strong-error-text, var(--color-foreground-neutral-default, #1a1a1a)));
+  --_info-box_icon-c: var(--info-box_icon-c, var(--info-box-strong-error-icon, var(--color-foreground-danger-default, #b42318)));
+}

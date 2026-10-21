@@ -1,0 +1,85 @@
+{#-
+/**
+  * @file
+  * date_range component.
+  *
+  * Available variables:
+  * - date_range_start (string) required
+  * - date_range_end (string) required
+  *
+  * Available properties:
+  * - date_range_delimiter (string) ('-', 'to', 'until', 'through', 'and', '/', '|') (default: ' - ')
+  * - date_range_remove_wrapper (boolean) (default: false)
+  *
+  * Available Utility classes -> uc
+  * - date_range_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - date_range_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The content for the button
+  *
+  * usage example: @see date_range.md
+  *
+  */
+-#}
+
+{#- Set default value -#}
+{% set date_range_delimiter = date_range_delimiter|default('-') %}
+{% set date_range_remove_wrapper = date_range_remove_wrapper|default(true) %}
+
+{#- Create attributes -#}
+{% set date_range_att = date_range_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set date_range_classes = [
+  'c--dateRange',
+]|merge(date_range_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+{%- if date_range_remove_wrapper -%}
+  <div{{ date_range_att.addClass(date_range_classes) }}>
+{%- endif -%}
+  {% block slot_content -%}
+    {#- Handle different data types for date values -#}
+    {%- if date_range_start['#text'] is defined -%}
+      {% set start_date = date_range_start['#text'] %}
+    {%- elseif date_range_start is iterable and date_range_start.value is defined -%}
+      {% set start_date = date_range_start.value %}
+    {%- else -%}
+      {% set start_date = date_range_start %}
+    {%- endif -%}
+
+    {%- if date_range_end['#text'] is defined -%}
+      {% set end_date = date_range_end['#text'] %}
+    {%- elseif date_range_end is iterable and date_range_end.value is defined -%}
+      {% set end_date = date_range_end.value %}
+    {%- else -%}
+      {% set end_date = date_range_end %}
+    {%- endif -%}
+
+    {% set s_day = start_date|date('d') -%}
+    {% set s_month = start_date|date('M') %}
+    {% set s_year = start_date|date('Y') %}
+
+    {% set e_day = end_date|date('d') %}
+    {% set e_month = end_date|date('M') %}
+    {% set e_year = end_date|date('Y') %}
+
+    {%- if s_year != e_year -%}
+      {{ start_date|date('d M Y') }} {{ date_range_delimiter }} {{ end_date|date('d M Y') }}
+    {%- elseif s_month != e_month -%}
+      {{ s_day }} {{ s_month }} {{ date_range_delimiter }} {{ e_day }} {{ e_month }}
+      {{ e_year }}
+    {%- elseif s_day != e_day -%}
+      {{ s_day }} {{ date_range_delimiter }} {{ e_day }} {{ e_month }} {{ e_year }}
+    {%- else -%}
+      {{ start_date|date('d M Y') }}
+    {%- endif -%}
+  {% endblock -%}
+{%- if date_range_remove_wrapper -%}
+  </div>
+{%- endif -%}

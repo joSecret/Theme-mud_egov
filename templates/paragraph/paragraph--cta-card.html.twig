@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Paragraph template for CTA Card.
+ * Renders a simple card with a title and a primary CTA button.
+ */
+#}
+
+<div class="c--cta-card">
+  {% if paragraph.field_title.value %}
+    <p class="cta-card-title">
+      {{- paragraph.field_title.value -}}
+    </p>
+  {% endif %}
+
+  {% if content.field_cta_primary %}
+    <div class="cta-card-action">
+      {{- content.field_cta_primary -}}
+    </div>
+  {% endif %}
+</div>

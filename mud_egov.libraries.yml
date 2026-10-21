@@ -1,0 +1,20 @@
+layout-onecol:
+  css:
+    layout:
+      layouts/layout--onecol.css: {}
+
+theme-fonts:
+  css:
+    base:
+      css/fonts.css: { minified: false }
+
+global-styling:
+  css:
+    base:
+      css/foundations.css: { minified: false }
+      css/vars-mud.css: { minified: false }
+      css/vars.css: { minified: false }
+      css/reboot.css: { minified: false }
+      css/type.css: { minified: false }
+      css/utils.css: { minified: false }
+      css/drupal.css: { minified: false }

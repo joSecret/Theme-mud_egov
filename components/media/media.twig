@@ -1,0 +1,34 @@
+{#-
+/**
+ * @file
+ * Media component.
+ *
+ * Available Utility classes -> uc
+ * - media_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - media_att (Drupal\Core\Template\Attribute)
+ *
+ * Available slots:
+ * - slot_addons: Contextual links and other auxiliary elements.
+ * - slot_content: The media item content.
+ */
+-#}
+
+{#- Set default value -#}
+
+{#- Create attributes -#}
+{% set media_att = media_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set media_classes = [
+  'c--media',
+]|merge(media_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<div{{ media_att.addClass(media_classes) }}>
+  {% block slot_addons %}{% endblock %}
+  {% block slot_content %}{% endblock %}
+</div>

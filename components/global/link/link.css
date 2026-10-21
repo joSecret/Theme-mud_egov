@@ -1,0 +1,218 @@
+/**
+ * Link component.
+ *
+ * External CSS API  (--link_*): consumed by callers to customise this instance.
+ * Internal vars     (--_link_*): private aliases used in property values.
+ *
+ * Design tokens sourced from MUD: --link-* (core.tokens.css).
+ */
+
+.link {
+  /* Size: default md */
+  --_link_f-s: var(--link_f-s, var(--link-label-font-size-md, 16px));
+  --_link_l-h: var(--link_l-h, var(--link-label-line-height-md, 24px));
+  --_link_icon-size: var(--link_icon-size, var(--link-icon-size-md, 20px));
+  --_link_gap: var(--link_gap, var(--link-container-gap-md, 4px));
+
+  /* Color: default primary */
+  --_link_c: var(--link_c, var(--link-primary-label-default, #0058d2));
+  --_link_c-hover: var(--link_c-hover, var(--link-primary-label-hover, #0058d2));
+  --_link_c-active: var(--link_c-active, var(--link-primary-label-active, #00357e));
+  --_link_c-visited: var(--link_c-visited, var(--link-primary-label-visited, #aa18ce));
+
+  /* Underline: default always */
+  --_link_u-default: var(--link_u-default, underline);
+  --_link_u-hover: var(--link_u-hover, underline);
+  --_link_u-offset: var(--link-label-underline-offset, 2px);
+  --_link_u-thickness: var(--link-label-underline-thickness, 1px);
+  --_link_u-thickness-hover: var(--link-label-underline-thickness-hover, 1.5px);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_link_gap);
+  vertical-align: baseline;
+  max-inline-size: 100%;
+
+  font-family: var(--link-label-font-family, Onest, sans-serif);
+  font-size: var(--_link_f-s);
+  font-weight: var(--link-label-font-weight, 400);
+  line-height: var(--_link_l-h);
+  color: var(--_link_c);
+
+  text-decoration-line: var(--_link_u-default);
+  text-decoration-thickness: var(--_link_u-thickness);
+  text-underline-offset: var(--_link_u-offset);
+  text-decoration-color: currentcolor;
+  text-decoration-skip-ink: auto;
+
+  padding-inline: var(--link-container-padding-inline, 0px);
+  padding-block: var(--link-container-padding-block, 0px);
+  border-radius: var(--link-container-border-radius, 4px);
+
+  cursor: pointer;
+  transition:
+    color var(--link-container-transition-duration, 150ms) var(--link-container-transition-timing-function, ease-out),
+    text-decoration-color var(--link-container-transition-duration, 150ms) var(--link-container-transition-timing-function, ease-out),
+    box-shadow var(--link-container-transition-duration, 150ms) var(--link-container-transition-timing-function, ease-out);
+
+  &:hover {
+    --_link_c: var(--_link_c-hover);
+    text-decoration-line: var(--_link_u-hover);
+    text-decoration-thickness: var(--_link_u-thickness-hover);
+  }
+
+  &:active {
+    --_link_c: var(--_link_c-active);
+  }
+
+  &:visited {
+    --_link_c: var(--_link_c-visited);
+
+    .link__label,
+    .link__external-indicator {
+      color: var(--_link_c-visited);
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 var(--link-focus-ring-offset, 1px) var(--link-focus-ring-offset-color, #ffffff),
+      0 0 0 calc(var(--link-focus-ring-offset, 1px) + var(--link-focus-ring-width, 3px)) var(--link-focus-ring-color, #3379db);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* === Size modifiers === */
+.link-xs {
+  --_link_f-s: var(--link-label-font-size-xs, 12px);
+  --_link_l-h: var(--link-label-line-height-xs, 16px);
+  --_link_icon-size: var(--link-icon-size-xs, 12px);
+  --_link_gap: var(--link-container-gap-xs, 2px);
+}
+
+.link-sm {
+  --_link_f-s: var(--link-label-font-size-sm, 14px);
+  --_link_l-h: var(--link-label-line-height-sm, 20px);
+  --_link_icon-size: var(--link-icon-size-sm, 16px);
+  --_link_gap: var(--link-container-gap-sm, 4px);
+}
+
+.link-md {
+  --_link_f-s: var(--link-label-font-size-md, 16px);
+  --_link_l-h: var(--link-label-line-height-md, 24px);
+  --_link_icon-size: var(--link-icon-size-md, 20px);
+  --_link_gap: var(--link-container-gap-md, 4px);
+}
+
+.link-lg {
+  --_link_f-s: var(--link-label-font-size-lg, 18px);
+  --_link_l-h: var(--link-label-line-height-lg, 28px);
+  --_link_icon-size: var(--link-icon-size-lg, 20px);
+  --_link_gap: var(--link-container-gap-lg, 6px);
+}
+
+/* === Variant modifiers === */
+.link-primary {
+  --_link_c: var(--link_c, var(--link-primary-label-default, #0058d2));
+  --_link_c-hover: var(--link_c-hover, var(--link-primary-label-hover, #0058d2));
+  --_link_c-active: var(--link_c-active, var(--link-primary-label-active, #00357e));
+  --_link_c-visited: var(--link_c-visited, var(--link-primary-label-visited, #aa18ce));
+}
+
+.link-strict {
+  --_link_c: var(--link_c, var(--link-strict-label-default, #121212));
+  --_link_c-hover: var(--link_c-hover, var(--link-strict-label-hover, #383838));
+  --_link_c-active: var(--link_c-active, var(--link-strict-label-active, #121212));
+  --_link_c-visited: var(--link_c-visited, var(--link-strict-label-visited, #aa18ce));
+}
+
+.link-white {
+  --_link_c: var(--link_c, var(--link-white-label-default, #ffffff));
+  --_link_c-hover: var(--link_c-hover, var(--link-white-label-hover, #ffffff));
+  --_link_c-active: var(--link_c-active, var(--link-white-label-active, #ffffff));
+  --_link_c-visited: var(--link_c-visited, var(--link-white-label-visited, #aa18ce));
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 var(--link-focus-ring-offset, 1px) var(--color-background-base-inverse-default, #121212),
+      0 0 0 calc(var(--link-focus-ring-offset, 1px) + var(--link-focus-ring-width, 3px)) var(--link-focus-ring-color, #3379db);
+  }
+}
+
+/* === Underline modifiers === */
+.link-underline-always {
+  --_link_u-default: underline;
+  --_link_u-hover: underline;
+}
+
+.link-underline-hover {
+  --_link_u-default: none;
+  --_link_u-hover: underline;
+}
+
+.link-underline-none {
+  --_link_u-default: none;
+  --_link_u-hover: none;
+}
+
+/* === Standalone === */
+.link-standalone {
+  min-block-size: var(--link-container-min-height-pointer, 32px);
+  padding-block: var(--spacing-4, 4px);
+
+  @media (pointer: coarse) {
+    min-block-size: var(--link-container-min-height-touch, 40px);
+  }
+}
+
+/* === Disabled === */
+.link-disabled {
+  --_link_c: var(--link-disabled-label, #b2b2b2);
+  --_link_c-hover: var(--link-disabled-label, #b2b2b2);
+  --_link_c-active: var(--link-disabled-label, #b2b2b2);
+  --_link_c-visited: var(--link-disabled-label, #b2b2b2);
+
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* === Slots === */
+.link__icon-start,
+.link__icon-end {
+  flex-shrink: 0;
+  inline-size: var(--_link_icon-size);
+  block-size: var(--_link_icon-size);
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link__label {
+  display: inline;
+  min-inline-size: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.link__external-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--_link_icon-size);
+  line-height: 1;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.link__external-icon {
+  width: 1em;
+  height: 1em;
+  display: block;
+}

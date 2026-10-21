@@ -1,0 +1,46 @@
+.c--svgAnimation {
+  --_svg-animation_a_s: var(--svg-animation_a_s, 16px);
+  --_svg-animation_a_tt: var(--svg-animation_a_tt, 0.35s);
+  --_svg-animation_a_rotate_deg: 90deg;
+
+  display: grid;
+  grid-template-areas: 'stack';
+  width: var(--_svg-animation_a_s);
+  height: var(--_svg-animation_a_s);
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    object-fit: cover;
+    max-height: var(--_svg-animation_a_s);
+    width: 100%;
+    height: 100%;
+    grid-area: stack;
+    opacity: 0;
+    rotate: var(--_svg-animation_a_rotate_deg);
+    visibility: none;
+    pointer-events: none;
+    transition-behavior: discrete;
+    transition-property: opacity, rotate, visibility;
+    transition-duration: var(--_svg-animation_a_tt);
+  }
+}
+
+[aria-expanded='false'] > .c--svgAnimation svg:first-child,
+[aria-expanded='true'] > .c--svgAnimation svg:last-child {
+  --_svg-animation_a_rotate_deg: 0deg;
+
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+.c--svgAnimation {
+  &[aria-expanded='false'] svg:first-child,
+  &[aria-expanded='true'] svg:last-child {
+    --_svg-animation_a_rotate_deg: 0deg;
+
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+}

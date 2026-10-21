@@ -1,0 +1,117 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: File Input
+status: stable
+group: Forms
+version: 1.0.0
+description: Drag-and-drop file upload field with validation and file list. Aligned with mud-file-input.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    file_input_label:
+      type: ['string', 'null']
+      title: Label
+      default: null
+
+    file_input_name:
+      type: ['string', 'null']
+      title: Name
+      description: HTML input name attribute.
+      default: null
+
+    file_input_id:
+      type: ['string', 'null']
+      title: ID
+      default: null
+
+    file_input_accept:
+      type: ['string', 'null']
+      title: Accept
+      description: "MIME types or extensions (e.g. image/*,.pdf)"
+      default: null
+
+    file_input_drag_label:
+      type: ['string', 'null']
+      title: Drag Label
+      description: Text inside the drop zone. Defaults to "Trage și plasează sau".
+      default: null
+
+    file_input_browse_label:
+      type: ['string', 'null']
+      title: Browse Label
+      description: Inline link label to open file picker. Defaults to "Alege fișiere".
+      default: null
+
+    file_input_max_size_label:
+      type: ['string', 'null']
+      title: Max Size Label
+      description: 'Caption below drop zone (e.g. "Mărime maximă: 10 MB").'
+      default: null
+
+    file_input_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      default: null
+
+    file_input_error_text:
+      type: ['string', 'null']
+      title: Error Text
+      default: null
+
+    # component variations
+    file_input_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: "dropzone (default) | button"
+      default: null
+      enum:
+        - null
+        - dropzone
+        - button
+
+    file_input_size:
+      type: ['string', 'null']
+      title: Size
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    file_input_multiple:
+      type: boolean
+      title: Multiple
+      description: Allow selecting more than one file.
+      default: false
+
+    file_input_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    file_input_required:
+      type: boolean
+      title: Required
+      default: false
+
+    file_input_invalid:
+      type: boolean
+      title: Invalid
+      default: false
+
+    # uc -> utility_classes
+    file_input_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    file_input_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

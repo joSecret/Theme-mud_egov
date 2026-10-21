@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Page layout
+status: stable
+version: 1.0.0
+group: Layout
+description: 'Page layout description'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    page_layout_main_container:
+      type: ['boolean', 'null']
+      title: Page layout main container
+      description: Whether to wrap the main content in a container class.
+      default: true
+
+    page_layout_padding_block:
+      type: ['number', 'null']
+      title: Page layout padding block
+      description: The padding block for the page layout.
+      default: null
+
+    # fields values
+
+    # uc -> utility_classes
+    page_layout_uc:
+      type: array
+      items:
+        type: string
+      title: Page layout Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+
+    # att -> attributes
+    page_layout_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the page layout component.
+
+      default: null
+# Slots.
+slots:
+  slot_header:
+    title: Header
+    description: Header slot.
+
+  slot_main:
+    title: Main
+    description: Main content slot.
+
+  slot_footer:
+    title: Footer
+    description: Footer slot.

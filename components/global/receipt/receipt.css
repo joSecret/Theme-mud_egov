@@ -1,0 +1,239 @@
+/* === Receipt Component === */
+
+/* External tokens (override from outside) */
+.receipt {
+  --receipt_max-width: var(--receipt-container-max-width, 480px);
+  --receipt_bg: var(--receipt-container-background, var(--color-background-base-primary, #fff));
+  --receipt_b-w: var(--receipt-container-border-width, 1px);
+  --receipt_b: var(--receipt-container-border, var(--receipt_b-w) solid var(--color-border-base-default, #e2e8f0));
+  --receipt_b-r: var(--receipt-container-border-radius, var(--border-radius-12, 12px));
+  --receipt_shadow: var(--receipt-container-shadow, 0 2px 8px 0 rgb(0 0 0 / 0.08));
+  --receipt_p: var(--receipt-container-padding, 24px);
+  --receipt_gap: var(--receipt-container-gap, 0);
+
+  /* Internal tokens */
+  --_receipt_title_ff: var(--receipt-title-font-family, var(--font-family-base, inherit));
+  --_receipt_title_fs: var(--receipt-title-font-size, 1.125rem);
+  --_receipt_title_lh: var(--receipt-title-line-height, 1.5rem);
+  --_receipt_title_fw: var(--receipt-title-font-weight, 600);
+  --_receipt_title_c: var(--receipt-title-color, var(--color-text-base-default, #1a202c));
+
+  --_receipt_divider_w: var(--receipt-divider-width, 1px);
+  --_receipt_divider_c: var(--receipt-divider-color, var(--color-border-base-default, #e2e8f0));
+
+  --_receipt_amount_gap: var(--receipt-amount-gap, 8px);
+  --_receipt_amount_p: var(--receipt-amount-padding, 16px);
+  --_receipt_amount_bg: var(--receipt-amount-background, var(--color-background-base-secondary, #f7fafc));
+  --_receipt_amount_b-r: var(--receipt-amount-border-radius, var(--border-radius-8, 8px));
+
+  --_receipt_amount_label_ff: var(--receipt-amount-label-font-family, inherit);
+  --_receipt_amount_label_fs: var(--receipt-amount-label-font-size, 0.875rem);
+  --_receipt_amount_label_lh: var(--receipt-amount-label-line-height, 1.25rem);
+  --_receipt_amount_label_fw: var(--receipt-amount-label-font-weight, 400);
+  --_receipt_amount_label_c: var(--receipt-amount-label-color, var(--color-text-base-secondary, #718096));
+
+  --_receipt_amount_value_ff: var(--receipt-amount-value-font-family, inherit);
+  --_receipt_amount_value_fs: var(--receipt-amount-value-font-size, 1.5rem);
+  --_receipt_amount_value_lh: var(--receipt-amount-value-line-height, 2rem);
+  --_receipt_amount_value_fw: var(--receipt-amount-value-font-weight, 700);
+  --_receipt_amount_value_c: var(--receipt-amount-value-color, var(--color-text-base-default, #1a202c));
+
+  --_receipt_row_gap: var(--receipt-row-gap, 0);
+  --_receipt_row_p-b: var(--receipt-row-padding-block, 12px);
+
+  --_receipt_row_label_ff: var(--receipt-row-label-font-family, inherit);
+  --_receipt_row_label_fs: var(--receipt-row-label-font-size, 0.875rem);
+  --_receipt_row_label_lh: var(--receipt-row-label-line-height, 1.25rem);
+  --_receipt_row_label_fw: var(--receipt-row-label-font-weight, 400);
+  --_receipt_row_label_c: var(--receipt-row-label-color, var(--color-text-base-secondary, #718096));
+
+  --_receipt_row_value_ff: var(--receipt-row-value-font-family, inherit);
+  --_receipt_row_value_fs: var(--receipt-row-value-font-size, 0.875rem);
+  --_receipt_row_value_lh: var(--receipt-row-value-line-height, 1.25rem);
+  --_receipt_row_value_fw: var(--receipt-row-value-font-weight, 500);
+  --_receipt_row_value_c: var(--receipt-row-value-color, var(--color-text-base-default, #1a202c));
+
+  /* === Styles === */
+  max-width: var(--receipt_max-width);
+  background: var(--receipt_bg);
+  border: var(--receipt_b);
+  border-radius: var(--receipt_b-r);
+  box-shadow: var(--receipt_shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--receipt_gap);
+}
+
+/* Header */
+.receipt__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--receipt-header-gap, 8px);
+  padding: var(--receipt_p);
+  padding-block-end: 16px;
+}
+
+.receipt__title {
+  font-family: var(--_receipt_title_ff);
+  font-size: var(--_receipt_title_fs);
+  line-height: var(--_receipt_title_lh);
+  font-weight: var(--_receipt_title_fw);
+  color: var(--_receipt_title_c);
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.receipt__service-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding-inline: 8px;
+  padding-block: 2px;
+  border-radius: var(--border-radius-4, 4px);
+  background: var(--color-background-brand-subtle, #ebf8ff);
+  color: var(--color-text-brand-default, #2b6cb0);
+}
+
+.receipt__status {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding-inline: 10px;
+  padding-block: 3px;
+  border-radius: 9999px;
+  margin-inline-start: auto;
+}
+
+.receipt__status--paid {
+  background: var(--color-background-success-subtle, #f0fff4);
+  color: var(--color-text-success-default, #276749);
+}
+
+.receipt__status--confirmed {
+  background: var(--color-background-brand-subtle, #ebf8ff);
+  color: var(--color-text-brand-default, #2b6cb0);
+}
+
+.receipt__status--pending {
+  background: var(--color-background-warning-subtle, #fffbeb);
+  color: var(--color-text-warning-default, #b7791f);
+}
+
+.receipt__status--failed {
+  background: var(--color-background-danger-subtle, #fff5f5);
+  color: var(--color-text-danger-default, #c53030);
+}
+
+/* Body */
+.receipt__body {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--receipt_p);
+  padding-block-end: var(--receipt_p);
+}
+
+/* Divider */
+.receipt__divider {
+  height: var(--_receipt_divider_w);
+  background: var(--_receipt_divider_c);
+  margin-block: 8px;
+}
+
+/* Row */
+.receipt__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-block: var(--_receipt_row_p-b);
+  border-block-end: var(--_receipt_divider_w) solid var(--_receipt_divider_c);
+
+  &:last-of-type {
+    border-block-end: none;
+  }
+}
+
+.receipt__row-label {
+  font-family: var(--_receipt_row_label_ff);
+  font-size: var(--_receipt_row_label_fs);
+  line-height: var(--_receipt_row_label_lh);
+  font-weight: var(--_receipt_row_label_fw);
+  color: var(--_receipt_row_label_c);
+}
+
+.receipt__row-value {
+  font-family: var(--_receipt_row_value_ff);
+  font-size: var(--_receipt_row_value_fs);
+  line-height: var(--_receipt_row_value_lh);
+  font-weight: var(--_receipt_row_value_fw);
+  color: var(--_receipt_row_value_c);
+  text-align: end;
+}
+
+.receipt__row-value--mono {
+  font-family: var(--font-family-mono, ui-monospace, monospace);
+  font-size: 0.8125rem;
+  word-break: break-all;
+}
+
+/* Amount block */
+.receipt__amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--_receipt_amount_gap);
+  padding: var(--_receipt_amount_p);
+  background: var(--_receipt_amount_bg);
+  border-radius: var(--_receipt_amount_b-r);
+  margin-block-start: 8px;
+}
+
+.receipt__amount-label {
+  font-family: var(--_receipt_amount_label_ff);
+  font-size: var(--_receipt_amount_label_fs);
+  line-height: var(--_receipt_amount_label_lh);
+  font-weight: var(--_receipt_amount_label_fw);
+  color: var(--_receipt_amount_label_c);
+}
+
+.receipt__amount-value {
+  font-family: var(--_receipt_amount_value_ff);
+  font-size: var(--_receipt_amount_value_fs);
+  line-height: var(--_receipt_amount_value_lh);
+  font-weight: var(--_receipt_amount_value_fw);
+  color: var(--_receipt_amount_value_c);
+}
+
+/* Footer */
+.receipt__footer {
+  padding: var(--receipt_p);
+  padding-block-start: 0;
+}
+
+.receipt__footer-text {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  color: var(--color-text-base-secondary, #718096);
+  margin: 0;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .receipt {
+    --receipt_p: var(--receipt-container-padding-mobile, 16px);
+  }
+}
+
+@media print {
+  .receipt {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

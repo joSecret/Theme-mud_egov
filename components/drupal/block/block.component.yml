@@ -1,0 +1,107 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Block
+status: stable
+
+version: 1.0.0
+group: Drupal
+description: 'Block component.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    block_tag:
+      type: ['string', 'null']
+      title: 'Tag'
+      enum:
+        - null
+        - 'div'
+        - 'nav'
+        - 'section'
+        - 'article'
+        - 'aside'
+      description: 'The block tag.'
+      default: 'div'
+
+    block_label_tag:
+      type: ['string', 'null']
+      title: 'Label Tag'
+      enum:
+        - null
+        - 'h2'
+        - 'h3'
+        - 'h4'
+        - 'h5'
+        - 'h6'
+      description: 'The block label tag.'
+      default: 'h3'
+
+    block_label_visible:
+      type: 'boolean'
+      title: 'Label Visible'
+      description: 'Whether the block label is visible or not.'
+      default: true
+
+    # fields values
+    block_label:
+      type: ['string', 'null']
+      title: 'Label'
+      description: 'The block label.'
+      default: 'label'
+
+    block_description:
+      type: ['string', 'null']
+      title: 'Description'
+      description: 'The block description.'
+      default: 'description'
+
+    block_content:
+      type: ['string', 'null']
+      title: 'Content'
+      description: 'The block content.'
+      default: 'content'
+
+    # uc -> utility_classes
+    block_label_uc:
+      type: array
+      items:
+        type: string
+      title: Block Title Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    block_uc:
+      type: array
+      items:
+        type: string
+      title: Block Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    block_label_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the Block Title.
+
+      default: null
+    block_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the Block.
+
+      default: null
+# Slots.
+slots:
+  slot_label:
+    title: Content
+    description: Default content text for the Label.
+
+  slot_description:
+    title: Description
+    description: Default content text for the Block description.
+
+  slot_content:
+    title: Content
+    description: Default content text for the Block.

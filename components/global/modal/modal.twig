@@ -1,0 +1,129 @@
+{#-
+/**
+ * @file
+ * Modal component — overlay dialog using native <dialog>.
+ *
+ * Props:
+ * - modal_title: (string|null) default: null
+ * - modal_id: (string|null) default: null
+ * - modal_size: (string|null) enum: sm|md|lg|xl|fullscreen default: null
+ * - modal_variant: (string|null) enum: default|with-image|with-icon default: null
+ * - modal_actions_layout: (string|null) enum: inline|stacked default: null
+ * - modal_close_label: (string) default: 'Închide'
+ * - modal_open: (boolean) default: false
+ * - modal_closable: (boolean) default: true
+ * - modal_close_on_backdrop: (boolean) default: true
+ * - modal_close_on_escape: (boolean) default: true
+ * - modal_destructive: (boolean) default: false
+ * - modal_uc: (array) default: []
+ * - modal_att: (Drupal\Core\Template\Attribute) default: null
+ *
+ * Slots:
+ * - slot_trigger: Element that opens the modal
+ * - slot_header: Custom header (overrides modal_title)
+ * - slot_content: Body content
+ * - slot_footer: Footer actions
+ *
+ * @see modal.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set modal_title = modal_title|default(null) %}
+{% set modal_id = modal_id|default('modal-' ~ random()) %}
+{% set modal_close_label = modal_close_label|default('Închide') %}
+{% set modal_open = modal_open|default(false) %}
+{% set modal_closable = modal_closable is defined ? modal_closable : true %}
+{% set modal_close_on_backdrop = modal_close_on_backdrop is defined ? modal_close_on_backdrop : true %}
+{% set modal_close_on_escape = modal_close_on_escape is defined ? modal_close_on_escape : true %}
+{% set modal_destructive = modal_destructive|default(false) %}
+{% set modal_size = modal_size|default(null) %}
+{% set modal_variant = modal_variant|default(null) %}
+{% set modal_actions_layout = modal_actions_layout|default(null) %}
+
+{% set title_id = modal_id ~ '-title' %}
+{% set body_id = modal_id ~ '-body' %}
+
+{#- Create attributes -#}
+{% set modal_att = modal_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set modal_classes = [
+  'c--modal',
+  modal_size ? 'has-size_' ~ modal_size,
+  modal_variant ? 'has-variant_' ~ modal_variant|clean_class,
+  modal_actions_layout ? 'has-layout_' ~ modal_actions_layout,
+  modal_destructive ? 'is-destructive',
+]|merge(modal_uc ?: []) %}
+
+{#- data attributes for JS -#}
+{% set modal_att = modal_att
+  .setAttribute('data-modal', '')
+  .setAttribute('id', modal_id)
+  .setAttribute('role', 'dialog')
+  .setAttribute('aria-modal', 'true')
+  .setAttribute('aria-labelledby', title_id)
+  .setAttribute('aria-describedby', body_id)
+%}
+{%- if modal_close_on_backdrop -%}
+  {% set modal_att = modal_att.setAttribute('data-modal-close-on-backdrop', '') %}
+{%- endif -%}
+{%- if not modal_close_on_escape -%}
+  {% set modal_att = modal_att.setAttribute('data-modal-no-escape', '') %}
+{%- endif -%}
+{%- if modal_open -%}
+  {% set modal_att = modal_att.setAttribute('open', '') %}
+{%- endif -%}
+
+{#- Render trigger -#}
+{%- if slot_trigger -%}
+  <div class="c--modal__trigger" data-modal-trigger="{{ modal_id ~ '' }}">
+    {{- slot_trigger -}}
+  </div>
+{%- endif -%}
+
+{#- Render dialog -#}
+<dialog{{ modal_att.addClass(modal_classes) }}>
+  <div class="c--modal__surface">
+
+    {#- Header -#}
+    <div class="c--modal__header">
+      {%- if slot_header -%}
+        {{- slot_header -}}
+      {%- elseif modal_title -%}
+        <h2 class="c--modal__title" id="{{ title_id }}">{{ modal_title }}</h2>
+      {%- else -%}
+        <span id="{{ title_id }}"></span>
+      {%- endif -%}
+
+      {%- if modal_closable -%}
+        <button
+          class="c--modal__close"
+          type="button"
+          data-modal-close
+          aria-label="{{ modal_close_label }}"
+        >
+          <span class="c--modal__close-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </span>
+        </button>
+      {%- endif -%}
+    </div>
+
+    {#- Body -#}
+    <div class="c--modal__body" id="{{ body_id }}">
+      {{- slot_content -}}
+    </div>
+
+    {#- Footer -#}
+    {%- if slot_footer -%}
+      <div class="c--modal__footer">
+        {{- slot_footer -}}
+      </div>
+    {%- endif -%}
+
+  </div>
+</dialog>

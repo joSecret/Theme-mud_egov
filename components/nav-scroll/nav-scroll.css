@@ -1,0 +1,122 @@
+.c--navScroll {
+  --_nav-scroll_track_gap: 0px;
+  --_nav-scroll_track_p-i: var(--_nav-scroll_btns_w, 0px);
+  --_nav-scroll_track_b-b: 1px solid var(--c_border);
+
+  --nav-scroll_btns_d: flex;
+  --nav-scroll_btns_i-b-s: 0px;
+
+  --_nav-scroll_btns_w: 2.5rem;
+  --_nav-scroll_btns_b-r: 0px;
+
+  --_nav-scroll_item_p: 0.5rem 1rem;
+  --_nav-scroll_item_bg: var(--c_white);
+  --_nav-scroll_item_c: var(--body_c);
+  --_nav-scroll_item_f-s: 1rem;
+  --_nav-scroll_item_f-w: 500;
+  --_nav-scroll_item_transition: all 0.2s ease;
+  --_nav-scroll_item_b-r: 0px;
+  --_nav-scroll_item_b: none;
+
+  --_nav-scroll_item_bg_a: var(--c_primary_500);
+  --_nav-scroll_item_c_a: var(--c_white);
+
+  --_nav-scroll_btn_bg: var(--c_white);
+  --_nav-scroll_btn_b: none;
+  --_nav-scroll_btn_disabled-opacity: 0.5;
+
+  isolation: isolate;
+  position: relative;
+}
+
+  .c--navScroll.is-noButtons {
+    --_nav-scroll_track_p-i: 0px;
+    --nav-scroll_btns_d: none;
+  }
+
+  @media (pointer: coarse) {
+
+  .c--navScroll {
+    --_nav-scroll_track_p-i: 0px;
+    --nav-scroll_btns_d: none
+}
+  }
+
+  .c--navScroll > [data-navScroll-track] {
+    padding-inline: var(--_nav-scroll_track_p-i);
+    scroll-padding-inline-start: var(--_nav-scroll_track_p-i);
+    gap: var(--_nav-scroll_track_gap);
+    border-bottom: var(--_nav-scroll_track_b-b);
+
+    scroll-snap-type: x mandatory;
+    display: flex;
+    list-style: none;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .c--navScroll > [data-navScroll-track]::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+  .c--navScroll > [data-navScroll-track] > * {
+      scroll-snap-align: start;
+      cursor: pointer;
+
+      padding: var(--_nav-scroll_item_p);
+      background-color: var(--_nav-scroll_item_bg);
+      border:var(--_nav-scroll_item_b);
+      border-radius: var(--_nav-scroll_item_b-r);
+      transition: var(--_nav-scroll_item_transition);
+      font-weight: var(--_nav-scroll_item_f-w);
+      font-size: var(--_nav-scroll_item_f-s);
+      color: var(--_nav-scroll_item_c);
+    }
+
+  .c--navScroll > [data-navScroll-track] > *.active,
+      .c--navScroll > [data-navScroll-track] > *:has(input:checked) {
+        --_nav-scroll_item_c: var(--_nav-scroll_item_c_a);
+        --_nav-scroll_item_bg: var(--_nav-scroll_item_bg_a);
+      }
+
+  .c--navScroll > [data-navScroll-track] > *.form-item input {
+          display: none;
+        }
+
+  .c--navScroll > [data-navScroll-track] > *.form-item label {
+          display: inline-block;
+          color: var(--_nav-scroll_item_c);
+        }
+
+.c--navScroll-buttons {
+  display: var(--nav-scroll_btns_d);
+  position: absolute;
+  inset-block-start: var(--nav-scroll_btns_i-b-s);
+  width: 100%;
+
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.c--navScroll-buttons button {
+    width: var(--_nav-scroll_btns_w);
+    background-color: var(--_nav-scroll_btn_bg);
+    border-radius: var(--_nav-scroll_btns_b-r);
+    aspect-ratio: 1 / 1;
+    pointer-events: all;
+    border: var(--_nav-scroll_btn_b);
+    cursor: pointer;
+    padding: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.c--navScroll-buttons button:disabled {
+      opacity: var(--_nav-scroll_btn_disabled-opacity);
+      cursor: default;
+    }

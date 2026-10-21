@@ -1,0 +1,87 @@
+/**
+ * Layout Full node Component Styles
+ *
+ * Full-width layout wrapper for node display.
+ */
+
+.c--layoutFn {
+  /* Variables — main */
+  --_layoutFn_d: var(--layoutFn_d, grid);
+  --_layoutFn_f-d: var(--layoutFn_f-d, column);
+  --_layoutFn_gap: var(--layoutFn_gap, var(--gap));
+
+  /* Variables — banner */
+  --_layoutFn-banner_m-b: var(--layoutFn-banner_m-b, 0px);
+
+  /* Variables — content */
+
+  /* Variables — main */
+  --_layoutFn-main_p-b: var(--layoutFn-main_p-b, var(--size_600));
+  --_layoutFn-main_p-i: var(--layoutFn-main_p-i, 0px);
+
+  /* Variables — sidebar */
+  --_layoutFn-sidebar_p-b: var(--layoutFn-sidebar_p-b, var(--size_1300) 0px);
+  --_layoutFn-sidebar_p-i: var(--layoutFn-sidebar_p-i, 0px);
+  --_layoutFn-sidebar_b-w: var(--layoutFn-sidebar_b-w, var(--b-w));
+  --_layoutFn-sidebar_b-c: var(--layoutFn-sidebar_b-c, var(--b-c));
+
+  container-name: layoutFn;
+  container-type: inline-size;
+
+  .layoutFn-banner {
+    margin-block-end: var(--_layoutFn-banner_m-b);
+  }
+
+  .layoutFn-content {
+    margin-inline: auto;
+
+    @container layoutFn (width >= 768px) {
+      max-width: var(--container_m-w, 100%);
+      display: flex;
+      flex-direction: row-reverse;
+      gap: var(--_layoutFn_gap);
+
+      .grid-container {
+        --custom_container_m-w: 100%;
+
+        grid-template-columns: [container-start] repeat(var(--_cg-columns), var(--_cg-mw)) [container-end];
+      }
+
+      .layoutFn-main {
+        flex-grow: 1;
+        container-type: inline-size;
+      }
+
+      .layoutFn-sidebar {
+        container-type: inline-size;
+      }
+    }
+
+    @media (min-width: 768px) {
+      --region--col1_s: 1;
+      --region--col2_e: 13;
+    }
+  }
+
+  .layoutFn-sidebar {
+    flex: 0 0 25%;
+    padding-block: var(--_layoutFn-sidebar_p-b);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-inline: var(--gutter);
+
+    &:has(.table-of-contents) {
+      position: relative;
+    }
+
+    .table-of-contents {
+      position: sticky;
+      transition: top 0.3s ease;
+
+      &:first-child {
+        --c_tcb_heading_m-b: 0 20px;
+      }
+    }
+  }
+}

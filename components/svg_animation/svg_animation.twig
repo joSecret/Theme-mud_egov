@@ -1,0 +1,47 @@
+{#-
+/**
+  * @file
+  * SVG Animation component.
+  *
+  * Available variations:
+  *
+  * Available values:
+  *
+  * Available Utility classes -> uc
+  * - svg_animation_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - svg_animation_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_icon: The first SVG icon to be animated.
+  * - slot_icon_2: The second SVG icon to be animated.
+  *
+  * usage example: @see SVG_ANIMATION.md
+  */
+-#}
+
+{#- Set default value -#}
+{#- Create attributres -#}
+{% set svg_animation_att = svg_animation_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set svg_animation_classes = [
+  'c--svgAnimation',
+]|merge(svg_animation_uc ?: []) %}
+
+{#- Change attributres -#}
+{#- Render component -#}
+<div{{ svg_animation_att.addClass(svg_animation_classes) }}>
+  {% block slot_icon %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
+      <path d="M13,6.5a6.482,6.482,0,0,1-1.25,3.834l3.956,3.959a1,1,0,0,1-1.416,1.415l-3.956-3.959A6.5,6.5,0,1,1,13,6.5ZM6.5,11A4.5,4.5,0,1,0,2,6.5,4.5,4.5,0,0,0,6.5,11Z" fill="currentColor"/>
+    </svg>
+  {% endblock %}
+
+  {% block slot_icon_2 %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
+      <path d="M2.7,64.32A1.334,1.334,0,0,0,.815,66.206l5.723,5.719L.82,77.648a1.334,1.334,0,0,0,1.887,1.887l5.719-5.723,5.723,5.719a1.334,1.334,0,0,0,1.887-1.887l-5.723-5.719L16.03,66.2a1.334,1.334,0,0,0-1.887-1.887L8.425,70.038Z" transform="translate(-0.425 -63.925)" fill="currentColor"/>
+    </svg>
+  {% endblock %}
+</div>

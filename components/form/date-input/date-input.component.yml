@@ -1,0 +1,117 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Date Input
+status: stable
+group: Forms
+version: 1.0.0
+description: Date entry field using a native date input, aligned with the MUD design system.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    date_input_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the input.
+      default: null
+
+    date_input_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    date_input_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute; links the label.
+      default: null
+
+    date_input_value:
+      type: ['string', 'null']
+      title: Value
+      description: Current value matching the input type format.
+      default: null
+
+    date_input_min:
+      type: ['string', 'null']
+      title: Min
+      description: Inclusive lower bound in ISO YYYY-MM-DD (or matching type format).
+      default: null
+
+    date_input_max:
+      type: ['string', 'null']
+      title: Max
+      description: Inclusive upper bound in ISO YYYY-MM-DD (or matching type format).
+      default: null
+
+    date_input_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      description: Hint text shown below the input.
+      default: null
+
+    date_input_error_message:
+      type: ['string', 'null']
+      title: Error Message
+      description: Error text shown below the input when in error state.
+      default: null
+
+    # component variations
+    date_input_type:
+      type: ['string', 'null']
+      title: Input Type
+      description: Native date input type.
+      default: 'date'
+      enum:
+        - date
+        - datetime-local
+        - month
+        - week
+
+    date_input_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | lg — matches MUD DATE_INPUT_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    date_input_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    date_input_required:
+      type: boolean
+      title: Required
+      default: false
+
+    date_input_readonly:
+      type: boolean
+      title: Read Only
+      default: false
+
+    date_input_error:
+      type: boolean
+      title: Error
+      description: Activates destructive/error visual state.
+      default: false
+
+    # uc -> utility_classes
+    date_input_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    date_input_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

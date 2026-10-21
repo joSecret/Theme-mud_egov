@@ -1,0 +1,12 @@
+egov_layout_onecol:
+  label: 'eGov One column layout'
+  path: layouts
+  template: layout--onecol
+  library: mud_egov/layout-onecol
+  category: 'eGov Col: 1'
+  default_region: content
+  icon_map:
+    - [content]
+  regions:
+    content:
+      label: Content

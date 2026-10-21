@@ -1,0 +1,82 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Radio
+status: stable
+group: Forms
+version: 1.0.0
+description: Single radio button input aligned with the MUD design system, supporting label, error state, and two sizes.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    radio_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the radio button.
+      default: null
+
+    radio_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used to group radio buttons together.
+      default: null
+
+    radio_value:
+      type: ['string', 'null']
+      title: Value
+      description: Value submitted when this radio button is selected.
+      default: null
+
+    radio_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute for the input element.
+      default: null
+
+    radio_checked:
+      type: boolean
+      title: Checked
+      default: false
+
+    radio_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    radio_required:
+      type: boolean
+      title: Required
+      default: false
+
+    radio_error:
+      type: boolean
+      title: Error
+      description: Activates destructive/error visual state.
+      default: false
+
+    # component variations
+    radio_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. sm | md — matches MUD RADIO_SIZES.
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+
+    # uc -> utility_classes
+    radio_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    radio_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

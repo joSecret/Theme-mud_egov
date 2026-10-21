@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Teaser for node of type "activitati".
+ *
+ * Renders the mud_egov:card-activity SDC component: cover/logo + title,
+ * whole card wraps a stretched link to the node.
+ */
+#}
+
+{%
+  set classes = [
+    'node',
+    'node_type_' ~ node.bundle|clean_class,
+    'node_' ~ node.bundle|clean_class ~ '_' ~ view_mode|clean_class,
+    'node_view-mode_' ~ view_mode|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+
+{%- include 'mud_egov:card-activity' with {
+  card_activity_att: attributes.addClass(classes),
+  card_activity_title: label,
+  card_activity_image: content.field_cover_image,
+  card_activity_url: url,
+} -%}

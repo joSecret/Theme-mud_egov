@@ -1,0 +1,128 @@
+/**
+ * Textarea Component Styles
+ *
+ * Multi-line text input aligned with mud-textarea.
+ * External tokens: --textarea_*
+ * Internal tokens: --_textarea_*
+ */
+
+.c--textarea {
+  /* Variables — wrapper */
+  --_textarea_gap: var(--textarea_gap, var(--size_100));
+  --_textarea_m-b: var(--textarea_m-b, 0);
+
+  /* Variables — label */
+  --_textarea-label_f-s: var(--textarea-label_f-s, var(--f-s_sm));
+  --_textarea-label_f-w: var(--textarea-label_f-w, var(--f-w_semibold));
+  --_textarea-label_c: var(--textarea-label_c, var(--body_c));
+
+  /* Variables — required indicator */
+  --_textarea-required_c: var(--textarea-required_c, var(--c_danger));
+  --_textarea-required_m-i-s: var(--textarea-required_m-i-s, var(--size_50));
+
+  /* Variables — field */
+  --_textarea-field_w: var(--textarea-field_w, 100%);
+  --_textarea-field_p-b: var(--textarea-field_p-b, var(--size_200));
+  --_textarea-field_p-i: var(--textarea-field_p-i, var(--size_300));
+  --_textarea-field_f-s: var(--textarea-field_f-s, var(--f-s_base));
+  --_textarea-field_l-h: var(--textarea-field_l-h, 1.5);
+  --_textarea-field_c: var(--textarea-field_c, var(--body_c));
+  --_textarea-field_bg: var(--textarea-field_bg, var(--c_white));
+  --_textarea-field_b-w: var(--textarea-field_b-w, var(--b-w, 1px));
+  --_textarea-field_b-c: var(--textarea-field_b-c, var(--c_gray_100, #d1d5db));
+  --_textarea-field_b-r: var(--textarea-field_b-r, 6px);
+  --_textarea-field_t-t: var(--textarea-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
+
+  /* Variables — field focus */
+  --_textarea-field_b-c_focus: var(--textarea-field_b-c_focus, var(--c_primary));
+
+  /* Variables — field error */
+  --_textarea-field_b-c_error: var(--textarea-field_b-c_error, var(--c_danger));
+
+  /* Variables — helper / error text */
+  --_textarea-helper_f-s: var(--textarea-helper_f-s, var(--f-s_sm));
+  --_textarea-helper_c: var(--textarea-helper_c, var(--c_muted));
+  --_textarea-error-msg_c: var(--textarea-error-msg_c, var(--c_danger));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_textarea_gap);
+  margin-block-end: var(--_textarea_m-b);
+
+  .textarea-label {
+    display: block;
+    font-size: var(--_textarea-label_f-s);
+    font-weight: var(--_textarea-label_f-w);
+    color: var(--_textarea-label_c);
+  }
+
+  .textarea-required {
+    color: var(--_textarea-required_c);
+    margin-inline-start: var(--_textarea-required_m-i-s);
+  }
+
+  .textarea-field {
+    display: block;
+    width: var(--_textarea-field_w);
+    padding-block: var(--_textarea-field_p-b);
+    padding-inline: var(--_textarea-field_p-i);
+    font-size: var(--_textarea-field_f-s);
+    line-height: var(--_textarea-field_l-h);
+    color: var(--_textarea-field_c);
+    background-color: var(--_textarea-field_bg);
+    border: var(--_textarea-field_b-w) solid var(--_textarea-field_b-c);
+    border-radius: var(--_textarea-field_b-r);
+    transition: var(--_textarea-field_t-t);
+    resize: vertical;
+
+    &:focus {
+      border-color: var(--_textarea-field_b-c_focus);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &:read-only {
+      background-color: color-mix(in oklch, var(--_textarea-field_bg), transparent 20%);
+    }
+  }
+
+  .textarea-helper-text {
+    font-size: var(--_textarea-helper_f-s);
+    color: var(--_textarea-helper_c);
+    margin: 0;
+  }
+
+  .textarea-error-message {
+    font-size: var(--_textarea-helper_f-s);
+    color: var(--_textarea-error-msg_c);
+    margin: 0;
+  }
+}
+
+/* Error state */
+.c--textarea.textarea-error .textarea-field {
+  border-color: var(--_textarea-field_b-c_error);
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
+  }
+}
+
+/* Size — md (explicit, same as default) */
+.c--textarea.c--textarea--md {
+  --_textarea-field_p-b: var(--textarea-field_p-b--md, var(--size_200));
+  --_textarea-field_p-i: var(--textarea-field_p-i--md, var(--size_300));
+  --_textarea-field_f-s: var(--textarea-field_f-s--md, var(--f-s_base));
+}
+
+/* Size — lg */
+.c--textarea.c--textarea--lg {
+  --_textarea-field_p-b: var(--textarea-field_p-b--lg, var(--size_300));
+  --_textarea-field_p-i: var(--textarea-field_p-i--lg, var(--size_400));
+  --_textarea-field_f-s: var(--textarea-field_f-s--lg, 1.125rem);
+}

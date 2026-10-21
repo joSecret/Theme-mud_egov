@@ -1,0 +1,89 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Search Input Rectangular
+status: stable
+group: Forms
+version: 1.0.0
+description: Rectangular search input aligned with MUD mud-search-input-rectangular, with an integrated trailing submit button and clear affordance.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    search_rect_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the search field.
+      default: null
+
+    search_rect_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: Placeholder text shown when the field is empty.
+      default: null
+
+    search_rect_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    search_rect_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute for the input element.
+      default: null
+
+    search_rect_value:
+      type: ['string', 'null']
+      title: Value
+      description: Current value of the search input.
+      default: null
+
+    search_rect_button_label:
+      type: string
+      title: Button Label
+      description: Accessible label for the trailing submit button.
+      default: 'Caută'
+
+    # component variations
+    search_rect_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | lg — matches MUD SEARCH_INPUT_RECTANGULAR_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    search_rect_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    search_rect_required:
+      type: boolean
+      title: Required
+      default: false
+
+    search_rect_show_button:
+      type: boolean
+      title: Show Button
+      description: Renders a trailing rectangular submit button.
+      default: false
+
+    # uc -> utility_classes
+    search_rect_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    search_rect_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

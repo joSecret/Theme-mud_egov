@@ -1,0 +1,56 @@
+{#-
+/**
+  * @file
+  * Table of Contents Block component.
+  *
+  * Available variations:
+  *
+  * Available values:
+  * - table_of_contents_block_label (string|null) (default: null) - The block label/title.
+  * - content (mixed) - The block content (generated table of contents).
+  *
+  * Available Utility classes -> uc
+  * - table_of_contents_block_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - table_of_contents_block_att (Drupal\Core\Template\Attribute)
+  * - table_of_contents_block_title_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The content for the table of contents navigation.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set table_of_contents_block_label = table_of_contents_block_label|default(null) %}
+
+{#- Create attributes -#}
+{% set table_of_contents_block_att = table_of_contents_block_att ?: create_attribute() %}
+{% set table_of_contents_block_title_att = table_of_contents_block_title_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set table_of_contents_block_classes = [
+    'c--tableOfContentsBlock',
+    'tcb',
+  ]|merge(table_of_contents_block_uc ?: [])
+%}
+
+{#- Render component -#}
+<div{{ table_of_contents_block_att.addClass(table_of_contents_block_classes) }}>
+  {{ title_prefix }}
+  {%- if table_of_contents_block_label -%}
+    <h3{{ table_of_contents_block_title_att }}>
+      {{- table_of_contents_block_label -}}
+    </h3>
+  {%- endif -%}
+  {{ title_suffix }}
+
+  <nav class="nav nav--scrollspy">
+    {%- block slot_content -%}
+      {{- table_of_contents_block_content -}}
+    {%- endblock -%}
+  </nav>
+</div>

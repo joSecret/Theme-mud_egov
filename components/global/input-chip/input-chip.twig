@@ -1,0 +1,101 @@
+{#-
+/**
+ * @file
+ * Template for the Input Chip component (MUD-aligned).
+ *
+ * Props:
+ * - input_chip_label (string|null)
+ * - input_chip_placeholder (string|null)
+ * - input_chip_name (string|null)
+ * - input_chip_chips (array) — pre-populated chip strings
+ * - input_chip_size (string|null) — md | lg
+ * - input_chip_variant (string|null) — default | destructive
+ * - input_chip_disabled (boolean)
+ * - input_chip_required (boolean)
+ * - input_chip_invalid (boolean)
+ * - input_chip_helper_text (string|null)
+ * - input_chip_error_text (string|null)
+ * - input_chip_max (number|null)
+ */
+-#}
+
+{% set input_chip_chips = input_chip_chips|default([]) %}
+{% set input_chip_disabled = input_chip_disabled|default(false) %}
+{% set input_chip_required = input_chip_required|default(false) %}
+{% set input_chip_invalid = input_chip_invalid|default(false) %}
+
+{% set input_chip_id = 'input-chip-' ~ random() %}
+
+{% set input_chip_att = input_chip_att ?: create_attribute() %}
+
+{%
+  set classes = [
+    'input-chip',
+    input_chip_size ? 'input-chip-' ~ input_chip_size,
+    input_chip_variant and input_chip_variant != 'default' ? 'input-chip-' ~ input_chip_variant,
+    input_chip_invalid ? 'is-invalid',
+    input_chip_disabled ? 'is-disabled',
+  ]|merge(input_chip_uc ?: [])
+%}
+
+<div{{ input_chip_att.addClass(classes) }} data-input-chip>
+  {%- if input_chip_label -%}
+    <label class="input-chip-label" for="{{ input_chip_id }}">
+      {{- input_chip_label -}}
+      {%- if input_chip_required -%}<span class="input-chip-required" aria-hidden="true"> *</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+
+  <div
+    class="input-chip-field"
+    {%- if input_chip_disabled -%} aria-disabled="true"{%- endif -%}
+    {%- if input_chip_max -%} data-max="{{ input_chip_max ~ '' }}"{%- endif -%}
+  >
+    {#- Pre-populated chips -#}
+    {%- for chip in input_chip_chips -%}
+      <span class="input-chip-chip" data-chip-value="{{ chip }}">
+        <span class="input-chip-chip-label">{{ chip }}</span>
+        {%- if not input_chip_disabled -%}
+          <button
+            type="button"
+            class="input-chip-chip-remove"
+            aria-label="Elimină {{ chip }}"
+            tabindex="-1"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        {%- endif -%}
+      </span>
+    {%- endfor -%}
+
+    {#- Text input -#}
+    <input
+      type="text"
+      id="{{ input_chip_id }}"
+      class="input-chip-input"
+      {%- if input_chip_placeholder -%} placeholder="{{ input_chip_placeholder }}"{%- endif -%}
+      {%- if input_chip_disabled -%} disabled{%- endif -%}
+      {%- if input_chip_required -%} required aria-required="true"{%- endif -%}
+      {%- if input_chip_invalid -%} aria-invalid="true"{%- endif -%}
+      autocomplete="off"
+    >
+
+    {#- Hidden field for form submission -#}
+    {%- if input_chip_name -%}
+      <input
+        type="hidden"
+        name="{{ input_chip_name }}"
+        class="input-chip-hidden"
+        value="{{ input_chip_chips|json_encode }}"
+      >
+    {%- endif -%}
+  </div>
+
+  {%- if input_chip_invalid and input_chip_error_text -%}
+    <p class="input-chip-error" role="alert">{{ input_chip_error_text }}</p>
+  {%- elseif input_chip_helper_text -%}
+    <p class="input-chip-helper">{{ input_chip_helper_text }}</p>
+  {%- endif -%}
+</div>

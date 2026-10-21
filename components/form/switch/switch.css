@@ -1,0 +1,193 @@
+.switch {
+  /* External custom properties */
+  --switch_track-w: var(--switch-track-width);
+  --switch_track-h: var(--switch-track-height);
+  --switch_track-p: var(--switch-track-padding);
+  --switch_thumb-size: var(--switch-thumb-size);
+  --switch_bg-off: var(--switch-background-off);
+  --switch_bg-on: var(--switch-background-on);
+  --switch_thumb-c: var(--switch-thumb-color-default);
+
+  /* Internal derived properties */
+  --_switch_track-w: var(--switch_track-w, 48px);
+  --_switch_track-h: var(--switch_track-h, 28px);
+  --_switch_track-p: var(--switch_track-p, var(--switch-track-padding, 2px));
+  --_switch_thumb-size: var(--switch_thumb-size, 24px);
+  --_switch_track-b-r: var(--switch_track-b-r, var(--switch-track-border-radius, 9999px));
+  --_switch_thumb-b-r: var(--switch_thumb-b-r, var(--switch-thumb-border-radius, 9999px));
+  --_switch_bg: var(--switch_bg-off, var(--switch-background-off));
+  --_switch_bg-on: var(--switch_bg-on, var(--switch-background-on));
+  --_switch_bg-off-hover: var(--switch-background-off-hover);
+  --_switch_bg-on-hover: var(--switch-background-on-hover);
+  --_switch_thumb-c: var(--switch_thumb-c, var(--switch-thumb-color-default));
+  --_switch_thumb-shadow: var(--switch-thumb-shadow);
+  --_switch_t-d: var(--switch-track-transition-duration, 0.2s);
+  --_switch_t-e: var(--switch-track-transition-timing-function, ease);
+  --_switch_gap: var(--switch-gap-switch-label, 8px);
+  --_switch_f-s: var(--switch-label-font-size);
+  --_switch_l-h: var(--switch-label-line-height);
+  --_switch_f-w: var(--switch-label-font-weight);
+  --_switch_label-c: var(--switch-label-color-default);
+  --_switch_touch-size: var(--switch-touch-target-pointer, 32px);
+
+  display: inline-block;
+  font-family: var(--switch-label-font-family);
+  color: var(--_switch_label-c);
+}
+
+@media (pointer: coarse) {
+  .switch {
+    --_switch_touch-size: var(--switch-touch-target-touch, 40px);
+  }
+}
+
+/* Layout wrapper (label element for click association) */
+.switch__layout {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_switch_gap);
+  min-block-size: var(--_switch_track-h);
+  cursor: pointer;
+}
+
+.switch__layout--reverse {
+  flex-direction: row-reverse;
+}
+
+.is-disabled .switch__layout {
+  cursor: not-allowed;
+}
+
+/* Control wrapper */
+.switch__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  inline-size: var(--_switch_track-w);
+  block-size: var(--_switch_track-h);
+}
+
+/* Track */
+.switch__track {
+  position: relative;
+  inline-size: var(--_switch_track-w);
+  block-size: var(--_switch_track-h);
+  background-color: var(--_switch_bg);
+  border-radius: var(--_switch_track-b-r);
+  transition:
+    background-color var(--_switch_t-d) var(--_switch_t-e),
+    box-shadow var(--_switch_t-d) var(--_switch_t-e);
+}
+
+/* Expanded touch target via pseudo-element */
+.switch__track::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: 100%;
+  block-size: var(--_switch_touch-size);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Thumb */
+.switch__thumb {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: var(--_switch_track-p);
+  inline-size: var(--_switch_thumb-size);
+  block-size: var(--_switch_thumb-size);
+  background-color: var(--_switch_thumb-c);
+  border-radius: var(--_switch_thumb-b-r);
+  box-shadow: var(--_switch_thumb-shadow);
+  transform: translateY(-50%);
+  transition:
+    inset-inline-start var(--_switch_t-d) var(--_switch_t-e),
+    box-shadow var(--_switch_t-d) var(--_switch_t-e);
+}
+
+/* Native checkbox — invisible, overlaid for keyboard/pointer events */
+.switch__native {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: var(--_switch_touch-size);
+  block-size: var(--_switch_touch-size);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: inherit;
+  z-index: 1;
+}
+
+.switch__native:disabled {
+  cursor: not-allowed;
+}
+
+.switch__native:focus,
+.switch__native:focus-visible {
+  outline: none;
+}
+
+/* Focus ring on track */
+.switch__native:focus-visible ~ .switch__track,
+.switch__native:focus-visible + .switch__track {
+  box-shadow:
+    0 0 0 var(--switch-focus-ring-inner-width) var(--switch-focus-ring-inner-color),
+    0 0 0 calc(var(--switch-focus-ring-inner-width) + var(--switch-focus-ring-outer-width)) var(--switch-focus-ring-outer-color);
+}
+
+/* === Checked state === */
+.is-checked .switch__track {
+  background-color: var(--_switch_bg-on);
+}
+
+.is-checked .switch__thumb {
+  inset-inline-start: calc(var(--_switch_track-w) - var(--_switch_thumb-size) - var(--_switch_track-p));
+}
+
+/* === Hover states === */
+.switch:not(.is-disabled) .switch__layout:hover .switch__track {
+  background-color: var(--_switch_bg-off-hover);
+}
+
+.switch.is-checked:not(.is-disabled) .switch__layout:hover .switch__track {
+  background-color: var(--_switch_bg-on-hover);
+}
+
+/* === Disabled state === */
+.is-disabled .switch__track {
+  background-color: var(--switch-background-disabled);
+}
+
+.is-disabled .switch__thumb {
+  background-color: var(--switch-thumb-color-disabled);
+  box-shadow: none;
+}
+
+.is-disabled .switch__label-text {
+  color: var(--switch-label-color-disabled);
+}
+
+/* === Label text === */
+.switch__text {
+  display: inline-flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.switch__label-text {
+  font-size: var(--_switch_f-s);
+  line-height: var(--_switch_l-h);
+  font-weight: var(--_switch_f-w);
+  color: var(--_switch_label-c);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch__track,
+  .switch__thumb {
+    transition: none;
+  }
+}

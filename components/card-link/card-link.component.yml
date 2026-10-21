@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Card Link
+status: stable
+version: 1.0.0
+group: Cards
+description: 'A clickable card with an icon and a title. The entire card acts as a link.'
+
+props:
+  type: object
+  properties:
+    card_link_url:
+      type: ['string', 'null']
+      title: URL
+      description: The href for the card link.
+
+    card_link_icon:
+      type: ['string', 'null']
+      title: Icon (SVG)
+      description: Raw SVG string or rendered icon markup.
+
+    card_link_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      description: Extra classes added to the root element.
+      default: []
+
+    card_link_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: HTML attributes for the root element.
+      default: null

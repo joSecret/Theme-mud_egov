@@ -1,0 +1,136 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Select
+status: stable
+version: 1.0.0
+group: Form
+description: 'A dropdown select field component with support for single and multiple selection, option groups, and help text.'
+
+# Props.
+props:
+  type: object
+  required:
+    - select_name
+
+  properties:
+    # component variations
+    select_size:
+      type: ['string', 'null']
+      title: Select Size
+      description: Visual size variant of the select field.
+      enum:
+        - null
+        - 'sm'
+        - 'lg'
+      default: null
+
+    # fields values
+    select_name:
+      type: string
+      title: Select Name
+      description: The name attribute for the select field.
+
+    select_id:
+      type: ['string', 'null']
+      title: Select ID
+      description: The id attribute for the select field.
+      default: null
+
+    select_label:
+      type: ['string', 'null']
+      title: Label
+      description: Label text associated with the select field.
+      default: null
+
+    select_options:
+      type: array
+      title: Options
+      description: Array of option objects with value and label keys. Optionally include selected and disabled keys.
+      items:
+        type: object
+      default: []
+
+    select_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: Empty first option text (e.g. "— Select —").
+      default: null
+
+    select_description:
+      type: ['string', 'null']
+      title: Description
+      description: Help text displayed below the select field.
+      default: null
+
+    select_required:
+      type: ['boolean', 'null']
+      title: Required
+      description: Whether the field is required.
+      default: false
+
+    select_disabled:
+      type: ['boolean', 'null']
+      title: Disabled
+      description: Whether the field is disabled.
+      default: false
+
+    select_multiple:
+      type: ['boolean', 'null']
+      title: Multiple
+      description: Whether multiple options can be selected.
+      default: false
+
+    select_rows:
+      type: ['integer', 'null']
+      title: Visible Rows
+      description: Number of visible option rows when multiple is true.
+      default: null
+
+    # uc -> utility_classes
+    select_uc:
+      type: array
+      items:
+        type: string
+      title: Select Wrapper Utility Classes
+      description: An array of utility classes for the wrapper element.
+      default: []
+
+    select_field_uc:
+      type: array
+      items:
+        type: string
+      title: Select Field Utility Classes
+      description: An array of utility classes for the select element.
+      default: []
+
+    select_label_uc:
+      type: array
+      items:
+        type: string
+      title: Select Label Utility Classes
+      description: An array of utility classes for the label element.
+      default: []
+
+    # att -> attributes
+    select_att:
+      type: Drupal\Core\Template\Attribute
+      title: Select Wrapper Attributes
+      description: A list of HTML attributes for the wrapper element.
+
+      default: null
+    select_field_att:
+      type: Drupal\Core\Template\Attribute
+      title: Select Field Attributes
+      description: A list of HTML attributes for the select element.
+
+      default: null
+    select_label_att:
+      type: Drupal\Core\Template\Attribute
+      title: Select Label Attributes
+      description: A list of HTML attributes for the label element.
+
+      default: null
+# Slots.
+slots:
+  slot_options:
+    title: Custom Options
+    description: Slot for custom <option> or <optgroup> markup. Renders inside the select element.

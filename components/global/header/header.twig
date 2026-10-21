@@ -1,0 +1,65 @@
+{#-
+/**
+ * @file
+ * Template for the Header component.
+ *
+ * Props:
+ * - header_sticky: (boolean) default: (false) — sticks the header on scroll
+ * - header_bordered: (boolean) default: (false) — bottom border
+ * - header_government_label: (string|null) default: (null)
+ * - header_language: (string|null) default: (null) — active language code
+ * - header_nav_label: (string|null) default: (null) — nav aria-label
+ *
+ * Utility classes: header_uc
+ * Attributes: header_att
+ *
+ * Slots:
+ * - slot_logo: Main product logo
+ * - slot_nav: Primary navigation items
+ * - slot_actions: Trailing action icons / CTA buttons
+ * - slot_mobile_menu: Mobile navigation menu
+ */
+-#}
+
+{#- Defaults -#}
+{% set header_sticky = header_sticky|default(false) %}
+{% set header_bordered = header_bordered|default(false) %}
+{% set header_government_label = header_government_label|default(null) %}
+{% set header_nav_label = header_nav_label|default('Main navigation') %}
+
+{#- Create attributes -#}
+{% set header_att = header_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set header_classes = [
+  'c--header',
+  header_sticky ? 'c--header--sticky',
+  header_bordered ? 'c--header--bordered',
+]|merge(header_uc ?: []) %}
+
+{#- Render component -#}
+<header{{ header_att.addClass(header_classes) }}>
+  {%- if header_government_label -%}
+    <div class="c--header__pre-header">
+      <span class="c--header__government-label">{{ header_government_label }}</span>
+    </div>
+  {%- endif -%}
+
+  <div class="c--header__bar">
+    <div class="c--header__logo">
+      {%- block slot_logo -%}{%- endblock -%}
+    </div>
+
+    <nav class="c--header__nav"{%- if header_nav_label -%} aria-label="{{ header_nav_label }}"{%- endif -%}>
+      {%- block slot_nav -%}{%- endblock -%}
+    </nav>
+
+    <div class="c--header__actions">
+      {%- block slot_actions -%}{%- endblock -%}
+    </div>
+
+    <div class="c--header__mobile-menu">
+      {%- block slot_mobile_menu -%}{%- endblock -%}
+    </div>
+  </div>
+</header>

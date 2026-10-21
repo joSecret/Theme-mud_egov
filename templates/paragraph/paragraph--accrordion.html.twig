@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Paragraph template for Accordion.
+ * Wraps accrordion-item paragraphs rendered via paragraph--accrordion-item.html.twig.
+ */
+#}
+
+{% include 'mud_egov:accordion' with {
+  accordion_id: 'accordion-' ~ paragraph.id(),
+  accordion_content: content.field_paragraphs,
+} only %}

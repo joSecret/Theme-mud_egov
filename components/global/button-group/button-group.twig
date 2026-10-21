@@ -1,0 +1,32 @@
+{#-
+/**
+ * @file
+ * Template for the Button Group component (MUD-aligned).
+ *
+ * Props:
+ * - button_group_orientation (string|null) — horizontal | vertical
+ * - button_group_attached (boolean) — merge adjacent buttons visually
+ * - button_group_label (string|null) — aria-label for the group
+ */
+-#}
+
+{% set button_group_orientation = button_group_orientation|default('horizontal') %}
+{% set button_group_attached = button_group_attached|default(false) %}
+
+{% set button_group_att = button_group_att ?: create_attribute() %}
+
+{%
+  set classes = [
+    'button-group',
+    'button-group-' ~ button_group_orientation,
+    button_group_attached ? 'button-group-attached',
+  ]|merge(button_group_uc ?: [])
+%}
+
+<div
+  {{ button_group_att.addClass(classes) }}
+  role="group"
+  {%- if button_group_label -%} aria-label="{{ button_group_label }}"{%- endif -%}
+>
+  {%- block slot_buttons -%}{% endblock -%}
+</div>

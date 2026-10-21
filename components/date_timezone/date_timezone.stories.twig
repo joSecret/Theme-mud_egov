@@ -1,0 +1,34 @@
+{% stories DateTimezone with {
+  title: 'Components/Date/Date Timezone',
+  argTypes: {
+    date_timezone_date_start: {
+      control: 'text'
+    },
+    date_timezone_date_end: {
+      control: 'text'
+    },
+    date_timezone_timezone: {
+      control: 'text'
+    }
+  }
+} %}
+
+  {% story default with {
+    name: 'Default',
+    args: {
+      date_timezone_date_start: '2026-01-21 10:00:00',
+      date_timezone_date_end: '2026-01-21 14:00:00',
+      date_timezone_timezone: 'EET'
+    }
+  } %}
+    <div class="w-docs" style="--w-docs_m-w: 200px; background-color: black; padding: 20px;">
+      {% include 'mud_egov:date_timezone' with {
+        date_timezone_date_start: date_timezone_date_start,
+        date_timezone_date_end: date_timezone_date_end,
+        date_timezone_timezone: date_timezone_timezone
+      } %}
+    </div>
+
+  {% endstory %}
+
+{% endstories %}

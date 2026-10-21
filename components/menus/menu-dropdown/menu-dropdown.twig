@@ -1,0 +1,90 @@
+{#-
+/**
+ * @file
+ * Menu component — dropdown/context menu.
+ *
+ * Props:
+ * - menu_items: (array) [{label, url, icon, disabled, divider}] default: []
+ * - menu_trigger_label: (string|null) default: null
+ * - menu_type: (string|null) enum: contextual|selection default: null
+ * - menu_position: (string|null) enum: bottom-start|bottom-end|top-start|top-end default: null
+ * - menu_open: (boolean) default: false
+ * - menu_uc: (array) default: []
+ * - menu_att: (Drupal\Core\Template\Attribute) default: null
+ *
+ * Slots:
+ * - slot_trigger: Custom trigger element
+ *
+ * @see menu.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set menu_items = menu_items|default([]) %}
+{% set menu_trigger_label = menu_trigger_label|default(null) %}
+{% set menu_type = menu_type|default('contextual') %}
+{% set menu_position = menu_position|default('bottom-start') %}
+{% set menu_open = menu_open|default(false) %}
+
+{% set menu_id = 'menu-' ~ random() %}
+{% set panel_id = menu_id ~ '-panel' %}
+
+{#- Determine ARIA role based on type -#}
+{% set menu_role = menu_type == 'selection' ? 'listbox' : 'menu' %}
+{% set item_role = menu_type == 'selection' ? 'option' : 'menuitem' %}
+
+{#- Create attributes -#}
+{% set menu_att = menu_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set menu_classes = [
+  'c--menu',
+  menu_type ? 'has-type_' ~ menu_type,
+  menu_position ? 'has-position_' ~ menu_position|clean_class,
+  menu_open ? 'is-open',
+]|merge(menu_uc ?: []) %}
+
+{#- Render -#}
+<div
+  class="c--menu__panel"
+  id="{{ panel_id }}"
+  role="{{ menu_role }}"
+  data-menu-panel
+  tabindex="-1"
+>
+  {% for item in menu_items %}
+    {%- if item.divider -%}
+      <div class="c--menu__divider" role="separator" aria-hidden="true"></div>
+    {%- else -%}
+      {% set item_classes = [
+        'c--menu__item',
+        item.disabled ? 'is-disabled',
+      ] %}
+      {%- if item.url and not item.disabled -%}
+        <a
+          class="{{ item_classes|join(' ') }}"
+          href="{{ item.url }}"
+          role="{{ item_role }}"
+          {%- if item.disabled -%}aria-disabled="true" tabindex="-1"{%- endif -%}
+        >
+          {%- if item.icon -%}
+            <span class="c--menu__item-icon" aria-hidden="true">{{ item.icon|raw }}</span>
+          {%- endif -%}
+          <span class="c--menu__item-label">{{ item.label }}</span>
+        </a>
+      {%- else -%}
+        <button
+          class="{{ item_classes|join(' ') }}"
+          type="button"
+          role="{{ item_role }}"
+          {%- if item.disabled -%}aria-disabled="true" disabled{%- endif -%}
+        >
+          {%- if item.icon -%}
+            <span class="c--menu__item-icon" aria-hidden="true">{{ item.icon|raw }}</span>
+          {%- endif -%}
+          <span class="c--menu__item-label">{{ item.label }}</span>
+        </button>
+      {%- endif -%}
+    {%- endif -%}
+  {% endfor -%}
+</div>

@@ -1,0 +1,105 @@
+{#-
+/**
+ * @file
+ * Template for the Table component (MUD-aligned).
+ *
+ * Props:
+ * - table_headers (array) — [{key, label, sortable?, align?, width?}]
+ * - table_rows (array) — array of objects keyed by column key
+ * - table_caption (string|null)
+ * - table_aria_label (string|null)
+ * - table_header_style (string|null) — default | inverted | white
+ * - table_row_style (string|null) — divided | zebra | borderless
+ * - table_hoverable (boolean)
+ * - table_sticky_header (boolean)
+ * - table_sort_column (string|null)
+ * - table_sort_direction (string|null) — asc | desc
+ */
+-#}
+
+{% set table_headers = table_headers|default([]) %}
+{% set table_rows = table_rows|default([]) %}
+{% set table_header_style = table_header_style|default('default') %}
+{% set table_row_style = table_row_style|default('divided') %}
+{% set table_hoverable = table_hoverable|default(false) %}
+{% set table_sticky_header = table_sticky_header|default(false) %}
+
+{% set table_att = table_att ?: create_attribute() %}
+
+{%
+  set wrapper_classes = [
+    'table-wrapper',
+  ]|merge(table_uc ?: [])
+%}
+
+{%
+  set table_classes = [
+    'table',
+    'table-header-' ~ table_header_style,
+    'table-rows-' ~ table_row_style,
+    table_hoverable ? 'table-hoverable',
+    table_sticky_header ? 'table-sticky-header',
+  ]
+%}
+
+<div{{ table_att.addClass(wrapper_classes) }}>
+  <table
+    class="{{ table_classes|join(' ') }}"
+    {%- if table_aria_label -%} aria-label="{{ table_aria_label }}"{%- endif -%}
+  >
+    {%- if table_caption -%}
+      <caption class="visually-hidden">{{ table_caption }}</caption>
+    {%- endif -%}
+
+    <thead class="table-head">
+      <tr>
+        {%- for col in table_headers -%}
+          {%- set is_sorted = table_sort_column == col.key -%}
+          {%- set sort_dir = is_sorted ? table_sort_direction : null -%}
+          <th
+            class="table-th{%- if col.align -%} table-align-{{ col.align }}{%- endif -%}{%- if is_sorted -%} is-sorted{%- endif -%}"
+            scope="col"
+            {%- if col.width -%} style="--col-width: {{ col.width }}"{%- endif -%}
+            {%- if col.sortable -%}
+              role="columnheader"
+              aria-sort="{{ sort_dir == 'asc' ? 'ascending' : (sort_dir == 'desc' ? 'descending' : 'none') }}"
+              tabindex="0"
+              data-sort-key="{{ col.key }}"
+            {%- endif -%}
+          >
+            {{- col.label -}}
+            {%- if col.sortable -%}
+              <span class="table-sort-icon" aria-hidden="true">
+                {%- if sort_dir == 'asc' -%}↑{%- elseif sort_dir == 'desc' -%}↓{%- else -%}↕{%- endif -%}
+              </span>
+            {%- endif -%}
+          </th>
+        {%- endfor -%}
+      </tr>
+    </thead>
+
+    <tbody class="table-body">
+      {%- if table_rows is empty -%}
+        <tr class="table-empty-row">
+          <td colspan="{{ table_headers|length }}" class="table-empty-cell">
+            {%- block slot_empty -%}
+              <span>Nu există date.</span>
+            {%- endblock -%}
+          </td>
+        </tr>
+      {%- else -%}
+        {%- for row in table_rows -%}
+          <tr class="table-row" data-row-index="{{ loop.index0 ~ '' }}">
+            {%- for col in table_headers -%}
+              <td
+                class="table-td{%- if col.align -%} table-align-{{ col.align }}{%- endif -%}"
+              >
+                {{- row[col.key] ?? '' -}}
+              </td>
+            {%- endfor -%}
+          </tr>
+        {%- endfor -%}
+      {%- endif -%}
+    </tbody>
+  </table>
+</div>

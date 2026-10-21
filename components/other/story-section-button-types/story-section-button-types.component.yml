@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Story Section Button Types
+status: stable
+group: Globals
+version: 1.0.0
+description: A story section component that showcases different button style variations including solid, outline, ghost, and clear types.
+
+# Props.
+props:
+  type: object
+  properties:
+
+    # Component variations
+    story_section_button_types_title:
+      type: string
+      title: Section Title
+      description: The title of the story section
+      default: Button Types / Styles
+
+    story_section_button_types_description:
+      type: ['string', 'null']
+      title: Section Description
+      description: Description text explaining the button types
+      default: null
+
+    # Utility classes
+    story_section_button_types_uc:
+      type: array
+      items:
+        type: string
+      title: Story Section Button Types Utility Classes
+      description: An array of utility classes for additional styling
+      default: []
+
+    # Attributes
+    story_section_button_types_att:
+      type: Drupal\Core\Template\Attribute
+      title: Story Section Button Types Attributes
+      description: A list of HTML attributes for the section
+
+      default: null
+# Slots.
+slots:
+  slot_examples:
+    title: Button Examples
+    description: The button examples to display in the story section

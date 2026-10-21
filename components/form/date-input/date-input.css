@@ -1,0 +1,115 @@
+.c--date-input {
+  /* Init vars */
+  --date-input_gap: var(--date-input-field-gap, 8px);
+  --_date-input_c: var(--date-input_c, var(--date-input-label-color-default, #383838));
+  --_date-input_bg: var(--date-input_bg, #ffffff);
+  --_date-input_b-r: var(--date-input_b-r, var(--date-input-container-border-radius, 8px));
+  --_date-input_h: var(--date-input_h, var(--date-input-container-height-md, 40px));
+  --_date-input_p-i: var(--date-input_p-i, var(--date-input-container-padding-inline-md, 12px));
+  --_date-input_f-s: var(--date-input_f-s, var(--date-input-control-font-size-md, 14px));
+  --_date-input_l-h: var(--date-input_l-h, var(--date-input-control-line-height-md, 20px));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--date-input_gap);
+  width: var(--date-input_w, 100%);
+}
+
+.c--date-input__label {
+  display: flex;
+  align-items: center;
+  gap: var(--date-input-label-gap, 4px);
+  font-family: var(--date-input-label-font-family, Onest, sans-serif);
+  font-size: var(--date-input-label-font-size, 14px);
+  font-weight: var(--date-input-label-font-weight, 400);
+  line-height: var(--date-input-label-line-height, 20px);
+  color: var(--_date-input_c);
+}
+
+.c--date-input__required {
+  color: var(--date-input-label-required-mark-color, #d92d20);
+  font-size: var(--date-input-label-required-mark-size, 12px);
+  line-height: 1;
+}
+
+.c--date-input__field-row {
+  display: flex;
+  align-items: stretch;
+  height: var(--_date-input_h);
+  border: var(--date-input-container-border-width-default, 1px) solid var(--_date-input_border-color, #d9d9d9);
+  border-radius: var(--_date-input_b-r);
+  background-color: var(--_date-input_bg);
+  overflow: hidden;
+  transition:
+    border-color var(--date-input-container-transition-duration, 150ms) var(--date-input-container-transition-timing-function, ease-out),
+    box-shadow var(--date-input-container-transition-duration, 150ms) var(--date-input-container-transition-timing-function, ease-out);
+
+  &:focus-within {
+    --_date-input_border-color: var(--date-input-control-caret-color, #0058d2);
+
+    border-width: var(--date-input-container-border-width-emphasized, 2px);
+    box-shadow: 0 0 0 var(--date-input-container-focus-ring-width, 2px) color-mix(in oklch, #0058d2, transparent 80%);
+  }
+}
+
+.c--date-input__control {
+  flex: 1;
+  height: 100%;
+  padding-inline: var(--_date-input_p-i);
+  font-family: var(--date-input-control-font-family, Onest, sans-serif);
+  font-size: var(--_date-input_f-s);
+  font-weight: var(--date-input-control-font-weight, 400);
+  line-height: var(--_date-input_l-h);
+  color: var(--_date-input_c);
+  caret-color: var(--date-input-control-caret-color, #0058d2);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* Assistive text */
+.c--date-input__assistive {
+  margin: 0;
+  font-family: var(--date-input-assistive-font-family, Onest, sans-serif);
+  font-size: var(--date-input-assistive-font-size, 14px);
+  font-weight: var(--date-input-assistive-font-weight, 400);
+  line-height: var(--date-input-assistive-line-height, 20px);
+  color: var(--date-input-assistive-color-default, #383838);
+}
+
+.c--date-input__assistive--error {
+  color: var(--date-input-assistive-color-error, #d92d20);
+}
+
+/* Variations */
+.c--date-input.has-size_lg {
+  --_date-input_h: var(--date-input-container-height-lg, 48px);
+  --_date-input_p-i: var(--date-input-container-padding-inline-lg, 16px);
+  --_date-input_f-s: var(--date-input-control-font-size-lg, 16px);
+  --_date-input_l-h: var(--date-input-control-line-height-lg, 24px);
+}
+
+.c--date-input.is-error .c--date-input__field-row {
+  --_date-input_border-color: var(--date-input-assistive-color-error, #d92d20);
+
+  border-color: var(--date-input-assistive-color-error, #d92d20);
+}
+
+.c--date-input.is-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+
+  .c--date-input__label {
+    color: var(--date-input-label-color-disabled, #b2b2b2);
+  }
+}

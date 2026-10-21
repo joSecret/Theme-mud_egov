@@ -1,0 +1,65 @@
+{#-
+/**
+ * @file
+ * Template for the Segmented Control component (MUD-aligned).
+ *
+ * Props:
+ * - segmented_control_options (array) default: [] — [{value, label, disabled?}]
+ * - segmented_control_value (string|null) default: null — selected segment value
+ * - segmented_control_name (string|null) default: null
+ * - segmented_control_label (string|null) default: null — aria-label for the group
+ *
+ * Variations:
+ * - segmented_control_size (string|null) default: null — md | sm
+ * - segmented_control_disabled (boolean) default: false
+ * - segmented_control_fluid (boolean) default: false
+ *
+ * Utility classes: segmented_control_uc
+ * Attributes: segmented_control_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set segmented_control_options = segmented_control_options|default([]) %}
+{% set segmented_control_value = segmented_control_value|default(null) %}
+{% set segmented_control_disabled = segmented_control_disabled|default(false) %}
+{% set segmented_control_fluid = segmented_control_fluid|default(false) %}
+
+{#- Create attributes -#}
+{% set segmented_control_att = segmented_control_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'c--segmented-control',
+    segmented_control_size ? 'c--segmented-control--' ~ segmented_control_size,
+    segmented_control_fluid ? 'c--segmented-control--fluid',
+    segmented_control_disabled ? 'is-disabled',
+  ]|merge(segmented_control_uc ?: [])
+%}
+
+{#- Render -#}
+<div
+  {{ segmented_control_att.addClass(classes) }}
+  data-segmented-control
+  role="radiogroup"
+  {%- if segmented_control_label -%} aria-label="{{ segmented_control_label }}"{%- endif -%}
+  {%- if segmented_control_disabled -%} aria-disabled="true"{%- endif -%}
+  {%- if segmented_control_name -%} data-name="{{ segmented_control_name }}"{%- endif -%}
+>
+  {%- for option in segmented_control_options -%}
+    {% set is_selected = segmented_control_value == option.value -%}
+    {% set is_disabled = segmented_control_disabled or option.disabled|default(false) %}
+    <button
+      class="segmented-control-segment{%- if is_selected -%} is-selected{%- endif -%}{%- if is_disabled -%} is-disabled{%- endif -%}"
+      role="radio"
+      aria-checked="{{ is_selected ? 'true' : 'false' }}"
+      data-value="{{ option.value }}"
+      tabindex="{{ is_selected ? '0' : '-1' }}"
+      {%- if is_disabled -%} disabled aria-disabled="true"{%- endif -%}
+      type="button"
+    >
+      {{- option.label -}}
+    </button>
+  {%- endfor -%}
+</div>

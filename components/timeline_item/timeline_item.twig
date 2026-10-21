@@ -1,0 +1,115 @@
+{#-
+/**
+  * @file
+  * Timeline Item component.
+  *
+  * Available variations:
+  * timelineItem_highlighted (boolean) Default: false.
+  *
+  * Available values:
+  * - timelineItem_year (string|null) (default: null)
+  * - timelineItem_title (string|null) (default: null)
+  * - timelineItem_description (string|null) (default: null)
+  * - timelineItem_media (array|object|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - timelineItem_uc (array) (default: [''])
+  * - timelineItem_year_uc (array) (default: [''])
+  * - timelineItem_title_uc (array) (default: [''])
+  * - timelineItem_description_uc (array) (default: [''])
+  * - timelineItem_media_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - timelineItem_att (Drupal\Core\Template\Attribute)
+  * - timelineItem_year_att (Drupal\Core\Template\Attribute)
+  * - timelineItem_title_att (Drupal\Core\Template\Attribute)
+  * - timelineItem_description_att (Drupal\Core\Template\Attribute)
+  * - timelineItem_media_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_year: Default year content for the timeline item.
+  * - slot_title: Default title content for the timeline item.
+  * - slot_description: Default description content for the timeline item.
+  * - slot_image: Default image content for the timeline item.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set timelineItem_view_mode = timelineItem_view_mode|default('grid') %}
+{% set timelineItem_highlighted = timelineItem_highlighted|default(false) %}
+{% set timelineItem_year = timelineItem_year|default(null) %}
+{% set timelineItem_title = timelineItem_title|default(null) %}
+{% set timelineItem_description = timelineItem_description|default(null) %}
+{% set timelineItem_media = timelineItem_media|default(null) %}
+{% set timelineItem_title_tag = timelineItem_title_tag|default('h3') %}
+
+{#- Create attributes -#}
+{% set timelineItem_att = timelineItem_att ?: create_attribute() %}
+{% set timelineItem_year_att = timelineItem_year_att ?: create_attribute() %}
+{% set timelineItem_title_att = timelineItem_title_att ?: create_attribute() %}
+{% set timelineItem_description_att = timelineItem_description_att ?: create_attribute() %}
+{% set timelineItem_media_att = timelineItem_media_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set timelineItem_classes = [
+  'c--timelineItem',
+  timelineItem_highlighted ? 'is-highlighted',
+  timelineItem_view_mode ? 'is-' ~ timelineItem_view_mode,
+]|merge(timelineItem_uc ?: []) %}
+
+{% set timelineItem_year_classes = [
+  'timelineItem-year',
+]|merge(timelineItem_year_uc ?: []) %}
+
+{% set timelineItem_title_classes = [
+  'timelineItem-title',
+]|merge(timelineItem_title_uc ?: []) %}
+
+{% set timelineItem_description_classes = [
+  'timelineItem-description',
+]|merge(timelineItem_description_uc ?: []) %}
+
+{% set timelineItem_media_classes = [
+  'timelineItem-media',
+]|merge(timelineItem_media_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<div{{ timelineItem_att.addClass(timelineItem_classes) }}>
+  <div class="timelineItem-node">
+    <div class="timelineItem-dot">
+      <div class="timelineItem-line"></div>
+    </div>
+  </div>
+
+  <div class="timelineItem-content">
+    {% block slot_year %}
+      <div{{ timelineItem_year_att.addClass(timelineItem_year_classes) }}>
+        {{- timelineItem_year -}}
+      </div>
+    {% endblock %}
+
+    {% block slot_title %}
+      <{{- timelineItem_title_tag -}}{{ timelineItem_title_att.addClass(timelineItem_title_classes) }}>
+        {{- timelineItem_title -}}
+      </{{- timelineItem_title_tag -}}>
+    {% endblock %}
+
+    {% block slot_description %}
+      <div{{ timelineItem_description_att.addClass(timelineItem_description_classes) }}>
+        {{- timelineItem_description -}}
+      </div>
+    {% endblock %}
+
+    {% block slot_image %}
+      {%- if timelineItem_media -%}
+        <div{{ timelineItem_media_att.addClass(timelineItem_media_classes) }}>
+          {{- timelineItem_media -}}
+        </div>
+      {%- endif -%}
+    {% endblock -%}
+  </div>
+</div>

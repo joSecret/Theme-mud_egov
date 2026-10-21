@@ -1,0 +1,45 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Statistics
+status: stable
+version: 1.0.0
+group: Content
+description: 'Statistics section with a heading, optional link and a grid of statistic items.'
+
+props:
+  type: object
+  properties:
+    statistics_title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Section heading text.'
+      default: null
+
+    statistics_title_level:
+      type: integer
+      title: Title Level
+      description: 'Semantic heading level (1–6).'
+      enum: [1, 2, 3, 4, 5, 6]
+      default: 2
+
+    # uc -> utility_classes
+    statistics_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    statistics_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+
+slots:
+  statistics_link:
+    title: Link
+    description: 'Rendered field_link output.'
+
+  statistics_items:
+    title: Statistics Items
+    description: 'Rendered statistics-item paragraphs.'

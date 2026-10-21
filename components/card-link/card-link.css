@@ -1,0 +1,46 @@
+.c--card-link {
+  --_cl_bg: var(--card-link_bg, var(--color-background-base-secondary));
+  --_cl_bg_h: var(--card-link_bg_h, var(--color-background-base-secondary-hover));
+  --_cl_br: var(--card-link_br, 1rem);
+  --_cl_p: var(--card-link_p, 1.5rem);
+  --_cl_gap: var(--card-link_gap, 1rem);
+  --_cl_c: var(--card-link_c, var(--body_c, inherit));
+  --_cl_icon-size: var(--card-link_icon-size, 2rem);
+
+  --link_c: var(--color-text-base-default);
+  --link_c_h: var(--color-text-base-default);
+  --link_d: none;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--_cl_gap);
+  padding: var(--_cl_p);
+  background-color: var(--_cl_bg);
+  border-radius: var(--_cl_br);
+  color: var(--_cl_c);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  min-height: 156px;
+
+  a {
+    font-size: var(--font-size-18);
+    margin-block-start: auto;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      content: "";
+    }
+  }
+
+  img {
+    width: 40px;
+    height: 100%;
+    max-height: 40px;
+  }
+}

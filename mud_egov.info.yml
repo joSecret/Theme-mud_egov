@@ -1,0 +1,41 @@
+name: 'MUD eGov Theme (MUD eGov)'
+type: theme
+description: 'Custom frontend theme for MUD eGov projects'
+core_version_requirement: ^10 || ^11
+base theme: false
+
+ckeditor5-stylesheets:
+  - css/ckeditor5-stylesheets.css
+  - css/ckeditor5-overrides.css
+
+libraries:
+  - mud_egov/theme-fonts
+  - mud_egov/global-styling
+
+regions:
+  top_region: "Top Region"
+
+  # Header regions
+  branding: "Branding"
+  nav_main: "Main navigation region"
+  header: Header
+  header_mobil: "Header mobile region"
+  nav_search: "Search navigation region"
+  nav_additional: "Additional navigation region"
+  header_notifications: "Header notifications"
+  # main content regions
+  sidebar: "Sidebar"
+  sidebar_right: Right sidebar
+  content: "Main content"
+  content_bottom: "Content bottom"
+
+  # footer regions
+  footer_left: "Footer info"
+  footer: "Footer menu"
+  footer_right: "Footer pay"
+  footer_middle: "Footer middle"
+  footer_bottom: "Footer bottom"
+
+  # Other regions
+  help: "Helper region"
+  bottom_fixed: "Fixed Bottom"

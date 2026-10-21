@@ -1,0 +1,112 @@
+<div class="sdc-showcase-component-page">
+
+  <div class="sdc-showcase-header">
+    <a href="{{ path('sdc_showcase.index') }}" class="sdc-showcase-back">&larr; All components</a>
+    <h1 class="sdc-showcase-component-title">{{ component.name }}</h1>
+    <p class="sdc-showcase-provider-label">{{ component.provider }} <code>{{ component.id }}</code></p>
+    {% if component.description %}
+      <p class="sdc-showcase-description">{{ component.description }}</p>
+    {% endif %}
+  </div>
+
+  <details class="sdc-showcase-schema">
+    <summary>Schema Reference</summary>
+
+    {% if schema_summary.props is not empty %}
+      <h3>Props</h3>
+      <table class="sdc-showcase-schema-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Options</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prop in schema_summary.props %}
+            <tr>
+              <td><code>{{ prop.name }}</code></td>
+              <td>{{ prop.type }}</td>
+              <td>{{ prop.required ? 'Yes' : 'No' }}</td>
+              <td>{{ prop.default is not null ? prop.default : '—' }}</td>
+              <td>
+                {% if prop.enum %}
+                  {% for val in prop.enum %}
+                    {% if val is not null and val != '' %}<code>{{ val }}</code>{% endif %}
+                  {% endfor %}
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if schema_summary.slots is not empty %}
+      <h3>Slots</h3>
+      <ul>
+        {% for slot in schema_summary.slots %}
+          <li><code>{{ slot.name }}</code> — {{ slot.title }}{% if slot.description %}: {{ slot.description }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </details>
+
+  <div class="sdc-showcase-variations">
+    {% for variation in variations %}
+      <div class="sdc-showcase-variation" id="variation-{{ variation.id }}">
+        <div class="sdc-showcase-variation-header">
+          <h3>{{ variation.label }}</h3>
+          <span class="sdc-showcase-badge sdc-showcase-badge--{{ variation.source }}">{{ variation.source|capitalize }}</span>
+          {% if variation.overridden %}
+            <span class="sdc-showcase-badge sdc-showcase-badge--override">Overridden</span>
+          {% endif %}
+          <button class="sdc-showcase-override-btn" data-override-snippet="{{ variation.override_snippet|e('html_attr') }}" title="Copy override snippet for override file">Override</button>
+          <button class="sdc-showcase-exclude-btn" data-variation-id="{{ variation.id }}" title="Copy exclude snippet for override file">Exclude</button>
+          <a href="{{ variation.variation_url }}" class="sdc-showcase-isolated-link" title="Open isolated view">↗</a>
+        </div>
+
+        <details class="sdc-showcase-props-summary">
+          <summary>Props used</summary>
+          <dl>
+            {% for prop in variation.props_summary %}
+              <dt>{{ prop.name }}</dt>
+              <dd><code>{{ prop.value }}</code></dd>
+            {% endfor %}
+          </dl>
+        </details>
+
+        {% if iframe_mode %}
+          <iframe class="sdc-showcase-iframe" src="{{ variation.variation_url }}" loading="lazy"></iframe>
+        {% else %}
+          <div class="sdc-showcase-render">
+            {{ variation.render }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% if iframe_mode %}
+<script>
+(function () {
+  function resizeIframe(iframe) {
+    try {
+      iframe.style.height = iframe.contentDocument.documentElement.scrollHeight + 'px';
+    } catch (e) {}
+  }
+  var iframes = document.querySelectorAll('.sdc-showcase-iframe');
+  iframes.forEach(function (iframe) {
+    iframe.addEventListener('load', function () { resizeIframe(this); });
+  });
+})();
+</script>
+{% endif %}

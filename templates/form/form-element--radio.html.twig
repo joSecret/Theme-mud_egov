@@ -1,0 +1,12 @@
+{% embed 'mud_egov:radio' with {
+  radio_label: label['#title'] ?? null,
+  radio_id: label['#id'] ?? null,
+  radio_required: label['#required'] ?? false,
+  radio_error: errors ? true : false,
+  radio_disabled: disabled == 'disabled',
+  radio_att: attributes,
+} %}
+  {% block radio_input %}
+    {{- children -}}
+  {% endblock %}
+{% endembed %}

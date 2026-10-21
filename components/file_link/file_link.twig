@@ -1,0 +1,103 @@
+{#-
+/**
+  * @file
+  * File Link component.
+  *
+  * Props:
+  * - fileLink_url (string)
+  * - fileLink_title (string|null)
+  * - fileLink_extension (string|null)
+  * - fileLink_size (string|null)
+  * - fileLink_date (string|null)
+  * - fileLink_uc (array)
+  * - fileLink_att (Attribute)
+  */
+-#}
+
+{% set ext = (fileLink_extension|default(''))|lower %}
+
+{#- Map common extensions to a color family. Unknown types fall back to generic. -#}
+{% set type_map = {
+  pdf:   'pdf',
+  doc:   'doc',
+  docx:  'doc',
+  rtf:   'doc',
+  odt:   'doc',
+  xls:   'xls',
+  xlsx:  'xls',
+  csv:   'xls',
+  ods:   'xls',
+  ppt:   'ppt',
+  pptx:  'ppt',
+  odp:   'ppt',
+  txt:   'txt',
+  zip:   'zip',
+  rar:   'zip',
+  '7z':  'zip',
+  jpg:   'img',
+  jpeg:  'img',
+  png:   'img',
+  gif:   'img',
+  webp:  'img',
+  svg:   'img',
+} %}
+{% set type_class = type_map[ext] ?? 'generic' %}
+
+{% set fileLink_att = fileLink_att ?: create_attribute() %}
+{% set fileLink_classes = [
+  'c--fileLink',
+  'c--fileLink-' ~ type_class,
+]|merge(fileLink_uc ?: []) %}
+
+<a href="{{ fileLink_url }}"{{ fileLink_att.addClass(fileLink_classes) }} download>
+  <span class="fileLink__icon" aria-hidden="true">
+    <svg viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M4 2 h16 l10 10 v24 a4 4 0 0 1 -4 4 h-22 a4 4 0 0 1 -4 -4 v-30 a4 4 0 0 1 4 -4z"
+        fill="currentColor"
+      />
+      <path
+        d="M20 2 v8 a2 2 0 0 0 2 2 h8"
+        fill="none"
+        stroke="rgba(255, 255, 255, 0.5)"
+        stroke-width="1.2"
+      />
+      {% if ext %}
+        <text
+          x="16" y="32"
+          text-anchor="middle"
+          fill="white"
+          font-size="8"
+          font-weight="700"
+          font-family="system-ui, sans-serif"
+        >{{ ext|upper }}</text>
+      {% endif %}
+    </svg>
+  </span>
+
+  <span class="fileLink__body">
+    {% if fileLink_title %}
+      <span class="fileLink__title">{{ fileLink_title }}</span>
+    {% endif %}
+
+    {% set meta_parts = [] %}
+    {% if ext %}
+      {% set meta_parts = meta_parts|merge([ext|upper]) %}
+    {% endif %}
+    {% if fileLink_size %}
+      {% set meta_parts = meta_parts|merge([fileLink_size]) %}
+    {% endif %}
+    {% if fileLink_date %}
+      {% set meta_parts = meta_parts|merge([fileLink_date]) %}
+    {% endif %}
+
+    {% if meta_parts|length %}
+      <span class="fileLink__meta">
+        {%- for part in meta_parts -%}
+          <span class="fileLink__meta-item">{{ part }}</span>
+          {%- if not loop.last %}<span class="fileLink__meta-sep" aria-hidden="true">·</span>{% endif -%}
+        {%- endfor -%}
+      </span>
+    {% endif %}
+  </span>
+</a>

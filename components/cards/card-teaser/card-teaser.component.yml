@@ -1,0 +1,117 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Card teaser
+status: stable
+props:
+  type: object
+  properties:
+    card_teaser_title_heading:
+      type: ['string', 'null']
+      title: Title Heading
+      description: The title heading of the card.
+      default: 'h3'
+      example: [
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'div',
+      ]
+
+    card_teaser_title:
+      type: ['string', 'null']
+      title: Title
+      description: The title of the card.
+
+    card_teaser_description:
+      type: ['string', 'null']
+      title: Description
+      description: The description text for the card.
+
+    card_teaser_img:
+      type: ['string', 'array', 'null']
+      title: Image
+      description: Image source URL for the card.
+      default: 'null'
+
+    card_teaser_bundle:
+      type: ['string', 'null']
+      title: Bundle
+      description: The bundle/category label.
+      default: 'News'
+
+    card_teaser_date:
+      type: ['string', 'null']
+      title: Date
+      description: Date to display on the card.
+      default: '09 Nov 2024'
+
+    card_teaser_link:
+      type: ['string', 'null']
+      title: Link
+      description: URL for the card link.
+
+    card_teaser_link_text:
+      type: ['string', 'null']
+      title: Link Text
+      description: Text for the card link.
+      default: 'Read more'
+
+    card_teaser_link_icon:
+      type: ['string', 'null']
+      title: Link Icon
+      description: Icon for the card link.
+
+    card_teaser_video_link:
+      type: ['string', 'null']
+      title: Video Link
+      description: URL for the video if the card contains a video.
+      default: 'null'
+
+    has_video:
+      type: 'boolean'
+      title: Has Video
+      description: Whether the card contains a video instead of an image.
+      default: false
+
+    # uc -> utility_classes
+    card_teaser_uc:
+      type: array
+      items:
+        type: string
+      title: Card teaser Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    card_teaser_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the Card teaser.
+
+      default: null
+# Slots.
+slots:
+  slot_card_image_top:
+    title: Image
+    description: Image area for the Card teaser.
+
+  slot_details:
+    title: Details
+    description: Bundle and date details for the Card teaser.
+
+  slot_content:
+    title: Content
+    description: Content wrapper for title and description.
+
+  slot_title:
+    title: Title
+    description: Title for the Card teaser.
+
+  slot_description:
+    title: Description
+    description: Description for the Card teaser.
+
+  slot_link:
+    title: Link
+    description: Link for the Card teaser.

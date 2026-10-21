@@ -1,0 +1,101 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Progress Tracker
+status: stable
+group: Globals
+version: 1.0.0
+description: Multi-step progress indicator aligned with MUD mud-progress-tracker.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    progress_tracker_steps:
+      type: array
+      title: Steps
+      description: "Ordered step list. Each item: { label, description?, status: complete|active|pending }."
+      default: []
+      items:
+        type: object
+        properties:
+          id:
+            type: ['string', 'null']
+            title: Step ID
+            default: null
+          label:
+            type: string
+            title: Label
+            default: ''
+          description:
+            type: ['string', 'null']
+            title: Description
+            default: null
+          status:
+            type: string
+            title: Status
+            description: "complete | active | pending | available | error"
+            default: pending
+            enum:
+              - complete
+              - active
+              - pending
+              - available
+              - error
+          icon_name:
+            type: ['string', 'null']
+            title: Icon Name
+            description: Override the default indicator icon.
+            default: null
+          disabled:
+            type: boolean
+            title: Disabled
+            default: false
+
+    progress_tracker_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible name for the step list landmark.
+      default: null
+
+    # component variations
+    progress_tracker_orientation:
+      type: ['string', 'null']
+      title: Orientation
+      description: Layout direction — horizontal (default) or vertical.
+      default: null
+      enum:
+        - null
+        - horizontal
+        - vertical
+
+    progress_tracker_size:
+      type: ['string', 'null']
+      title: Size
+      description: Size variant — sm / md / lg.
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+        - lg
+
+    progress_tracker_compact:
+      type: boolean
+      title: Compact
+      description: Dot-rail rendering — hides step numbers and labels, shows dots only.
+      default: false
+
+    # uc -> utility_classes
+    progress_tracker_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    progress_tracker_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

@@ -1,0 +1,64 @@
+{#-
+/**
+  * @file
+  * Fieldset component.
+  *
+  * Available values:
+  * - fieldset_legend (string|null) (default: null)
+  * - fieldset_description (string|null) (default: null)
+  * - fieldset_disabled (boolean|null) (default: false)
+  *
+  * Available Utility classes -> uc
+  * - fieldset_uc (array) (default: [''])
+  * - fieldset_legend_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - fieldset_att (Drupal\Core\Template\Attribute)
+  * - fieldset_legend_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The form fields and elements rendered inside the fieldset.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set fieldset_legend = fieldset_legend|default(null) %}
+{% set fieldset_description = fieldset_description|default(null) %}
+{% set fieldset_disabled = fieldset_disabled|default(false) %}
+
+{#- Create attributes -#}
+{% set fieldset_att = fieldset_att ?: create_attribute() %}
+{% set fieldset_legend_att = fieldset_legend_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set fieldset_classes = [
+  'c--fieldset',
+]|merge(fieldset_uc ?: []) %}
+
+{% set fieldset_legend_classes = [
+  'fieldset-legend',
+]|merge(fieldset_legend_uc ?: []) %}
+
+{#- Change attributes -#}
+{%- if fieldset_disabled -%}
+  {% set fieldset_att = fieldset_att.setAttribute('disabled', true) %}
+{%- endif -%}
+
+{#- Render component -#}
+<fieldset{{ fieldset_att.addClass(fieldset_classes) }}>
+  {%- if fieldset_legend -%}
+    <legend{{ fieldset_legend_att.addClass(fieldset_legend_classes) }}>
+      {{- fieldset_legend -}}
+    </legend>
+  {%- endif -%}
+
+  {%- if fieldset_description -%}
+    <div class="fieldset-description form-text">
+      {{- fieldset_description -}}
+    </div>
+  {%- endif -%}
+
+  {% block slot_content -%}{% endblock %}
+</fieldset>

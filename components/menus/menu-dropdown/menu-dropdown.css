@@ -1,0 +1,164 @@
+.c--menu {
+  /* External tokens */
+  --menu_panel-bg: var(--menu-panel-background, var(--palette-white-1000, #fff));
+  --menu_panel-border-color: var(--menu-panel-border-color, var(--color-border-neutral-default, #e0e0e0));
+  --menu_panel-border-width: var(--menu-panel-border-width, 1px);
+  --menu_panel-border-radius: var(--menu-panel-border-radius, 8px);
+  --menu_panel-shadow: var(--menu-panel-shadow, 0 4px 16px rgb(0 0 0 / 0.12));
+  --menu_panel-padding: var(--menu-panel-padding, 6px);
+  --menu_panel-gap: var(--menu-panel-gap, 2px);
+  --menu_panel-min-width: var(--menu-panel-min-inline-size, 180px);
+  --menu_panel-max-height: var(--menu-panel-max-block-size, 320px);
+
+  /* Internal tokens */
+  --_menu_item-padding-block: var(--menu_item-padding-block, 8px);
+  --_menu_item-padding-inline: var(--menu_item-padding-inline, 12px);
+  --_menu_item-border-radius: var(--menu_item-border-radius, 6px);
+  --_menu_item-color: var(--menu_item-color, inherit);
+  --_menu_item-bg-hover: var(--menu_item-bg-hover, var(--color-background-neutral-hover, #f5f5f5));
+  --_menu_item-color-disabled: var(--menu_item-color-disabled, var(--color-text-base-disabled, #9e9e9e));
+
+  position: relative;
+  display: inline-block;
+}
+
+.c--menu__trigger {
+  display: contents;
+}
+
+.c--menu__trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.c--menu__trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 200ms ease;
+}
+
+.c--menu.is-open .c--menu__trigger-icon {
+  transform: rotate(180deg);
+}
+
+.c--menu__panel {
+  position: absolute;
+  z-index: var(--menu_panel-z-index, 100);
+  inset-block-start: calc(100% + 4px);
+  inset-inline-start: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--menu_panel-gap);
+  min-inline-size: var(--menu_panel-min-width);
+  max-block-size: var(--menu_panel-max-height);
+  overflow-y: auto;
+  padding: var(--menu_panel-padding);
+  background-color: var(--menu_panel-bg);
+  border: var(--menu_panel-border-width) solid var(--menu_panel-border-color);
+  border-radius: var(--menu_panel-border-radius);
+  box-shadow: var(--menu_panel-shadow);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 150ms ease,
+    visibility 150ms ease;
+}
+
+.c--menu.is-open .c--menu__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Position variants */
+.c--menu.has-position_bottom-end .c--menu__panel {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+.c--menu.has-position_top-start .c--menu__panel {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + 4px);
+}
+
+.c--menu.has-position_top-end .c--menu__panel {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + 4px);
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+/* Items */
+.c--menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  inline-size: 100%;
+  padding-block: var(--_menu_item-padding-block);
+  padding-inline: var(--_menu_item-padding-inline);
+  border: 0;
+  border-radius: var(--_menu_item-border-radius);
+  background: transparent;
+  color: var(--_menu_item-color);
+  font-size: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover:not(.is-disabled) {
+    background-color: var(--_menu_item-bg-hover);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--_menu_item-bg-hover);
+    box-shadow:
+      inset 0 0 0 2px var(--focus-ring-color-outer, #1976d2);
+  }
+
+  &.is-disabled {
+    color: var(--_menu_item-color-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.c--menu__item-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  inline-size: 20px;
+  block-size: 20px;
+
+  svg {
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+  }
+}
+
+.c--menu__item-label {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c--menu__divider {
+  block-size: var(--menu_panel-border-width);
+  background-color: var(--menu_panel-border-color);
+  margin-block: 4px;
+  margin-inline: var(--_menu_item-padding-inline);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--menu__panel,
+  .c--menu__trigger-icon {
+    transition: none;
+  }
+}

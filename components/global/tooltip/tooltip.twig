@@ -1,0 +1,77 @@
+{#-
+/**
+ * @file
+ * Tooltip component (global).
+ *
+ * Available variables:
+ * - tooltip_text (string) (default: '')
+ * - tooltip_trigger (string|null) — HTML for the trigger element (default: null)
+ * - tooltip_id (string|null) — unique ID, auto-generated when null (default: null)
+ * - tooltip_position (string|null) top | bottom | left | right | top-left | top-right | bottom-left | bottom-right (default: 'top')
+ * - tooltip_size (string|null) sm | lg (default: 'sm')
+ * - tooltip_trigger_event (string|null) hover | click | focus (default: 'hover')
+ *
+ * Available Utility classes -> uc
+ * - tooltip_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - tooltip_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Set default values -#}
+{% set tooltip_text = tooltip_text|default('') %}
+{% set tooltip_trigger = tooltip_trigger|default(null) %}
+{% set tooltip_id = tooltip_id|default('tooltip-' ~ random()) %}
+{% set tooltip_position = tooltip_position|default('top') %}
+{% set tooltip_size = tooltip_size|default('sm') %}
+{% set tooltip_trigger_event = tooltip_trigger_event|default('hover') %}
+
+{#- Create attributes -#}
+{% set tooltip_att = tooltip_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set tooltip_classes = [
+  'c--tooltip',
+  tooltip_position ? 'has-position_' ~ tooltip_position,
+  tooltip_size ? 'has-size_' ~ tooltip_size,
+]|merge(tooltip_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set tooltip_att = tooltip_att
+  .setAttribute('data-tooltip', '')
+  .setAttribute('data-tooltip-position', tooltip_position ~ '')
+  .setAttribute('data-tooltip-trigger', tooltip_trigger_event ~ '')
+%}
+
+{#- Render -#}
+<span{{ tooltip_att.addClass(tooltip_classes) }}>
+  {#- Trigger wrapper -#}
+  <span
+    class="c--tooltip__trigger"
+    aria-describedby="{{ tooltip_id }}"
+  >
+    {%- if tooltip_trigger -%}
+      {{ tooltip_trigger }}
+    {%- else -%}
+      <button type="button" class="c--tooltip__default-trigger" aria-label="{{ tooltip_text }}">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 7v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="8" cy="4.5" r="0.75" fill="currentColor"/>
+        </svg>
+      </button>
+    {%- endif -%}
+  </span>
+
+  {#- Tooltip bubble -#}
+  <span
+    id="{{ tooltip_id }}"
+    role="tooltip"
+    class="c--tooltip__bubble"
+    aria-hidden="true"
+  >
+    <span class="c--tooltip__text">{{ tooltip_text }}</span>
+    <span class="c--tooltip__arrow" aria-hidden="true"></span>
+  </span>
+</span>

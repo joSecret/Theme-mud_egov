@@ -1,0 +1,31 @@
+.c--resources {
+  container-type: inline-size;
+  display: grid;
+  gap: var(--resources_gap, var(--spacing-48));
+  padding-block: var(--resources_p-b, var(--spacing-64));
+  padding-inline: var(--resources_p-i, 0px);
+}
+
+.resources-label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-16);
+  color: var(--color-text-base-secondary);
+  margin-block-end: 16px;
+}
+
+.heading {
+  max-width: 560px;
+}
+
+.resources-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+@container (528px < width) {
+  .c--resources {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}

@@ -1,0 +1,9 @@
+.c--dateRange {
+  --_dateRange_c: var(--dateRange_c, currentColor);
+  --_dateRange_bg: var(--dateRange_bg, transparent);
+  --_dateRange_f-s: var(--dateRange_f-s, inherit);
+
+  color: var(--_dateRange_c);
+  background: var(--_dateRange_bg);
+  font-size: var(--_dateRange_f-s);
+}

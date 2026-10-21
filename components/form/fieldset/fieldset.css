@@ -1,0 +1,59 @@
+/**
+ * Fieldset Component Styles
+ *
+ * Groups related form fields with optional legend and description.
+ */
+
+.c--fieldset {
+  /* Variables — fieldset */
+  --_fieldset_p-b: var(--fieldset_p-b, var(--size_400));
+  --_fieldset_p-i: var(--fieldset_p-i, var(--size_400));
+  --_fieldset_m-b: var(--fieldset_m-b, var(--spacer));
+  --_fieldset_b-w: var(--fieldset_b-w, var(--b-w));
+  --_fieldset_b-c: var(--fieldset_b-c, var(--b-c));
+  --_fieldset_b-r: var(--fieldset_b-r, var(--b-r));
+  --_fieldset_gap: var(--fieldset_gap, var(--spacer));
+
+  /* Variables — legend */
+  --_fieldset-legend_f-s: var(--fieldset-legend_f-s, var(--f-s_base));
+  --_fieldset-legend_f-w: var(--fieldset-legend_f-w, var(--f-w_semibold));
+  --_fieldset-legend_c: var(--fieldset-legend_c, var(--body_c));
+  --_fieldset-legend_m-b: var(--fieldset-legend_m-b, var(--size_300));
+  --_fieldset-legend_p-b: var(--fieldset-legend_p-b, var(--size_200));
+  --_fieldset-legend_b-c: var(--fieldset-legend_b-c, var(--b-c));
+
+  /* Variables — description */
+  --_fieldset-desc_f-s: var(--fieldset-desc_f-s, var(--f-s_sm));
+  --_fieldset-desc_c: var(--fieldset-desc_c, var(--c_muted));
+  --_fieldset-desc_m-b: var(--fieldset-desc_m-b, var(--size_300));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_fieldset_gap);
+  padding-block: var(--_fieldset_p-b);
+  padding-inline: var(--_fieldset_p-i);
+  border: var(--_fieldset_b-w) solid var(--_fieldset_b-c);
+  border-radius: var(--_fieldset_b-r);
+  margin-block-end: var(--_fieldset_m-b);
+
+  .fieldset-legend {
+    float: left;
+    width: 100%;
+    font-size: var(--_fieldset-legend_f-s);
+    font-weight: var(--_fieldset-legend_f-w);
+    color: var(--_fieldset-legend_c);
+    padding-block-end: var(--_fieldset-legend_p-b);
+    border-block-end: var(--_fieldset_b-w) solid var(--_fieldset-legend_b-c);
+    margin-block-end: var(--_fieldset-legend_m-b);
+
+    & + * {
+      clear: left;
+    }
+  }
+
+  .fieldset-description {
+    font-size: var(--_fieldset-desc_f-s);
+    color: var(--_fieldset-desc_c);
+    margin-block-end: var(--_fieldset-desc_m-b);
+  }
+}

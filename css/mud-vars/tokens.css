@@ -1,0 +1,57 @@
+:where(html) {
+  --spacing-0: 0px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  --border-radius-0: 0px;
+  --border-radius-4: 4px;
+  --border-radius-6: 6px;
+  --border-radius-8: 8px;
+  --border-radius-12: 12px;
+  --border-radius-16: 16px;
+  --border-radius-24: 24px;
+  --border-radius-32: 32px;
+  --border-radius-full: 9999px;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-3: 3px;
+  --border-width-1-5: 1.5px;
+  --border-width-0-5: 0.5px;
+
+  --screen-width-fixed-desktop: 1440px;
+  --screen-width-fixed-laptop: 1280px;
+  --screen-width-fixed-tablet: 768px;
+  --screen-width-fixed-mobile: 360px;
+  --screen-width-min-fluid-desktop: 1440px;
+  --screen-width-min-fluid-laptop: 1024px;
+  --screen-width-min-fluid-tablet: 480px;
+  --screen-width-min-fluid-mobile: 320px;
+  --screen-width-max-fluid-desktop: 1920px;
+  --screen-width-max-fluid-laptop: 1440px;
+  --screen-width-max-fluid-tablet: 1024px;
+  --screen-width-max-fluid-mobile: 480px;
+  --screen-height-fixed-desktop: 1024px;
+  --screen-height-fixed-laptop: 832px;
+  --screen-height-fixed-tablet: 1024px;
+  --screen-height-fixed-mobile: 800px;
+
+  --focus-ring-color-inner: #ffffff;
+  --focus-ring-color-outer: #3379db;
+  --focus-ring-width-inner: 2px;
+  --focus-ring-width-outer: 3px;
+}

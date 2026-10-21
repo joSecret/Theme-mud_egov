@@ -1,0 +1,154 @@
+.avatar {
+  /* External custom properties */
+  --avatar_size: var(--avatar-container-size-md);
+  --avatar_bg: var(--avatar-container-background);
+  --avatar_b-r: var(--avatar-container-border-radius);
+
+  /* Internal derived properties */
+  --_avatar_size: var(--avatar_size, var(--avatar-container-size-md));
+  --_avatar_bg: var(--avatar_bg, var(--avatar-container-background));
+  --_avatar_b-r: var(--avatar_b-r, var(--avatar-container-border-radius, 9999px));
+  --_avatar_f-s: var(--avatar_f-s, var(--avatar-initials-font-size-md));
+  --_avatar_l-h: var(--avatar_l-h, var(--avatar-initials-line-height-md));
+  --_avatar_icon-size: var(--avatar_icon-size, var(--avatar-icon-size-md));
+  --_avatar_c: var(--avatar_c, var(--avatar-initials-color));
+  --_avatar_icon-c: var(--avatar_icon-c, var(--avatar-icon-color));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  box-sizing: border-box;
+  inline-size: var(--_avatar_size);
+  block-size: var(--_avatar_size);
+  border-radius: var(--_avatar_b-r);
+  background: var(--_avatar_bg);
+  color: var(--_avatar_icon-c);
+  font-family: var(--avatar-initials-font-family);
+  font-weight: var(--avatar-initials-font-weight);
+  font-size: var(--_avatar_f-s);
+  line-height: var(--_avatar_l-h);
+  text-align: center;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Photo */
+.avatar__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Initials */
+.avatar__initials {
+  display: inline-block;
+  color: var(--_avatar_c);
+  font-size: var(--_avatar_f-s);
+  line-height: var(--_avatar_l-h);
+  white-space: nowrap;
+}
+
+/* Icon */
+.avatar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--_avatar_icon-c);
+  pointer-events: none;
+}
+
+.avatar__icon svg {
+  inline-size: var(--_avatar_icon-size);
+  block-size: var(--_avatar_icon-size);
+}
+
+/* === Sizes === */
+.avatar-xs {
+  --_avatar_size: var(--avatar-container-size-xs, 24px);
+  --_avatar_f-s: var(--avatar-initials-font-size-xs);
+  --_avatar_l-h: var(--avatar-initials-line-height-xs);
+  --_avatar_icon-size: var(--avatar-icon-size-xs);
+}
+
+.avatar-sm {
+  --_avatar_size: var(--avatar-container-size-sm, 32px);
+  --_avatar_f-s: var(--avatar-initials-font-size-sm);
+  --_avatar_l-h: var(--avatar-initials-line-height-sm);
+  --_avatar_icon-size: var(--avatar-icon-size-sm);
+}
+
+.avatar-md {
+  --_avatar_size: var(--avatar-container-size-md, 40px);
+  --_avatar_f-s: var(--avatar-initials-font-size-md);
+  --_avatar_l-h: var(--avatar-initials-line-height-md);
+  --_avatar_icon-size: var(--avatar-icon-size-md);
+}
+
+.avatar-lg {
+  --_avatar_size: var(--avatar-container-size-lg, 48px);
+  --_avatar_f-s: var(--avatar-initials-font-size-lg);
+  --_avatar_l-h: var(--avatar-initials-line-height-lg);
+  --_avatar_icon-size: var(--avatar-icon-size-lg);
+}
+
+.avatar-xl {
+  --_avatar_size: var(--avatar-container-size-xl, 72px);
+  --_avatar_f-s: var(--avatar-initials-font-size-xl);
+  --_avatar_l-h: var(--avatar-initials-line-height-xl);
+  --_avatar_icon-size: var(--avatar-icon-size-xl);
+}
+
+/* === Shape === */
+.avatar-circular {
+  --_avatar_b-r: 9999px;
+}
+
+.avatar-square {
+  --_avatar_b-r: var(--border-radius-8, 8px);
+}
+
+/* === Color variants (initials background) === */
+.avatar-primary {
+  --_avatar_bg: var(--color-background-brand-default);
+  --_avatar_c: var(--palette-white-1000);
+  --_avatar_icon-c: var(--palette-white-1000);
+}
+
+.avatar-secondary {
+  --_avatar_bg: var(--color-background-secondary-default);
+  --_avatar_c: var(--color-text-base-default);
+  --_avatar_icon-c: var(--color-text-base-default);
+}
+
+.avatar-success {
+  --_avatar_bg: var(--color-background-success-default);
+  --_avatar_c: var(--palette-white-1000);
+  --_avatar_icon-c: var(--palette-white-1000);
+}
+
+.avatar-danger {
+  --_avatar_bg: var(--color-background-danger-default);
+  --_avatar_c: var(--palette-white-1000);
+  --_avatar_icon-c: var(--palette-white-1000);
+}
+
+.avatar-warning {
+  --_avatar_bg: var(--color-background-warning-default);
+  --_avatar_c: var(--color-text-base-default);
+  --_avatar_icon-c: var(--color-text-base-default);
+}
+
+.avatar-info {
+  --_avatar_bg: var(--color-background-info-default);
+  --_avatar_c: var(--palette-white-1000);
+  --_avatar_icon-c: var(--palette-white-1000);
+}
+
+/* Photo type — transparent background */
+.avatar-photo {
+  background: transparent;
+}

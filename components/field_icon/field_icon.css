@@ -1,0 +1,36 @@
+/**
+ * Field Icon Component Styles
+ *
+ * A field row with an icon on the left and content on the right.
+ */
+
+.c--fieldIcon {
+  /* Variables — main component */
+  --_fieldIcon_gap: var(--fieldIcon_gap, 8px);
+  --_fieldIcon_c: var(--fieldIcon_c, var(--body_c));
+  --_fieldIcon_f-w: var(--fieldIcon_f-w, var(--f-w_light));
+  --_fieldIcon_p-b: var(--fieldIcon_p-b, 0px);
+
+  /* Variables — icon */
+  --_fieldIcon-icon_a-s: var(--fieldIcon-icon_a-s, flex-start);
+  --_fieldIcon-icon_m-b-s: var(--fieldIcon-icon_m-b-s, 4px);
+
+  --link_d: none;
+
+  display: flex;
+  align-items: center;
+  gap: var(--_fieldIcon_gap);
+  color: var(--_fieldIcon_c);
+  font-size: var(--fieldIcon_f-s);
+  font-weight: var(--_fieldIcon_f-w);
+  padding-block: var(--_fieldIcon_p-b);
+
+  svg,
+  img {
+    display: block;
+    flex: 0 0 var(--_fieldIcon-icon_s);
+    color: var(--fieldIcon-icon_c);
+    width: var(--fieldIcon-icon_s);
+    height: var(--fieldIcon-icon_h, var(--fieldIcon-icon_s));
+  }
+}

@@ -1,0 +1,79 @@
+{#-
+/**
+  * @file
+  * Breadcrumb component.
+  *
+  * Available values:
+  * - breadcrumb_tag (string|null) (default: 'nav')
+  * - breadcrumb_title (string|null) (default: 'Breadcrumb')
+  * - breadcrumb_items (array) (default: [])
+  *
+  * Available Utility classes -> uc
+  * - breadcrumb_uc (array) (default: [''])
+  * - breadcrumb_list_uc (array) (default: [''])
+  * - breadcrumb_item_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - breadcrumb_att (Drupal\Core\Template\Attribute)
+  * - breadcrumb_list_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - breadcrumb_content: The breadcrumb content slot
+  */
+-#}
+
+{#- Set default values -#}
+{% set breadcrumb_tag = breadcrumb_tag|default('nav') %}
+{% set breadcrumb_title = breadcrumb_title|default('Breadcrumb') %}
+{% set breadcrumb_items = breadcrumb_items|default([]) %}
+{% set breadcrumb_hide_icons = breadcrumb_hide_icons|default(false) %}
+
+{#- Create attributes -#}
+{% set breadcrumb_att = breadcrumb_att ?: create_attribute() %}
+{% set breadcrumb_list_att = breadcrumb_list_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set breadcrumb_classes = [
+  'c--breadcrumb',
+  breadcrumb_hide_icons ? 'is-hideIcons'
+]|merge(breadcrumb_uc ?: []) %}
+
+{% set breadcrumb_list_classes = [
+]|merge(breadcrumb_list_uc ?: []) %}
+
+{% set breadcrumb_item_classes = [
+]|merge(breadcrumb_item_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set breadcrumb_att = breadcrumb_att.setAttribute('role', 'navigation') %}
+{% set breadcrumb_att = breadcrumb_att.setAttribute('aria-labelledby', 'breadcrumb-title') %}
+
+{#- Render -#}
+{%- if breadcrumb_items or breadcrumb_content -%}
+  <{{ breadcrumb_tag }}{{ breadcrumb_att.addClass(breadcrumb_classes) }}>
+    <h2 id="breadcrumb-title" class="visually-hidden">
+      {{- breadcrumb_title|t -}}
+    </h2>
+
+    {% block breadcrumb_icon %}
+    {% endblock %}
+
+    {% block breadcrumb_content %}
+      <ol{{ breadcrumb_list_att.addClass(breadcrumb_list_classes) }}>
+        {% for item in breadcrumb_items %}
+          <li class="{{ breadcrumb_item_classes|join(' ') }}">
+            {%- if item.url -%}
+              <a href="{{ item.url }}">
+                {{- item.text -}}
+              </a>
+            {%- else -%}
+              <span>
+                {{- item.text -}}
+              </span>
+            {%- endif -%}
+          </li>
+        {% endfor -%}
+      </ol>
+    {% endblock %}
+  </{{ breadcrumb_tag }}>
+{%- endif -%}

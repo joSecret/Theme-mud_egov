@@ -1,0 +1,107 @@
+{#-
+/**
+ * @file
+ * Template for the Input component (MUD-aligned).
+ *
+ * Props:
+ * - input_label (string|null) default: null
+ * - input_placeholder (string|null) default: null
+ * - input_value (string|null) default: null
+ * - input_name (string|null) default: null
+ * - input_id (string|null) default: null
+ * - input_helper_text (string|null) default: null
+ * - input_error_message (string|null) default: null
+ * - input_prefix_icon (string|null) default: null — SVG with aria-hidden="true"
+ * - input_suffix_icon (string|null) default: null — SVG with aria-hidden="true"
+ *
+ * Variations:
+ * - input_type (string|null) default: 'text' — text | email | password | search | tel | url | number
+ * - input_size (string|null) default: null — md | lg
+ * - input_disabled (boolean) default: false
+ * - input_readonly (boolean) default: false
+ * - input_required (boolean) default: false
+ * - input_error (boolean) default: false
+ *
+ * Utility classes: input_uc
+ * Attributes: input_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set input_type = input_type|default('text') %}
+{% set input_id = input_id|default(input_name) %}
+{% set input_disabled = input_disabled|default(false) %}
+{% set input_readonly = input_readonly|default(false) %}
+{% set input_required = input_required|default(false) %}
+{% set input_error = input_error|default(false) %}
+
+{#- IDs for aria wiring -#}
+{% set helper_id = input_id ? input_id ~ '-helper' : null %}
+{% set error_id = input_id ? input_id ~ '-error' : null %}
+
+{#- Create attributes -#}
+{% set input_att = input_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set input_classes = [
+    'c--input',
+    input_size ? 'c--input--' ~ input_size,
+    input_error ? 'input-error',
+    input_disabled ? 'is-disabled',
+  ]|merge(input_uc ?: [])
+%}
+
+{#- aria-describedby -#}
+{% set described_by = [] %}
+{%- if input_error and input_error_message and error_id -%}
+  {% set described_by = described_by|merge([error_id]) %}
+{%- elseif input_helper_text and helper_id -%}
+  {% set described_by = described_by|merge([helper_id]) %}
+{%- endif -%}
+
+{#- Render -#}
+<div{{ input_att.addClass(input_classes) }}>
+  {%- if input_label -%}
+    <label class="input-label" for="{{ input_id }}">
+      {{- input_label -}}
+      {%- if input_required -%}<span class="input-required" aria-hidden="true">*</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+
+  <div class="input-control{{ input_prefix_icon ? ' has-prefix-icon' }}{{ input_suffix_icon ? ' has-suffix-icon' }}">
+    {%- if input_prefix_icon -%}
+      <span class="input-icon input-icon--prefix" aria-hidden="true">{{- input_prefix_icon|raw -}}</span>
+    {%- endif -%}
+
+    {%- if input_field_att -%}
+      <input{{ input_field_att.addClass('input-field') }}>
+    {%- else -%}
+      <input
+        class="input-field"
+        type="{{ input_type }}"
+        {%- if input_id -%} id="{{ input_id }}"{%- endif -%}
+        {%- if input_name -%} name="{{ input_name }}"{%- endif -%}
+        {%- if input_value -%} value="{{ input_value }}"{%- endif -%}
+        {%- if input_placeholder -%} placeholder="{{ input_placeholder }}"{%- endif -%}
+        {%- if input_required -%} required aria-required="true"{%- endif -%}
+        {%- if input_disabled -%} disabled{%- endif -%}
+        {%- if input_readonly -%} readonly{%- endif -%}
+        {%- if input_error -%} aria-invalid="true"{%- endif -%}
+        {%- if described_by is not empty -%} aria-describedby="{{ described_by|join(' ') }}"{%- endif -%}
+      >
+    {%- endif -%}
+
+    {%- if input_suffix_icon -%}
+      <span class="input-icon input-icon--suffix" aria-hidden="true">{{- input_suffix_icon|raw -}}</span>
+    {%- endif -%}
+  </div>
+
+  {%- if input_error and input_error_message -%}
+    <p class="input-error-message" id="{{ error_id }}" role="alert">{{- input_error_message -}}</p>
+  {%- elseif input_helper_text -%}
+    <p class="input-helper-text" id="{{ helper_id }}">
+      {{- input_helper_text -}}
+    </p>
+  {%- endif -%}
+</div>

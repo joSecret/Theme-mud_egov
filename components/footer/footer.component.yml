@@ -1,0 +1,57 @@
+'$schema': https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Footer
+status: stable
+
+version: 1.0.0
+group: Layout
+description: 'Site footer with navigation grid, logos section, and bottom bar including copyright and social links.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    # fields values
+    footer_copyright_text:
+      type: string
+      title: Copyright Text
+      description: 'Copyright notice text displayed in the bottom bar.'
+      default: '© United Nations Environment Programme'
+
+    # uc -> utility_classes
+    footer_uc:
+      type: array
+      items:
+        type: string
+      title: Footer Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    footer_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the footer element.
+
+      default: null
+# Slots.
+slots:
+  slot_footer_left:
+    title: Footer region left
+    description: 'Footer region container where blocks can be placed.'
+
+  slot_footer:
+    title: Footer region
+    description: 'Footer region container where blocks can be placed.'
+
+  slot_footer_right:
+    title: Footer region right
+    description: 'Footer region container where blocks can be placed.'
+
+  slot_footer_middle:
+    title: Footer Middle region
+    description: 'Footer middle right region container where blocks can be placed.'
+
+  slot_footer_bottom:
+    title: Footer Bottom region
+    description: 'Footer bottom left region container where blocks can be placed.'

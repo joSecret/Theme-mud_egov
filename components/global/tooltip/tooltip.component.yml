@@ -1,0 +1,89 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Tooltip
+status: stable
+group: Globals
+version: 1.0.0
+description: Accessible tooltip that appears on hover/focus, backed by mud-tooltip positioning logic.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+
+# Props.
+props:
+  type: object
+  required:
+    - tooltip_text
+
+  properties:
+    # fields values
+    tooltip_text:
+      type: string
+      title: Tooltip Text
+      description: The tooltip bubble content (plain text).
+      default: ''
+
+    tooltip_trigger:
+      type: ['string', 'null']
+      title: Trigger HTML
+      description: HTML markup for the trigger element (button, icon, link). Rendered inside the trigger wrapper.
+      default: null
+
+    tooltip_id:
+      type: ['string', 'null']
+      title: ID
+      description: Unique ID linking trigger aria-describedby to the tooltip bubble. Auto-generated when null.
+      default: null
+
+    # component variations
+    tooltip_position:
+      type: ['string', 'null']
+      title: Position
+      description: Preferred placement of the tooltip bubble relative to its trigger.
+      default: 'top'
+      enum:
+        - null
+        - top
+        - bottom
+        - left
+        - right
+        - top-left
+        - top-right
+        - bottom-left
+        - bottom-right
+
+    tooltip_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung — sm (compact) or lg (spacious).
+      default: 'sm'
+      enum:
+        - null
+        - sm
+        - lg
+
+    tooltip_trigger_event:
+      type: ['string', 'null']
+      title: Trigger Event
+      description: How the tooltip is activated.
+      default: 'hover'
+      enum:
+        - null
+        - hover
+        - click
+        - focus
+
+    # uc -> utility_classes
+    tooltip_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    tooltip_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

@@ -1,0 +1,93 @@
+{#-
+/**
+ * @file
+ * Date Input component.
+ *
+ * Props:
+ * - date_input_label: (string|null) default: null — visible label
+ * - date_input_name: (string|null) default: null — form control name
+ * - date_input_id: (string|null) default: null — HTML id
+ * - date_input_value: (string|null) default: null — current value
+ * - date_input_min: (string|null) default: null — lower bound
+ * - date_input_max: (string|null) default: null — upper bound
+ * - date_input_helper_text: (string|null) default: null
+ * - date_input_error_message: (string|null) default: null
+ * - date_input_type: (string) default: 'date' — date | datetime-local | month | week
+ * - date_input_size: (string|null) default: null — md | lg
+ * - date_input_disabled: (boolean) default: false
+ * - date_input_required: (boolean) default: false
+ * - date_input_readonly: (boolean) default: false
+ * - date_input_error: (boolean) default: false
+ *
+ * Utility classes: date_input_uc
+ * Attributes: date_input_att
+ *
+ * usage example: @see README.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set date_input_type = date_input_type|default('date') %}
+{% set date_input_size = date_input_size|default(null) %}
+{% set date_input_disabled = date_input_disabled|default(false) %}
+{% set date_input_required = date_input_required|default(false) %}
+{% set date_input_readonly = date_input_readonly|default(false) %}
+{% set date_input_error = date_input_error|default(false) %}
+
+{#- Create attributes -#}
+{% set date_input_att = date_input_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set date_input_classes = [
+  'c--date-input',
+  date_input_size ? 'has-size_' ~ date_input_size,
+  date_input_error ? 'is-error',
+  date_input_disabled ? 'is-disabled',
+]|merge(date_input_uc ?: []) %}
+
+{#- Input id fallback -#}
+{% set input_id = date_input_id|default('date-input-' ~ random()) %}
+
+{#- Render component -#}
+<div{{ date_input_att.addClass(date_input_classes) }}>
+
+  {#- Label -#}
+  {%- if date_input_label -%}
+    <label class="c--date-input__label" for="{{ input_id }}">
+      {{- date_input_label -}}
+      {%- if date_input_required -%}
+        <span class="c--date-input__required" aria-hidden="true">*</span>
+      {%- endif -%}
+    </label>
+  {%- endif -%}
+
+  {#- Input row -#}
+  <div class="c--date-input__field-row">
+    <input
+      class="c--date-input__control"
+      type="{{ date_input_type }}"
+      id="{{ input_id }}"
+      {%- if date_input_name -%}name="{{ date_input_name }}"{%- endif -%}
+      {%- if date_input_value -%}value="{{ date_input_value }}"{%- endif -%}
+      {%- if date_input_min -%}min="{{ date_input_min }}"{%- endif -%}
+      {%- if date_input_max -%}max="{{ date_input_max }}"{%- endif -%}
+      {%- if date_input_disabled -%}disabled{%- endif -%}
+      {%- if date_input_required -%}required aria-required="true"{%- endif -%}
+      {%- if date_input_readonly -%}readonly{%- endif -%}
+      {%- if date_input_error -%}aria-invalid="true"{%- endif -%}
+      {%- if date_input_error and date_input_error_message -%}aria-describedby="{{ input_id }}-error"{%- elseif date_input_helper_text -%}aria-describedby="{{ input_id }}-helper"{%- endif -%}
+    >
+  </div>
+
+  {#- Assistive text -#}
+  {%- if date_input_error and date_input_error_message -%}
+    <p class="c--date-input__assistive c--date-input__assistive--error" id="{{ input_id }}-error" role="alert">
+      {{- date_input_error_message -}}
+    </p>
+  {%- elseif date_input_helper_text -%}
+    <p class="c--date-input__assistive" id="{{ input_id }}-helper">
+      {{- date_input_helper_text -}}
+    </p>
+  {%- endif -%}
+
+</div>

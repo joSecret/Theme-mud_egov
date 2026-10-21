@@ -1,0 +1,8 @@
+.node,
+.ck {
+  p:has(.button + .button) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

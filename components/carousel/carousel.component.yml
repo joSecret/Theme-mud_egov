@@ -1,0 +1,64 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Carousel
+status: stable
+version: 1.0.0
+group: Content
+description: 'Hero/banner carousel with text and image slides. Navigation via scroll-snap; autoplay via minimal JS.'
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+
+props:
+  type: object
+  properties:
+    carousel_id:
+      type: ['string', 'integer', 'null']
+      title: Carousel ID
+      description: 'Unique identifier used to generate slide anchor IDs. Defaults to a random value.'
+      default: null
+
+    carousel_slides:
+      type: array
+      title: Slides
+      description: 'Array of rendered slide markup. Each item is the output of the carousel-slide SDC.'
+      default: []
+
+    carousel_autoplay:
+      type: boolean
+      title: Autoplay
+      description: 'Enable auto-advance.'
+      default: false
+
+    carousel_interval:
+      type: ['string', 'integer', 'null']
+      title: Interval
+      description: 'Milliseconds between slides.'
+      default: 5000
+
+    carousel_arrows:
+      type: boolean
+      title: Show Arrows
+      description: 'Show prev/next arrow links.'
+      default: true
+
+    carousel_dots:
+      type: boolean
+      title: Show Dots
+      description: 'Show dot indicators.'
+      default: true
+
+    # uc -> utility_classes
+    carousel_uc:
+      type: array
+      items:
+        type: string
+      title: Carousel Utility Classes
+      default: []
+
+    # att -> attributes
+    carousel_att:
+      type: Drupal\Core\Template\Attribute
+      title: Carousel Attributes
+      default: null

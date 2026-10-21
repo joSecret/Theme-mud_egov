@@ -1,0 +1,64 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Form
+status: stable
+version: 1.0.0
+group: Form
+description: 'Wrapper component for HTML <form> element with configurable method, action, and encoding type.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # component variations
+    form_method:
+      type: ['string', 'null']
+      title: Form Method
+      description: HTTP method used to submit the form.
+      enum:
+        - 'post'
+        - 'get'
+      default: 'post'
+
+    form_max_width:
+      type: ['boolean', 'null']
+      title: Form Max Width
+      description: The maximum width of the form (e.g., "600px", "50%").
+      default: true
+
+    # fields values
+    form_action:
+      type: ['string', 'null']
+      title: Form Action
+      description: URL where the form data is sent on submission.
+      default: null
+
+    # uc -> utility_classes
+    form_uc:
+      type: array
+      items:
+        type: string
+      title: Form Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    form_att:
+      type: Drupal\Core\Template\Attribute
+      title: Form Attributes
+      description: A list of HTML attributes for the form element.
+
+      default: null
+# Slots.
+slots:
+  slot_title:
+    title: Form Title
+    description: The form title, rendered as a heading element.
+
+  slot_tabs:
+    title: Form Tabs
+    description: A slot for rendering form tabs or navigation elements.
+
+  slot_content:
+    title: Form Content
+    description: The form fields and elements rendered inside the form.

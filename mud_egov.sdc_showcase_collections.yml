@@ -1,0 +1,1303 @@
+egov_global_elements:
+  label: 'Elemente globale'
+  description: 'Butoane, badge-uri și tag-uri — elementele de bază ale interfeței.'
+  components:
+
+    # ── Button: appearance ──────────────────────────────────────────────────
+    - component: 'mud_egov:button'
+      group: btn_appearance
+      group_label: 'Button — appearance'
+      group_layout: row
+      props:
+        label: 'Default'
+
+    - component: 'mud_egov:button'
+      group: btn_appearance
+      props:
+        label: 'Filled'
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_appearance
+      props:
+        label: 'Outlined'
+        appearance: outlined
+
+    - component: 'mud_egov:button'
+      group: btn_appearance
+      props:
+        label: 'Text'
+        appearance: text
+
+    # ── Button: variant ─────────────────────────────────────────────────────
+    - component: 'mud_egov:button'
+      group: btn_variant
+      group_label: 'Button — variant'
+      group_layout: row
+      props:
+        label: 'Primary'
+        variant: primary
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_variant
+      props:
+        label: 'Secondary'
+        variant: secondary
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_variant
+      props:
+        label: 'Strict'
+        variant: strict
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_variant
+      props:
+        label: 'Destructive'
+        variant: destructive
+        appearance: filled
+
+    # ── Button: size ────────────────────────────────────────────────────────
+    - component: 'mud_egov:button'
+      group: btn_size
+      group_label: 'Button — size'
+      group_layout: row
+      props:
+        label: 'Small'
+        variant: primary
+        appearance: filled
+        size: sm
+
+    - component: 'mud_egov:button'
+      group: btn_size
+      props:
+        label: 'Medium'
+        variant: primary
+        appearance: filled
+        size: md
+
+    - component: 'mud_egov:button'
+      group: btn_size
+      props:
+        label: 'Large'
+        variant: primary
+        appearance: filled
+        size: lg
+
+    # ── Button: shape ───────────────────────────────────────────────────────
+    - component: 'mud_egov:button'
+      group_label: 'Button — shape'
+      group: btn_shape
+      props:
+        label: 'None'
+        variant: primary
+        appearance: filled
+        shape: none
+
+    - component: 'mud_egov:button'
+      group: btn_shape
+      group_layout: row
+      props:
+        label: 'Default'
+        variant: primary
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_shape
+      props:
+        label: 'Rectangular'
+        variant: primary
+        appearance: filled
+        shape: rectangular
+
+    - component: 'mud_egov:button'
+      group: btn_shape
+      props:
+        label: 'Circular'
+        variant: primary
+        appearance: filled
+        shape: circular
+
+    # ── Button: states ──────────────────────────────────────────────────────
+    - component: 'mud_egov:button'
+      group: btn_states
+      group_label: 'Button — states'
+      group_layout: row
+      props:
+        label: 'Normal'
+        variant: primary
+        appearance: filled
+
+    - component: 'mud_egov:button'
+      group: btn_states
+      props:
+        label: 'Disabled'
+        variant: primary
+        appearance: filled
+        disabled: true
+
+    - component: 'mud_egov:button'
+      group: btn_states
+      props:
+        label: 'Loading'
+        variant: primary
+        appearance: filled
+        loading: true
+
+    # ── Badge: color ────────────────────────────────────────────────────────
+    - component: 'mud_egov:badge'
+      group: badge_color
+      group_label: 'Badge — color'
+      group_layout: row
+      props:
+        badge_count: 120
+
+    - component: 'mud_egov:badge'
+      group: badge_color
+      props:
+        badge_count: 5
+        badge_color: brand
+
+    - component: 'mud_egov:badge'
+      group: badge_color
+      props:
+        badge_count: 5
+        badge_color: positive
+
+    - component: 'mud_egov:badge'
+      group: badge_color
+      props:
+        badge_count: 5
+        badge_color: warning
+
+    - component: 'mud_egov:badge'
+      group: badge_color
+      props:
+        badge_count: 5
+        badge_color: danger
+
+    # ── Badge: size ─────────────────────────────────────────────────────────
+    - component: 'mud_egov:badge'
+      group: badge_size
+      group_label: 'Badge — size'
+      group_layout: row
+      props:
+        badge_dot: true
+        badge_color: brand
+        badge_size: xs
+
+    - component: 'mud_egov:badge'
+      group: badge_size
+      props:
+        badge_count: 5
+        badge_color: brand
+        badge_size: sm
+
+    - component: 'mud_egov:badge'
+      group: badge_size
+      props:
+        badge_count: 5
+        badge_color: brand
+
+    - component: 'mud_egov:badge'
+      group: badge_size
+      props:
+        badge_count: 5
+        badge_color: brand
+        badge_size: lg
+
+    - component: 'mud_egov:badge'
+      group: badge_size
+      props:
+        badge_count: 5
+        badge_color: brand
+        badge_size: xl
+
+    # ── Badge: count overflow ────────────────────────────────────────────────
+    - component: 'mud_egov:badge'
+      group: badge_count
+      group_label: 'Badge — count overflow'
+      group_layout: row
+      props:
+        badge_count: 5
+        badge_color: brand
+
+    - component: 'mud_egov:badge'
+      group: badge_count
+      props:
+        badge_count: 99
+        badge_color: brand
+
+    - component: 'mud_egov:badge'
+      group: badge_count
+      props:
+        badge_count: 142
+        badge_max: 99
+        badge_color: brand
+
+    # ── Badge: dot ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:badge'
+      group: badge_dot
+      group_label: 'Badge — dot'
+      group_layout: row
+      props:
+        badge_dot: true
+        badge_color: danger
+        badge_size: xs
+
+    - component: 'mud_egov:badge'
+      group: badge_dot
+      props:
+        badge_dot: true
+        badge_color: danger
+        badge_size: sm
+
+    - component: 'mud_egov:badge'
+      group: badge_dot
+      props:
+        badge_dot: true
+        badge_color: danger
+
+    - component: 'mud_egov:badge'
+      group: badge_dot
+      props:
+        badge_dot: true
+        badge_color: danger
+        badge_size: lg
+
+    - component: 'mud_egov:badge'
+      group: badge_dot
+      props:
+        badge_dot: true
+        badge_color: danger
+        badge_size: xl
+
+    # ── Tag: type ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:tag'
+      group: tag_type
+      group_label: 'Tag — type'
+      group_layout: row
+      props:
+        tag_content: 'Default'
+
+    - component: 'mud_egov:tag'
+      group: tag_type
+      props:
+        tag_content: 'Subtle'
+        tag_type: subtle
+
+    - component: 'mud_egov:tag'
+      group: tag_type
+      props:
+        tag_content: 'Strong'
+        tag_type: strong
+
+    - component: 'mud_egov:tag'
+      group: tag_type
+      props:
+        tag_content: 'Outlined'
+        tag_type: outlined
+
+    # ── Tag: color ──────────────────────────────────────────────────────────
+    - component: 'mud_egov:tag'
+      group: tag_color
+      group_label: 'Tag — color'
+      group_layout: row
+      props:
+        tag_content: 'Muted'
+        tag_type: subtle
+        tag_color: muted
+
+    - component: 'mud_egov:tag'
+      group: tag_color
+      props:
+        tag_content: 'Neutral'
+        tag_type: subtle
+        tag_color: neutral
+
+    - component: 'mud_egov:tag'
+      group: tag_color
+      props:
+        tag_content: 'Accent'
+        tag_type: subtle
+        tag_color: accent
+
+    - component: 'mud_egov:tag'
+      group: tag_color
+      props:
+        tag_content: 'Success'
+        tag_type: subtle
+        tag_color: success
+
+    - component: 'mud_egov:tag'
+      group: tag_color
+      props:
+        tag_content: 'Brand'
+        tag_type: subtle
+        tag_color: brand
+
+    - component: 'mud_egov:tag'
+      group: tag_color
+      props:
+        tag_content: 'Danger'
+        tag_type: subtle
+        tag_color: danger
+
+    # ── Tag: size ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:tag'
+      group: tag_size
+      group_label: 'Tag — size'
+      group_layout: row
+      props:
+        tag_content: 'Default'
+        tag_type: subtle
+
+    - component: 'mud_egov:tag'
+      group: tag_size
+      props:
+        tag_content: 'Small'
+        tag_type: subtle
+        tag_size: sm
+
+    # ── Chip ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:chip'
+      group: chip_type
+      group_label: 'Chip — type'
+      group_layout: row
+      props:
+        chip_label: 'Filter'
+        chip_type: filter
+
+    - component: 'mud_egov:chip'
+      group: chip_type
+      props:
+        chip_label: 'Input'
+        chip_type: input
+        chip_removable: true
+
+    - component: 'mud_egov:chip'
+      group: chip_selected
+      group_label: 'Chip — selected'
+      group_layout: row
+      props:
+        chip_label: 'Normal'
+        chip_type: filter
+
+    - component: 'mud_egov:chip'
+      group: chip_selected
+      props:
+        chip_label: 'Selected'
+        chip_type: filter
+        chip_selected: true
+
+    - component: 'mud_egov:chip'
+      group: chip_selected
+      props:
+        chip_label: 'Disabled'
+        chip_type: filter
+        chip_disabled: true
+
+    # ── Avatar ──────────────────────────────────────────────────────────────
+    - component: 'mud_egov:avatar'
+      group: avatar_type
+      group_label: 'Avatar — type'
+      group_layout: row
+      props:
+        avatar_initials: 'IP'
+        avatar_type: initials
+
+    - component: 'mud_egov:avatar'
+      group: avatar_type
+      props:
+        avatar_type: icon
+
+    - component: 'mud_egov:avatar'
+      group: avatar_size
+      group_label: 'Avatar — size'
+      group_layout: row
+      props:
+        avatar_initials: 'AB'
+        avatar_type: initials
+        avatar_size: xs
+
+    - component: 'mud_egov:avatar'
+      group: avatar_size
+      props:
+        avatar_initials: 'AB'
+        avatar_type: initials
+        avatar_size: sm
+
+    - component: 'mud_egov:avatar'
+      group: avatar_size
+      props:
+        avatar_initials: 'AB'
+        avatar_type: initials
+
+    - component: 'mud_egov:avatar'
+      group: avatar_size
+      props:
+        avatar_initials: 'AB'
+        avatar_type: initials
+        avatar_size: lg
+
+    - component: 'mud_egov:avatar'
+      group: avatar_size
+      props:
+        avatar_initials: 'AB'
+        avatar_type: initials
+        avatar_size: xl
+
+    # ── Icon ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:icon'
+      group: icon_size
+      group_label: 'Icon — size'
+      group_layout: row
+      props:
+        icon_name: 'home'
+        icon_size: '12'
+
+    - component: 'mud_egov:icon'
+      group: icon_size
+      props:
+        icon_name: 'home'
+        icon_size: '16'
+
+    - component: 'mud_egov:icon'
+      group: icon_size
+      props:
+        icon_name: 'home'
+        icon_size: '20'
+
+    - component: 'mud_egov:icon'
+      group: icon_size
+      props:
+        icon_name: 'home'
+        icon_size: '24'
+
+    # ── Link ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:link'
+      group: link_variant
+      group_label: 'Link — variant'
+      group_layout: row
+      props:
+        link_label: 'Primary'
+        link_url: '#'
+        link_variant: primary
+
+    - component: 'mud_egov:link'
+      group: link_variant
+      props:
+        link_label: 'Strict'
+        link_url: '#'
+        link_variant: strict
+
+    - component: 'mud_egov:link'
+      group: link_underline
+      group_label: 'Link — underline'
+      group_layout: row
+      props:
+        link_label: 'Always'
+        link_url: '#'
+        link_underline: always
+
+    - component: 'mud_egov:link'
+      group: link_underline
+      props:
+        link_label: 'Hover'
+        link_url: '#'
+        link_underline: hover
+
+    - component: 'mud_egov:link'
+      group: link_underline
+      props:
+        link_label: 'None'
+        link_url: '#'
+        link_underline: none
+
+    # ── Separator ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:separator'
+      group: separator_variant
+      group_label: 'Separator — variant'
+      props:
+        separator_variant: subtle
+        separator_label: 'subtle'
+
+    - component: 'mud_egov:separator'
+      group: separator_variant
+      props:
+        separator_variant: mild
+        separator_label: 'mild'
+
+    - component: 'mud_egov:separator'
+      group: separator_variant
+      props:
+        separator_variant: strong
+        separator_label: 'strong'
+
+    # ── Spinner ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:spinner'
+      group: spinner_size
+      group_label: 'Spinner — size'
+      group_layout: row
+      props:
+        size: xs
+
+    - component: 'mud_egov:spinner'
+      group: spinner_size
+      props:
+        size: sm
+
+    - component: 'mud_egov:spinner'
+      group: spinner_size
+      props:
+        size: md
+
+    - component: 'mud_egov:spinner'
+      group: spinner_size
+      props:
+        size: lg
+
+    # ── Segmented Control ───────────────────────────────────────────────────
+    - component: 'mud_egov:segmented-control'
+      group: segmented_control_size
+      group_label: 'Segmented Control — size'
+      group_layout: row
+      props:
+        segmented_control_options:
+          - { value: zi, label: Zi }
+          - { value: luna, label: Lună }
+          - { value: an, label: An }
+        segmented_control_value: luna
+
+    - component: 'mud_egov:segmented-control'
+      group: segmented_control_size
+      props:
+        segmented_control_options:
+          - { value: a, label: A }
+          - { value: b, label: B }
+          - { value: c, label: C }
+        segmented_control_value: a
+        segmented_control_size: sm
+
+    # ── Tooltip ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:tooltip'
+      group: tooltip_position
+      group_label: 'Tooltip — position'
+      group_layout: row
+      props:
+        tooltip_text: 'De sus'
+        tooltip_position: top
+
+    - component: 'mud_egov:tooltip'
+      group: tooltip_position
+      props:
+        tooltip_text: 'De jos'
+        tooltip_position: bottom
+
+    - component: 'mud_egov:tooltip'
+      group: tooltip_position
+      props:
+        tooltip_text: 'Stânga'
+        tooltip_position: left
+
+    - component: 'mud_egov:tooltip'
+      group: tooltip_position
+      props:
+        tooltip_text: 'Dreapta'
+        tooltip_position: right
+
+    # ── Button Group ────────────────────────────────────────────────────────
+    - component: 'mud_egov:button-group'
+      group_label: 'Button Group'
+      props:
+        button_group_label: 'Acțiuni'
+        button_group_orientation: horizontal
+
+egov_feedback:
+  label: 'Feedback & Alerte'
+  description: 'Alerte, banner-uri, notificări și mesaje inline.'
+  components:
+
+    # ── Notification (subtle — inline messenger) ────────────────────────────
+    - component: 'mud_egov:notification'
+      props:
+        notification_variant: info
+        notification_emphasis: subtle
+        notification_title: 'Informație'
+        notification_message: 'Această pagină conține informații actualizate referitoare la serviciile disponibile.'
+        notification_dismissible: false
+
+    - component: 'mud_egov:notification'
+      props:
+        notification_variant: success
+        notification_emphasis: subtle
+        notification_title: 'Cerere trimisă'
+        notification_message: 'Cererea dumneavoastră a fost înregistrată cu succes. Veți fi contactat în 3 zile lucrătoare.'
+        notification_dismissible: true
+
+    - component: 'mud_egov:notification'
+      props:
+        notification_variant: warning
+        notification_emphasis: subtle
+        notification_title: 'Atenție'
+        notification_message: 'Sesiunea dumneavoastră expiră în 5 minute. Salvați progresul înainte de a continua.'
+        notification_dismissible: false
+
+    - component: 'mud_egov:notification'
+      props:
+        notification_variant: error
+        notification_emphasis: subtle
+        notification_title: 'Eroare'
+        notification_message: 'Nu s-a putut procesa cererea. Verificați datele introduse și încercați din nou.'
+        notification_dismissible: true
+
+    # ── Banner ──────────────────────────────────────────────────────────────
+    - component: 'mud_egov:banner'
+      group: banner_variant
+      group_label: 'Banner — variant'
+      props:
+        banner_title: 'Informație'
+        banner_message: 'Sistemul va fi în mentenanță sâmbătă între orele 02:00–04:00.'
+        banner_variant: info
+
+    - component: 'mud_egov:banner'
+      group: banner_variant
+      props:
+        banner_title: 'Avertizare'
+        banner_message: 'Sesiunea expiră în 5 minute. Salvați progresul.'
+        banner_variant: warning
+
+    - component: 'mud_egov:banner'
+      group: banner_variant
+      props:
+        banner_title: 'Eroare'
+        banner_message: 'Nu s-a putut procesa cererea. Verificați datele.'
+        banner_variant: error
+
+    - component: 'mud_egov:banner'
+      group: banner_emphasis
+      group_label: 'Banner — emphasis'
+      props:
+        banner_title: 'Subtle'
+        banner_message: 'Informație importantă pentru utilizatori.'
+        banner_variant: info
+        banner_emphasis: subtle
+
+    - component: 'mud_egov:banner'
+      group: banner_emphasis
+      props:
+        banner_title: 'Strong'
+        banner_message: 'Informație importantă pentru utilizatori.'
+        banner_variant: info
+        banner_emphasis: strong
+
+    # ── Notification ────────────────────────────────────────────────────────
+    - component: 'mud_egov:notification'
+      group: notification_variant
+      group_label: 'Notification — variant'
+      props:
+        notification_title: 'Succes'
+        notification_message: 'Datele au fost salvate cu succes.'
+        notification_variant: success
+
+    - component: 'mud_egov:notification'
+      group: notification_variant
+      props:
+        notification_title: 'Informație'
+        notification_message: 'Aveți 3 mesaje noi în inbox.'
+        notification_variant: info
+
+    - component: 'mud_egov:notification'
+      group: notification_variant
+      props:
+        notification_title: 'Avertizare'
+        notification_message: 'Certificatul expiră în 7 zile.'
+        notification_variant: warning
+
+    - component: 'mud_egov:notification'
+      group: notification_variant
+      props:
+        notification_title: 'Eroare'
+        notification_message: 'Încărcarea fișierului a eșuat.'
+        notification_variant: error
+
+    # ── Inline Message ──────────────────────────────────────────────────────
+    - component: 'mud_egov:inline-message'
+      group: inline_message_variant
+      group_label: 'Inline Message — variant'
+      group_layout: row
+      props:
+        inline_message_text: 'Informație'
+        inline_message_variant: info
+
+    - component: 'mud_egov:inline-message'
+      group: inline_message_variant
+      props:
+        inline_message_text: 'Succes'
+        inline_message_variant: success
+
+    - component: 'mud_egov:inline-message'
+      group: inline_message_variant
+      props:
+        inline_message_text: 'Avertizare'
+        inline_message_variant: warning
+
+    - component: 'mud_egov:inline-message'
+      group: inline_message_variant
+      props:
+        inline_message_text: 'Eroare'
+        inline_message_variant: error
+
+    # ── Info Box ────────────────────────────────────────────────────────────
+    - component: 'mud_egov:info-box'
+      group: info_box_variant
+      group_label: 'Info Box — variant'
+      props:
+        info_box_title: 'Informație importantă'
+        info_box_variant: info
+
+    - component: 'mud_egov:info-box'
+      group: info_box_variant
+      props:
+        info_box_title: 'Avertizare moderată'
+        info_box_variant: warning
+
+    - component: 'mud_egov:info-box'
+      group: info_box_variant
+      props:
+        info_box_title: 'Eroare critică'
+        info_box_variant: error
+
+    # ── Cookie Banner ───────────────────────────────────────────────────────
+    - component: 'mud_egov:cookie-banner'
+      group_label: 'Cookie Banner'
+      props:
+        cookie_banner_position: bottom
+        cookie_banner_title: 'Folosim cookie-uri'
+        cookie_banner_description: 'Acest site folosește cookie-uri pentru funcționalitate de bază și statistici anonime.'
+        cookie_banner_accept_label: 'Accept toate'
+        cookie_banner_decline_label: 'Refuză toate'
+        cookie_banner_settings_label: 'Personalizează'
+
+egov_navigation:
+  label: 'Navigare'
+  description: 'Breadcrumb, tabs, paginare, meniu, sidebar și accordion.'
+  components:
+
+    # ── Breadcrumb ──────────────────────────────────────────────────────────
+    - component: 'mud_egov:breadcrumb'
+      group_label: 'Breadcrumb'
+      props:
+        breadcrumb_items:
+          - { label: 'Acasă', url: '/' }
+          - { label: 'Servicii', url: '/servicii' }
+          - { label: 'Acte de stare civilă', active: true }
+
+    # ── Tabs ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:tabs'
+      group: tabs_variant
+      group_label: 'Tabs — variant'
+      props:
+        tabs_items:
+          - { id: t1, label: 'Date personale', content: 'Conținut secțiunii Date personale.', active: true }
+          - { id: t2, label: 'Documente', content: 'Conținut secțiunii Documente.' }
+          - { id: t3, label: 'Confirmare', content: 'Conținut secțiunii Confirmare.' }
+        tabs_variant: underlined
+
+    - component: 'mud_egov:tabs'
+      group: tabs_variant
+      props:
+        tabs_items:
+          - { id: tc1, label: 'Activ', content: 'Conținut tab activ.', active: true }
+          - { id: tc2, label: 'Al doilea', content: 'Conținut tab doi.' }
+          - { id: tc3, label: 'Al treilea', content: 'Conținut tab trei.' }
+        tabs_variant: contained
+
+    # ── Pagination ──────────────────────────────────────────────────────────
+    - component: 'mud_egov:pagination'
+      group: pagination_size
+      group_label: 'Pagination — size'
+      props:
+        pagination_current: 3
+        pagination_total: 10
+        pagination_base_url: '/lista'
+
+    - component: 'mud_egov:pagination'
+      group: pagination_size
+      props:
+        pagination_current: 1
+        pagination_total: 5
+        pagination_base_url: '/lista'
+        pagination_size: sm
+
+    # ── Accordion ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:accordion'
+      props:
+        accordion_id: 'demo-accordion-1'
+        appearance: multiple
+        mode: false
+        icon_position: left
+
+    - component: 'mud_egov:accordion'
+      props:
+        accordion_id: 'demo-accordion-2'
+        appearance: single
+        mode: true
+        icon_position: right
+
+    # ── Menu ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:menu'
+      group: menu_position
+      group_label: 'Menu — position'
+      props:
+        menu_trigger_label: 'Deschide meniu'
+        menu_position: bottom-start
+        menu_items:
+          - { label: 'Profil', url: '/profil' }
+          - { label: 'Setări', url: '/setari' }
+          - { label: 'Deconectare', url: '/logout' }
+
+    # ── Sidebar ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:sidebar'
+      group_label: 'Sidebar'
+      props:
+        sidebar_title: 'Navigare'
+        sidebar_position: start
+        sidebar_size: md
+        sidebar_open: true
+
+    # ── Progress Tracker ────────────────────────────────────────────────────
+    - component: 'mud_egov:progress-tracker'
+      group: pt_orientation
+      group_label: 'Progress Tracker — horizontal'
+      props:
+        progress_tracker_orientation: horizontal
+        progress_tracker_steps:
+          - { label: 'Date personale', status: completed }
+          - { label: 'Documente', status: current }
+          - { label: 'Plată', status: pending }
+          - { label: 'Confirmare', status: pending }
+
+    - component: 'mud_egov:progress-tracker'
+      group: pt_vertical
+      group_label: 'Progress Tracker — vertical'
+      props:
+        progress_tracker_orientation: vertical
+        progress_tracker_steps:
+          - { label: 'Înregistrare', status: completed }
+          - { label: 'Verificare', status: completed }
+          - { label: 'Aprobare', status: current }
+          - { label: 'Finalizare', status: pending }
+
+egov_forms:
+  label: 'Formulare'
+  description: 'Input-uri, select, checkbox, radio, switch și componente avansate de formular.'
+  components:
+
+    # ── Input ───────────────────────────────────────────────────────────────
+    - component: 'mud_egov:input'
+      group: input_type
+      group_label: 'Input — type'
+      props:
+        input_label: 'Text'
+        input_placeholder: 'Introduceți text...'
+        input_type: text
+
+    - component: 'mud_egov:input'
+      group: input_type
+      props:
+        input_label: 'Email'
+        input_placeholder: 'exemplu@domeniu.md'
+        input_type: email
+
+    - component: 'mud_egov:input'
+      group: input_type
+      props:
+        input_label: 'Parolă'
+        input_placeholder: 'Parola dvs.'
+        input_type: password
+
+    - component: 'mud_egov:input'
+      group: input_states
+      group_label: 'Input — states'
+      props:
+        input_label: 'Normal'
+        input_placeholder: 'Placeholder'
+
+    - component: 'mud_egov:input'
+      group: input_states
+      props:
+        input_label: 'Eroare'
+        input_value: 'valoare greșită'
+        input_error: true
+        input_error_message: 'Câmpul este invalid.'
+
+    - component: 'mud_egov:input'
+      group: input_states
+      props:
+        input_label: 'Dezactivat'
+        input_placeholder: 'Dezactivat'
+        input_disabled: true
+
+    # ── Textarea ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:textarea'
+      group: textarea_base
+      group_label: 'Textarea'
+      props:
+        textarea_label: 'Mesaj'
+        textarea_placeholder: 'Scrieți mesajul dvs...'
+        textarea_rows: 4
+
+    - component: 'mud_egov:textarea'
+      group: textarea_base
+      props:
+        textarea_label: 'Cu eroare'
+        textarea_value: 'text invalid'
+        textarea_error: true
+        textarea_error_message: 'Mesajul este prea scurt.'
+
+    # ── Select Input ─────────────────────────────────────────────────────────
+    - component: 'mud_egov:select-input'
+      group: select_base
+      group_label: 'Select Input'
+      props:
+        select_input_label: 'Județul'
+        select_input_placeholder: 'Alegeți județul...'
+        select_input_options:
+          - { value: chisinau, label: 'Chișinău' }
+          - { value: balti, label: 'Bălți' }
+          - { value: cahul, label: 'Cahul' }
+          - { value: orhei, label: 'Orhei' }
+
+    # ── Checkbox ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:checkbox'
+      group: checkbox_states
+      group_label: 'Checkbox — states'
+      group_layout: row
+      props:
+        checkbox_label: 'Nebifat'
+
+    - component: 'mud_egov:checkbox'
+      group: checkbox_states
+      props:
+        checkbox_label: 'Bifat'
+        checkbox_checked: true
+
+    - component: 'mud_egov:checkbox'
+      group: checkbox_states
+      props:
+        checkbox_label: 'Dezactivat'
+        checkbox_disabled: true
+
+    - component: 'mud_egov:checkbox'
+      group: checkbox_size
+      group_label: 'Checkbox — size'
+      group_layout: row
+      props:
+        checkbox_label: 'Small'
+        checkbox_size: sm
+        checkbox_checked: true
+
+    - component: 'mud_egov:checkbox'
+      group: checkbox_size
+      props:
+        checkbox_label: 'Medium'
+        checkbox_size: md
+        checkbox_checked: true
+
+    # ── Radio ────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:radio'
+      group: radio_states
+      group_label: 'Radio — states'
+      group_layout: row
+      props:
+        radio_label: 'Neselectat'
+        radio_name: 'demo_radio'
+        radio_value: 'a'
+
+    - component: 'mud_egov:radio'
+      group: radio_states
+      props:
+        radio_label: 'Selectat'
+        radio_name: 'demo_radio'
+        radio_value: 'b'
+        radio_checked: true
+
+    - component: 'mud_egov:radio'
+      group: radio_states
+      props:
+        radio_label: 'Dezactivat'
+        radio_name: 'demo_radio'
+        radio_value: 'c'
+        radio_disabled: true
+
+    # ── Switch ───────────────────────────────────────────────────────────────
+    - component: 'mud_egov:switch'
+      group: switch_states
+      group_label: 'Switch — states'
+      group_layout: row
+      props:
+        switch_label: 'Dezactivat'
+
+    - component: 'mud_egov:switch'
+      group: switch_states
+      props:
+        switch_label: 'Activat'
+        switch_checked: true
+
+    - component: 'mud_egov:switch'
+      group: switch_states
+      props:
+        switch_label: 'Disabled'
+        switch_disabled: true
+
+    # ── Numeric Input ────────────────────────────────────────────────────────
+    - component: 'mud_egov:numeric-input'
+      group_label: 'Numeric Input'
+      props:
+        numeric_input_label: 'Cantitate'
+        numeric_input_value: '1'
+        numeric_input_min: '0'
+        numeric_input_max: '100'
+        numeric_input_step: '1'
+
+    # ── Phone Input ──────────────────────────────────────────────────────────
+    - component: 'mud_egov:phone-input'
+      group_label: 'Phone Input'
+      props:
+        phone_input_label: 'Număr de telefon'
+        phone_input_placeholder: '+373 XX XXX XXX'
+
+    # ── Date Input ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:date-input'
+      group: date_input_type
+      group_label: 'Date Input — type'
+      props:
+        date_input_label: 'Data nașterii'
+        date_input_type: date
+
+    - component: 'mud_egov:date-input'
+      group: date_input_type
+      props:
+        date_input_label: 'Data și ora'
+        date_input_type: datetime-local
+
+    # ── Date Picker ──────────────────────────────────────────────────────────
+    - component: 'mud_egov:date-picker'
+      group: date_picker_base
+      group_label: 'Date Picker'
+      props:
+        date_picker_label: 'Selectează data'
+        date_picker_locale: 'ro-RO'
+
+    - component: 'mud_egov:date-picker'
+      group: date_picker_inline
+      group_label: 'Date Picker — inline'
+      props:
+        date_picker_label: 'Calendar inline'
+        date_picker_inline: true
+        date_picker_locale: 'ro-RO'
+
+    # ── Search Inputs ────────────────────────────────────────────────────────
+    - component: 'mud_egov:search-input-circular'
+      group: search_inputs
+      group_label: 'Search Input — circular'
+      props:
+        search_circular_label: 'Căutare'
+        search_circular_placeholder: 'Caută servicii...'
+
+    - component: 'mud_egov:search-input-rectangular'
+      group: search_inputs
+      group_label: 'Search Input — rectangular'
+      props:
+        search_rect_label: 'Căutare'
+        search_rect_placeholder: 'Caută în portal...'
+        search_rect_show_button: true
+
+    # ── Input Chip ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:input-chip'
+      group_label: 'Input Chip'
+      props:
+        input_chip_label: 'Etichete'
+        input_chip_placeholder: 'Adaugă etichetă și apasă Enter...'
+        input_chip_chips:
+          - 'design'
+          - 'frontend'
+
+    # ── File Input ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:file-input'
+      group: file_input_variant
+      group_label: 'File Input — dropzone'
+      props:
+        file_input_label: 'Documente'
+        file_input_variant: dropzone
+        file_input_accept: '.pdf,.docx'
+        file_input_multiple: true
+        file_input_max_size_label: 'Mărime maximă: 10 MB'
+
+    - component: 'mud_egov:file-input'
+      group: file_input_variant
+      group_label: 'File Input — button'
+      props:
+        file_input_label: 'Fotografie'
+        file_input_variant: button
+        file_input_browse_label: 'Alege fotografie'
+
+    # ── File Item ────────────────────────────────────────────────────────────
+    - component: 'mud_egov:file-item'
+      group: file_item_state
+      group_label: 'File Item — state'
+      props:
+        file_item_name: 'document.pdf'
+        file_item_size: '2.4 MB'
+        file_item_status: uploaded
+
+    - component: 'mud_egov:file-item'
+      group: file_item_state
+      props:
+        file_item_name: 'photo.jpg'
+        file_item_status: uploading
+        file_item_progress: 65
+
+    - component: 'mud_egov:file-item'
+      group: file_item_state
+      props:
+        file_item_name: 'raport.xlsx'
+        file_item_size: '1.1 MB'
+        file_item_status: success
+
+    - component: 'mud_egov:file-item'
+      group: file_item_state
+      props:
+        file_item_name: 'fisier-corupt.pdf'
+        file_item_status: error
+        file_item_error_message: 'Fișierul depășește limita de 10 MB.'
+
+egov_layout:
+  label: 'Layout & Structură'
+  description: 'Header, footer, logo, modal, tabel și receipt.'
+  components:
+
+    # ── Logo ─────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:logo'
+      group: logo_size
+      group_label: 'Logo — size'
+      group_layout: row
+      props:
+        logo_name: 'moldova'
+        logo_size: sm
+
+    - component: 'mud_egov:logo'
+      group: logo_size
+      props:
+        logo_name: 'moldova'
+
+    - component: 'mud_egov:logo'
+      group: logo_size
+      props:
+        logo_name: 'moldova'
+        logo_size: lg
+
+    # ── Service Button ────────────────────────────────────────────────────────
+    - component: 'mud_egov:service-button'
+      group: service_button_base
+      group_label: 'Service Button'
+      props:
+        service_button_label: 'Certificat de naștere'
+        service_button_description: 'Eliberare certificat de naștere pentru copii.'
+        service_button_url: '/servicii/certificate'
+
+    - component: 'mud_egov:service-button'
+      group: service_button_base
+      props:
+        service_button_label: 'Pașaport'
+        service_button_description: 'Solicitare pașaport biometric.'
+        service_button_url: '/servicii/pasaport'
+        service_button_external: true
+
+    # ── Modal ─────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:modal'
+      group: modal_size
+      group_label: 'Modal — size'
+      props:
+        modal_title: 'Confirmare acțiune'
+        modal_size: sm
+        modal_open: true
+        modal_id: 'demo-modal-sm'
+
+    - component: 'mud_egov:modal'
+      group: modal_size
+      props:
+        modal_title: 'Detalii cerere'
+        modal_size: md
+        modal_id: 'demo-modal-md'
+
+    - component: 'mud_egov:modal'
+      group: modal_size
+      props:
+        modal_title: 'Previzualizare document'
+        modal_size: lg
+        modal_id: 'demo-modal-lg'
+
+    # ── Table ─────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:table'
+      group: table_row_style
+      group_label: 'Table — divided'
+      props:
+        table_headers:
+          - { key: name, label: 'Nume' }
+          - { key: status, label: 'Status', align: center }
+          - { key: date, label: 'Data', align: end }
+        table_rows:
+          - { name: 'Ion Popescu', status: 'Activ', date: '15.01.2024' }
+          - { name: 'Maria Ionescu', status: 'Inactiv', date: '20.02.2024' }
+          - { name: 'Andrei Rusu', status: 'Activ', date: '05.03.2024' }
+        table_row_style: divided
+        table_hoverable: true
+
+    - component: 'mud_egov:table'
+      group: table_row_style
+      group_label: 'Table — zebra'
+      props:
+        table_headers:
+          - { key: nr, label: 'Nr.' }
+          - { key: serviciu, label: 'Serviciu' }
+          - { key: cost, label: 'Cost', align: end }
+        table_rows:
+          - { nr: '1', serviciu: 'Certificat naștere', cost: '50 MDL' }
+          - { nr: '2', serviciu: 'Pașaport', cost: '300 MDL' }
+          - { nr: '3', serviciu: 'Buletin', cost: '100 MDL' }
+        table_row_style: zebra
+        table_header_style: inverted
+
+    # ── Receipt ───────────────────────────────────────────────────────────────
+    - component: 'mud_egov:receipt'
+      group: receipt_status
+      group_label: 'Receipt — success'
+      props:
+        receipt_title: 'Certificat de naștere'
+        receipt_status: success
+        receipt_reference: 'REF-2024-001234'
+        receipt_date: '15.01.2024'
+        receipt_items:
+          - { label: 'Serviciu', value: 'Certificat de naștere' }
+          - { label: 'Solicitant', value: 'Ion Popescu' }
+          - { label: 'IDNP', value: '2009012345678' }
+        receipt_total_label: 'Total achitat'
+        receipt_total_value: '50 MDL'
+
+    - component: 'mud_egov:receipt'
+      group: receipt_status
+      group_label: 'Receipt — pending'
+      props:
+        receipt_title: 'Pașaport biometric'
+        receipt_status: pending
+        receipt_reference: 'REF-2024-005678'
+        receipt_items:
+          - { label: 'Serviciu', value: 'Pașaport' }
+          - { label: 'Solicitant', value: 'Maria Ionescu' }
+        receipt_total_label: 'Total'
+        receipt_total_value: '300 MDL'

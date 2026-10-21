@@ -1,0 +1,70 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Popover
+status: stable
+
+version: 1.0.0
+group: Drupal
+description: 'Popover component.'
+
+# Props.
+props:
+  type: object
+
+  required:
+    - popover_id
+
+  properties:
+    # component variations
+    popover_id:
+      type: ['string', 'null']
+      title: "Anchor"
+
+    popover_mobile_panel:
+      type: boolean
+      title: 'Mobile Panel'
+      description: 'On mobile, slides in from the right and covers the full viewport height below the navbar.'
+      default: false
+
+    # fields values
+    popover_content:
+      type: ['string', 'null']
+      title: Content
+
+    popover_menu_items:
+      type: ['array', 'null']
+      title: Menu items
+      description: 'Array of items: [{label, url, icon, disabled, divider}]'
+      default: null
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          url:
+            type: ['string', 'null']
+          icon:
+            type: ['string', 'null']
+          active:
+            type: boolean
+          disabled:
+            type: boolean
+          divider:
+            type: boolean
+
+    # uc -> utility_classes
+    popover_uc:
+      type: array
+      items:
+        type: string
+      title: Block Utility Classes
+
+    # att -> attributes
+    popover_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Default content text for the Block.

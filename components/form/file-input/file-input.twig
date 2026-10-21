@@ -1,0 +1,98 @@
+{#-
+/**
+ * @file
+ * Template for the File Input component (MUD-aligned).
+ */
+-#}
+
+{% set file_input_variant = file_input_variant|default('dropzone') %}
+{% set file_input_multiple = file_input_multiple|default(false) %}
+{% set file_input_disabled = file_input_disabled|default(false) %}
+{% set file_input_required = file_input_required|default(false) %}
+{% set file_input_invalid = file_input_invalid|default(false) %}
+{% set file_input_id = file_input_id|default('file-input-' ~ random()) %}
+{% set file_input_drag_label = file_input_drag_label|default('Trage și plasează sau') %}
+{% set file_input_browse_label = file_input_browse_label|default('Alege fișiere') %}
+
+{% set file_input_att = file_input_att ?: create_attribute() %}
+
+{%
+  set classes = [
+    'file-input',
+    'file-input-' ~ file_input_variant,
+    file_input_size ? 'file-input-' ~ file_input_size,
+    file_input_invalid ? 'is-invalid',
+    file_input_disabled ? 'is-disabled',
+  ]|merge(file_input_uc ?: [])
+%}
+
+<div{{ file_input_att.addClass(classes) }} data-file-input>
+  {#- Label -#}
+  {%- if file_input_label -%}
+    <label class="file-input-label" for="{{ file_input_id }}">
+      {{- file_input_label -}}
+      {%- if file_input_required -%}<span class="file-input-required" aria-hidden="true"> *</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+
+  {#- Hidden native input -#}
+  <input
+    type="file"
+    id="{{ file_input_id }}"
+    class="file-input-native visually-hidden"
+    {%- if file_input_name -%} name="{{ file_input_name }}"{%- endif -%}
+    {%- if file_input_accept -%} accept="{{ file_input_accept }}"{%- endif -%}
+    {%- if file_input_multiple -%} multiple{%- endif -%}
+    {%- if file_input_disabled -%} disabled{%- endif -%}
+    {%- if file_input_required -%} required aria-required="true"{%- endif -%}
+    {%- if file_input_invalid -%} aria-invalid="true"{%- endif -%}
+    tabindex="-1"
+    aria-hidden="true"
+  >
+
+  {%- if file_input_variant == 'dropzone' -%}
+    {#- Drop zone -#}
+    <div
+      class="file-input-dropzone"
+      data-file-input-dropzone
+      role="button"
+      tabindex="{{ file_input_disabled ? '-1' : '0' }}"
+      aria-label="{{ file_input_label ?: 'Încarcă fișiere' }}"
+      aria-disabled="{{ file_input_disabled ? 'true' : 'false' }}"
+    >
+      <span class="file-input-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 16V8m0 0l-3 3m3-3l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 16.8A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <p class="file-input-cta">
+        {{ file_input_drag_label }}
+        <button type="button" class="file-input-browse-link">{{ file_input_browse_label }}</button>
+      </p>
+      {%- if file_input_max_size_label -%}
+        <p class="file-input-meta">{{ file_input_max_size_label }}</p>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    {#- Button variant -#}
+    <button
+      type="button"
+      class="file-input-browse-btn button button-outlined"
+      data-file-input-browse
+      {%- if file_input_disabled -%} disabled{%- endif -%}
+    >
+      {{ file_input_browse_label }}
+    </button>
+  {%- endif -%}
+
+  {#- File list (populated by JS) -#}
+  <ul class="file-input-list" aria-live="polite" aria-label="Fișiere selectate"></ul>
+
+  {#- Helper / error -#}
+  {%- if file_input_invalid and file_input_error_text -%}
+    <p class="file-input-error" role="alert">{{ file_input_error_text }}</p>
+  {%- elseif file_input_helper_text -%}
+    <p class="file-input-helper">{{ file_input_helper_text }}</p>
+  {%- endif -%}
+</div>

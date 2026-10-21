@@ -1,0 +1,55 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Breadcrumb
+status: stable
+
+version: 1.0.0
+group: Navigation
+description: 'Breadcrumb navigation component.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    breadcrumb_hide_icons:
+      type: ['boolean', 'null']
+      title: 'Hide Icons'
+      description: 'Whether to hide icons in breadcrumb items.'
+      default: false
+
+    # fields values
+    breadcrumb_tag:
+      type: ['string', 'null']
+      title: 'Tag'
+      enum:
+        - null
+        - 'nav'
+        - 'div'
+      description: 'The breadcrumb wrapper tag.'
+      default: 'nav'
+
+    breadcrumb_title:
+      type: ['string', 'null']
+      title: 'Breadcrumb Title'
+      description: 'The visually-hidden title for screen readers.'
+      default: 'Breadcrumb'
+
+    breadcrumb_items:
+      type: array
+      title: 'Breadcrumb Items'
+      description: 'Array of breadcrumb items with text and optional url.'
+      items:
+        type: object
+        properties:
+          text:
+            type: ['string', 'object', 'null']
+            title: 'Item text'
+          url:
+            type: ['string', 'null']
+            title: 'Item URL'
+      default: []
+
+slots:
+  breadcrumb_content:
+    title: Breadcrumb Content
+    description: The breadcrumb content slot.

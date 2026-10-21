@@ -1,0 +1,27 @@
+/* @layer accordion */
+.accordion {
+  --_accordion_bg: var(--accordion_bg, transparent);
+  --_accordion_b-r: var(--accordion_b-r, 0px);
+  --_accordion_br-c: var(--accordion_br-c, var(--accordion-item-border-color-default));
+  --_accordion_br-w: var(--accordion_br-w, var(--accordion-item-border-width));
+  --_accordion_tt: var(--accordion_tt, var(--accordion-item-transition-duration));
+  --_accordion_t-f: var(--accordion_t-f, var(--accordion-item-transition-timing-function));
+
+  overflow: clip;
+
+  ::details-content {
+    transition: all var(--_accordion_tt) ease,
+      content-visibility var(--_accordion_tt) allow-discrete;
+    height: 0;
+    overflow: clip;
+  }
+
+  &.is-bordered {
+    border: var(--_accordion_br-w) solid var(--_accordion_br-c);
+    border-radius: var(--_accordion_b-r);
+  }
+
+  details {
+    background: var(--_accordion_bg);
+  }
+}

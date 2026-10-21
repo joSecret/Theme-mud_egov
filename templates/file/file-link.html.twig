@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * mud_egov override for the file_link theme hook.
+ *
+ * Delegates to the mud_egov:file_link component. Extra variables prepared by
+ * mud_egov_preprocess_file_link():
+ * - fileLink_url: Direct URL to the file.
+ * - fileLink_title: Human-readable title (filename without extension,
+ *   underscores replaced by spaces, first letter capitalized).
+ * - fileLink_extension: Lowercase extension (no dot).
+ * - fileLink_date: Pre-formatted publication date from the parent Media entity
+ *   (field_publication_date), when available.
+ *
+ * Core variables used:
+ * - file_size: Formatted size (e.g. "1.3 MB").
+ * - attributes: HTML attributes for the anchor wrapper.
+ */
+#}
+{% include 'mud_egov:file_link' with {
+  fileLink_url: fileLink_url,
+  fileLink_title: fileLink_title,
+  fileLink_extension: fileLink_extension,
+  fileLink_size: file_size,
+  fileLink_date: fileLink_date|default(null),
+  fileLink_att: attributes,
+} only %}

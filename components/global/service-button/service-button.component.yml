@@ -1,0 +1,99 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Service Button
+status: stable
+group: Globals
+version: 1.0.0
+description: Service portal button with an embedded logo badge, aligned with MUD mud-service-button.
+
+# Props.
+props:
+  type: object
+  required:
+    - service_button_label
+  properties:
+    # fields values
+    service_button_label:
+      type: string
+      title: Label
+      description: Visible button label text (e.g. "Plătește cu mpay").
+      default: ''
+
+    service_button_description:
+      type: ['string', 'null']
+      title: Description
+      description: Optional secondary description text shown below the label.
+      default: null
+
+    service_button_url:
+      type: ['string', 'null']
+      title: URL
+      description: Renders the button as an anchor when set.
+      default: null
+
+    service_button_icon:
+      type: ['string', 'null']
+      title: Icon
+      description: MUD mud-logo asset name for the badge (e.g. "mpay-logo-logomark-only").
+      default: null
+
+    service_button_target:
+      type: ['string', 'null']
+      title: Target
+      description: Anchor target attribute. Used only when service_button_url is set.
+      default: null
+
+    service_button_rel:
+      type: ['string', 'null']
+      title: Rel
+      description: Anchor rel attribute. Used only when service_button_url is set.
+      default: null
+
+    service_button_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible name override. When omitted the visible label is used.
+      default: null
+
+    # component variations
+    service_button_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: Visual treatment — "primary" (solid brand) / "neutral" (light surface).
+      default: null
+      enum:
+        - null
+        - primary
+        - neutral
+
+    service_button_external:
+      type: boolean
+      title: External
+      description: When true, adds rel="noopener noreferrer" and opens in a new tab.
+      default: false
+
+    service_button_disabled:
+      type: boolean
+      title: Disabled
+      description: Disables interactivity.
+      default: false
+
+    service_button_full_width:
+      type: boolean
+      title: Full Width
+      description: Expands the button to fill the inline size of its container.
+      default: false
+
+    # uc -> utility_classes
+    service_button_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    service_button_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

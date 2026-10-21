@@ -1,0 +1,64 @@
+/**
+ * Logo Component Styles
+ */
+
+.c--logo {
+  /* Public API */
+  --_logo_d: var(--logo_d, inline-flex);
+  --_logo_a-i: var(--logo_a-i, center);
+
+  /* Size tokens */
+  --_logo_h_sm: var(--logo_h_sm, 24px);
+  --_logo_h_md: var(--logo_h_md, 40px);
+  --_logo_h_lg: var(--logo_h_lg, 64px);
+
+  display: var(--_logo_d);
+  align-items: var(--_logo_a-i);
+}
+
+/* Link wrapper */
+.c--logo__link {
+  display: inherit;
+  align-items: inherit;
+  text-decoration: none;
+  color: inherit;
+  outline-offset: var(--logo_link_o-o, 4px);
+}
+
+/* Image */
+.c--logo__img {
+  display: block;
+  height: var(--_logo_img_h, auto);
+  width: var(--logo_img_w, auto);
+  max-width: 100%;
+}
+
+/* mud-logo web component */
+mud-logo {
+  display: var(--logo_mud_d, block);
+}
+
+/* === Sizes === */
+.c--logo--sm mud-logo,
+.c--logo--sm .c--logo__img {
+  height: var(--_logo_h_sm);
+}
+
+.c--logo--md mud-logo,
+.c--logo--md .c--logo__img {
+  height: var(--_logo_h_md);
+}
+
+.c--logo--lg mud-logo,
+.c--logo--lg .c--logo__img {
+  height: var(--_logo_h_lg);
+}
+
+/* === Variants === */
+.c--logo--palette-white-1000 {
+  filter: var(--logo_white_filter, brightness(0) invert(1));
+}
+
+.c--logo--black {
+  filter: var(--logo_black_filter, brightness(0));
+}

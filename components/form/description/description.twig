@@ -1,0 +1,43 @@
+{#-
+/**
+  * @file
+  * Description component - renders form field help text.
+  *
+  * Available variations:
+  * - description_display (string|null) Default: 'visible' — visible | invisible
+  *
+  * Available values:
+  * - description_text (string) required
+  * - description_id (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - description_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - description_att (Drupal\Core\Template\Attribute)
+  */
+-#}
+
+{#- Set default values -#}
+{% set description_display = description_display|default('visible') %}
+{% set description_id = description_id|default(null) %}
+
+{#- Create attributes -#}
+{% set description_att = description_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set description_classes = [
+  'c--description',
+  'form-text',
+  description_display == 'invisible' ? 'visually-hidden',
+]|merge(description_uc ?: []) %}
+
+{#- Build attributes -#}
+{%- if description_id -%}
+  {% set description_att = description_att.setAttribute('id', description_id) %}
+{%- endif -%}
+
+{#- Render component -#}
+<div{{ description_att.addClass(description_classes) }}>
+  {{- description_text -}}
+</div>

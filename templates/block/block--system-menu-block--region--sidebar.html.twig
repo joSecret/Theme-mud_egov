@@ -1,0 +1,39 @@
+{#-
+/**
+ * @file
+ * mud_egov's system menu block template for the Sidebar region.
+ */
+-#}
+
+{%
+  set classes = [
+  'block',
+  'block-menu',
+  'menu--' ~ derivative_plugin_id|clean_class,
+]
+%}
+
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+
+{%- embed "mud_egov:block" with {
+  block_tag: 'nav',
+  block_label_visible: configuration.label_display is same as('visible'),
+  block_label_tag: heading_level,
+  block_label: configuration.label,
+  block_uc: classes,
+  block_att: attributes.setAttribute('aria-labelledby', heading_id).setAttribute('role', 'navigation'),
+  block_label_att: title_attributes.setAttribute('id', heading_id),
+} -%}
+  {% block slot_content %}
+    {% if sidebar_parent_label %}
+      <p class="sidebar-menu__parent-title">
+        {{- sidebar_parent_label -}}
+      </p>
+    {% endif %}
+    {% include 'mud_egov:menu' with {
+      menu_items: menu_items_raw,
+      menu_variant: 'vertical',
+      menu_uc: ['sidebar-menu'],
+    } %}
+  {% endblock %}
+{%- endembed -%}

@@ -1,0 +1,66 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Fieldset
+status: stable
+version: 1.0.0
+group: Form
+description: 'A fieldset component for grouping related form elements with an optional legend and description.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # fields values
+    fieldset_legend:
+      type: ['string', 'null']
+      title: Legend
+      description: Caption text for the fieldset group.
+      default: null
+
+    fieldset_description:
+      type: ['string', 'null']
+      title: Description
+      description: Help text displayed below the legend.
+      default: null
+
+    fieldset_disabled:
+      type: ['boolean', 'null']
+      title: Disabled
+      description: Disables all form elements inside the fieldset.
+      default: false
+
+    # uc -> utility_classes
+    fieldset_uc:
+      type: array
+      items:
+        type: string
+      title: Fieldset Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    fieldset_legend_uc:
+      type: array
+      items:
+        type: string
+      title: Fieldset Legend Utility Classes
+      description: An array of utility classes for the legend element.
+      default: []
+
+    # att -> attributes
+    fieldset_att:
+      type: Drupal\Core\Template\Attribute
+      title: Fieldset Attributes
+      description: A list of HTML attributes for the fieldset element.
+
+      default: null
+    fieldset_legend_att:
+      type: Drupal\Core\Template\Attribute
+      title: Fieldset Legend Attributes
+      description: A list of HTML attributes for the legend element.
+
+      default: null
+# Slots.
+slots:
+  slot_content:
+    title: Fieldset Content
+    description: The form fields and elements rendered inside the fieldset.

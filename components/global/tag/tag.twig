@@ -1,0 +1,62 @@
+{#-
+/**
+  * @file
+  * Tag component.
+  *
+  * Available variations:
+  * - tag_type (null|string) (null|subtle|strong|outlined) (default: null)
+  * - tag_color (null|string) (null|muted|neutral|accent|success|brand|danger) (default: null)
+  * - tag_size (null|string) (null|sm) (default: null)
+  * - tag_icon_position (null|string) (null|left|right) (default: null)
+  *
+  * Available values:
+  * - tag_content (string)
+  * - tag_tag (null|string) (span|div|a) (default: span)
+  * - tag_url (null|string) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - tag_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - tag_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots:
+  * - slot_content: Main text content
+  * - slot_icon: Icon (position controlled by tag_icon_position)
+  *
+  * usage example: @see tag.md
+  */
+-#}
+
+{% set tag_type = tag_type|default(null) %}
+{% set tag_color = tag_color|default(null) %}
+{% set tag_size = tag_size|default(null) %}
+{% set tag_icon_position = tag_icon_position|default(null) %}
+{% set tag_tag = tag_tag|default('span') %}
+
+{% set tag_att = tag_att ?: create_attribute() %}
+
+{%
+  set tag_classes = [
+    'tag',
+    tag_type ? 'tag-' ~ tag_type,
+    tag_color ? 'tag-' ~ tag_color,
+    tag_size ? 'tag-' ~ tag_size,
+    tag_icon_position ? 'tag-icon-' ~ tag_icon_position,
+  ]|merge(tag_uc ?: [])
+%}
+
+{%- if tag_url -%}
+  {% set tag_tag = 'a' %}
+  {% set tag_url = tag_url|render %}
+  {% set tag_att = tag_att.setAttribute('href', tag_url) %}
+{%- endif -%}
+
+<{{ tag_tag }}{{ tag_att.addClass(tag_classes) }}>
+  {%- if slot_icon -%}
+    <span class="tag__icon">{%- block slot_icon -%}{{ slot_icon }}{%- endblock -%}</span>
+  {%- endif -%}
+  {%- block slot_content -%}
+    {{- tag_content -}}
+  {%- endblock -%}
+</{{ tag_tag }}>

@@ -1,0 +1,18 @@
+.tabs__nav {
+  display: flex;
+  gap: 8px;
+}
+
+[role="tab"] {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+[role="tab"][aria-selected="true"] {
+  border-bottom: 2px solid currentColor;
+  font-weight: bold;
+}
+
+[role="tabpanel"] {
+  padding: 12px 0;
+}

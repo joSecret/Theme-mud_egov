@@ -1,0 +1,12 @@
+{% embed 'mud_egov:checkbox' with {
+  checkbox_label: label['#title'] ?? null,
+  checkbox_id: label['#id'] ?? null,
+  checkbox_required: label['#required'] ?? false,
+  checkbox_error: errors ? true : false,
+  checkbox_disabled: disabled == 'disabled',
+  checkbox_att: attributes,
+} %}
+  {% block checkbox_input %}
+    {{- children -}}
+  {% endblock %}
+{% endembed %}

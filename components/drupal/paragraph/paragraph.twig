@@ -1,0 +1,42 @@
+{#-
+/**
+ * @file
+ * Template for the Paragraph component.
+ *
+ * Props:
+ * - paragraph_bundle: (string|null) Paragraph bundle machine name.
+ * - paragraph_view_mode: (string|null) Render view mode.
+ * - paragraph_published: (boolean) default: true
+ * - paragraph_uc: (array) Utility classes.
+ * - paragraph_att: (Drupal\Core\Template\Attribute) Extra attributes.
+ *
+ * Slots:
+ * - slot_content: Rendered paragraph field content.
+ */
+-#}
+
+{#- Defaults -#}
+{% set paragraph_bundle = paragraph_bundle|default(null) %}
+{% set paragraph_view_mode = paragraph_view_mode|default(null) %}
+{% set paragraph_published = paragraph_published is defined ? paragraph_published : true %}
+
+{#- Create attributes -#}
+{% set paragraph_att = paragraph_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set paragraph_classes = [
+    'paragraph',
+    paragraph_bundle ? 'paragraph--t--' ~ paragraph_bundle|clean_class,
+    paragraph_view_mode ? 'paragraph--v-m--' ~ paragraph_view_mode|clean_class,
+    (paragraph_bundle and paragraph_view_mode) ? 'paragraph--' ~ paragraph_bundle|clean_class ~ '--' ~ paragraph_view_mode|clean_class,
+    not paragraph_published ? 'paragraph--unpublished',
+  ]|merge(paragraph_uc ?: [])
+%}
+
+{#- Render component -#}
+<div{{ paragraph_att.addClass(paragraph_classes) }}>
+  {%- block slot_content -%}
+    {{- slot_content -}}
+  {%- endblock -%}
+</div>

@@ -1,0 +1,49 @@
+{#-
+/**
+  * @file
+  * Field Icon component.
+  *
+  * Available values:
+  * - fieldEmail_icon (string|null) (default: null)
+  * - fieldEmail_value (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - fieldEmail_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - fieldEmail_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_icon: The icon element (SVG, img, or icon component).
+  * - slot_content: The field content displayed next to the icon.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set fieldEmail_icon = fieldEmail_icon|default(null) %}
+{% set fieldEmail_value = fieldEmail_value|default(null) %}
+
+{#- Create attributes -#}
+{% set fieldEmail_att = fieldEmail_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set fieldEmail_classes = [
+  'c--fieldEmail',
+]|merge(fieldEmail_uc ?: []) %}
+
+{#- Strip non-digit characters for tel: href -#}
+
+{#- Render component -#}
+<div{{ fieldEmail_att.addClass(fieldEmail_classes) }}>
+  {%- if block('slot_icon') is not empty or fieldEmail_icon -%}
+    {% block slot_icon %}
+      {{- fieldEmail_icon|raw -}}
+    {% endblock %}
+  {%- endif -%}
+
+  {% block slot_content -%}
+    {{- fieldEmail_value -}}
+  {% endblock %}
+</div>

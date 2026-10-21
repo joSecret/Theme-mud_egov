@@ -1,0 +1,149 @@
+/**
+ * Footer Component Styles
+ */
+
+.c--footer {
+  --_footer_space: var(--footer_space, 32px);
+  --_footer_f-s: var(--footer_f-s, inherit);
+  --_footer_l-h: var(--footer_l-h, inherit);
+  --_footer_c: var(--footer_c, var(--footer-container-color));
+  --_footer_p-b: var(--footer_p-b, var(--size_1600) var(--size_1300));
+  --_footer_p-i: var(--footer_p-i, 0px);
+  --_footer_gap: var(--footer_gap, var(--size_24));
+
+  --nav_link_c: var(--_footer_c);
+  --nav_link_c_h: var(--c_gray_500);
+
+  --block_p: 0px;
+  --block-label_c: var(--_footer_c);
+
+  --media_img_p-b: 0px;
+
+  padding-block-start: var(--footer_m-b-s, var(--spacing-40));
+  color: var(--_footer_c);
+  font-size: var(--_footer_f-s);
+  line-height: var(--_footer_l-h);
+
+  .grid-footer {
+    padding-block-end: var(--_footer_space);
+    display: grid;
+    gap: 48px 24px;
+    grid-template-columns: var(--g-f_g-t-c, 1fr);
+
+    /* @container body (width <= 576px) {
+    } */
+
+    @container body (576px < width <= 1248px) {
+      --g-f_g-t-c: repeat(2, 1fr);
+
+      grid-template-rows: auto auto;
+
+      .region--footer-left {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+
+      .region--footer-right {
+        grid-area: 2 / 2 / 3 / 3;
+      }
+
+      .region--footer {
+        grid-area: 1 / 1 / 2 / 3;
+      }
+    }
+
+    @container body (1248px < width) {
+      --g-f_g-t-c: minmax(282px, 1fr) 3fr minmax(282px, 1fr);
+    }
+  }
+
+  @container body (576px < width) {
+    --r-footer_g-t-c: repeat(3, 1fr);
+  }
+}
+
+.region--footer {
+  &:has(nav:nth-child(2)) {
+    display: grid;
+    gap: 48px 24px;
+    grid-template-columns: var(--r-footer_g-t-c, repeat(1, 1fr));
+  }
+}
+
+.region--footer-middle {
+  > .wrapper {
+    border-top: 1px solid var(--footer-divider-color);
+    display: flex;
+    row-gap: 48px;
+    flex-direction: var(--r-f-m_f-d, column);
+    justify-content: space-between;
+    padding-block: 32px;
+  }
+
+  @container body (576px < width) {
+    --r-f-m_f-d: row;
+
+    .wrapper {
+      align-items: center;
+    }
+  }
+}
+
+.region--footer-bottom {
+  --footer_f-s: 14px;
+  --c-menu_link_d: underline;
+
+  > .wrapper {
+    display: flex;
+    flex-direction: var(--r-f-b_f-d, column);
+    row-gap: 20px;
+    justify-content: space-between;
+    padding-block: 12px;
+  }
+
+  @container body (992px < width) {
+    --r-f-b_f-d: row;
+
+    .wrapper {
+      align-items: center;
+    }
+  }
+}
+
+/* temporar */
+.social-link-field {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.paragraph--t--field-image-svg {
+  --paragraph_d: flex;
+  gap: 32px;
+}
+
+#block-mud-egov-footercontactblock {
+  height: 100%;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+
+  .paragraph--t--field-image-svg {
+    margin-bottom: auto;
+  }
+}
+
+#block-mud-egov-optiunideplata {
+  .paragraph--t--filed-text {
+    padding-block: 24px 16px;
+  }
+}
+
+img[alt="Master card logo"],
+img[alt="visa"] {
+  --media_img_p-b: 4px;
+  --media_img_p-i: 4px;
+
+  width: 20px;
+  background: white;
+}

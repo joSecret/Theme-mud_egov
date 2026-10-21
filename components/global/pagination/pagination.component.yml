@@ -1,0 +1,82 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Pagination
+status: stable
+group: Globals
+version: 1.0.0
+description: Page navigation. Works in standalone mode (current + total + base_url) OR items mode (precomputed items — used by the Drupal pager).
+
+props:
+  type: object
+
+  properties:
+    # ── Shared ───────────────────────────────────────────────────
+    pagination_current:
+      type: integer
+      title: Current Page
+      description: The active page number (1-indexed).
+      default: 1
+
+    pagination_prev_label:
+      type: ['string', 'null']
+      title: Previous Label
+      default: 'Previous'
+
+    pagination_next_label:
+      type: ['string', 'null']
+      title: Next Label
+      default: 'Next'
+
+    pagination_nav_label:
+      type: ['string', 'null']
+      title: Nav Label
+      description: Accessible name for the <nav> landmark.
+      default: 'Pagination'
+
+    pagination_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung — md (40 px) or sm (32 px).
+      default: null
+      enum:
+        - null
+        - md
+        - sm
+
+    # ── Standalone mode (builds URLs from base + page) ───────────
+    pagination_total:
+      type: integer
+      title: Total Pages
+      description: Total number of pages. Component renders nothing when total <= 1 (and no items provided).
+      default: 1
+
+    pagination_base_url:
+      type: ['string', 'null']
+      title: Base URL
+      description: Base path for page links. Page number is appended as a query param (?page=N).
+      default: null
+
+    # ── Items mode (precomputed URLs, used by Drupal pager) ──────
+    pagination_items:
+      type: ['object', 'null']
+      title: Items
+      description: 'Precomputed pager data (href-per-page). Shape mirrors Drupal pager — previous, next, pages (dict page_num => href), first, last. When set, overrides URL computation.'
+      default: null
+
+    pagination_ellipses:
+      type: ['object', 'null']
+      title: Ellipses
+      description: 'Hints for ellipsis rendering in items mode — previous (bool), next (bool).'
+      default: null
+
+    # ── UC / attributes ──────────────────────────────────────────
+    pagination_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    pagination_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null

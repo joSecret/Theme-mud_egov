@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * mud_egov theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% include "mud_egov:form" with {
+  form_att: attributes,
+} %}

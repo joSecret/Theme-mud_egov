@@ -1,0 +1,85 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Banner
+status: stable
+group: Globals
+version: 1.0.0
+description: Full-width, top-of-page system message for announcements, outages, and important notices.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    banner_title:
+      type: ["string", "null"]
+      title: Title
+      default: null
+
+    banner_message:
+      type: ["string", "null"]
+      title: Message
+      default: null
+
+    banner_icon:
+      type: ["string", "null"]
+      title: Icon
+      description: SVG icon string. Include aria-hidden="true".
+      default: null
+
+    banner_link_text:
+      type: ["string", "null"]
+      title: Link Text
+      description: Optional inline link text rendered after the message.
+      default: null
+
+    banner_link_href:
+      type: ["string", "null"]
+      title: Link Href
+      description: Href for the optional inline link.
+      default: null
+
+    banner_close_label:
+      type: ["string", "null"]
+      title: Close Label
+      description: Accessible label for the close button.
+      default: "Închide"
+
+    # component variations
+    banner_variant:
+      type: ["string", "null"]
+      title: Variant
+      default: null
+      enum: [null, info, warning, error]
+
+    banner_emphasis:
+      type: ["string", "null"]
+      title: Emphasis
+      description: Surface treatment — subtle (tinted) or strong (filled).
+      default: null
+      enum: [null, subtle, strong]
+
+    banner_dismissible:
+      type: boolean
+      title: Dismissible
+      description: Renders a trailing close button when true.
+      default: false
+
+    # uc -> utility_classes
+    banner_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    banner_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_content:
+    title: Content
+    description: Main body content — plain text or rich inline content.

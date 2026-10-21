@@ -1,0 +1,124 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Numeric Input
+status: stable
+group: Forms
+version: 1.0.0
+description: Numeric entry field with optional increment and decrement stepper controls, aligned with the MUD design system.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    numeric_input_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the input.
+      default: null
+
+    numeric_input_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    numeric_input_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute; links the label.
+      default: null
+
+    numeric_input_value:
+      type: ['number', 'null']
+      title: Value
+      description: Current numeric value of the input.
+      default: null
+
+    numeric_input_min:
+      type: ['number', 'null']
+      title: Min
+      description: Inclusive lower bound.
+      default: null
+
+    numeric_input_max:
+      type: ['number', 'null']
+      title: Max
+      description: Inclusive upper bound.
+      default: null
+
+    numeric_input_step:
+      type: ['number', 'null']
+      title: Step
+      description: Increment/decrement amount for stepper buttons and arrow keys.
+      default: 1
+
+    numeric_input_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: Placeholder text shown when the field is empty.
+      default: null
+
+    numeric_input_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      description: Hint text shown below the input.
+      default: null
+
+    numeric_input_error_message:
+      type: ['string', 'null']
+      title: Error Message
+      description: Error text shown below the input when in error state.
+      default: null
+
+    # component variations
+    numeric_input_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | lg — matches MUD NUMERIC_INPUT_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    numeric_input_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    numeric_input_readonly:
+      type: boolean
+      title: Read Only
+      default: false
+
+    numeric_input_required:
+      type: boolean
+      title: Required
+      default: false
+
+    numeric_input_error:
+      type: boolean
+      title: Error
+      description: Activates destructive/error visual state.
+      default: false
+
+    numeric_input_show_steppers:
+      type: boolean
+      title: Show Steppers
+      description: Renders the increment/decrement stepper stack.
+      default: false
+
+    # uc -> utility_classes
+    numeric_input_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    numeric_input_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

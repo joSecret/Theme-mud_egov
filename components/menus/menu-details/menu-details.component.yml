@@ -1,0 +1,39 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Menu Details
+status: stable
+
+version: 1.0.0
+group: Menus
+description: 'Collapsible menu using the native <details> element.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    menu_items:
+      type: ['array']
+      title: 'Menu Items'
+      description: 'An array of menu items to display in the menu.'
+
+    # uc -> utility_classes
+    menu_uc:
+      type: array
+      items:
+        type: string
+      title: Menu Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+
+    # att -> attributes
+    menu_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the Menu.
+  required:
+    - menu_items
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+
+# Slots.

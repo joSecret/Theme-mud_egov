@@ -1,0 +1,25 @@
+.c--error-page {
+  display: grid;
+  grid-template-columns: 532px 456px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8, 2rem);
+  padding: var(--space-10, 2.5rem) 0;
+
+  .ep_title {
+    margin-block-end: 32px;
+  }
+
+  .ep_description {
+    margin-block-end: 24px;
+    font-size: 18px;
+  }
+
+  .ep_code {
+    margin-block-end: 48px;
+  }
+
+  .ep_ctas {
+    margin-block-end: 16px;
+  }
+}

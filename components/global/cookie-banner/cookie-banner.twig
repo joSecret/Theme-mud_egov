@@ -1,0 +1,101 @@
+{#-
+/**
+ * @file
+ * Template for a cookie-banner component.
+ *
+ * Props:
+ * - cookie_banner_position: (string | null) default: null
+ *    enum: null | bottom | top
+ * - cookie_banner_title: (string | null) default: null
+ * - cookie_banner_description: (string | null) default: null
+ * - cookie_banner_accept_label: (string | null) default: null
+ * - cookie_banner_decline_label: (string | null) default: null
+ * - cookie_banner_settings_label: (string | null) default: null
+ * - cookie_banner_policy_url: (string | null) default: null
+ * - cookie_banner_policy_label: (string | null) default: null
+ *
+ * Utility classes: cookie_banner_uc
+ * Attributes: cookie_banner_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set cookie_banner_position = cookie_banner_position|default('bottom') %}
+{% set cookie_banner_title = cookie_banner_title|default('Folosim cookie-uri') %}
+{% set cookie_banner_description = cookie_banner_description|default('Acest site folosește cookie-uri pentru a asigura funcționalitatea de bază și performanța.') %}
+{% set cookie_banner_accept_label = cookie_banner_accept_label|default('Accept toate') %}
+{% set cookie_banner_decline_label = cookie_banner_decline_label|default('Refuză toate') %}
+{% set cookie_banner_settings_label = cookie_banner_settings_label|default('Personalizează') %}
+{% set cookie_banner_policy_url = cookie_banner_policy_url|default(null) %}
+{% set cookie_banner_policy_label = cookie_banner_policy_label|default('Politica de confidențialitate') %}
+
+{#- Create attributes -#}
+{% set cookie_banner_att = cookie_banner_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'cookie-banner',
+    'cookie-banner--' ~ cookie_banner_position,
+  ]|merge(cookie_banner_uc ?: [])
+%}
+
+{#- Render -#}
+<div{{ cookie_banner_att.addClass(classes) }}
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="cookie-banner-title"
+  data-cookie-banner
+>
+  <div class="cookie-banner__inner">
+    {#- Header -#}
+    <div class="cookie-banner__header">
+      <h2 class="cookie-banner__title" id="cookie-banner-title">
+        {{ cookie_banner_title }}
+      </h2>
+    </div>
+
+    {#- Body -#}
+    <div class="cookie-banner__body">
+      <p class="cookie-banner__description">
+        {{ cookie_banner_description }}
+
+        {%- if cookie_banner_policy_url -%}
+          <a
+            href="{{ cookie_banner_policy_url }}"
+            class="cookie-banner__policy-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ cookie_banner_policy_label }}</a>.
+        {%- endif -%}
+      </p>
+    </div>
+
+    {#- Footer — actions -#}
+    <div class="cookie-banner__footer">
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--settings"
+        data-cookie-banner-action="settings"
+      >
+        {{ cookie_banner_settings_label }}
+      </button>
+
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--decline"
+        data-cookie-banner-action="decline"
+      >
+        {{ cookie_banner_decline_label }}
+      </button>
+
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--accept"
+        data-cookie-banner-action="accept"
+      >
+        {{ cookie_banner_accept_label }}
+      </button>
+    </div>
+  </div>
+</div>

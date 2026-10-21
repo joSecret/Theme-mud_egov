@@ -1,0 +1,50 @@
+{#-
+/**
+  * @file
+  * Story Section Button Types component.
+  *
+  * Available properties:
+  * - story_section_button_types_title (string) (default: 'Button Types / Styles')
+  * - story_section_button_types_description (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - story_section_button_types_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - story_section_button_types_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_examples: The button examples to display in the story section
+  *
+  * usage example: @see docsection.mdx
+  */
+-#}
+
+{#- Set default values -#}
+{% set story_section_button_types_title = story_section_button_types_title|default('Button Types / Styles') %}
+{% set story_section_button_types_description = story_section_button_types_description|default(null) %}
+
+{#- Create attributes -#}
+{% set story_section_button_types_att = story_section_button_types_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set story_section_button_types_classes = [
+  'story-section',
+]|merge(story_section_button_types_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<section{{ story_section_button_types_att.addClass(story_section_button_types_classes) }}>
+  <h2>{{ story_section_button_types_title }}</h2>
+
+  {%- if story_section_button_types_description -%}
+    <p>{{ story_section_button_types_description }}</p>
+  {%- endif -%}
+
+  {%- if block('slot_examples') -%}
+    <div class="story-examples">
+      {% block slot_examples %}{% endblock %}
+    </div>
+  {%- endif -%}
+</section>

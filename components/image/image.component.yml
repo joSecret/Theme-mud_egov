@@ -1,0 +1,14 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Image
+status: experimental
+description: Simple image component stub for Storybook.
+props:
+  type: object
+  properties:
+    src:
+      type: string
+      title: Image source URL
+    alt:
+      type: string
+      title: Alt text
+      default: ''

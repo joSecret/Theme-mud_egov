@@ -1,0 +1,76 @@
+{#-
+/**
+  * @file
+  * Badge component — aligned with mud-badge API.
+  *
+  * Props:
+  * - badge_content (string|null)   Text content (use badge_count for numeric).
+  * - badge_count (int|null)        Numeric counter, renders as "{max}+" when exceeded.
+  * - badge_max (int)               Overflow cap. Default 99.
+  * - badge_aria_label (string|null) Accessible name. Dot badges default to "Notification".
+  * - badge_color (string|null)     Color: brand | positive | warning | danger.
+  * - badge_size (string|null)      Size: xs | sm | lg | xl (default md).
+  * - badge_dot (bool)              Dot mode — xs size always forces dot too.
+  * - badge_positioned (bool)       Absolute positioning overlay.
+  * - badge_uc (array)              Utility classes.
+  * - badge_att (Attribute)         Extra HTML attributes.
+  *
+  * Slots:
+  * - slot_content: Complex badge content (overrides badge_content/badge_count).
+  */
+-#}
+
+{% set badge_dot = badge_dot|default(false) %}
+{% set badge_size = badge_size|default(null) %}
+{% set badge_max = badge_max|default(99) %}
+
+{#- xs size always forces dot (per MUD spec — 8px can't hold digits) -#}
+{% set is_dot = badge_dot or badge_size == 'xs' %}
+
+{#- Inner pip only for dot md/lg/xl (per Figma 551:18330) -#}
+{% set show_inner_pip = is_dot and badge_size in ['md', 'lg', 'xl'] %}
+
+{#- Count overflow logic -#}
+{%- if badge_count is not null -%}
+  {% set display_text = badge_count > badge_max ? badge_max ~ '+' : badge_count ~ '' %}
+{%- else -%}
+  {% set display_text = badge_content %}
+{%- endif -%}
+
+{#- Accessible name -#}
+{%- if badge_aria_label -%}
+  {% set accessible_name = badge_aria_label %}
+{%- elseif is_dot -%}
+  {% set accessible_name = 'Notification' %}
+{%- else -%}
+  {% set accessible_name = display_text ?: 'Notification' %}
+{%- endif -%}
+
+{% set badge_att = badge_att ?: create_attribute() -%}
+{% set badge_att = badge_att
+  .setAttribute('role', 'status')
+  .setAttribute('aria-live', 'polite')
+  .setAttribute('aria-label', accessible_name)
+%}
+
+{%
+  set badge_classes = [
+    'badge',
+    badge_color ? 'badge-' ~ badge_color,
+    badge_size ? 'badge-' ~ badge_size,
+    is_dot ? 'badge-dot',
+    badge_positioned|default(false) ? 'badge-positioned',
+  ]|merge(badge_uc ?: [])
+%}
+
+<span{{ badge_att.addClass(badge_classes) }}>
+  {%- block slot_content -%}
+    {%- if slot_content -%}
+      {{- slot_content -}}
+    {%- elseif not is_dot -%}
+      <span class="badge-count" aria-hidden="true">{{- display_text -}}</span>
+    {%- elseif show_inner_pip -%}
+      <span class="badge-dot__pip" aria-hidden="true"></span>
+    {%- endif -%}
+  {%- endblock -%}
+</span>

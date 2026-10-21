@@ -1,0 +1,85 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Switch
+status: stable
+group: Form
+version: 1.0.0
+description: Binary on/off toggle switch form element.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    switch_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text. When omitted, set switch_aria_label for accessibility.
+      default: null
+
+    switch_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name attribute submitted on form submission.
+      default: null
+
+    switch_value:
+      type: ['string', 'null']
+      title: Value
+      description: Value submitted with the form when this switch is on.
+      default: 'on'
+
+    switch_id:
+      type: ['string', 'null']
+      title: ID
+      description: ID for the input. Auto-derived from switch_name when omitted.
+      default: null
+
+    switch_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible name when no visible label is rendered.
+      default: null
+
+    # component variations
+    switch_checked:
+      type: boolean
+      title: Checked
+      description: Whether the switch is on by default.
+      default: false
+
+    switch_disabled:
+      type: boolean
+      title: Disabled
+      description: Disables interactivity.
+      default: false
+
+    switch_required:
+      type: boolean
+      title: Required
+      description: Marks the field as mandatory.
+      default: false
+
+    switch_label_position:
+      type: ['string', 'null']
+      title: Label Position
+      description: Position of the label relative to the toggle track.
+      default: end
+      enum:
+        - null
+        - start
+        - end
+
+    # uc -> utility_classes
+    switch_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    switch_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

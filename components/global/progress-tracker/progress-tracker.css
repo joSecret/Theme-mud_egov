@@ -1,0 +1,148 @@
+.progress-tracker {
+  --_pt_gap: var(--progress-tracker_gap, 8px);
+  --_pt_indicator_size: var(--progress-tracker_indicator_size, 32px);
+  --_pt_connector_size: var(--progress-tracker_connector_size, 2px);
+  --_pt_connector_c: var(--progress-tracker_connector_c, var(--color-border-base-default, #e2e8f0));
+  --_pt_label_f-s: var(--progress-tracker_label_f-s, 14px);
+  --_pt_label_f-w: var(--progress-tracker_label_f-w, 500);
+  --_pt_label_c: var(--progress-tracker_label_c, var(--color-text-base-default, #0f172a));
+  --_pt_desc_f-s: var(--progress-tracker_desc_f-s, 12px);
+  --_pt_desc_c: var(--progress-tracker_desc_c, var(--color-text-base-secondary, #64748b));
+
+  /* State colors */
+  --_pt_pending_bg: var(--progress-tracker_pending_bg, transparent);
+  --_pt_pending_b-c: var(--progress-tracker_pending_b-c, var(--color-border-base-default, #cbd5e1));
+  --_pt_pending_c: var(--progress-tracker_pending_c, var(--color-text-base-secondary, #94a3b8));
+  --_pt_current_bg: var(--progress-tracker_current_bg, transparent);
+  --_pt_current_b-c: var(--progress-tracker_current_b-c, var(--color-border-brand-default, #3b82f6));
+  --_pt_current_c: var(--progress-tracker_current_c, var(--color-text-brand-default, #3b82f6));
+  --_pt_complete_bg: var(--progress-tracker_complete_bg, var(--color-background-brand-default, #3b82f6));
+  --_pt_complete_b-c: var(--progress-tracker_complete_b-c, var(--color-border-brand-default, #3b82f6));
+  --_pt_complete_c: var(--progress-tracker_complete_c, var(--color-text-inverse-default, #fff));
+  --_pt_error_bg: var(--progress-tracker_error_bg, transparent);
+  --_pt_error_b-c: var(--progress-tracker_error_b-c, var(--color-border-danger-default, #ef4444));
+  --_pt_error_c: var(--progress-tracker_error_c, var(--color-text-danger-default, #ef4444));
+
+  display: flex;
+  gap: var(--_pt_gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.progress-tracker-horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.progress-tracker-vertical {
+  flex-direction: column;
+}
+
+.progress-tracker-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  flex: 1;
+}
+
+.progress-tracker-vertical .progress-tracker-step {
+  flex: none;
+  align-items: flex-start;
+}
+
+/* Connector line */
+.progress-tracker-horizontal .progress-tracker-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(var(--_pt_indicator_size) / 2);
+  inset-inline-start: calc(var(--_pt_indicator_size) + 12px);
+  inset-inline-end: calc(-1 * var(--_pt_gap) - 100% + var(--_pt_indicator_size) + 12px);
+  height: var(--_pt_connector_size);
+  background: var(--_pt_connector_c);
+}
+
+.progress-tracker-step-complete:not(:last-child)::after,
+.progress-tracker-step-completed:not(:last-child)::after {
+  background: var(--_pt_complete_bg);
+}
+
+.progress-tracker-indicator {
+  flex-shrink: 0;
+  width: var(--_pt_indicator_size);
+  height: var(--_pt_indicator_size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--_pt_pending_b-c);
+  background: var(--_pt_pending_bg);
+  color: var(--_pt_pending_c);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.progress-tracker-step-current .progress-tracker-indicator,
+.progress-tracker-step-active .progress-tracker-indicator {
+  border-color: var(--_pt_current_b-c);
+  color: var(--_pt_current_c);
+}
+
+.progress-tracker-step-complete .progress-tracker-indicator,
+.progress-tracker-step-completed .progress-tracker-indicator {
+  border-color: var(--_pt_complete_b-c);
+  background: var(--_pt_complete_bg);
+  color: var(--_pt_complete_c);
+}
+
+.progress-tracker-step-available .progress-tracker-indicator {
+  border-color: var(--_pt_current_b-c);
+  color: var(--_pt_current_c);
+}
+
+.progress-tracker-step-error .progress-tracker-indicator {
+  border-color: var(--_pt_error_b-c);
+  color: var(--_pt_error_c);
+}
+
+.progress-tracker-step.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.progress-tracker-label-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.progress-tracker-label {
+  font-size: var(--_pt_label_f-s);
+  font-weight: var(--_pt_label_f-w);
+  color: var(--_pt_label_c);
+  white-space: nowrap;
+}
+
+.progress-tracker-desc {
+  font-size: var(--_pt_desc_f-s);
+  color: var(--_pt_desc_c);
+  white-space: nowrap;
+}
+
+/* Compact (dot rail) */
+.progress-tracker-compact .progress-tracker-label-block {
+  display: none;
+}
+
+.progress-tracker-compact .progress-tracker-indicator {
+  width: 12px;
+  height: 12px;
+}
+
+.progress-tracker-compact .progress-tracker-num,
+.progress-tracker-compact .progress-tracker-icon {
+  display: none;
+}

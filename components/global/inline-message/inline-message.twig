@@ -1,0 +1,75 @@
+{#-
+/**
+  * @file
+  * Inline Message component — lightweight in-context feedback.
+  *
+  * Aligned with mud-inline-message API (variant: info|success|warning|error,
+  * size: small|medium, hideIcon). No surface, border, or padding — just an
+  * icon plus text line.
+  *
+  * This component is NOT an ARIA live region. Associate it with a form field
+  * via aria-describedby (and aria-invalid for errors) on the consumer side.
+  *
+  * Props:
+  * - inline_message_text (string|null)      The feedback text.
+  * - inline_message_icon (string|null)      SVG string for the leading icon.
+  * - inline_message_variant (string|null)   info | success | warning | error.
+  * - inline_message_size (string|null)      small | medium.
+  * - inline_message_hide_icon (bool)        Suppress the leading icon.
+  * - inline_message_uc (array)             Utility classes.
+  * - inline_message_att (Attribute)         Extra HTML attributes.
+  *
+  * Slots:
+  * - slot_content: Overrides inline_message_text with rich content.
+  *
+  * @see inline-message.md
+  */
+-#}
+
+{#- Defaults -#}
+{% set inline_message_variant = inline_message_variant|default('info') %}
+{% set inline_message_size = inline_message_size|default('medium') %}
+{% set inline_message_hide_icon = inline_message_hide_icon|default(false) %}
+
+{#- Attributes -#}
+{% set inline_message_att = inline_message_att ?: create_attribute() %}
+
+{%
+  set inline_message_classes = [
+    'inline-message',
+    inline_message_variant ? 'inline-message-' ~ inline_message_variant,
+    inline_message_size ? 'inline-message-' ~ inline_message_size,
+    inline_message_hide_icon ? 'inline-message-no-icon',
+  ]|merge(inline_message_uc ?: [])
+%}
+
+<span{{ inline_message_att.addClass(inline_message_classes) }}>
+  {%- if not inline_message_hide_icon -%}
+    <span class="inline-message-icon" aria-hidden="true">
+      {%- if inline_message_icon -%}
+        {{ inline_message_icon|raw }}
+      {%- else -%}
+        {#- Default per-variant icons (decorative) -#}
+        {%- if inline_message_variant == 'success' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 3.97a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.03a.75.75 0 0 1 1.06-1.06L6 10.69l6.72-6.72a.75.75 0 0 1 1.06 0z" clip-rule="evenodd"/></svg>
+        {%- elseif inline_message_variant == 'warning' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a.75.75 0 0 1 .67.415l6.5 13A.75.75 0 0 1 14.5 15.5H1.5a.75.75 0 0 1-.67-1.085l6.5-13A.75.75 0 0 1 8 1zM8 6a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 6zm0 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        {%- elseif inline_message_variant == 'error' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 3.75a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 4.75zm0 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        {%- else -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 3.75a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 4.75zm0 7.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        {%- endif -%}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+
+  <span class="inline-message-text">
+    {% block slot_content -%}
+      {%- if slot_content -%}
+        {{ slot_content }}
+      {%- else -%}
+        {{ inline_message_text }}
+      {%- endif -%}
+    {% endblock -%}
+  </span>
+</span>

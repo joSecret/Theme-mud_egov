@@ -1,0 +1,95 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Search Input Circular
+status: stable
+group: Forms
+version: 1.0.0
+description: Pill-shaped search input aligned with MUD mud-search-input-circular, with optional trailing submit button and clear affordance.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    search_circular_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the search field.
+      default: null
+
+    search_circular_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: Placeholder text shown when the field is empty.
+      default: null
+
+    search_circular_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    search_circular_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute for the input element.
+      default: null
+
+    search_circular_value:
+      type: ['string', 'null']
+      title: Value
+      description: Current value of the search input.
+      default: null
+
+    search_circular_button_label:
+      type: string
+      title: Button Label
+      description: Accessible label for the trailing submit button.
+      default: 'Caută'
+
+    # component variations
+    search_circular_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | lg — matches MUD SEARCH_INPUT_CIRCULAR_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    search_circular_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    search_circular_required:
+      type: boolean
+      title: Required
+      default: false
+
+    search_circular_with_button:
+      type: boolean
+      title: With Button
+      description: Renders a trailing circular submit button.
+      default: false
+
+    search_circular_with_clear:
+      type: boolean
+      title: With Clear Button
+      description: Renders a trailing circular clear button that empties the input on click.
+      default: false
+
+    # uc -> utility_classes
+    search_circular_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    search_circular_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

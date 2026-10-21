@@ -1,0 +1,64 @@
+/**
+ * @file
+ * Breadcrumb component styles.
+ */
+
+.c--breadcrumb {
+  --_breadcrumb_c: var(--color-text-base-tertiary);
+  --_breadcrumb_fs: var(--font-size-14);
+  --_breadcrumb_m-b-e: 12px;
+
+  --_breadcrumb_ol_gap: 8px;
+  --_breadcrumb_ol_m: 0px 0px 12px;
+  --_breadcrumb_ol_p: 0px;
+
+  --_breadcrumb_li_last_c: var(--color-text-base-default);
+  --_breadcrumb_li_after_c: var(--breadcrumb_li_after_c, var(--c_fg-muted));
+
+  display: flex;
+  align-items: center;
+  font-size: var(--_breadcrumb_fs);
+  color: var(--_breadcrumb_c);
+  margin-block-end: var(--_breadcrumb_m-b-e);
+  gap: var(--_breadcrumb_ol_gap);
+
+  ol {
+    gap: var(--_breadcrumb_ol_gap);
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: var(--_breadcrumb_ol_m);
+    padding: var(--_breadcrumb_ol_p);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    --_link_c: var(--_breadcrumb_link_c, 'currentColor');
+    --_link_d: none;
+    --_link_d_h: none;
+  }
+
+  &:not(.is-hideIcons) {
+    li {
+      &:not(:last-child)::after {
+        content: '›';
+        margin-left: var(--_breadcrumb_li_m-i-s, var(--_breadcrumb_ol_gap));
+        color: var(--_breadcrumb_li_after_c);
+      }
+
+      span {
+        color: var(--_breadcrumb_li_last_c);
+        max-width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+      }
+    }
+  }
+}
+

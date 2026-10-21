@@ -1,0 +1,105 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Avatar
+status: stable
+group: Globals
+version: 1.0.0
+description: Displays a user avatar as an image, initials, or icon fallback.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    avatar_src:
+      type: ['string', 'null']
+      title: Image Source
+      description: URL of the photo. Used when avatar_type is "photo".
+      default: null
+
+    avatar_alt:
+      type: ['string', 'null']
+      title: Alt Text
+      description: Alt text for the photo. Falls back to avatar_name.
+      default: null
+
+    avatar_initials:
+      type: ['string', 'null']
+      title: Initials
+      description: Pre-computed 1–2 letter initials. Derived from avatar_name when omitted.
+      default: null
+
+    avatar_name:
+      type: ['string', 'null']
+      title: Name
+      description: Full name used to derive initials and alt text.
+      default: null
+
+    avatar_icon:
+      type: ['string', 'null']
+      title: Icon
+      description: SVG icon markup for avatar_type "icon". Defaults to a person glyph.
+      default: null
+
+    # component variations
+    avatar_type:
+      type: ['string', 'null']
+      title: Type
+      description: Visual mode — photo renders src, initials renders letters, icon renders a glyph.
+      default: initials
+      enum:
+        - null
+        - photo
+        - initials
+        - icon
+
+    avatar_size:
+      type: ['string', 'null']
+      title: Size
+      description: Size rung matching the Figma scale (xs=24, sm=32, md=40, lg=48, xl=72).
+      default: md
+      enum:
+        - null
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+
+    avatar_shape:
+      type: ['string', 'null']
+      title: Shape
+      description: Container silhouette.
+      default: circular
+      enum:
+        - null
+        - circular
+        - square
+
+    avatar_color:
+      type: ['string', 'null']
+      title: Color
+      description: Color variant used as the initials background.
+      default: null
+      enum:
+        - null
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+
+    # uc -> utility_classes
+    avatar_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    avatar_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

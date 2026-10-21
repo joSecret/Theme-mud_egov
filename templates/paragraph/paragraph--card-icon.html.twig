@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Paragraph template for Card Icon.
+ * Maps Drupal fields to the mud_egov:card-icon SDC component.
+ */
+#}
+
+{% include 'mud_egov:card-icon' with {
+  card_icon: content.field_illustration_or_icon,
+  card_title: paragraph.field_title.value,
+  card_description: paragraph.field_description.processed,
+} only %}

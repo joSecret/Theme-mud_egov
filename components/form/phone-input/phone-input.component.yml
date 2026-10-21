@@ -1,0 +1,101 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Phone Input
+status: stable
+group: Forms
+version: 1.0.0
+description: Phone number input (type=tel) with optional country code prefix, aligned with the MUD design system.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    phone_input_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible label text for the input.
+      default: null
+
+    phone_input_name:
+      type: ['string', 'null']
+      title: Name
+      description: Form control name used during submission.
+      default: null
+
+    phone_input_id:
+      type: ['string', 'null']
+      title: ID
+      description: HTML id attribute; links the label.
+      default: null
+
+    phone_input_value:
+      type: ['string', 'null']
+      title: Value
+      description: Current phone number value.
+      default: null
+
+    phone_input_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: Placeholder text shown when the field is empty.
+      default: null
+
+    phone_input_country_code:
+      type: ['string', 'null']
+      title: Country Code
+      description: Dial code prefix displayed before the input (e.g. +373).
+      default: null
+
+    phone_input_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      description: Hint text shown below the input.
+      default: null
+
+    phone_input_error_message:
+      type: ['string', 'null']
+      title: Error Message
+      description: Error text shown below the input when in error state.
+      default: null
+
+    # component variations
+    phone_input_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung. md | lg — matches MUD PHONE_INPUT_SIZES.
+      default: null
+      enum:
+        - null
+        - md
+        - lg
+
+    phone_input_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    phone_input_required:
+      type: boolean
+      title: Required
+      default: false
+
+    phone_input_error:
+      type: boolean
+      title: Error
+      description: Activates destructive/error visual state.
+      default: false
+
+    # uc -> utility_classes
+    phone_input_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    phone_input_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component wrapper.

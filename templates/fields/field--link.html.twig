@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * mud_egov override for link fields — renders each link as a button component.
+ */
+#}
+
+{%
+  set classes = [
+    field_name|clean_class,
+    'has-type_' ~ field_type|clean_class,
+    'has-label_' ~ label_display|clean_class,
+  ]
+%}
+
+{%
+  set title_classes = [
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% include 'mud_egov:field' with {
+  field_label: label,
+  field_items: items,
+  field_label_hidden: label_hidden,
+  field_label_display: label_display,
+  field_multiple: multiple,
+  field_label_uc: title_classes,
+  field_uc: classes,
+  field_title_att: title_attributes,
+  field_att: attributes,
+} only %}

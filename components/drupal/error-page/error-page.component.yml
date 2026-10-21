@@ -1,0 +1,61 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Error Page
+status: stable
+group: Drupal
+version: 1.0.0
+description: Full-page error display with title, description, error code, and CTA actions. Supports 404, 403, 500 and other HTTP error states.
+
+props:
+  type: object
+  required:
+    - title
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Main heading displayed to the user.
+      default: 'Pagina nu a fost găsită'
+
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: Explanatory text below the heading.
+      default: null
+
+    code:
+      type: ['string', 'integer', 'null']
+      title: Error Code
+      description: 'HTTP status code displayed as "Error Code: X".'
+      default: null
+
+    primary_label:
+      type: ['string', 'null']
+      title: Primary CTA Label
+      description: Label for the main action button.
+      default: null
+
+    secondary_label:
+      type: ['string', 'null']
+      title: Secondary Link Label
+      description: Label for the secondary text link.
+      default: null
+
+    illustration:
+      type: ['string', 'null']
+      title: Illustration
+      description: HTML/SVG illustration rendered on the right side.
+      default: null
+
+slots:
+  slot_ctas:
+    title: CTA buttons slot
+    description: Primary and secondary action buttons rendered below the error description.
+
+  slot_links:
+    title: Links slot
+    description: Optional inline text links rendered below the CTA buttons.
+
+  slot_illustration:
+    title: Illustration
+    description: Custom illustration slot, rendered on the right side of the layout.

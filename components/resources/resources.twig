@@ -1,0 +1,45 @@
+{#-
+/**
+ * @file
+ * Resources component.
+ *
+ * Props:
+ * - resources_label (string|null) — eyebrow text
+ * - resources_title (string|null)
+ * - resources_title_level (int) default: 2
+ *
+ * Slots:
+ * - resources_items — rendered card-icon paragraphs
+ */
+-#}
+
+{% set resources_att = resources_att ?: create_attribute() %}
+{% set resources_classes = ['c--resources']|merge(resources_uc ?: []) %}
+
+<div{{ resources_att.addClass(resources_classes) }}>
+  {%- if resources_label or resources_title -%}
+    <div class="resources-intro">
+      {%- if resources_label -%}
+        <p class="resources-label">
+          {{- resources_label -}}
+        </p>
+      {%- endif -%}
+
+      {%- if resources_title -%}
+        {%
+          include 'mud_egov:heading' with {
+            heading_text: resources_title,
+            heading_level: resources_title_level|default(2),
+            heading_uc: ['h1'],
+          }
+        %}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if resources_items -%}
+    <div class="resources-items">
+      {{- resources_items -}}
+    </div>
+  {%- endif -%}
+</div>

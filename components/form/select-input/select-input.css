@@ -1,0 +1,161 @@
+/**
+ * Select Input Component Styles
+ *
+ * Native select/dropdown aligned with mud-select-input.
+ * External tokens: --select-input_*
+ * Internal tokens: --_select-input_*
+ */
+
+.c--select-input {
+  /* Variables — wrapper */
+  --_select-input_gap: var(--select-input_gap, var(--size_100));
+  --_select-input_m-b: var(--select-input_m-b, 0);
+
+  /* Variables — label */
+  --_select-input-label_f-s: var(--select-input-label_f-s, var(--f-s_sm));
+  --_select-input-label_f-w: var(--select-input-label_f-w, var(--f-w_semibold));
+  --_select-input-label_c: var(--select-input-label_c, var(--body_c));
+
+  /* Variables — required indicator */
+  --_select-input-required_c: var(--select-input-required_c, var(--c_danger));
+  --_select-input-required_m-i-s: var(--select-input-required_m-i-s, var(--size_50));
+
+  /* Variables — control row */
+  --_select-input-control_pos: relative;
+
+  /* Variables — field */
+  --_select-input-field_w: var(--select-input-field_w, 100%);
+  --_select-input-field_p-b: var(--select-input-field_p-b, var(--size_200));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s, var(--size_300));
+  --_select-input-field_p-i-e: var(--select-input-field_p-i-e, 2.5rem);
+  --_select-input-field_f-s: var(--select-input-field_f-s, var(--f-s_base));
+  --_select-input-field_l-h: var(--select-input-field_l-h, 1.5);
+  --_select-input-field_c: var(--select-input-field_c, var(--body_c));
+  --_select-input-field_bg: var(--select-input-field_bg, var(--c_white));
+  --_select-input-field_b-w: var(--select-input-field_b-w, var(--b-w, 1px));
+  --_select-input-field_b-c: var(--select-input-field_b-c, var(--c_gray_100, #d1d5db));
+  --_select-input-field_b-r: var(--select-input-field_b-r, 6px);
+  --_select-input-field_t-t: var(--select-input-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
+
+  /* Variables — field focus */
+  --_select-input-field_b-c_focus: var(--select-input-field_b-c_focus, var(--c_primary));
+
+  /* Variables — field error */
+  --_select-input-field_b-c_error: var(--select-input-field_b-c_error, var(--c_danger));
+
+  /* Variables — chevron */
+  --_select-input-chevron_size: var(--select-input-chevron_size, 1rem);
+  --_select-input-chevron_c: var(--select-input-chevron_c, var(--c_muted));
+  --_select-input-chevron_p-i-e: var(--select-input-chevron_p-i-e, var(--size_300));
+
+  /* Variables — helper / error text */
+  --_select-input-helper_f-s: var(--select-input-helper_f-s, var(--f-s_sm));
+  --_select-input-helper_c: var(--select-input-helper_c, var(--c_muted));
+  --_select-input-error-msg_c: var(--select-input-error-msg_c, var(--c_danger));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_select-input_gap);
+  margin-block-end: var(--_select-input_m-b);
+
+  .select-input-label {
+    display: block;
+    font-size: var(--_select-input-label_f-s);
+    font-weight: var(--_select-input-label_f-w);
+    color: var(--_select-input-label_c);
+  }
+
+  .select-input-required {
+    color: var(--_select-input-required_c);
+    margin-inline-start: var(--_select-input-required_m-i-s);
+  }
+
+  .select-input-control {
+    position: var(--_select-input-control_pos);
+    display: flex;
+    align-items: center;
+  }
+
+  .select-input-field {
+    width: var(--_select-input-field_w);
+    padding-block: var(--_select-input-field_p-b);
+    padding-inline-start: var(--_select-input-field_p-i-s);
+    padding-inline-end: var(--_select-input-field_p-i-e);
+    font-size: var(--_select-input-field_f-s);
+    line-height: var(--_select-input-field_l-h);
+    color: var(--_select-input-field_c);
+    background-color: var(--_select-input-field_bg);
+    border: var(--_select-input-field_b-w) solid var(--_select-input-field_b-c);
+    border-radius: var(--_select-input-field_b-r);
+    transition: var(--_select-input-field_t-t);
+    appearance: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: var(--_select-input-field_b-c_focus);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  /* Native chevron replacement */
+  .select-input-chevron {
+    position: absolute;
+    inset-inline-end: var(--_select-input-chevron_p-i-e);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: var(--_select-input-chevron_c);
+
+    &::after {
+      content: '';
+      display: block;
+      width: var(--_select-input-chevron_size);
+      height: var(--_select-input-chevron_size);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+
+  .select-input-helper-text {
+    font-size: var(--_select-input-helper_f-s);
+    color: var(--_select-input-helper_c);
+    margin: 0;
+  }
+
+  .select-input-error-message {
+    font-size: var(--_select-input-helper_f-s);
+    color: var(--_select-input-error-msg_c);
+    margin: 0;
+  }
+}
+
+/* Error state */
+.c--select-input.select-input-error .select-input-field {
+  border-color: var(--_select-input-field_b-c_error);
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
+  }
+}
+
+/* Size — md (explicit, same as default) */
+.c--select-input.c--select-input--md {
+  --_select-input-field_p-b: var(--select-input-field_p-b--md, var(--size_200));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--md, var(--size_300));
+  --_select-input-field_f-s: var(--select-input-field_f-s--md, var(--f-s_base));
+}
+
+/* Size — lg */
+.c--select-input.c--select-input--lg {
+  --_select-input-field_p-b: var(--select-input-field_p-b--lg, var(--size_300));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--lg, var(--size_400));
+  --_select-input-field_f-s: var(--select-input-field_f-s--lg, 1.125rem);
+}

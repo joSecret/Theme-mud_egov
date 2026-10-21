@@ -1,0 +1,53 @@
+{#-
+/**
+ * @file
+ * FAQ component.
+ *
+ * Props:
+ * - faq_title (string|null)
+ * - faq_title_level (int) default: 2
+ * - faq_description (string|null)
+ *
+ * Slots:
+ * - faq_items — rendered accordion
+ * - faq_cta — optional CTA cards
+ */
+-#}
+
+{% set faq_att = faq_att ?: create_attribute() %}
+{% set faq_classes = ['c--faq']|merge(faq_uc ?: []) %}
+
+<div{{ faq_att.addClass(faq_classes) }}>
+  {%- if faq_title or faq_description -%}
+    <div class="faq-intro">
+      {%- if faq_title -%}
+        {%
+          include 'mud_egov:heading' with {
+            heading_text: faq_title,
+            heading_level: faq_title_level|default(3),
+            heading_uc: ['h1'],
+          }
+        %}
+      {%- endif -%}
+
+      {%- if faq_description -%}
+        <div class="faq-description">
+          {{- faq_description -}}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if faq_items.0 -%}
+    {% include "mud_egov:accordion" with {
+      accordion_content: faq_items,
+      accordion_size: 'small',
+    } %}
+  {%- endif -%}
+
+  {%- if faq_cta -%}
+    <div class="faq-cta">
+      {{- faq_cta -}}
+    </div>
+  {%- endif -%}
+</div>

@@ -1,0 +1,139 @@
+/* Headings */
+:where(h1, h2, h3, h4, h5, h6),
+:is(.h1, .h2, .h3, .h4, .h5, .h6) {
+  margin-bottom: var(--_h-mb);
+  font-size: var(--_h-fs);
+  margin-top: 0;
+  font-family: var(--h_f-f, var(--font-family_base));
+  font-style: var(--h_f-style);
+  font-weight: var(--h_f-w);
+  line-height: var(--h_l-h, 1.444);
+  color: var(--h-c);
+
+  &:first-child {
+    margin-block-start: 0;
+  }
+}
+
+:where(h1),
+:is(.h1) {
+  --_h-fs: var(--h1_font-size);
+  --_h-mb: var(--h1_margin-bottom);
+  --h_f-w: var(--font-weight-semibold);
+  --h_l-h: 1.2;
+}
+
+:where(h2),
+:is(.h2) {
+  --_h-fs: var(--h2_font-size);
+  --_h-mb: var(--h2_margin-bottom);
+  --h_l-h: 1.25;
+}
+
+:where(h3),
+:is(.h3) {
+  --_h-fs: var(--h3_font-size);
+  --_h-mb: var(--h3_margin-bottom);
+  --h_l-h: 1.333;
+}
+
+:where(h4),
+:is(.h4) {
+  --_h-fs: var(--h4_font-size);
+  --_h-mb: var(--h4_margin-bottom);
+  --h_l-h: 1.4;
+}
+
+:where(h5),
+:is(.h5) {
+  --_h-fs: var(--h5_font-size);
+  --_h-mb: var(--h5_margin-bottom);
+}
+
+:where(h6),
+:is(.h6) {
+  --_h-fs: var(--h6_font-size);
+  --_h-mb: var(--h6_margin-bottom);
+}
+
+.lead {
+  --f-s_lead: calc(var(--f-s_base) * .125);
+  --lead-font-weight: 300;
+
+  font-size: var(--f-s_lead);
+  font-weight: var(--lead-font-weight);
+}
+
+p {
+  --_p_m-b-e:  var(--p_m-b-e, var(--spacing-24));
+
+  margin-block-start: var(--_p_m-b-s, 0px);
+  margin-block-end: var(--_p_m-b-e, var(--spacer));
+
+  &:last-of-type {
+    --_p_m-b-e: 0;
+  }
+}
+
+:where(b, strong) {
+  font-weight: var(--font-weight-medium);
+}
+
+:where(small, .small) {
+  font-size: var(--f-s_sm);
+}
+
+:where(mark, .mark) {
+  padding: var(--mark-padding, 0.1875em);
+  background-color: var(--highlight-bg, var(--c_gray_200));
+}
+
+:where(sub, sup) {
+  position: relative;
+  font-size: var(--sub-sup-font-size, 0.75em);
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Misc */
+/* Builds on `abbr` */
+.initialism {
+  font-size: var(--initialism-font-size, .875em);
+  text-transform: uppercase;
+}
+
+/* Blockquotesx */
+.blockquote {
+  --_blockquote_f-s: var(--blockquote_f-s, var(--font-size));
+  --blockquote_m-b-e: var(--spacer);
+
+  margin: 0;
+  margin-block-end: var(--blockquote_m-b-e);
+  font-size: var(--blockquote-font-size);
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockquote-footer {
+  --blockquote-footer_f-s: var(--font-size_sm);
+  --blockquote-footer_c: var(--c_gray);
+
+  margin-top: calc(var(--blockquote_m-b-e) * -1);
+  margin-bottom: var(--blockquote_m-b-e);
+  font-size: var(--blockquote-footer_f-s);
+  color: var(--blockquote-footer_c);
+
+  &::before {
+    content: "\2014\00A0";
+  }
+}

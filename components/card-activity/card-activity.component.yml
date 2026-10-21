@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Card Activity
+status: stable
+version: 1.0.0
+group: Cards
+description: 'Card for an activity node — logo/cover image at the top, title below. Whole card is a stretched link.'
+
+props:
+  type: object
+  properties:
+    card_activity_title:
+      type: ['string', 'null']
+      title: Title
+      description: Node title shown on the card.
+
+    card_activity_image:
+      type: ['string', 'array', 'null']
+      title: Image
+      description: Logo / cover image render array or markup.
+      default: null
+
+    card_activity_url:
+      type: ['string', 'null']
+      title: URL
+      description: When set, the whole card becomes a link to this URL.
+
+    card_activity_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    card_activity_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+
+slots:
+  slot_image:
+    title: Image
+    description: Logo / cover image area (top).
+
+  slot_title:
+    title: Title
+    description: Title of the card.

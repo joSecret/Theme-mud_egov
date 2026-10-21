@@ -1,0 +1,94 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Badge
+status: stable
+group: Global
+version: 1.0.0
+description: 'Badge component for counters, indicators and notification markers.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    badge_content:
+      type: ['string', 'null']
+      title: Content
+      description: Text content to display. Use badge_count for numeric counters.
+      default: null
+
+    badge_count:
+      type: ['integer', 'null']
+      title: Count
+      description: Numeric counter. Values above badge_max render as "{max}+".
+      default: null
+
+    badge_max:
+      type: integer
+      title: Max
+      description: Upper bound for the visible count. Counts above this render as "{max}+".
+      default: 99
+
+    badge_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible name. For dot badges defaults to "Notification".
+      default: null
+
+    # component variations
+    badge_color:
+      type: ['string', 'null']
+      title: Color
+      description: Color variant of the badge.
+      default: null
+      enum:
+        - null
+        - brand
+        - positive
+        - warning
+        - danger
+
+    badge_size:
+      type: ['string', 'null']
+      title: Size
+      description: Size of the badge.
+      default: null
+      enum:
+        - null
+        - xs
+        - sm
+        - lg
+        - xl
+
+    badge_dot:
+      type: boolean
+      title: Dot
+      description: Renders the badge as a small dot indicator with no text.
+      default: false
+
+    badge_positioned:
+      type: boolean
+      title: Positioned
+      description: Positions the badge absolutely. Requires the parent element to have position relative.
+      default: false
+
+    # uc -> utility_classes
+    badge_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
+
+    # att -> attributes
+    badge_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the badge component.
+      default: null
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Badge content — use for complex content instead of badge_content prop.

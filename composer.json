@@ -1,0 +1,9 @@
+{
+    "name": "mud/mud_egov",
+    "description": "MUD eGov: tema de bază Drupal pentru site-urile guvernamentale ale Republicii Moldova (Moldova Unified Design).",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^10.3 || ^11"
+    }
+}

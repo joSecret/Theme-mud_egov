@@ -1,0 +1,129 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Form Element
+status: stable
+version: 1.0.0
+group: Form
+description: 'A complete form element wrapper component that orchestrates label, input field, description, and error message components.'
+
+# Slots.
+slots:
+  form_element_field:
+    title: Form Field
+    description: The main form field content (input, select, textarea, etc.).
+
+# Props.
+props:
+  type: object
+  properties:
+    # field type
+    form_element_type:
+      type: ['string', 'null']
+      title: Element Type
+      description: The type of form element (for CSS classes).
+      default: null
+
+    # label properties
+    form_element_label:
+      type: ['string', 'null']
+      title: Label
+      description: Label text for the form element.
+      default: null
+
+    form_element_label_display:
+      type: string
+      title: Label Display
+      description: Where to display the label relative to the field.
+      enum:
+        - 'before'
+        - 'after'
+        - 'invisible'
+        - 'inline'
+        - 'none'
+        - null
+      default: 'before'
+
+    form_element_required:
+      type: ['boolean', 'null']
+      title: Required
+      description: Whether the field is required.
+      default: false
+
+    form_element_id:
+      type: ['string', 'null']
+      title: Element ID
+      description: The id attribute for the form field (used for label's "for" attribute).
+      default: null
+
+    # description properties
+    form_element_description:
+      type: ['string', 'null']
+      title: Description
+      description: Help text describing the form element.
+      default: null
+
+    form_element_description_display:
+      type: string
+      title: Description Display
+      description: Where to display the description relative to the field.
+      enum:
+        - 'before'
+        - 'after'
+        - 'invisible'
+        - 'none'
+      default: 'after'
+
+    form_element_description_att:
+      type: Drupal\Core\Template\Attribute
+      title: Description Attributes
+      description: A list of HTML attributes for the description element.
+
+      default: null
+    # error properties
+    form_element_error:
+      type: ['string', 'null']
+      title: Error Message
+      description: Error message for validation failures.
+      default: null
+
+    # prefix/suffix
+    form_element_prefix:
+      type: ['string', 'null']
+      title: Prefix
+      description: Content to display before the field.
+      default: null
+
+    form_element_suffix:
+      type: ['string', 'null']
+      title: Suffix
+      description: Content to display after the field.
+      default: null
+
+    # state properties
+    form_element_disabled:
+      type: ['boolean', 'null']
+      title: Disabled
+      description: Whether the element is disabled.
+      default: false
+
+    form_element_name:
+      type: ['string', 'null']
+      title: Element Name
+      description: The name attribute of the form element (for CSS classes).
+      default: null
+
+    # uc -> utility_classes
+    form_element_uc:
+      type: array
+      items:
+        type: string
+      title: Form Element Utility Classes
+      description: An array of utility classes for the wrapper element.
+      default: []
+
+    # att -> attributes
+    form_element_att:
+      type: Drupal\Core\Template\Attribute
+      title: Form Element Attributes
+      description: A list of HTML attributes for the wrapper element.
+
+      default: null

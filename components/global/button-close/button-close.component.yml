@@ -1,0 +1,40 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Button Close
+status: stable
+group: Globals
+version: 1.0.0
+description: Icon-only dismiss button — inherits color from parent context. Composable across notification, info-box, banner, modal, drawer, chip.
+
+# Props.
+props:
+  type: object
+  properties:
+    button_close_label:
+      type: string
+      title: Accessible Label
+      description: aria-label forwarded to the button. Required for a11y.
+      default: 'Închide'
+
+    button_close_icon:
+      type: ["string", "null"]
+      title: Icon
+      description: Optional SVG string override. Defaults to a built-in X glyph. Include aria-hidden="true".
+      default: null
+
+    button_close_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    button_close_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

@@ -1,0 +1,67 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Date range (view)
+status: stable
+
+version: 1.0.0
+group: Layout
+description: '[component description]'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    date_range_delimiter:
+      type: ['string', 'null']
+      title: Date range delimiter
+      description: The character(s) used to separate the start and end dates.
+      default: ' - '
+      example:
+        - '-'
+        - 'to'
+        - 'until'
+        - 'through'
+        - 'and'
+        - '/'
+        - '|'
+
+    date_range_remove_wrapper:
+      type: boolean
+      title: Remove wrapper
+      description: Remove the wrapper element around the date range.
+      default: true
+
+    # fields values
+    date_range_start:
+      type: string
+      title: Date range start
+
+    date_range_end:
+      type: string
+      title: Date range end
+
+    # uc -> utility_classes
+    date_range_uc:
+      type: array
+      items:
+        type: string
+      title: Date range Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    date_range_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the date range.
+
+      default: null
+  required:
+    - date_range_start
+    - date_range_end
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Default content text for the date range.

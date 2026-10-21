@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Paragraph template for Carousel.
+ * Collects rendered carousel-slide paragraphs and passes them to the mud_egov:carousel SDC.
+ */
+#}
+
+{% set slides = [] %}
+{% for item in paragraph.field_slides %}
+  {% set slides = slides|merge([content.field_slides[loop.index0]]) %}
+{% endfor %}
+
+{% include 'mud_egov:carousel' with {
+  carousel_id: paragraph.id(),
+  carousel_slides: slides,
+  carousel_autoplay: paragraph.field_autoplay.value ? true : false,
+  carousel_interval: (paragraph.field_interval.value ?: 5000) + 0,
+  carousel_arrows: paragraph.field_show_arrows.value ? true : false,
+  carousel_dots: paragraph.field_show_dots.value ? true : false,
+} only %}

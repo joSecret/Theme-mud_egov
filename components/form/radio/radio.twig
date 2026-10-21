@@ -1,0 +1,66 @@
+{#-
+/**
+ * @file
+ * Template for the Radio component (MUD-aligned).
+ *
+ * Props:
+ * - radio_label (string|null) default: null
+ * - radio_name (string|null) default: null
+ * - radio_value (string|null) default: null
+ * - radio_id (string|null) default: null
+ * - radio_checked (boolean) default: false
+ * - radio_disabled (boolean) default: false
+ * - radio_required (boolean) default: false
+ * - radio_error (boolean) default: false
+ *
+ * Variations:
+ * - radio_size (string|null) default: null — sm | md
+ *
+ * Utility classes: radio_uc
+ * Attributes: radio_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set radio_id = radio_id|default(radio_name ~ (radio_value ? '-' ~ radio_value|clean_class : '')) %}
+{% set radio_checked = radio_checked|default(false) %}
+{% set radio_disabled = radio_disabled|default(false) %}
+{% set radio_required = radio_required|default(false) %}
+{% set radio_error = radio_error|default(false) %}
+
+{#- Create attributes -#}
+{% set radio_att = radio_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set radio_classes = [
+    'c--radio',
+    radio_size ? 'c--radio--' ~ radio_size,
+    radio_error ? 'radio-error',
+    radio_disabled ? 'is-disabled',
+  ]|merge(radio_uc ?: [])
+%}
+
+{#- Render -#}
+<div{{ radio_att.addClass(radio_classes) }}>
+  {% block radio_input %}
+  <input
+    class="radio-input"
+    type="radio"
+    {%- if radio_id -%} id="{{ radio_id }}"{%- endif -%}
+    {%- if radio_name -%} name="{{ radio_name }}"{%- endif -%}
+    {%- if radio_value -%} value="{{ radio_value }}"{%- endif -%}
+    {%- if radio_checked -%} checked{%- endif -%}
+    {%- if radio_required -%} required aria-required="true"{%- endif -%}
+    {%- if radio_disabled -%} disabled{%- endif -%}
+    {%- if radio_error -%} aria-invalid="true"{%- endif -%}
+  >
+  {% endblock -%}
+
+  {%- if radio_label -%}
+    <label class="radio-label" for="{{ radio_id }}">
+      {{- radio_label -}}
+      {%- if radio_required -%}<span class="radio-required" aria-hidden="true">*</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+</div>

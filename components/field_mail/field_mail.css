@@ -1,0 +1,29 @@
+/**
+ * Field Icon Component Styles
+ *
+ * A field row with an icon on the left and content on the right.
+ */
+
+.c--fieldMail {
+  /* Variables — main component */
+  --_fieldMail_gap: var(--fieldMail_gap, 8px);
+
+  --link_d: none;
+
+  display: flex;
+  align-items: center;
+  gap: var(--_fieldMail_gap);
+  color: var(--fieldMail_c);
+  font-size: var(--fieldMail_f-s);
+  font-weight: var(--fieldMail_f-w);
+  padding-block: var(--fieldMail_p-b);
+
+  svg,
+  img {
+    display: block;
+    flex: 0 0 var(--_fieldMail-icon_s);
+    color: var(--fieldMail-icon_c);
+    width: var(--fieldMail-icon_s);
+    height: var(--fieldMail-icon_h, var(--fieldMail-icon_s));
+  }
+}

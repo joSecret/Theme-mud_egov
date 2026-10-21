@@ -1,0 +1,63 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Inline Message
+status: stable
+group: Globals
+version: 1.0.0
+description: Lightweight in-context feedback — coloured leading icon plus a short text line, no surface or border.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    inline_message_text:
+      type: ["string", "null"]
+      title: Text
+      description: The feedback message text.
+      default: null
+
+    inline_message_icon:
+      type: ["string", "null"]
+      title: Icon
+      description: SVG icon string override. Include aria-hidden="true".
+      default: null
+
+    # component variations
+    inline_message_variant:
+      type: ["string", "null"]
+      title: Variant
+      default: null
+      enum: [null, info, success, warning, error]
+
+    inline_message_size:
+      type: ["string", "null"]
+      title: Size
+      description: small (12 px) or medium (14 px).
+      default: null
+      enum: [null, small, medium]
+
+    inline_message_hide_icon:
+      type: boolean
+      title: Hide Icon
+      description: Suppress the leading icon.
+      default: false
+
+    # uc -> utility_classes
+    inline_message_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    inline_message_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_content:
+    title: Content
+    description: Overrides inline_message_text with rich inline content.

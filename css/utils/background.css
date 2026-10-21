@@ -1,0 +1,32 @@
+/* Base */
+[class*="bg-"] {
+  background: var(--bg_bg);
+}
+
+.bg-white {
+  --bg_bg: var(--menu-panel-background)
+}
+
+.bg-light {
+  --bg_bg: var(--palette-gray-100);
+  --link_c: var(--link-strict-label-default);
+  --c-menu_link_c: var(--link-strict-label-default);
+  --link_c_h: var(--link-strict-label-hover);
+  --c-menu_link_c_h: var(--link-strict-label-hover);
+  --link_c_a: var(--link-strict-label-active);
+}
+
+.bg-dark {
+  --bg_bg: var(--color-background-base-inverse-default);
+  --link_c: var(--link-white-label-default);
+  --c-menu_link_c: var(--link-white-label-default);
+  --link_c_h: var(--link-white-label-hover);
+  --c-menu_link_c_h: var(--link-white-label-hover);
+  --link_c_a: var(--link-white-label-active);
+
+  color: var(--palette-white-1000);
+}
+
+.bg-brand {
+  --bg_bg: var(--color-background-brand-default);
+}

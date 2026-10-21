@@ -1,0 +1,145 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Timeline Item
+status: stable
+version: 1.0.0
+group: Components
+description: 'A single timeline item component with optional year, title, description, and image. Can be displayed as highlighted.'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # component variations
+    timelineItem_view_mode:
+      type: ['string', 'null']
+      title: 'View mode'
+      description: 'The view mode for this timeline item.'
+      default: null
+      enum:
+        - 'grid'
+        - 'custom'
+
+    timelineItem_highlighted:
+      type: boolean
+      title: 'Highlighted'
+      description: 'Whether this timeline item should be displayed with highlighted styling (dark blue background with decorative graphics).'
+      default: false
+
+    # fields values
+    timelineItem_year:
+      type: ['string', 'null']
+      title: 'Year'
+      description: 'The year or date for this timeline item.'
+      default: null
+
+    timelineItem_title:
+      type: ['string', 'null']
+      title: 'Title'
+      description: 'The title of the timeline item.'
+      default: null
+
+    timelineItem_title_tag:
+      type: string
+      title: 'Title Tag'
+      description: 'The HTML tag to use for the title (e.g. h2, h3, etc.).'
+      default: 'h3'
+      enum:
+        - 'h3'
+        - 'h4'
+        - 'h5'
+        - 'h6'
+
+    timelineItem_description:
+      type: ['string', 'null']
+      title: 'Description'
+      description: 'The description text for the timeline item.'
+      default: null
+
+    timelineItem_media:
+      type: ['array', 'object', 'null']
+      title: 'Media'
+      description: 'Media field from Drupal (includes all media data, caption, alt text, etc.).'
+      default: null
+
+    # uc -> utility_classes
+    timelineItem_uc:
+      type: array
+      items:
+        type: string
+      title: Timeline Item Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    timelineItem_year_uc:
+      type: array
+      items:
+        type: string
+      title: Timeline Item Year Utility Classes
+      default: []
+
+    timelineItem_title_uc:
+      type: array
+      items:
+        type: string
+      title: Timeline Item Title Utility Classes
+      default: []
+
+    timelineItem_description_uc:
+      type: array
+      items:
+        type: string
+      title: Timeline Item Description Utility Classes
+      default: []
+
+    timelineItem_image_uc:
+      type: array
+      items:
+        type: string
+      title: Timeline Item Image Utility Classes
+      default: []
+
+    # att -> attributes
+    timelineItem_att:
+      type: Drupal\Core\Template\Attribute
+      title: Timeline Item Attributes
+      description: A list of HTML attributes for the timeline item.
+
+      default: null
+    timelineItem_year_att:
+      type: Drupal\Core\Template\Attribute
+      title: Timeline Item Year Attributes
+
+      default: null
+    timelineItem_title_att:
+      type: Drupal\Core\Template\Attribute
+      title: Timeline Item Title Attributes
+
+      default: null
+    timelineItem_description_att:
+      type: Drupal\Core\Template\Attribute
+      title: Timeline Item Description Attributes
+
+      default: null
+    timelineItem_image_att:
+      type: Drupal\Core\Template\Attribute
+      title: Timeline Item Image Attributes
+
+      default: null
+# Slots.
+slots:
+  slot_year:
+    title: Year
+    description: Default year content for the timeline item.
+
+  slot_title:
+    title: Title
+    description: Default title content for the timeline item.
+
+  slot_description:
+    title: Description
+    description: Default description content for the timeline item.
+
+  slot_image:
+    title: Image
+    description: Default image content for the timeline item.

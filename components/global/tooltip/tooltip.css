@@ -1,0 +1,246 @@
+/**
+ * @file
+ * Tooltip component styles — global/tooltip.
+ *
+ * External tokens (consumers can override):
+ *   --tooltip_bg          bubble background colour
+ *   --tooltip_c           bubble text colour
+ *   --tooltip_border_r    bubble border radius
+ *   --tooltip_p_b         bubble block padding
+ *   --tooltip_p_i         bubble inline padding
+ *   --tooltip_max_w       bubble maximum width
+ *   --tooltip_z           z-index
+ *   --tooltip_shadow      bubble box-shadow
+ *   --tooltip_offset      gap between trigger and bubble
+ *   --tooltip_arrow_size  arrow triangle size
+ *
+ * Internal tokens (single underscore prefix):
+ *   --_tooltip_bg, --_tooltip_c, etc.
+ */
+
+.c--tooltip {
+  --_tooltip_bg: var(--tooltip_bg, var(--tooltip-container-background-default, #1d2939));
+  --_tooltip_c: var(--tooltip_c, var(--color-text-base-inverse-default, #fff));
+  --_tooltip_border_r: var(--tooltip_border_r, var(--tooltip-container-border-radius-sm, 4px));
+  --_tooltip_p_b: var(--tooltip_p_b, var(--tooltip-container-padding-block-sm, 6px));
+  --_tooltip_p_i: var(--tooltip_p_i, var(--tooltip-container-padding-inline-sm, 10px));
+  --_tooltip_max_w: var(--tooltip_max_w, var(--tooltip-container-max-width, 280px));
+  --_tooltip_z: var(--tooltip_z, var(--tooltip-container-z-index, 1000));
+  --_tooltip_shadow: var(--tooltip_shadow, var(--tooltip-container-shadow, 0 4px 12px rgba(0, 0, 0, 0.15)));
+  --_tooltip_offset: var(--tooltip_offset, 8px);
+  --_tooltip_arrow_size: var(--tooltip_arrow_size, var(--tooltip-arrow-size-sm, 6px));
+  --_tooltip_transition_d: var(--tooltip-container-transition-duration, 150ms);
+  --_tooltip_transition_tf: var(--tooltip-container-transition-timing-function, ease-out);
+
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+}
+
+/* Size: lg */
+.c--tooltip.has-size_lg {
+  --_tooltip_border_r: var(--tooltip-container-border-radius-lg, 6px);
+  --_tooltip_p_b: var(--tooltip-container-padding-block-lg, 10px);
+  --_tooltip_p_i: var(--tooltip-container-padding-inline-lg, 14px);
+  --_tooltip_arrow_size: var(--tooltip-arrow-size-lg, 8px);
+}
+
+/* Trigger wrapper */
+.c--tooltip__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: default;
+}
+
+/* Default info-icon trigger button */
+.c--tooltip__default-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Bubble (hidden by default) */
+.c--tooltip__bubble {
+  position: absolute;
+  z-index: var(--_tooltip_z);
+  display: inline-flex;
+  flex-direction: column;
+  max-width: var(--_tooltip_max_w);
+  padding-block: var(--_tooltip_p_b);
+  padding-inline: var(--_tooltip_p_i);
+  background: var(--_tooltip_bg);
+  color: var(--_tooltip_c);
+  border-radius: var(--_tooltip_border_r);
+  box-shadow: var(--_tooltip_shadow);
+  font-size: var(--tooltip-hint-font-size, 0.75rem);
+  font-weight: var(--tooltip-hint-font-weight, 400);
+  line-height: var(--tooltip-hint-line-height, 1.5);
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--_tooltip_transition_d) var(--_tooltip_transition_tf),
+    visibility var(--_tooltip_transition_d) var(--_tooltip_transition_tf);
+
+  /* Default: top placement */
+  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Arrow */
+.c--tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Arrow: top (bubble above trigger) */
+.c--tooltip__bubble {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* Default: top position → arrow points down */
+    bottom: calc(-1 * var(--_tooltip_arrow_size));
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: var(--_tooltip_arrow_size) var(--_tooltip_arrow_size) 0;
+    border-color: var(--_tooltip_bg) transparent transparent;
+  }
+}
+
+/* Open state — toggled by JS */
+.c--tooltip.is-open .c--tooltip__bubble {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Position: bottom */
+.c--tooltip.has-position_bottom .c--tooltip__bubble {
+  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: auto;
+
+  &::after {
+    bottom: auto;
+    top: calc(-1 * var(--_tooltip_arrow_size));
+    border-width: 0 var(--_tooltip_arrow_size) var(--_tooltip_arrow_size);
+    border-color: transparent transparent var(--_tooltip_bg);
+  }
+}
+
+/* Position: left */
+.c--tooltip.has-position_left .c--tooltip__bubble {
+  right: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  left: auto;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &::after {
+    top: 50%;
+    left: auto;
+    right: calc(-1 * var(--_tooltip_arrow_size));
+    transform: translateY(-50%);
+    border-width: var(--_tooltip_arrow_size) 0 var(--_tooltip_arrow_size) var(--_tooltip_arrow_size);
+    border-color: transparent transparent transparent var(--_tooltip_bg);
+  }
+}
+
+/* Position: right */
+.c--tooltip.has-position_right .c--tooltip__bubble {
+  left: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  right: auto;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &::after {
+    top: 50%;
+    left: calc(-1 * var(--_tooltip_arrow_size));
+    right: auto;
+    transform: translateY(-50%);
+    border-width: var(--_tooltip_arrow_size) var(--_tooltip_arrow_size) var(--_tooltip_arrow_size) 0;
+    border-color: transparent var(--_tooltip_bg) transparent transparent;
+  }
+}
+
+/* Position: top-left */
+.c--tooltip.has-position_top-left .c--tooltip__bubble {
+  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  left: 0;
+  transform: none;
+
+  &::after {
+    left: var(--_tooltip_arrow_size);
+    transform: none;
+  }
+}
+
+/* Position: top-right */
+.c--tooltip.has-position_top-right .c--tooltip__bubble {
+  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  left: auto;
+  right: 0;
+  transform: none;
+
+  &::after {
+    left: auto;
+    right: var(--_tooltip_arrow_size);
+    transform: none;
+  }
+}
+
+/* Position: bottom-left */
+.c--tooltip.has-position_bottom-left .c--tooltip__bubble {
+  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: auto;
+  left: 0;
+  transform: none;
+
+  &::after {
+    bottom: auto;
+    top: calc(-1 * var(--_tooltip_arrow_size));
+    left: var(--_tooltip_arrow_size);
+    transform: none;
+    border-width: 0 var(--_tooltip_arrow_size) var(--_tooltip_arrow_size);
+    border-color: transparent transparent var(--_tooltip_bg);
+  }
+}
+
+/* Position: bottom-right */
+.c--tooltip.has-position_bottom-right .c--tooltip__bubble {
+  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: auto;
+  left: auto;
+  right: 0;
+  transform: none;
+
+  &::after {
+    bottom: auto;
+    top: calc(-1 * var(--_tooltip_arrow_size));
+    left: auto;
+    right: var(--_tooltip_arrow_size);
+    transform: none;
+    border-width: 0 var(--_tooltip_arrow_size) var(--_tooltip_arrow_size);
+    border-color: transparent transparent var(--_tooltip_bg);
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .c--tooltip__bubble {
+    transition: none;
+  }
+}

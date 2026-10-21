@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Node — page content type, full view mode.
+ */
+#}
+{% set attributes = attributes.addClass('w-content', 'w-content_all_full') %}
+
+{% extends 'node.html.twig' %}
+
+{% block node_content %}
+  {{ content.body }}
+
+  {{ content|without('body') }}
+{% endblock %}

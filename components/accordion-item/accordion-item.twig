@@ -1,0 +1,54 @@
+{#-
+/**
+ * @file
+ * Accordion Item component.
+ *
+ * Available properties:
+ * - item_title (string)
+ * - item_content (string) — pre-rendered body
+ * - item_open (boolean) (default: false)
+ * - item_uc (array) (default: [])
+ * - item_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{% set item_att = item_att ?: create_attribute() %}
+{%
+  set item_classes = [
+    'accordion-item',
+  ]|merge(item_uc ?: [])
+%}
+
+{%- if item_open -%}
+  {% set item_att = item_att.setAttribute('open', true) %}
+{%- endif -%}
+
+<details{{ item_att.addClass(item_classes) }}{%- if item_name -%} name="{{ item_name }}"{%- endif -%}>
+  <summary>
+    {%- if item_icon.0 -%}
+      <span class="accordion-item__icon">
+        {{- item_icon -}}
+      </span>
+    {%- endif -%}
+
+    <span class="accordion-item__body">
+      <h3 class="accordion-item__title">
+        {{- item_title -}}
+      </h3>
+
+      {%- if item_description.0 -%}
+        <span class="accordion-item__description">
+          {{- item_description -}}
+        </span>
+      {%- endif -%}
+    </span>
+
+    {% include 'mud_egov:plus-minus' -%}
+  </summary>
+
+  {%- if item_content -%}
+    <div class="accordion-content">
+      {{- item_content -}}
+    </div>
+  {%- endif -%}
+</details>

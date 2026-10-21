@@ -1,0 +1,77 @@
+{#-
+/**
+  * @file
+  * Layout Full node component.
+  *
+  * Available values:
+  * - layoutFn_tag (string) (div | section | article) (default: 'div')
+
+  * Available Utility classes -> uc
+  * - layoutFn_uc (array) (default: [])
+  * - layoutFn_banner_uc (array) (default: [])
+  * - layoutFn_content_uc (array) (default: [])
+  * - layoutFn_sidebar_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - layoutFn_att (Drupal\Core\Template\Attribute)
+  * - layoutFn_banner_att (Drupal\Core\Template\Attribute)
+  * - layoutFn_content_att (Drupal\Core\Template\Attribute)
+  * - layoutFn_sidebar_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_banner: Node banner area (e.g. title, featured image).
+  * - slot_content: Main node content area.
+  * - slot_sidebar: Node sidebar area (e.g. tags, author info).
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set layoutFn_tag = layoutFn_tag|default('div') %}
+
+{#- Create attributes -#}
+{% set layoutFn_att = layoutFn_att ?: create_attribute() %}
+{% set layoutFn_banner_att = layoutFn_banner_att ?: create_attribute() %}
+{% set layoutFn_content_att = layoutFn_content_att ?: create_attribute() %}
+{% set layoutFn_sidebar_att = layoutFn_sidebar_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set layoutFn_classes = [
+  'c--layoutFn',
+]|merge(layoutFn_uc ?: []) %}
+
+{% set layoutFn_banner_classes = [
+  'layoutFn-banner',
+]|merge(layoutFn_banner_uc ?: []) %}
+
+{% set layoutFn_content_classes = [
+  'layoutFn-main',
+]|merge(layoutFn_content_uc ?: []) %}
+
+{% set layoutFn_sidebar_classes = [
+  'layoutFn-sidebar',
+]|merge(layoutFn_sidebar_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<{{ layoutFn_tag }}{{ layoutFn_att.addClass(layoutFn_classes) }}>
+  {%- if block('slot_banner') -%}
+    <div{{ layoutFn_banner_att.addClass(layoutFn_banner_classes) }}>
+      {% block slot_banner %}{% endblock %}
+    </div>
+  {%- endif -%}
+
+  <div class="layoutFn-content">
+    {%- if block('slot_sidebar') -%}
+      <div{{ layoutFn_sidebar_att.addClass(layoutFn_sidebar_classes) }}>
+        {% block slot_sidebar %}{% endblock %}
+      </div>
+    {%- endif -%}
+
+    <div{{ layoutFn_content_att.addClass(layoutFn_content_classes) }}>
+      {% block slot_content -%}{% endblock %}
+    </div>
+  </div>
+</{{ layoutFn_tag }}>

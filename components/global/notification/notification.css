@@ -1,0 +1,178 @@
+.notification {
+  --notification_bg: initial;
+  --notification_c: initial;
+  --notification_b-r: initial;
+  --notification_w: initial;
+  --notification_p-t: initial;
+  --notification_p-b: initial;
+  --notification_p-i: initial;
+  --notification_gap: initial;
+  --notification_icon-s: initial;
+  --notification_title-f-s: initial;
+  --notification_title-f-w: initial;
+  --notification_body-f-s: initial;
+  --notification_close-s: initial;
+
+  /* Internal resolved properties */
+  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
+  --_notification_b-r: var(--notification_b-r, var(--notification-container-border-radius, 8px));
+  --_notification_w: var(--notification_w, var(--notification-container-width));
+  --_notification_p-t: var(--notification_p-t, var(--notification-container-padding-top, 12px));
+  --_notification_p-b: var(--notification_p-b, var(--notification-container-padding-bottom, 16px));
+  --_notification_p-i: var(--notification_p-i, var(--notification-container-padding-inline, 12px));
+  --_notification_gap: var(--notification_gap, var(--notification-container-gap, 16px));
+  --_notification_icon-s: var(--notification_icon-s, var(--notification-icon-size, 24px));
+  --_notification_title-f-s: var(--notification_title-f-s, var(--notification-title-font-size, 18px));
+  --_notification_title-f-w: var(--notification_title-f-w, var(--notification-title-font-weight, 600));
+  --_notification_body-f-s: var(--notification_body-f-s, var(--notification-body-font-size, 14px));
+  --_notification_close-s: var(--notification_close-s, var(--notification-close-icon-size, 16px));
+
+  display: flex;
+  align-items: flex-start;
+  gap: var(--_notification_gap);
+  width: var(--_notification_w);
+  max-width: 100%;
+  background-color: var(--_notification_bg);
+  color: var(--_notification_c);
+  border-radius: var(--_notification_b-r);
+  padding-top: var(--_notification_p-t);
+  padding-bottom: var(--_notification_p-b);
+  padding-inline: var(--_notification_p-i);
+  box-sizing: border-box;
+  font-size: var(--_notification_body-f-s);
+}
+
+.notification-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--_notification_icon-s);
+  height: var(--_notification_icon-s);
+  padding: var(--notification-icon-padding, 2px);
+  box-sizing: border-box;
+  color: inherit;
+}
+
+.notification-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.notification-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--notification-container-heading-gap, 6px);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.notification-title {
+  margin: 0;
+  font-size: var(--_notification_title-f-s);
+  font-weight: var(--_notification_title-f-w);
+  line-height: var(--notification-title-line-height, 26px);
+  letter-spacing: var(--notification-title-letter-spacing, -0.18px);
+  color: inherit;
+}
+
+.notification-message {
+  color: inherit;
+  line-height: var(--notification-body-line-height, 20px);
+}
+
+.notification-body a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.notification-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   Variants
+   ============================================================ */
+
+.notification-info {
+  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
+}
+
+.notification-success {
+  --_notification_bg: var(--notification_bg, var(--notification-success-background, var(--color-background-success-default, #12b76a)));
+  --_notification_c: var(--notification_c, var(--notification-success-text, #fff));
+}
+
+.notification-warning {
+  --_notification_bg: var(--notification_bg, var(--notification-warning-background, var(--color-background-warning-default, #fdb022)));
+  --_notification_c: var(--notification_c, var(--notification-warning-text, #1a1a1a));
+}
+
+.notification-error {
+  --_notification_bg: var(--notification_bg, var(--notification-error-background, var(--color-background-danger-default, #f04438)));
+  --_notification_c: var(--notification_c, var(--notification-error-text, #fff));
+}
+
+/* ============================================================
+   Emphasis — subtle (tinted surface for inline messenger)
+   ============================================================ */
+
+.notification-emphasis-subtle {
+  &.notification-info {
+    --_notification_bg: color-mix(in srgb, var(--color-background-info-default, #0ba5ec) 10%, transparent);
+    --_notification_c: var(--color-text-info, #0058d2);
+  }
+
+  &.notification-success {
+    --_notification_bg: color-mix(in srgb, var(--color-background-success-default, #12b76a) 10%, transparent);
+    --_notification_c: var(--color-text-success, #027a48);
+  }
+
+  &.notification-warning {
+    --_notification_bg: color-mix(in srgb, var(--color-background-warning-default, #fdb022) 15%, transparent);
+    --_notification_c: var(--color-text-warning, #b54708);
+  }
+
+  &.notification-error {
+    --_notification_bg: color-mix(in srgb, var(--color-background-danger-default, #f04438) 10%, transparent);
+    --_notification_c: var(--color-text-danger, #b42318);
+  }
+}
+
+/* ============================================================
+   Multi-message list (Drupal messenger groups)
+   ============================================================ */
+
+.notification-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: inherit;
+}
+
+.notification-list-item {
+  color: inherit;
+  line-height: var(--notification-body-line-height, 20px);
+}
+
+.notification-list-item + .notification-list-item {
+  margin-top: 4px;
+}

@@ -1,0 +1,101 @@
+.c--card-document {
+  --_cd_bg: var(--card-document_bg, var(--color-background-base-primary, #fff));
+  --_cd_br: var(--card-document_br, 1rem);
+  --_cd_bc: var(--card-document_bc, var(--color-border-base-default, #e5e7eb));
+  --_cd_bc_h: var(--card-document_bc_h, var(--color-border-base-strong, #121212));
+  --_cd_p: var(--card-document_p, 1.5rem);
+  --_cd_gap: var(--card-document_gap, 0.75rem);
+  --_cd_c: var(--card-document_c, var(--color-text-base-default, #121212));
+  --_cd_c_meta: var(--card-document_c_meta, var(--color-text-base-muted, #6b7280));
+  --_cd_icon-size: var(--card-document_icon-size, 2.75rem);
+  --_cd_icon-bg: var(--card-document_icon-bg, var(--color-background-base-secondary, #f3f4f6));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--_cd_gap);
+  padding: var(--_cd_p);
+  background-color: var(--_cd_bg);
+  border: 1px solid var(--_cd_bc);
+  border-radius: var(--_cd_br);
+  color: var(--_cd_c);
+  transition: border-color 0.2s ease;
+
+  .card-document-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--_cd_icon-size);
+    height: var(--_cd_icon-size);
+    margin-block-end: 0.5rem;
+    background-color: var(--_cd_icon-bg);
+    border-radius: 50%;
+    color: var(--_cd_c);
+  }
+
+  .card-document-title {
+    margin: 0;
+    font-weight: var(--font-weight-semibold, 600);
+    font-size: var(--font-size-20, 1.25rem);
+    line-height: 1.3;
+  }
+
+  .card-document-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card-document-meta {
+    margin: 0;
+    color: var(--_cd_c_meta);
+    font-size: var(--font-size-14, 0.875rem);
+  }
+
+  .card-document-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card-document-item-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.5rem 0;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--_cd_bc_h);
+    }
+  }
+
+  .card-document-item-title {
+    font-size: var(--font-size-16, 1rem);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .card-document-item-meta {
+    color: var(--_cd_c_meta);
+    font-size: var(--font-size-14, 0.875rem);
+  }
+
+  &.c--card-document__is-link {
+    .card-document-link::after {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      content: "";
+    }
+
+    &:hover,
+    &:focus-within {
+      border-color: var(--_cd_bc_h);
+    }
+  }
+}

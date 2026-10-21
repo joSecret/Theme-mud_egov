@@ -1,0 +1,77 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Icon
+status: stable
+group: Globals
+version: 1.0.0
+description: Inline SVG icon from the MUD icon set, identified by name with optional size and color.
+
+# Props.
+props:
+  type: object
+  required:
+    - icon_name
+
+  properties:
+    # fields values
+    icon_name:
+      type: string
+      title: Name
+      description: Icon identifier (kebab-case). Suffix `-filled` selects the filled variant.
+      default: 'check'
+
+    icon_color:
+      type: ['string', 'null']
+      title: Color
+      description: CSS color value or token. Defaults to currentColor (inherits text color).
+      default: null
+
+    icon_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible label. When provided the icon is announced; when omitted it is decorative (aria-hidden).
+      default: null
+
+    # component variations
+    icon_size:
+      type: ['string', 'null']
+      title: Size
+      description: Pixel size aligned with Figma Foundations.
+      default: null
+      enum:
+        - null
+        - '12'
+        - '16'
+        - '20'
+        - '24'
+
+    icon_interactive:
+      type: boolean
+      title: Interactive
+      description: Enables cursor, hover and focus-ring treatment.
+      default: false
+
+    icon_disabled:
+      type: boolean
+      title: Disabled
+      description: Visually disables the icon.
+      default: false
+
+    # uc -> utility_classes
+    icon_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    icon_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_svg:
+    title: SVG
+    description: Raw inline SVG markup. Use when you want to inject a custom SVG instead of relying on the icon_name prop.

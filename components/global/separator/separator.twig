@@ -1,0 +1,79 @@
+{#-
+/**
+ * @file
+ * Template for a separator component.
+ *
+ * Props:
+ * - separator_orientation: (string | null) default: (null)
+ *    enum: null | horizontal | vertical
+ * - separator_size: (string | null) default: (null)
+ *    enum: null | extra-thin | thin | medium | thick
+ * - separator_variant: (string | null) default: (null)
+ *    enum: null | subtle | mild | strong
+ * - separator_inset: (boolean) default: (false)
+ * - separator_label: (string | null) default: (null)
+ * - separator_aria_label: (string | null) default: (null)
+ *
+ * Utility classes: separator_uc
+ * Attributes: separator_att
+ *
+ * Slots:
+ * - slot_label: Rich label content (icon + text). Overrides separator_label prop.
+ */
+-#}
+
+{#- Defaults -#}
+{% set separator_orientation = separator_orientation|default(null) %}
+{% set separator_size = separator_size|default(null) %}
+{% set separator_variant = separator_variant|default(null) %}
+{% set separator_inset = separator_inset|default(false) %}
+{% set separator_label = separator_label|default(null) %}
+{% set separator_aria_label = separator_aria_label|default(null) %}
+
+{#- Determine if a label is present -#}
+{% set has_label = slot_label is not empty or separator_label %}
+
+{#- Create attributes -#}
+{% set separator_att = separator_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set separator_classes = [
+    'separator',
+    separator_orientation ? 'separator-' ~ separator_orientation,
+    separator_size ? 'separator-' ~ separator_size,
+    separator_variant ? 'separator-' ~ separator_variant,
+    separator_inset ? 'separator-inset',
+    has_label ? 'separator-has-label',
+  ]|merge(separator_uc ?: [])
+%}
+
+{#- ARIA -#}
+{% set separator_att = separator_att.setAttribute('role', 'separator') %}
+
+{%- if separator_orientation == 'vertical' -%}
+  {% set separator_att = separator_att.setAttribute('aria-orientation', 'vertical') %}
+{%- endif -%}
+
+{%- if separator_aria_label -%}
+  {% set separator_att = separator_att.setAttribute('aria-label', separator_aria_label) %}
+{%- endif -%}
+
+{#- Render -#}
+<div{{ separator_att.addClass(separator_classes) }}>
+  {%- if has_label -%}
+    <div class="separator__layout">
+      <span class="separator__line separator__line-start" aria-hidden="true"></span>
+      <span class="separator__label">
+        {%- if slot_label is not empty -%}
+          {{- slot_label -}}
+        {%- else -%}
+          {{- separator_label -}}
+        {%- endif -%}
+      </span>
+      <span class="separator__line separator__line-end" aria-hidden="true"></span>
+    </div>
+  {%- else -%}
+    <span class="separator__line" aria-hidden="true"></span>
+  {%- endif -%}
+</div>

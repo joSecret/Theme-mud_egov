@@ -1,0 +1,50 @@
+.c--sms {
+  --_sms_p-b: var(--sms_p-b, 32px);
+  --_sms_p-i: var(--sms_p-i, 0px);
+  --_sms_w_c-gap: var(--sms_w_c-gap, clamp(24px, 4vw, 74px));
+
+  container-type: inline-size;
+  padding-block: var(--_sms_p-b);
+  padding-inline: var(--_sms_p-i);
+}
+
+.c--sms_w {
+  display: grid;
+  grid-template-columns: var(--_sms_w_g-t-c, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: var(--_sms_w_c-gap);
+  row-gap: var(--_sms_w_r-gap, 20px);
+
+  @container (width <= 720px) {
+  }
+
+  @container (720px < width) {
+    --_sms_w_g-t-c: 1fr 348px;
+
+    --_sms_s-left_d: block;
+
+    &:has(.c--sms_sidebar_left:not(:empty)) {
+      --_sms_w_g-t-c: 352px 1fr;
+    }
+  }
+}
+
+.c--sms_sidebar {
+  &:empty {
+    display: none;
+  }
+}
+
+.c--sms_sidebar_left {
+  display: var(--_sms_s-left_d, none);
+  border: 1px solid var(--color-border-base-default);
+  border-radius: var(--border-radius-16);
+  align-self: flex-start;
+  position: sticky;
+  inset-block-start: calc(var(--navbar_desktop_heigh) + var(--_sms_p-b));
+  overflow: hidden;
+}
+
+.block-page-title-block h1 {
+  margin-block-end: 24px;
+}

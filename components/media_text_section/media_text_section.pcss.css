@@ -1,0 +1,60 @@
+.c--mediaText {
+  --_mediaText_wrap_gap: var(--mediaText_wrap_gap, 30px);
+  --_mediaText_wrap_text_w: var(--mediaText_wrap_text_w, 320px);
+
+  --_mediaText_title_c: var(--mediaText_title_c, var(--c_primary_700));
+  --_mediaText_title_m-b: var(--mediaText_title_m-b, 40px);
+
+  --_mediaText_media_a-r: var(--mediaText_media_a-r, 16 / 9);
+
+  --_mediaText_text_top-offset: var(--mediaText_text_top-offset, 20px);
+  --_mediaText_text_bg: var(--mediaText_text_bg, var(--c_gray_50));
+  --_mediaText_text_p: var(--mediaText_text_p, 24px);
+  --_mediaText_text_fz: var(--mediaText_text_fz, 14px);
+
+  container-type: inline-size;
+
+  .mediaText_title {
+    color: var(--_mediaText_title_c);
+    margin-block-end: var(--_mediaText_title_m-b);
+  }
+
+  .wrap {
+    display: grid;
+    grid-template-columns: var(--_mediaText_wrap_g-t-c, 1fr);
+    gap: var(--_mediaText_wrap_gap);
+
+    @container (width < 740px) {
+      --_mediaText_wrap_g-t-c: 1fr;
+    }
+  }
+
+  .mediaText_media {
+    iframe,
+    video {
+      aspect-ratio: var(--_mediaText_media_a-r);
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .mediaText_text {
+    align-self: flex-start;
+    position: sticky;
+    top: calc(var(--_mediaText_text_top-offset) + var(--drupal-displace-offset-top, 0));
+    background: var(--_mediaText_text_bg);
+    padding: var(--_mediaText_text_p);
+    font-size: var(--_mediaText_text_fz);
+    transition: top 0.3s ease;
+  }
+
+  &:has(.mediaText_text) {
+    --_mediaText_wrap_g-t-c: 1fr var(--_mediaText_wrap_text_w);
+  }
+}
+
+body:has(.navbar-fixed) {
+  .mediaText_text {
+    top: calc(124px + var(--_mediaText_text_top-offset) + var(--drupal-displace-offset-top, 0));
+  }
+}

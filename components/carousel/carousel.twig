@@ -1,0 +1,106 @@
+{#-
+/**
+ * @file
+ * Carousel component — scroll-snap navigation (CSS) + autoplay (minimal JS).
+ *
+ * Available props:
+ * - carousel_id (string|int|null) Unique ID prefix for slide anchors.
+ * - carousel_slides (array) Array of rendered slide markup (from carousel-slide SDC).
+ * - carousel_autoplay (boolean) default: false
+ * - carousel_interval (integer) ms between slides, default: 5000
+ * - carousel_arrows (boolean) default: true
+ * - carousel_dots (boolean) default: true
+ *
+ * Available utility classes -> uc
+ * - carousel_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - carousel_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Defaults -#}
+{% set carousel_slides = carousel_slides|default([]) %}
+{% set carousel_id = 'cs-' ~ (carousel_id|default(random(9999))) %}
+{% set carousel_autoplay = carousel_autoplay ?? false %}
+{% set carousel_interval = carousel_interval|default(5000) %}
+{% set carousel_arrows = carousel_arrows ?? true %}
+{% set carousel_dots = carousel_dots ?? true %}
+{% set total = carousel_slides|length %}
+
+{#- Attributes -#}
+{% set carousel_att = carousel_att ?: create_attribute() %}
+{% set carousel_att = carousel_att
+  .setAttribute('data-carousel', '')
+  .setAttribute('data-autoplay', carousel_autoplay ? 'true' : 'false')
+  .setAttribute('data-interval', carousel_interval)
+%}
+
+{#- Classes -#}
+{% set carousel_classes = [
+  'c--carousel',
+  'w-content_full'
+]|merge(carousel_uc ?: []) %}
+
+{%- if carousel_slides is not empty -%}
+  <div{{ carousel_att.addClass(carousel_classes) }}>
+
+    <div class="carousel-viewport">
+      {% for slide in carousel_slides %}
+        {% set slide_id = carousel_id ~ '-' ~ loop.index %}
+        {% set prev_id = carousel_id ~ '-' ~ (loop.first ? total : loop.index - 1) %}
+        {% set next_id = carousel_id ~ '-' ~ (loop.last ? 1 : loop.index + 1) %}
+
+        <div
+          id="{{ slide_id }}"
+          class="carousel-slide"
+        >
+          {{- slide -}}
+        </div>
+      {% endfor %}
+    </div>
+
+    {%- if carousel_arrows and total > 1 -%}
+      <div class="carousel-btns">
+        <button
+          class="carousel-btn carousel-btn--prev"
+          type="button"
+          aria-label="Slide anterior"
+        >
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <button
+          class="carousel-btn carousel-btn--next"
+          type="button"
+          aria-label="Slide următor"
+        >
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+
+    {%- if carousel_dots and total > 1 -%}
+      <div
+        class="carousel-dots"
+        aria-label="Navigare slide-uri"
+      >
+        {% for slide in carousel_slides %}
+          <a
+            href="#{{ carousel_id }}-{{ loop.index }}"
+            class="carousel-dot"
+          >
+            <span class="visually-hidden">
+              {{- 'Slide @index'|t({'@index': loop.index}) -}}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    {%- endif -%}
+
+  </div>
+{%- endif -%}

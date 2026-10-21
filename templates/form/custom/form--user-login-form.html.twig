@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * mud_egov theme implementation for a 'form' element.
+ */
+#}
+
+
+{{ attach_library('mud_egov/form_style') }}
+
+{% embed "mud_egov:form" with {
+  form_att: attributes,
+} %}
+  {% block slot_title %}
+    {{ drupal_block('page_title_block') }}
+  {% endblock %}
+
+  {% block slot_tabs %}
+    {{ drupal_block('local_tasks_block') }}
+  {% endblock %}
+
+  {% block slot_content %}
+    {{ children }}
+  {% endblock %}
+{% endembed %}

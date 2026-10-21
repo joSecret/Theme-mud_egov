@@ -1,0 +1,70 @@
+/**
+ * Icon component.
+ *
+ * External CSS API  (--icon_*): consumed by callers to customise this instance.
+ * Internal vars     (--_icon_*): private aliases used in property values.
+ */
+
+.icon {
+  /* External API */
+  --icon_size: var(--spacing-16, 16px);
+  --icon_color: currentColor;
+
+  /* Internal aliases */
+  --_icon_size: var(--icon_size);
+  --_icon_color: var(--icon_color);
+
+  display: inline-flex;
+  width: var(--_icon_size);
+  height: var(--_icon_size);
+  vertical-align: middle;
+  color: var(--_icon_color);
+  flex-shrink: 0;
+}
+
+.icon mud-icon {
+  display: contents;
+}
+
+/* === Size modifiers === */
+.icon-12 {
+  --icon_size: var(--spacing-12, 12px);
+}
+
+.icon-16 {
+  --icon_size: var(--spacing-16, 16px);
+}
+
+.icon-20 {
+  --icon_size: var(--spacing-20, 20px);
+}
+
+.icon-24 {
+  --icon_size: var(--spacing-24, 24px);
+}
+
+/* === Interactive === */
+.icon-interactive {
+  cursor: pointer;
+
+  &:hover {
+    --icon_color: var(--color-icon-brand-default, currentColor);
+  }
+
+  &:active {
+    --icon_color: var(--color-icon-brand-strong, currentColor);
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-2, 2px) solid var(--color-border-brand-default);
+    outline-offset: var(--spacing-2, 2px);
+    border-radius: 2px;
+  }
+}
+
+/* === Disabled === */
+.icon-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  --icon_color: var(--color-icon-base-disabled, #b2b2b2);
+}

@@ -1,0 +1,34 @@
+@import "vars-colors.css";
+
+:where(html) {
+  /* Font */
+  --font-family_base: "Onest";
+
+  --h_f-w: var(--font-weight-medium);
+  --h1_font-size: clamp(32px, calc(29.091px + 0.909vw), 40px);
+  --h2_font-size: var(--font-size-32);
+  --h3_font-size: var(--font-size-24);
+  --h4_font-size: var(--font-size-20);
+  --h5_font-size: var(--font-size-18);
+  --h6_font-size: var(--font-size-16);
+
+  --h1_margin-bottom: 0px;
+  --h2_margin-bottom: 0px;
+  --h3_margin-bottom: 0px;
+  --h4_margin-bottom: 0px;
+  --h5_margin-bottom: 16px;
+  --h6_margin-bottom: 0px;
+
+  --font-size_lg: var(--font-size_4);
+  --font-size: var(--font-size_3);
+  --font-size_sm: var(--font-size_2);
+
+  --display-font-size-display: var(--font-size_10);
+  --display-font-size_md: var(--font-size_9);
+
+  --caption-font-size: var(--font-size_2);
+  --caption-font-size_sm: var(--font-size_1);
+
+  --gutter: 16px;
+  --spacer: 1rem;
+}

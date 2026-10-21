@@ -1,0 +1,42 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Error
+status: stable
+version: 1.0.0
+group: Form
+description: 'A form field error message component for displaying validation errors.'
+
+# Props.
+props:
+  type: object
+  required:
+    - error_message
+
+  properties:
+    # fields values
+    error_message:
+      type: string
+      title: Error Message
+      description: The error message text to display.
+
+    error_id:
+      type: ['string', 'null']
+      title: Error ID
+      description: The id attribute for the error element.
+      default: null
+
+    # uc -> utility_classes
+    error_uc:
+      type: array
+      items:
+        type: string
+      title: Error Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    error_att:
+      type: Drupal\Core\Template\Attribute
+      title: Error Attributes
+      description: A list of HTML attributes for the error element.
+
+      default: null

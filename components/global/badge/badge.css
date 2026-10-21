@@ -1,0 +1,144 @@
+.badge {
+  /* Defaults — md size */
+  --_badge_d: var(--badge_d, inline-flex);
+  --_badge_a-i: var(--badge_a-i, center);
+  --_badge_j-c: var(--badge_j-c, center);
+  --_badge_h: var(--badge_h, var(--badge-size-md));
+  --_badge_m-w: var(--badge_m-w, var(--badge-min-width-md));
+  --_badge_p-i: var(--badge_p-i, var(--badge-padding-inline-md));
+  --_badge_b-r: var(--badge_b-r, var(--badge-border-radius));
+  --_badge_f-s: var(--badge_f-s, var(--badge-font-size-md));
+  --_badge_l-h: var(--badge_l-h, var(--badge-line-height-md));
+  --_badge_f-w: var(--badge_f-w, var(--badge-font-weight));
+  --_badge_f-f: var(--badge_f-f, var(--badge-font-family));
+  --_badge_w-s: var(--badge_w-s, nowrap);
+  --_badge_bg: var(--badge_bg, var(--badge-background-default));
+  --_badge_c: var(--badge_c, var(--badge-text-default));
+  /* dot pip size (only active for md/lg/xl dot) */
+  --_badge_dot-size: var(--badge_dot-size, var(--badge-dot-size-md));
+
+  display: var(--_badge_d);
+  align-items: var(--_badge_a-i);
+  justify-content: var(--_badge_j-c);
+  box-sizing: border-box;
+  block-size: var(--_badge_h);
+  min-inline-size: var(--_badge_m-w);
+  padding-inline: var(--_badge_p-i);
+  border-radius: var(--_badge_b-r);
+  background-color: var(--_badge_bg);
+  color: var(--_badge_c);
+  font-size: var(--_badge_f-s);
+  line-height: var(--_badge_l-h);
+  font-weight: var(--_badge_f-w);
+  font-family: var(--_badge_f-f);
+  white-space: var(--_badge_w-s);
+  text-align: center;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+/* === Inner count span === */
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* === Sizes === */
+.badge-xs {
+  --_badge_h: var(--badge_h_xs, var(--badge-size-xs));
+  --_badge_m-w: var(--badge_m-w_xs, var(--badge-min-width-xs));
+  --_badge_p-i: var(--badge_p-i_xs, var(--badge-padding-inline-xs));
+  --_badge_f-s: var(--badge_f-s_xs, var(--badge-font-size-xs));
+  --_badge_l-h: var(--badge_l-h_xs, var(--badge-line-height-xs));
+}
+
+.badge-sm {
+  --_badge_h: var(--badge_h_sm, var(--badge-size-sm));
+  --_badge_m-w: var(--badge_m-w_sm, var(--badge-min-width-sm));
+  --_badge_p-i: var(--badge_p-i_sm, var(--badge-padding-inline-sm));
+  --_badge_f-s: var(--badge_f-s_sm, var(--badge-font-size-sm));
+  --_badge_l-h: var(--badge_l-h_sm, var(--badge-line-height-sm));
+}
+
+.badge-lg {
+  --_badge_h: var(--badge_h_lg, var(--badge-size-lg));
+  --_badge_m-w: var(--badge_m-w_lg, var(--badge-min-width-lg));
+  --_badge_p-i: var(--badge_p-i_lg, var(--badge-padding-inline-lg));
+  --_badge_f-s: var(--badge_f-s_lg, var(--badge-font-size-lg));
+  --_badge_l-h: var(--badge_l-h_lg, var(--badge-line-height-lg));
+  --_badge_dot-size: var(--badge_dot-size_lg, var(--badge-dot-size-lg));
+}
+
+.badge-xl {
+  --_badge_h: var(--badge_h_xl, var(--badge-size-xl));
+  --_badge_m-w: var(--badge_m-w_xl, var(--badge-min-width-xl));
+  --_badge_p-i: var(--badge_p-i_xl, var(--badge-padding-inline-xl));
+  --_badge_f-s: var(--badge_f-s_xl, var(--badge-font-size-xl));
+  --_badge_l-h: var(--badge_l-h_xl, var(--badge-line-height-xl));
+  --_badge_dot-size: var(--badge_dot-size_xl, var(--badge-dot-size-xl));
+}
+
+/* === Colors === */
+.badge-brand {
+  --_badge_bg: var(--badge-brand_bg, var(--badge-background-brand));
+  --_badge_c: var(--badge-brand_c, var(--badge-text-brand));
+}
+
+.badge-positive {
+  --_badge_bg: var(--badge-positive_bg, var(--badge-background-positive));
+  --_badge_c: var(--badge-positive_c, var(--badge-text-positive));
+}
+
+.badge-warning {
+  --_badge_bg: var(--badge-warning_bg, var(--badge-background-warning));
+  --_badge_c: var(--badge-warning_c, var(--badge-text-warning));
+}
+
+.badge-danger {
+  --_badge_bg: var(--badge-danger_bg, var(--badge-background-danger));
+  --_badge_c: var(--badge-danger_c, var(--badge-text-danger));
+}
+
+/* === Dot === */
+/* xs always forces dot — square with zero padding */
+.badge-dot,
+.badge-xs {
+  padding-inline: 0;
+  min-inline-size: var(--_badge_h);
+  inline-size: var(--_badge_h);
+}
+
+.badge-dot {
+  --_badge_h: var(--badge_dot-h, var(--badge-dot-size-md));
+
+  &.badge-lg {
+    --_badge_h: var(--badge_dot-h_lg, var(--badge-dot-size-lg));
+  }
+
+  &.badge-xl {
+    --_badge_h: var(--badge_dot-h_xl, var(--badge-dot-size-xl));
+  }
+}
+
+/* Inner pip — rendered by twig for md/lg/xl dot (per Figma 551:18330) */
+.badge-dot__pip {
+  flex: 0 0 auto;
+  inline-size: var(--_badge_dot-size);
+  block-size: var(--_badge_dot-size);
+  border-radius: var(--badge-border-radius);
+  background: var(--_badge_c);
+}
+
+/* === Positioned === */
+.badge-positioned {
+  position: absolute;
+  top: var(--badge_offset-top, var(--badge-offset-top));
+  right: var(--badge_offset-right, var(--badge-offset-right));
+}

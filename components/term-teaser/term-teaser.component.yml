@@ -1,0 +1,53 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Term Teaser
+status: stable
+group: Content
+version: 1.0.0
+description: Simple taxonomy term teaser with image/svg on top and text below.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    term_title:
+      type: ['string', 'null']
+      title: Title
+      default: null
+      description: Term label displayed below the image.
+
+    term_url:
+      type: ['string', 'null']
+      title: URL
+      default: null
+      description: Wraps the teaser in a link when set.
+
+    # component variations
+    term_variant:
+      type: ['string', 'null']
+      title: Variant
+      default: icon
+      enum: [null, icon, cover]
+      description: 'Image sizing. "icon" = small square (64px). "cover" = wide responsive image.'
+
+    # uc -> utility_classes
+    term_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
+
+    # att -> attributes
+    term_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+# Slots.
+slots:
+  term_image:
+    title: Image
+    description: Rendered image or SVG field.

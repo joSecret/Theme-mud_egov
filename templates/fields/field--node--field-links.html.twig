@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * mud_egov override for link fields — renders via the field_link component.
+ *
+ * Detects external vs internal URLs from each item's #url object so the
+ * component can pick the right icon. Preserves item.content as-is so link
+ * markup rendered by Drupal's formatter (classes, attributes, title) is kept.
+ */
+#}
+
+{% set link_items = [] %}
+{% for item in items %}
+  {% set url = item.content['#url'] ?? null %}
+  {% set is_external = url ? url.isExternal() : false %}
+  {% set link_items = link_items|merge([{
+    content: item.content,
+    is_external: is_external,
+  }]) %}
+{% endfor %}
+
+{% set classes = [
+  field_name|clean_class,
+  'has-type_' ~ field_type|clean_class,
+  'has-label_' ~ label_display|clean_class,
+] %}
+
+{% include 'mud_egov:field_link' with {
+  fieldLink_items: link_items,
+  fieldLink_label: label,
+  fieldLink_label_hidden: label_hidden,
+  fieldLink_uc: classes,
+  fieldLink_att: attributes,
+} only %}

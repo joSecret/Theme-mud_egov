@@ -1,0 +1,101 @@
+{#-
+/**
+  * @file
+  * Block component.
+  *
+  * Available variations:
+  * - popover_id (string|null) (default: null)
+  *
+  * Available values:
+  * - popover_content (string|null) (default: content)
+  *
+  * Available Utility classes -> uc
+  * - popover_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - popover_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The content for the popover content
+  */
+-#}
+
+{#- Set default value -#}
+{% set popover_content = popover_content|default(null) %}
+{% set popover_mobile_panel = popover_mobile_panel|default(false) %}
+
+{#- Create attributes -#}
+{% set popover_att = popover_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set popover_classes = [
+  'c--popover',
+  popover_mobile_panel ? 'c--popover--mobile-panel',
+]|merge(popover_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set popover_att =
+       popover_att.setAttribute('popover', '')
+                  .setAttribute('id', popover_id)
+                  .setAttribute('style', 'position-anchor: --' ~ popover_id ~ ';')
+%}
+
+{#- Render component -#}
+<div{{ popover_att.addClass(popover_classes) }}>
+  {%- block slot_content -%}
+    {%- if popover_menu_items is not null and popover_menu_items is iterable -%}
+      <div class="c--menu__panel" role="menu" tabindex="-1">
+        {%- for item in popover_menu_items -%}
+          {%- if item.divider -%}
+            <div class="c--menu__divider" role="separator" aria-hidden="true"></div>
+          {%- else -%}
+            {%- set item_classes = ['c--menu__item', item.disabled ? 'is-disabled'] -%}
+            {%- if item.url and not item.disabled -%}
+              <a class="{{ item_classes|join(' ') }}" href="{{ item.url }}" role="menuitem"{%- if item.disabled -%} aria-disabled="true" tabindex="-1"{%- endif -%}{%- if item.active -%} aria-current="true"{%- endif -%}>
+                {%- if item.icon -%}
+                  <span class="c--menu__item-icon" aria-hidden="true">
+                    {{- item.icon|raw -}}
+                  </span>
+                {%- endif -%}
+
+                <span class="c--menu__item-label">
+                  {{- item.label -}}
+                </span>
+
+                {%- if item.active -%}
+                  <span class="menu_check_svg" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                  </span>
+                {%- endif -%}
+              </a>
+            {%- else -%}
+              <button class="{{ item_classes|join(' ') }}" type="button" role="menuitem"{%- if item.disabled -%} aria-disabled="true" disabled{%- endif -%}{%- if item.active -%} aria-current="true"{%- endif -%}>
+                {%- if item.icon -%}
+                  <span class="c--menu__item-icon" aria-hidden="true">
+                    {{- item.icon|raw -}}
+                  </span>
+                {%- endif -%}
+
+                <span class="c--menu__item-label">
+                  {{- item.label -}}
+                </span>
+
+                {%- if item.active -%}
+                  <span class="menu_check_svg" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="20" height="20">
+                      <path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                  </span>
+                {%- endif -%}
+              </button>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      {{- popover_content -}}
+    {%- endif -%}
+  {%- endblock -%}
+</div>

@@ -1,0 +1,142 @@
+/**
+ * Separator component.
+ *
+ * External CSS API  (--separator_*): consumed by callers to customise this instance.
+ * Internal vars     (--_separator_*): private aliases used in property values.
+ *
+ * Design tokens sourced from MUD: --separator-* (core.tokens.css).
+ */
+
+.separator {
+  /* External API */
+  --separator_color: var(--separator-color-subtle, #d9d9d9);
+  --separator_size: var(--separator-size-thin, 1px);
+  --separator_inset: 0px;
+
+  /* Internal aliases */
+  --_separator_color: var(--separator_color);
+  --_separator_size: var(--separator_size);
+  --_separator_inset: var(--separator_inset);
+
+  display: block;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: auto;
+  padding-block: var(--_separator_inset);
+  color: var(--separator-label-color, #757575);
+}
+
+/* === Variant modifiers === */
+.separator-subtle {
+  --separator_color: var(--separator-color-subtle, #d9d9d9);
+}
+
+.separator-mild {
+  --separator_color: var(--separator-color-mild, #b2b2b2);
+}
+
+.separator-strong {
+  --separator_color: var(--separator-color-strong, #444444);
+}
+
+/* === Size modifiers === */
+.separator-extra-thin {
+  --separator_size: var(--separator-size-extra-thin, 0.5px);
+}
+
+.separator-thin {
+  --separator_size: var(--separator-size-thin, 1px);
+}
+
+.separator-medium {
+  --separator_size: var(--separator-size-medium, 1.5px);
+}
+
+.separator-thick {
+  --separator_size: var(--separator-size-thick, 2px);
+}
+
+/* === Inset === */
+.separator-inset {
+  --separator_inset: var(--separator-inset-spacing, 8px);
+}
+
+/* === Orientation: vertical === */
+.separator-vertical {
+  display: inline-block;
+  inline-size: auto;
+  block-size: 100%;
+  padding-block: 0;
+  padding-inline: var(--_separator_inset);
+}
+
+/* === Line === */
+.separator__line {
+  display: block;
+  background-color: var(--_separator_color);
+  border: 0;
+}
+
+/* Horizontal line */
+.separator:not(.separator-vertical) > .separator__line {
+  inline-size: 100%;
+  block-size: var(--_separator_size);
+}
+
+/* Vertical line */
+.separator-vertical > .separator__line {
+  inline-size: var(--_separator_size);
+  block-size: 100%;
+  min-block-size: 1em;
+}
+
+/* === Layout (with label) === */
+.separator__layout {
+  display: flex;
+  align-items: center;
+  gap: var(--separator-label-gap, 8px);
+  inline-size: 100%;
+}
+
+.separator-vertical .separator__layout {
+  flex-direction: column;
+  block-size: 100%;
+  inline-size: auto;
+}
+
+.separator__layout .separator__line {
+  flex: 1 1 auto;
+}
+
+/* Horizontal line inside layout */
+.separator:not(.separator-vertical) .separator__layout .separator__line {
+  block-size: var(--_separator_size);
+  inline-size: auto;
+}
+
+/* Vertical line inside layout */
+.separator-vertical .separator__layout .separator__line {
+  inline-size: var(--_separator_size);
+  block-size: auto;
+}
+
+/* === Label === */
+.separator__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--separator-label-gap, 8px);
+  flex: 0 0 auto;
+  padding-inline: var(--separator-label-padding-inline, 8px);
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: var(--separator-label-font-size, 14px);
+  font-weight: var(--separator-label-font-weight, 400);
+  line-height: var(--separator-label-line-height, 20px);
+  color: var(--separator-label-color, #757575);
+  white-space: nowrap;
+}
+
+.separator-vertical .separator__label {
+  padding-inline: 0;
+  padding-block: var(--separator-label-padding-inline, 8px);
+  writing-mode: vertical-rl;
+}

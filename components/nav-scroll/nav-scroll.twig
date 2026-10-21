@@ -1,0 +1,66 @@
+{#-
+/**
+  * @file
+  * Nav Scroll component.
+  *
+  * Available variations:
+  * - nav_scroll_navigation (boolean) (default: true)
+  *
+  * Available Utility classes -> uc
+  * - nav_scroll_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - nav_scroll_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The main navigation content
+  * - slot_btn_prev: Previous button (customizable)
+  * - slot_btn_next: Next button (customizable)
+  *
+  * usage example: @see README.md
+  *
+  */
+-#}
+
+{#- Set default value -#}
+{% set nav_scroll_navigation = nav_scroll_navigation is defined ? nav_scroll_navigation : true %}
+
+{#- Create attributes -#}
+{% set nav_scroll_att = nav_scroll_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set nav_scroll_classes = [
+  'c--navScroll',
+  nav_scroll_navigation ? '' : 'is-noButtons',
+]|merge(nav_scroll_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set nav_scroll_att = nav_scroll_att.setAttribute('', 'data-navScroll') %}
+
+{#- Render component -#}
+<div{{ nav_scroll_att.addClass(nav_scroll_classes) }} data-navScroll>
+  <div data-navScroll-track>
+    {% block slot_content %}
+    {% endblock %}
+  </div>
+
+  {%- if nav_scroll_navigation -%}
+    <div class='c--navScroll-buttons'>
+      {% block slot_btn_prev %}
+        <button type="button" data-navScroll-prev disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+          </svg>
+        </button>
+      {% endblock %}
+
+      {% block slot_btn_next %}
+        <button type="button" data-navScroll-next>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+          </svg>
+        </button>
+      {% endblock %}
+    </div>
+  {%- endif -%}
+</div>

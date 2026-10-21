@@ -1,0 +1,42 @@
+{#-
+/**
+  * @file
+  * Error component - renders form field error messages.
+  *
+  * Available values:
+  * - error_message (string) required
+  * - error_id (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - error_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - error_att (Drupal\Core\Template\Attribute)
+  */
+-#}
+
+{#- Set default values -#}
+{% set error_id = error_id|default(null) %}
+
+{#- Create attributes -#}
+{% set error_att = error_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set error_classes = [
+  'c--error',
+  'form-item--error-message',
+  'invalid-feedback',
+]|merge(error_uc ?: []) %}
+
+{#- Build attributes -#}
+{%- if error_id -%}
+  {% set error_att = error_att.setAttribute('id', error_id) %}
+{%- endif -%}
+
+{#- Add ARIA role for accessibility -#}
+{% set error_att = error_att.setAttribute('role', 'alert') -%}
+
+{#- Render component -#}
+<div{{ error_att.addClass(error_classes) }}>
+  {{- error_message -}}
+</div>

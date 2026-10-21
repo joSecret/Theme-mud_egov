@@ -1,0 +1,18 @@
+/**
+ * @file
+ * Form Element component styles.
+ */
+
+.c--formElement {
+  --_form-element_d: var(--form-element_d, block);
+  --_form-element_fl-w: var(--form-element_fl-w, wrap);
+  --_form-element_g: var(--form-element_g, var(--size_300));
+
+  display: var(--_form-element_d);
+  flex-wrap: var(--_form-element_fl-w);
+  gap: var(--_form-element_g);
+
+  .isLabel--before {
+    flex-direction: column;
+  }
+}

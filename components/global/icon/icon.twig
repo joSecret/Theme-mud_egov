@@ -1,0 +1,80 @@
+{#-
+/**
+ * @file
+ * Template for an icon component.
+ *
+ * Props:
+ * - icon_name: (string) default: ('check') — icon identifier (kebab-case); append `-filled` for filled variant
+ * - icon_size: (string | null) default: (null)
+ *    enum: null | '12' | '16' | '20' | '24'
+ * - icon_color: (string | null) default: (null) — CSS color value; null inherits currentColor
+ * - icon_interactive: (boolean) default: (false)
+ * - icon_disabled: (boolean) default: (false)
+ * - icon_aria_label: (string | null) default: (null)
+ *
+ * Utility classes: icon_uc
+ * Attributes: icon_att
+ *
+ * Slots:
+ * - slot_svg: Raw inline SVG markup (overrides icon_name lookup)
+ */
+-#}
+
+{#- Defaults -#}
+{% set icon_name = icon_name|default('check') %}
+{% set icon_size = icon_size|default(null) %}
+{% set icon_color = icon_color|default(null) %}
+{% set icon_interactive = icon_interactive|default(false) %}
+{% set icon_disabled = icon_disabled|default(false) %}
+{% set icon_aria_label = icon_aria_label|default(null) %}
+
+{#- Create attributes -#}
+{% set icon_att = icon_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set icon_classes = [
+    'icon',
+    icon_size ? 'icon-' ~ icon_size,
+    icon_interactive ? 'icon-interactive',
+    icon_disabled ? 'icon-disabled',
+  ]|merge(icon_uc ?: [])
+%}
+
+{#- Accessibility -#}
+{%- if icon_aria_label -%}
+  {% set icon_att = icon_att.setAttribute('aria-label', icon_aria_label) %}
+{%- else -%}
+  {% set icon_att = icon_att.setAttribute('aria-hidden', 'true') %}
+{%- endif -%}
+
+{#- Interactive -#}
+{%- if icon_interactive and not icon_disabled -%}
+  {% set icon_att = icon_att.setAttribute('role', 'button').setAttribute('tabindex', '0') %}
+{%- endif -%}
+
+{#- Disabled -#}
+{%- if icon_interactive and icon_disabled -%}
+  {% set icon_att = icon_att.setAttribute('aria-disabled', 'true') %}
+{%- endif -%}
+
+{#- Inline color style -#}
+{%- if icon_color -%}
+  {% set icon_att = icon_att.setAttribute('style', '--icon_color: ' ~ icon_color ~ ';') %}
+{%- endif -%}
+
+{#- Render -#}
+<span{{ icon_att.addClass(icon_classes) }}>
+  {%- if slot_svg is not empty -%}
+    {{- slot_svg -}}
+  {%- else -%}
+    <mud-icon
+      name="{{ icon_name }}"
+      {%- if icon_size -%} size="{{ icon_size }}"{%- endif -%}
+      {%- if icon_color -%} color="{{ icon_color }}"{%- endif -%}
+      {%- if icon_interactive -%} interactive{%- endif -%}
+      {%- if icon_disabled -%} disabled{%- endif -%}
+      {%- if icon_aria_label -%} aria-label="{{ icon_aria_label }}"{%- endif -%}
+    ></mud-icon>
+  {%- endif -%}
+</span>

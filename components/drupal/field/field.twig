@@ -1,0 +1,94 @@
+{#-
+/**
+  * @file
+  * Field component — mud_egov override for Drupal core field.html.twig.
+  *
+  * Available variations:
+  * - field_label_display (string) Default: 'above'.
+  *   Values: 'above' | 'inline' | 'visually_hidden' | 'hidden'.
+  * - field_label_hidden (boolean) Default: false.
+  * - field_multiple (boolean) Default: false.
+  *
+  * Available values:
+  * - field_label (string|object|null) (default: null)
+  * - field_items (array) (default: [])
+  *   Each item: { attributes: Attribute, content: string|object }
+  *
+  * Available Utility classes -> uc
+  * - field_uc (array) (default: [])
+  * - field_label_uc (array) (default: [])
+  * - field_items_uc (array) (default: [])
+  * - field_item_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - field_att (Drupal\Core\Template\Attribute)
+  * - field_title_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_label: Override slot for the field label content.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set field_label = field_label|default(null) %}
+{% set field_label_hidden = field_label_hidden|default(false) %}
+{% set field_label_display = field_label_display|default('above') %}
+{% set field_multiple = field_multiple|default(false) %}
+{% set field_default_wrap = field_default_wrap|default(false) %}
+{% set field_items = field_items|default([]) %}
+
+{#- Create attributes -#}
+{% set field_att = field_att ?: create_attribute() %}
+{% set field_title_att = field_title_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set field_classes = [
+  'field',
+]|merge(field_uc ?: []) %}
+
+{% set field_title_classes = [
+  'field-label',
+]|merge(field_label_uc ?: []) %}
+
+{% set field_items_classes = [
+  'field-items',
+]|merge(field_items_uc ?: []) %}
+
+{% set field_item_classes = [
+  'field-item',
+]|merge(field_item_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+{%- if field_default_wrap -%}
+  <div{{ field_att.addClass(field_classes) }}>
+    {%- block slot_label -%}
+      {%- if not field_label_hidden -%}
+        <div{{ field_title_att.addClass(field_title_classes) }}>
+          {{- field_label -}}
+        </div>
+      {%- endif -%}
+    {%- endblock -%}
+
+    {%- for item in field_items -%}
+      {%- set item_att = item.attributes ?: create_attribute() -%}
+
+      {%- if field_multiple -%}
+        <div class={{ field_items_classes|join(' ') }}>
+      {%- endif -%}
+        <div{{ item_att.addClass(field_item_classes) }}>
+          {{- item.content -}}
+        </div>
+      {%- if field_multiple -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- else -%}
+  {%- for item in field_items -%}
+    {{- item.content -}}
+  {%- endfor -%}
+{%- endif -%}

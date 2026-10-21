@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a set of links.
+ */
+#}
+
+{% if links -%}
+  {%- if heading -%}
+    {%- if heading.level -%}
+      <{{ heading.level }}{{ heading.attributes }}>
+        {{- heading.text -}}
+      </{{ heading.level }}>
+    {%- else -%}
+      <h2{{ heading.attributes }}>
+        {{ heading.text }}
+      </h2>
+    {%- endif -%}
+  {%- endif -%}
+
+  {% include 'mud_egov:links-list' with {
+    links_links: links,
+    links_att: attributes,
+  } %}
+{%- endif %}

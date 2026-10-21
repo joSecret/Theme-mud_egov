@@ -1,0 +1,158 @@
+.tag {
+  /* Defaults */
+  --_tag_d: var(--tag_d, inline-flex);
+  --_tag_a-i: var(--tag_a-i, center);
+  --_tag_h: var(--tag_h, var(--tag-container-height-md));
+  --_tag_m-w: var(--tag_m-w, var(--tag-container-min-width-md));
+  --_tag_p-i: var(--tag_p-i, var(--tag-container-padding-inline-md));
+  --_tag_gap: var(--tag_gap, var(--tag-container-gap-md));
+  --_tag_b-r: var(--tag_b-r, var(--tag-container-border-radius));
+  --_tag_b-w: var(--tag_b-w, var(--tag-container-border-width));
+  --_tag_b-s: var(--tag_b-s, solid);
+  --_tag_f-s: var(--tag_f-s, var(--tag-label-font-size-md));
+  --_tag_l-h: var(--tag_l-h, var(--tag-label-line-height-md));
+  --_tag_f-f: var(--tag_f-f, var(--tag-label-font-family));
+  --_tag_f-w: var(--tag_f-w, var(--tag-label-font-weight-info));
+  --_tag_w-s: var(--tag_w-s, nowrap);
+  --_tag_icon-s: var(--tag_icon-s, var(--tag-icon-size-md));
+
+  /* Colors — defaults to subtle-muted, overridden by type + color classes */
+  --_tag_bg: var(--tag_bg, var(--tag-subtle-background-muted));
+  --_tag_c: var(--tag_c, var(--tag-subtle-label-muted));
+  --_tag_b-c: var(--tag_b-c, transparent);
+
+  /* === Styles === */
+  display: var(--_tag_d);
+  align-items: var(--_tag_a-i);
+  height: var(--_tag_h);
+  min-width: var(--_tag_m-w);
+  padding-inline: var(--_tag_p-i);
+  gap: var(--_tag_gap);
+  border-radius: var(--_tag_b-r);
+  border: var(--_tag_b-w) var(--_tag_b-s) var(--_tag_b-c);
+  background-color: var(--_tag_bg);
+  color: var(--_tag_c);
+  font-size: var(--_tag_f-s);
+  line-height: var(--_tag_l-h);
+  font-family: var(--_tag_f-f);
+  font-weight: var(--_tag_f-w);
+  white-space: var(--_tag_w-s);
+
+  &[href] {
+    --link_d: none;
+    --link_c: var(--_tag_c);
+    --link_c_h: var(--_tag_c);
+  }
+}
+
+/* === Size === */
+.tag-sm {
+  --_tag_h: var(--tag_h_sm, var(--tag-container-height-sm));
+  --_tag_m-w: var(--tag_m-w_sm, var(--tag-container-min-width-sm));
+  --_tag_p-i: var(--tag_p-i_sm, var(--tag-container-padding-inline-sm));
+  --_tag_f-s: var(--tag_f-s_sm, var(--tag-label-font-size-sm));
+  --_tag_l-h: var(--tag_l-h_sm, var(--tag-label-line-height-sm));
+  --_tag_icon-s: var(--tag_icon-s_sm, var(--tag-icon-size-sm));
+}
+
+/* === Color variants — set subgroup vars read by type classes === */
+.tag-muted {
+  --tag-color_subtle-bg: var(--tag-subtle-background-muted);
+  --tag-color_subtle-c: var(--tag-subtle-label-muted);
+  --tag-color_strong-bg: var(--tag-strong-background-muted);
+  --tag-color_strong-c: var(--tag-strong-label-muted);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-muted);
+  --tag-color_outlined-c: var(--tag-outlined-label-muted);
+}
+
+.tag-neutral {
+  --tag-color_subtle-bg: var(--tag-subtle-background-neutral);
+  --tag-color_subtle-c: var(--tag-subtle-label-neutral);
+  --tag-color_strong-bg: var(--tag-strong-background-neutral);
+  --tag-color_strong-c: var(--tag-strong-label-neutral);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-neutral);
+  --tag-color_outlined-c: var(--tag-outlined-label-neutral);
+}
+
+.tag-accent {
+  --tag-color_subtle-bg: var(--tag-subtle-background-accent);
+  --tag-color_subtle-c: var(--tag-subtle-label-accent);
+  --tag-color_strong-bg: var(--tag-strong-background-accent);
+  --tag-color_strong-c: var(--tag-strong-label-accent);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-accent);
+  --tag-color_outlined-c: var(--tag-outlined-label-accent);
+}
+
+.tag-success {
+  --tag-color_subtle-bg: var(--tag-subtle-background-success);
+  --tag-color_subtle-c: var(--tag-subtle-label-success);
+  --tag-color_strong-bg: var(--tag-strong-background-success);
+  --tag-color_strong-c: var(--tag-strong-label-success);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-success);
+  --tag-color_outlined-c: var(--tag-outlined-label-success);
+}
+
+.tag-brand {
+  --tag-color_subtle-bg: var(--tag-subtle-background-brand);
+  --tag-color_subtle-c: var(--tag-subtle-label-brand);
+  --tag-color_strong-bg: var(--tag-strong-background-brand);
+  --tag-color_strong-c: var(--tag-strong-label-brand);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-brand);
+  --tag-color_outlined-c: var(--tag-outlined-label-brand);
+}
+
+.tag-danger {
+  --tag-color_subtle-bg: var(--tag-subtle-background-danger);
+  --tag-color_subtle-c: var(--tag-subtle-label-danger);
+  --tag-color_strong-bg: var(--tag-strong-background-danger);
+  --tag-color_strong-c: var(--tag-strong-label-danger);
+  --tag-color_outlined-b-c: var(--tag-outlined-border-danger);
+  --tag-color_outlined-c: var(--tag-outlined-label-danger);
+}
+
+/* === Appearance types — read color subgroup vars === */
+.tag-subtle {
+  --_tag_bg: var(--tag-color_subtle-bg, var(--tag-subtle-background-muted));
+  --_tag_c: var(--tag-color_subtle-c, var(--tag-subtle-label-muted));
+  --_tag_b-c: transparent;
+}
+
+.tag-strong {
+  --_tag_bg: var(--tag-color_strong-bg, var(--tag-strong-background-muted));
+  --_tag_c: var(--tag-color_strong-c, var(--tag-strong-label-muted));
+  --_tag_b-c: transparent;
+}
+
+.tag-outlined {
+  --_tag_bg: transparent;
+  --_tag_c: var(--tag-color_outlined-c, var(--tag-outlined-label-muted));
+  --_tag_b-c: var(--tag-color_outlined-b-c, var(--tag-outlined-border-muted));
+}
+
+/* === Icon === */
+[class*="tag-icon-"] {
+  --_tag_p-i: var(--tag_p-i-icon, var(--tag-container-padding-inline-icon-md));
+
+  &.tag-sm {
+    --_tag_p-i: var(--tag_p-i-icon_sm, var(--tag-container-padding-inline-icon-sm));
+  }
+}
+
+.tag__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--_tag_icon-s);
+  width: var(--_tag_icon-s);
+  height: var(--_tag_icon-s);
+}
+
+.tag-icon-right .tag__icon {
+  order: 2;
+}
+
+/* === Tag group === */
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tag_group-gap, var(--tag-container-group-gap));
+}

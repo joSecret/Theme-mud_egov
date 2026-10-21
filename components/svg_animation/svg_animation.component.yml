@@ -1,0 +1,39 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: SVG Animation
+status: stable
+
+version: 1.0.0
+group: Components
+description: 'A component for animated SVG elements.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    # fields values
+    # uc -> utility_classes
+    svg_animation_uc:
+      type: array
+      items:
+        type: string
+      title: SVG Animation Utility Classes
+      description: 'An array of utility classes. Use this to add extra or custom CSS classes.'
+      default: []
+
+    # att -> attributes
+    svg_animation_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: 'A list of HTML attributes for the SVG Animation.'
+
+      default: null
+# Slots.
+slots:
+  slot_icon:
+    title: First Icon
+    description: 'The first SVG icon to be animated.'
+
+  slot_icon_2:
+    title: Second Icon
+    description: 'The second SVG icon to be animated.'

@@ -1,0 +1,126 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Modal
+status: stable
+group: Globals
+version: 1.0.0
+description: Overlay dialog component using native <dialog> with backdrop, keyboard and focus trap support.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    modal_title:
+      type: ['string', 'null']
+      title: Title
+      description: Dialog title text rendered in the header.
+      default: null
+
+    modal_id:
+      type: ['string', 'null']
+      title: ID
+      description: Unique ID for the dialog element. Auto-generated when omitted.
+      default: null
+
+    modal_close_label:
+      type: string
+      title: Close label
+      description: Accessible label for the close button.
+      default: 'Închide'
+
+    modal_open:
+      type: boolean
+      title: Open
+      description: Server-side initial open state.
+      default: false
+
+    # component variations
+    modal_size:
+      type: ['string', 'null']
+      title: Size
+      description: Controls the dialog max-width.
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+        - lg
+        - xl
+        - fullscreen
+
+    modal_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: Header treatment style.
+      default: null
+      enum:
+        - null
+        - default
+        - with-image
+        - with-icon
+
+    modal_actions_layout:
+      type: ['string', 'null']
+      title: Actions layout
+      description: Footer button arrangement — inline (side-by-side) or stacked (full-width).
+      default: null
+      enum:
+        - null
+        - inline
+        - stacked
+
+    modal_closable:
+      type: boolean
+      title: Closable
+      description: When true renders a × close button in the header.
+      default: true
+
+    modal_close_on_backdrop:
+      type: boolean
+      title: Close on backdrop
+      description: Whether clicking the backdrop closes the dialog.
+      default: true
+
+    modal_close_on_escape:
+      type: boolean
+      title: Close on Escape
+      description: Whether pressing Escape closes the dialog.
+      default: true
+
+    modal_destructive:
+      type: boolean
+      title: Destructive
+      description: Adds a danger accent — use for irreversible actions.
+      default: false
+
+    # uc -> utility_classes
+    modal_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    modal_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_trigger:
+    title: Trigger
+    description: Element that opens the modal (button, link, etc.).
+
+  slot_header:
+    title: Header
+    description: Custom header content. Overrides modal_title when set.
+
+  slot_content:
+    title: Content
+    description: Main dialog body content.
+
+  slot_footer:
+    title: Footer
+    description: Footer action buttons.

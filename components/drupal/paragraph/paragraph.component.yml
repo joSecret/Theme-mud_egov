@@ -1,0 +1,52 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Paragraph
+status: stable
+group: Paragraphs
+version: 1.0.0
+description: Generic paragraph entity wrapper with bundle type and view mode class modifiers.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    paragraph_bundle:
+      type: ['string', 'null']
+      title: Bundle
+      default: null
+      description: Paragraph bundle machine name (e.g. text, image). Used to generate type modifier class.
+
+    paragraph_view_mode:
+      type: ['string', 'null']
+      title: View mode
+      default: null
+      description: Render view mode (e.g. default, preview). Used to generate view mode modifier classes.
+
+    paragraph_published:
+      type: boolean
+      title: Published
+      default: true
+      description: Whether the paragraph entity is published. Adds unpublished modifier class when false.
+
+    # component variations
+    # uc -> utility_classes
+    paragraph_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
+
+    # att -> attributes
+    paragraph_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Rendered paragraph field content.

@@ -1,0 +1,31 @@
+@import "utils/accessibility.css";
+@import "utils/wrapper.css";
+@import "utils/grid.css";
+@import "utils/background.css";
+@import "utils/button.css";
+@import "utils/content.css";
+@import "utils/temp.css";
+
+:where(html) {
+  interpolate-size: allow-keywords;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button.paragraphs-button--add-more {
+  --btn_w-s: normal;
+}
+
+.sidebar-menu__parent-title {
+  color: var(--color-text-base-tertiary);
+  display: flex;
+  padding-block: 32px 12px;
+  padding-inline: 24px;
+}

@@ -1,0 +1,58 @@
+.c--dateTimezone {
+  --_date-timezone_c: var(--date-timezone_c, var(--c_white, #ffffff));
+  --_date-timezone_timezone_c: var(--date-timezone_timezone_c, var(--c_gray, #f7f7f7));
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+   grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "date time"
+    "date zone";
+  align-items: center;
+  row-gap: 4px;
+  column-gap: 8px;
+  color: var(--_date-timezone_c);
+
+  .date-short {
+    grid-area: date;
+    background-color: var(--c_blue-dark, #005c99);
+    color: var(--_date-timezone_c);
+    padding: 8px;
+    border-radius: 2px;
+    font-size: 20px;
+    min-width: 3rem;
+    text-align: center;
+    width: fit-content;
+    line-height: 1;
+
+
+    .day {
+      font-weight: 600;
+    }
+
+    @media (max-width: 1200px) {
+      font-size: 15px;
+    }
+
+    @media (max-width: 455px) {
+      font-size: 20px;
+    }
+  }
+
+  .time {
+    align-self: flex-end;
+    grid-area: time;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--_date-timezone_c);
+  }
+
+  .timezone {
+    padding-block-end: 2px;
+    grid-area: zone;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--_date-timezone_timezone_c);
+  }
+}

@@ -1,0 +1,29 @@
+/**
+ * Field Icon Component Styles
+ *
+ * A field row with an icon on the left and content on the right.
+ */
+
+.c--fieldPhone {
+  /* Variables — main component */
+  --_fieldPhone_gap: var(--fieldPhone_gap, 8px);
+
+  --link_d: none;
+
+  display: flex;
+  align-items: center;
+  gap: var(--_fieldPhone_gap);
+  color: var(--fieldPhone_c);
+  font-size: var(--fieldPhone_f-s);
+  font-weight: var(--fieldPhone_f-w);
+  padding-block: var(--fieldPhone_p-b);
+
+  svg,
+  img {
+    display: block;
+    flex: 0 0 var(--_fieldPhone-icon_s);
+    color: var(--fieldPhone-icon_c);
+    width: var(--fieldPhone-icon_s);
+    height: var(--fieldPhone-icon_h, var(--fieldPhone-icon_s));
+  }
+}

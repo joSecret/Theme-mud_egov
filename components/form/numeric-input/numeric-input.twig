@@ -1,0 +1,115 @@
+{#-
+/**
+ * @file
+ * Numeric Input component.
+ *
+ * Props:
+ * - numeric_input_label: (string|null) default: null — visible label
+ * - numeric_input_name: (string|null) default: null — form control name
+ * - numeric_input_id: (string|null) default: null — HTML id
+ * - numeric_input_value: (number|null) default: null — current value
+ * - numeric_input_min: (number|null) default: null — lower bound
+ * - numeric_input_max: (number|null) default: null — upper bound
+ * - numeric_input_step: (number|null) default: 1 — stepper amount
+ * - numeric_input_placeholder: (string|null) default: null
+ * - numeric_input_helper_text: (string|null) default: null
+ * - numeric_input_error_message: (string|null) default: null
+ * - numeric_input_size: (string|null) default: null — md | lg
+ * - numeric_input_disabled: (boolean) default: false
+ * - numeric_input_readonly: (boolean) default: false
+ * - numeric_input_required: (boolean) default: false
+ * - numeric_input_error: (boolean) default: false
+ * - numeric_input_show_steppers: (boolean) default: false
+ *
+ * Utility classes: numeric_input_uc
+ * Attributes: numeric_input_att
+ *
+ * usage example: @see README.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set numeric_input_size = numeric_input_size|default(null) %}
+{% set numeric_input_disabled = numeric_input_disabled|default(false) %}
+{% set numeric_input_readonly = numeric_input_readonly|default(false) %}
+{% set numeric_input_required = numeric_input_required|default(false) %}
+{% set numeric_input_error = numeric_input_error|default(false) %}
+{% set numeric_input_show_steppers = numeric_input_show_steppers|default(false) %}
+{% set numeric_input_step = numeric_input_step|default(1) %}
+
+{#- Create attributes -#}
+{% set numeric_input_att = numeric_input_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set numeric_input_classes = [
+  'c--numeric-input',
+  numeric_input_size ? 'has-size_' ~ numeric_input_size,
+  numeric_input_error ? 'is-error',
+  numeric_input_disabled ? 'is-disabled',
+  numeric_input_show_steppers ? 'has-steppers',
+]|merge(numeric_input_uc ?: []) %}
+
+{#- Input id fallback -#}
+{% set input_id = numeric_input_id|default('numeric-input-' ~ random()) %}
+
+{#- Render component -#}
+<div{{ numeric_input_att.addClass(numeric_input_classes) }}>
+
+  {#- Label -#}
+  {%- if numeric_input_label -%}
+    <label class="c--numeric-input__label" for="{{ input_id }}">
+      {{- numeric_input_label -}}
+      {%- if numeric_input_required -%}
+        <span class="c--numeric-input__required" aria-hidden="true">*</span>
+      {%- endif -%}
+    </label>
+  {%- endif -%}
+
+  {#- Input row -#}
+  <div class="c--numeric-input__field-row">
+    <input
+      class="c--numeric-input__control"
+      type="number"
+      id="{{ input_id }}"
+      {%- if numeric_input_name -%}name="{{ numeric_input_name }}"{%- endif -%}
+      {%- if numeric_input_value is not null -%}value="{{ numeric_input_value }}"{%- endif -%}
+      {%- if numeric_input_min is not null -%}min="{{ numeric_input_min }}"{%- endif -%}
+      {%- if numeric_input_max is not null -%}max="{{ numeric_input_max }}"{%- endif -%}
+      step="{{ numeric_input_step }}"
+      {%- if numeric_input_placeholder -%}placeholder="{{ numeric_input_placeholder }}"{%- endif -%}
+      {%- if numeric_input_disabled -%}disabled{%- endif -%}
+      {%- if numeric_input_readonly -%}readonly{%- endif -%}
+      {%- if numeric_input_required -%}required aria-required="true"{%- endif -%}
+      {%- if numeric_input_error -%}aria-invalid="true"{%- endif -%}
+      {%- if numeric_input_error and numeric_input_error_message -%}aria-describedby="{{ input_id }}-error"{%- elseif numeric_input_helper_text -%}aria-describedby="{{ input_id }}-helper"{%- endif -%}
+    >
+
+    {#- Steppers -#}
+    {%- if numeric_input_show_steppers and not numeric_input_disabled and not numeric_input_readonly -%}
+      <div class="c--numeric-input__steppers" aria-hidden="true">
+        <button class="c--numeric-input__step c--numeric-input__step--up" type="button" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 5L13 10H3L8 5Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="c--numeric-input__step c--numeric-input__step--down" type="button" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 11L3 6H13L8 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {#- Assistive text -#}
+  {%- if numeric_input_error and numeric_input_error_message -%}
+    <p class="c--numeric-input__assistive c--numeric-input__assistive--error" id="{{ input_id }}-error" role="alert">
+      {{- numeric_input_error_message -}}
+    </p>
+  {%- elseif numeric_input_helper_text -%}
+    <p class="c--numeric-input__assistive" id="{{ input_id }}-helper">
+      {{- numeric_input_helper_text -}}
+    </p>
+  {%- endif -%}
+
+</div>

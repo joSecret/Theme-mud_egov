@@ -1,0 +1,100 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Receipt
+status: stable
+group: Globals
+version: 1.0.0
+description: Transaction receipt card for e-Gov Moldova services (MPay, MPass, MSign, MDelivery).
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    receipt_title:
+      type: ['string', 'null']
+      title: Title
+      description: Plain-text receipt title. Defaults to a per-service Romanian string.
+      default: null
+
+    receipt_status:
+      type: ['string', 'null']
+      title: Status
+      description: Transaction lifecycle state. Drives status tag color and label.
+      default: null
+      enum:
+        - null
+        - paid
+        - confirmed
+        - pending
+        - failed
+
+    receipt_reference:
+      type: ['string', 'null']
+      title: Reference
+      description: Opaque transaction identifier rendered in the footer caption.
+      default: null
+
+    receipt_items:
+      type: array
+      title: Items
+      description: Array of label/value rows displayed in the details section.
+      default: []
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+          value:
+            type: string
+
+    receipt_total_label:
+      type: ['string', 'null']
+      title: Total Label
+      description: Label preceding the total amount value (e.g. "Total").
+      default: null
+
+    receipt_total_value:
+      type: ['string', 'null']
+      title: Total Value
+      description: Pre-formatted amount string (e.g. "150,00 MDL").
+      default: null
+
+    receipt_date:
+      type: ['string', 'null']
+      title: Date
+      description: ISO-8601 date string or pre-formatted date displayed on the receipt.
+      default: null
+
+    receipt_footer_text:
+      type: ['string', 'null']
+      title: Footer Text
+      description: Optional plain-text footer message below the receipt body.
+      default: null
+
+    # component variations
+    receipt_service:
+      type: ['string', 'null']
+      title: Service
+      description: Which e-Gov property this receipt belongs to. Drives the logo and default title.
+      default: null
+      enum:
+        - null
+        - mpay
+        - mpass
+        - msign
+        - mdelivery
+
+    # uc -> utility_classes
+    receipt_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    receipt_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

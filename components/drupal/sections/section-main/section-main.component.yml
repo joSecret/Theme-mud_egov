@@ -1,0 +1,61 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Page layout
+status: stable
+version: 1.0.0
+description: 'Section main'
+group: Layout
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    section_main_container:
+      type: ['boolean', 'null']
+      title: Section main container
+      description: Whether to wrap the main section in a container class.
+      default: false
+
+    # fields values
+
+    # uc -> utility_classes
+    section_main_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+
+    section_main_main_uc:
+      type: array
+      items:
+        type: string
+      title: Utility classes main section
+      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+
+    # att -> attributes
+    section_main_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the section main component.
+
+      default: null
+    section_main_main_att:
+      type: Drupal\Core\Template\Attribute
+      title: Main section attributes
+      description: A list of HTML attributes for the main section element.
+
+      default: null
+# Slots.
+slots:
+  slot_highlighted:
+    title: Highlighted
+    description: Default content text for the tab.
+
+  slot_content:
+    title: Content
+    description: Default content text for the tab.
+
+  slot_bottom:
+    title: Content bottom
+    description: Default content text for the tab.

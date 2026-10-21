@@ -1,0 +1,64 @@
+{#-
+/**
+  * @file
+  * Field Link component.
+  *
+  * Renders a link field as a stacked list of links. Each link gets a leading
+  * icon: "arrow up-right" for external URLs, "arrow right" for internal URLs.
+  * The link markup itself is passed through unchanged from Drupal's formatter
+  * (item.content), so classes/attributes set by the formatter are preserved.
+  *
+  * Available values:
+  * - fieldLink_items (array) (default: [])
+  *   Each item: { content: renderable|string, is_external: boolean }
+  * - fieldLink_label (string|object|null) (default: null)
+  * - fieldLink_label_hidden (boolean) (default: false)
+  *
+  * Available Utility classes -> uc
+  * - fieldLink_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - fieldLink_att (Drupal\Core\Template\Attribute)
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set fieldLink_items = fieldLink_items|default([]) %}
+{% set fieldLink_label = fieldLink_label|default(null) %}
+{% set fieldLink_label_hidden = fieldLink_label_hidden|default(false) %}
+
+{#- Create attributes -#}
+{% set fieldLink_att = fieldLink_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set fieldLink_classes = [
+  'c--fieldLink',
+]|merge(fieldLink_uc ?: []) %}
+
+{#- Render component -#}
+<div{{ fieldLink_att.addClass(fieldLink_classes) }}>
+  {% if fieldLink_label and not fieldLink_label_hidden %}
+    {% include 'mud_egov:heading' with {
+      heading_level: 3,
+      heading_text: fieldLink_label,
+    } %}
+  {% endif %}
+
+  {% for item in fieldLink_items %}
+    <div class="fieldLink__item">
+      {% if item.is_external %}
+        <svg class="c--fieldLink__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3.89991 17.7597V6.24014C3.89991 6.00304 3.89921 5.77088 3.91514 5.57569C3.93194 5.3701 3.97134 5.12722 4.09561 4.88311C4.26818 4.54442 4.54442 4.26818 4.88311 4.09561C5.12722 3.97134 5.3701 3.93194 5.57569 3.91514C5.77088 3.89921 6.00304 3.89991 6.24014 3.89991H9.29991C9.79696 3.89991 10.1999 4.30285 10.1999 4.79991C10.1999 5.29696 9.79696 5.69991 9.29991 5.69991H6.24014C5.97334 5.69991 5.82709 5.70072 5.72217 5.70928C5.71808 5.70962 5.71412 5.71012 5.71045 5.71045C5.71012 5.71412 5.70962 5.71808 5.70928 5.72217C5.70072 5.82709 5.69991 5.97334 5.69991 6.24014V17.7597C5.69991 18.0265 5.70072 18.1727 5.70928 18.2776C5.70958 18.2813 5.71015 18.2849 5.71045 18.2882C5.71416 18.2885 5.71804 18.2902 5.72217 18.2905C5.82709 18.2991 5.97334 18.2999 6.24014 18.2999H17.7597C18.0265 18.2999 18.1727 18.2991 18.2776 18.2905C18.2813 18.2902 18.2848 18.2885 18.2882 18.2882C18.2885 18.2848 18.2902 18.2813 18.2905 18.2776C18.2991 18.1727 18.2999 18.0265 18.2999 17.7597V14.6999C18.2999 14.2029 18.7029 13.7999 19.1999 13.7999C19.697 13.7999 20.0999 14.2029 20.0999 14.6999V17.7597C20.0999 17.9968 20.1006 18.2289 20.0847 18.4241C20.0679 18.6297 20.0285 18.8726 19.9042 19.1167C19.7316 19.4554 19.4554 19.7316 19.1167 19.9042C18.8726 20.0285 18.6297 20.0679 18.4241 20.0847C18.2289 20.1006 17.9968 20.0999 17.7597 20.0999H6.24014C6.00304 20.0999 5.77088 20.1006 5.57569 20.0847C5.3701 20.0679 5.12722 20.0285 4.88311 19.9042C4.54442 19.7316 4.26818 19.4554 4.09561 19.1167C3.97134 18.8726 3.93194 18.6297 3.91514 18.4241C3.89921 18.2289 3.89991 17.9968 3.89991 17.7597ZM20.0999 10.1999C20.0999 10.697 19.697 11.0999 19.1999 11.0999C18.7029 11.0999 18.2999 10.697 18.2999 10.1999V6.97256L11.7362 13.5362C11.3848 13.8877 10.8151 13.8877 10.4636 13.5362C10.1121 13.1848 10.1121 12.6151 10.4636 12.2636L17.0273 5.69991H13.7999C13.3029 5.69991 12.8999 5.29696 12.8999 4.79991C12.8999 4.30285 13.3029 3.89991 13.7999 3.89991H19.1999C19.697 3.89991 20.0999 4.30285 20.0999 4.79991V10.1999Z" fill="currentColor"/>
+        </svg>
+      {% else %}
+        <svg class="c--fieldLink__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4.5 12H19.5M19.5 12L13.5 6M19.5 12L13.5 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      {% endif %}
+
+      {{ item.content }}
+    </div>
+  {% endfor %}
+</div>

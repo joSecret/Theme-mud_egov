@@ -1,0 +1,97 @@
+{#-
+/**
+ * @file
+ * Phone Input component.
+ *
+ * Props:
+ * - phone_input_label: (string|null) default: null — visible label
+ * - phone_input_name: (string|null) default: null — form control name
+ * - phone_input_id: (string|null) default: null — HTML id
+ * - phone_input_value: (string|null) default: null — current value
+ * - phone_input_placeholder: (string|null) default: null
+ * - phone_input_country_code: (string|null) default: null — dial code prefix (e.g. +373)
+ * - phone_input_helper_text: (string|null) default: null
+ * - phone_input_error_message: (string|null) default: null
+ * - phone_input_size: (string|null) default: null — md | lg
+ * - phone_input_disabled: (boolean) default: false
+ * - phone_input_required: (boolean) default: false
+ * - phone_input_error: (boolean) default: false
+ *
+ * Utility classes: phone_input_uc
+ * Attributes: phone_input_att
+ *
+ * usage example: @see README.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set phone_input_size = phone_input_size|default(null) %}
+{% set phone_input_disabled = phone_input_disabled|default(false) %}
+{% set phone_input_required = phone_input_required|default(false) %}
+{% set phone_input_error = phone_input_error|default(false) %}
+
+{#- Create attributes -#}
+{% set phone_input_att = phone_input_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set phone_input_classes = [
+  'c--phone-input',
+  phone_input_size ? 'has-size_' ~ phone_input_size,
+  phone_input_error ? 'is-error',
+  phone_input_disabled ? 'is-disabled',
+  phone_input_country_code ? 'has-country-code',
+]|merge(phone_input_uc ?: []) %}
+
+{#- Input id fallback -#}
+{% set input_id = phone_input_id|default('phone-input-' ~ random()) %}
+
+{#- Render component -#}
+<div{{ phone_input_att.addClass(phone_input_classes) }}>
+
+  {#- Label -#}
+  {%- if phone_input_label -%}
+    <label class="c--phone-input__label" for="{{ input_id }}">
+      {{- phone_input_label -}}
+      {%- if phone_input_required -%}
+        <span class="c--phone-input__required" aria-hidden="true">*</span>
+      {%- endif -%}
+    </label>
+  {%- endif -%}
+
+  {#- Input row -#}
+  <div class="c--phone-input__field-row">
+
+    {#- Country code prefix -#}
+    {%- if phone_input_country_code -%}
+      <span class="c--phone-input__country-code" aria-hidden="true">
+        {{- phone_input_country_code -}}
+      </span>
+    {%- endif -%}
+
+    <input
+      class="c--phone-input__control"
+      type="tel"
+      id="{{ input_id }}"
+      {%- if phone_input_name -%}name="{{ phone_input_name }}"{%- endif -%}
+      {%- if phone_input_value -%}value="{{ phone_input_value }}"{%- endif -%}
+      {%- if phone_input_placeholder -%}placeholder="{{ phone_input_placeholder }}"{%- endif -%}
+      {%- if phone_input_disabled -%}disabled{%- endif -%}
+      {%- if phone_input_required -%}required aria-required="true"{%- endif -%}
+      {%- if phone_input_error -%}aria-invalid="true"{%- endif -%}
+      {%- if phone_input_error and phone_input_error_message -%}aria-describedby="{{ input_id }}-error"{%- elseif phone_input_helper_text -%}aria-describedby="{{ input_id }}-helper"{%- endif -%}
+      autocomplete="tel"
+    >
+  </div>
+
+  {#- Assistive text -#}
+  {%- if phone_input_error and phone_input_error_message -%}
+    <p class="c--phone-input__assistive c--phone-input__assistive--error" id="{{ input_id }}-error" role="alert">
+      {{- phone_input_error_message -}}
+    </p>
+  {%- elseif phone_input_helper_text -%}
+    <p class="c--phone-input__assistive" id="{{ input_id }}-helper">
+      {{- phone_input_helper_text -}}
+    </p>
+  {%- endif -%}
+
+</div>

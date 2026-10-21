@@ -1,0 +1,60 @@
+{#-
+/**
+  * @file
+  * Page layout component.
+  * Available variations:
+  * - page_layout_attributes|default(null)
+  * - page_layout_main_container: ['boolean', 'null']|default(true)
+  *
+  * Available variables:
+  *
+  * Available Utility classes -> uc
+  * - page_layout_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - page_layout_att (Drupal\Core\Template\Attribute)
+  *
+  */
+-#}
+
+{#- Set default value -#}
+{% set page_layout_main_container = page_layout_main_container|default(true) %}
+{% set page_layout_attributes = page_layout_attributes|default(null) %}
+
+{#- Create attributes -#}
+{% set page_layout_attributes = page_layout_attributes ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set page_layout_classes = [
+    'c--page-layout',
+  ]|merge(page_layout_uc ?: [])
+%}
+
+{#- Change attributes -#}
+{%- if page_layout_padding_block -%}
+  {% set page_layout_attributes = page_layout_attributes.setAttribute('style', '--_pl_main_p-b:' ~ page_layout_padding_block ~ 'px') %}
+{%- endif -%}
+
+{#- Render component -#}
+<div{{page_layout_attributes.addClass(page_layout_classes)}}>
+  {{- page.top_region -}}
+
+  {% block slot_header -%}
+    {% include "mud_egov:navbar" %}
+  {% endblock %}
+
+  {% block slot_main %}
+    {% include "mud_egov:section-main-sidebar" with {
+      section_main_container: page_layout_main_container,
+    } %}
+  {% endblock %}
+
+  {% block slot_footer %}
+    {% include 'mud_egov:footer' with {
+      footer_uc: ["bg-light"],
+    } %}
+  {% endblock %}
+
+  {{- page.bottom_fixed -}}
+</div>

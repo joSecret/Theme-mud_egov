@@ -1,0 +1,79 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Cookie Banner
+status: stable
+group: Globals
+version: 1.0.0
+description: GDPR cookie consent banner anchored to the top or bottom of the viewport with accept, decline, and settings actions.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    cookie_banner_title:
+      type: ['string', 'null']
+      title: Title
+      description: Banner heading text. Defaults to "Folosim cookie-uri".
+      default: null
+
+    cookie_banner_description:
+      type: ['string', 'null']
+      title: Description
+      description: Body copy explaining cookie usage. Defaults to Romanian disclosure text.
+      default: null
+
+    cookie_banner_accept_label:
+      type: ['string', 'null']
+      title: Accept Label
+      description: Label for the "Accept all" button. Defaults to "Accept toate".
+      default: null
+
+    cookie_banner_decline_label:
+      type: ['string', 'null']
+      title: Decline Label
+      description: Label for the "Reject all" button. Defaults to "Refuză toate".
+      default: null
+
+    cookie_banner_settings_label:
+      type: ['string', 'null']
+      title: Settings Label
+      description: Label for the "Manage cookies" button. Defaults to "Personalizează".
+      default: null
+
+    cookie_banner_policy_url:
+      type: ['string', 'null']
+      title: Privacy Policy URL
+      description: Optional href for the inline privacy-policy link.
+      default: null
+
+    cookie_banner_policy_label:
+      type: ['string', 'null']
+      title: Privacy Policy Label
+      description: Privacy policy link label. Defaults to "Politica de confidențialitate".
+      default: null
+
+    # component variations
+    cookie_banner_position:
+      type: ['string', 'null']
+      title: Position
+      description: Edge the banner is anchored to.
+      default: null
+      enum:
+        - null
+        - bottom
+        - top
+
+    # uc -> utility_classes
+    cookie_banner_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    cookie_banner_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

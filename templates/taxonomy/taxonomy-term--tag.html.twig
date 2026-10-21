@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override to display a taxonomy term of the 'tag' vocabulary.
+ *
+ * Renders the term as a Tag component (brand/subtle by default).
+ *
+ * Available variables:
+ * - url: URL of the current term.
+ * - name: Name of the current term.
+ * - attributes: HTML attributes for the wrapper.
+ * - term: The taxonomy term entity.
+ * - view_mode: View mode, e.g. 'full', 'teaser', etc.
+ *
+ * @see template_preprocess_taxonomy_term()
+ */
+#}
+{%
+  set classes = [
+    'taxonomy-term',
+    'vocabulary-' ~ term.bundle|clean_class,
+  ]
+%}
+
+{% include 'mud_egov:tag' with {
+  tag_att: attributes.setAttribute('id', 'taxonomy-term-' ~ term.id),
+  tag_uc: classes,
+  tag_content: name,
+  tag_type: 'strong',
+  tag_color: 'brand',
+} %}

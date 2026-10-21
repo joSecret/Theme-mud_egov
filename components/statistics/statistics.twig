@@ -1,0 +1,43 @@
+{#-
+/**
+ * @file
+ * Statistics component.
+ *
+ * Props:
+ * - statistics_title (string|null)
+ * - statistics_title_level (int) default: 2
+ *
+ * Slots:
+ * - statistics_link — rendered field_link
+ * - statistics_items — rendered statistics-item paragraphs
+ */
+-#}
+
+{% set statistics_att = statistics_att ?: create_attribute() %}
+{% set statistics_classes = ['c--statistics']|merge(statistics_uc ?: []) %}
+
+<div{{ statistics_att.addClass(statistics_classes) }}>
+  <div class="statistics-intro">
+    {%- if statistics_title -%}
+      {%
+        include 'mud_egov:heading' with {
+          heading_text: statistics_title,
+          heading_level: statistics_title_level|default(3),
+          heading_uc: ['h1'],
+        }
+      %}
+    {%- endif -%}
+
+    {%- if statistics_link -%}
+      <div class="statistics-link">
+        {{- statistics_link -}}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if statistics_items -%}
+    <div class="statistics-grid">
+      {{- statistics_items -}}
+    </div>
+  {%- endif -%}
+</div>

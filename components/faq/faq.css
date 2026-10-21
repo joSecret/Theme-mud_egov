@@ -1,0 +1,74 @@
+.c--faq {
+  --_faq_bg: var(--faq_bg, var(--color-background-base-secondary));
+
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  display: grid;
+
+  background: var(--_faq_bg);
+  padding-block: var(--faq_p-b, var(--spacing-64));
+  padding-inline: var(--faq_p-i, inherit);
+  gap: var(--faq_gap, var(--spacing-80) var(--spacing-32));
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    box-shadow: 0 0 0 100vmax var(--_faq_bg);
+    clip-path: inset(0 -100vmax);
+  }
+}
+
+.faq-intro {
+  align-self: self-start;
+  display: grid;
+  gap: var(--spacing-24);
+}
+
+.faq-description {
+  color: var(--color-text-base-secondary, #383838);
+}
+
+.faq-cta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-32);
+}
+
+/* CTA Card */
+.c--cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  padding: var(--spacing-24);
+  background-color: var(--color-background-base-default);
+  border-radius: 16px;
+}
+
+.cta-card-title {
+  max-width: 340px;
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.01%;
+  font-weight: var(--font-weight-semibold);
+}
+
+@container (528px < width) {
+  .c--faq {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'intro items'
+      'cta   cta';
+  }
+
+  .faq-intro { grid-area: intro; }
+  .faq-items { grid-area: items; }
+  .faq-cta   {
+    grid-area: cta;
+    grid-template-columns: 1fr 1fr;
+  }
+}

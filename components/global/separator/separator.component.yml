@@ -1,0 +1,84 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Separator
+status: stable
+group: Globals
+version: 1.0.0
+description: Visual divider between groups of content with optional inline label, orientation, size and variant.
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # fields values
+    separator_label:
+      type: ['string', 'null']
+      title: Label
+      description: Optional plain-text label rendered inline at the center of the separator. Use slot_label for richer content.
+      default: null
+
+    separator_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: Accessible label for screen readers. Most separators are decorative — only set when the boundary is semantically significant.
+      default: null
+
+    # component variations
+    separator_orientation:
+      type: ['string', 'null']
+      title: Orientation
+      description: Layout direction of the separator rule.
+      default: null
+      enum:
+        - null
+        - horizontal
+        - vertical
+
+    separator_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual thickness of the rule.
+      default: null
+      enum:
+        - null
+        - extra-thin
+        - thin
+        - medium
+        - thick
+
+    separator_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: "Color emphasis: subtle (default), mild, strong."
+      default: null
+      enum:
+        - null
+        - subtle
+        - mild
+        - strong
+
+    separator_inset:
+      type: boolean
+      title: Inset
+      description: Adds outer spacing on the cross axis. Use when the separator sits between items in a list or menu.
+      default: false
+
+    # uc -> utility_classes
+    separator_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    separator_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_label:
+    title: Label
+    description: Rich label content (e.g. icon plus text). Takes precedence over the separator_label prop.

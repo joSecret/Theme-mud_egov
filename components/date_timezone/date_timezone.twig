@@ -1,0 +1,76 @@
+{#-
+/**
+  * @file
+  * Date timezone component.
+  *
+  * Available variations:
+  *
+  * Available values:
+  * - date_timezone_date_start (string)
+  * - date_timezone_date_end (string) (default: null)
+  * - date_timezone_timezone (string) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - date_timezone_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - date_timezone_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_main
+  * - slot_date
+  * - slot_timezone
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set date_timezone_date_end = date_timezone_date_end|default(null) %}
+{% set date_timezone_timezone = date_timezone_timezone|default(null) %}
+
+{#- Create attributes -#}
+{% set date_timezone_att = date_timezone_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set date_timezone_classes = [
+  'c--dateTimezone',
+]|merge(date_timezone_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set start = date_timezone_date_start %}
+{% set end = date_timezone_date_end %}
+
+
+{#- Render component -#}
+<div{{ date_timezone_att.addClass(date_timezone_classes) }}>
+  {%- block slot_main -%}
+    <div class="date-short">
+      <span class="month">
+        {{- start|date('M')|upper -}}
+      </span>
+
+      <span class="day">
+        {{- start|date('d') -}}
+      </span>
+    </div>
+  {%- endblock -%}
+
+  {%- block slot_date -%}
+    <div class="time">
+      {{- start|date('H:i') }}
+
+      {%- if end and start|date('U') != end|date('U') -%}
+      - {{ end|date('H:i') -}}
+      {%- endif -%}
+    </div>
+  {%- endblock -%}
+
+  {%- block slot_timezone -%}
+    {%- if date_timezone_timezone -%}
+      <div class="timezone">
+        {{ date_timezone_timezone }}
+      </div>
+    {%- endif -%}
+  {%- endblock -%}
+</div>

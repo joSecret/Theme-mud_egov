@@ -1,0 +1,68 @@
+{#-
+/**
+ * @file
+ * Template for the Progress Tracker component (MUD-aligned).
+ *
+ * Props:
+ * - progress_tracker_steps (array) — [{id?, label, description?, status, icon_name?, disabled?}]
+ *   status: complete | active | pending | available | error
+ * - progress_tracker_orientation (string|null) — horizontal | vertical
+ * - progress_tracker_compact (boolean) — dot-rail mode, hides labels
+ * - progress_tracker_aria_label (string|null)
+ */
+-#}
+
+{% set progress_tracker_steps = progress_tracker_steps|default([]) %}
+{% set progress_tracker_orientation = progress_tracker_orientation|default('horizontal') %}
+{% set progress_tracker_compact = progress_tracker_compact|default(false) %}
+{% set progress_tracker_aria_label = progress_tracker_aria_label|default('Pași') %}
+
+{% set progress_tracker_att = progress_tracker_att ?: create_attribute() %}
+
+{%
+  set classes = [
+    'progress-tracker',
+    'progress-tracker-' ~ progress_tracker_orientation,
+    progress_tracker_compact ? 'progress-tracker-compact',
+  ]|merge(progress_tracker_uc ?: [])
+%}
+
+<ol
+  {{ progress_tracker_att.addClass(classes) }}
+  role="list"
+  aria-label="{{ progress_tracker_aria_label }}"
+>
+  {%- for step in progress_tracker_steps -%}
+    {%- set step_status = step.status|default('pending') -%}
+    {%- set step_index = loop.index -%}
+
+    {%- set indicator -%}
+      {%- if step.icon_name -%}
+        <span class="progress-tracker-icon" aria-hidden="true">{{ step.icon_name }}</span>
+      {%- elseif step_status == 'complete' or step_status == 'completed' -%}
+        <span class="progress-tracker-icon" aria-hidden="true">✓</span>
+      {%- elseif step_status == 'error' -%}
+        <span class="progress-tracker-icon" aria-hidden="true">✕</span>
+      {%- else -%}
+        <span class="progress-tracker-num" aria-hidden="true">{{ step_index }}</span>
+      {%- endif -%}
+    {%- endset -%}
+
+    <li
+      class="progress-tracker-step progress-tracker-step-{{ step_status }}{%- if step.disabled|default(false) -%} is-disabled{%- endif -%}"
+      aria-label="{{ step.label }}{%- if step_status == 'current' or step_status == 'active' -%} (curent){%- elseif step_status == 'complete' or step_status == 'completed' -%} (finalizat){%- elseif step_status == 'error' -%} (eroare){%- endif -%}"
+    >
+      <span class="progress-tracker-indicator">
+        {{- indicator -}}
+      </span>
+      {%- if not progress_tracker_compact -%}
+        <span class="progress-tracker-label-block">
+          <span class="progress-tracker-label">{{ step.label }}</span>
+          {%- if step.description -%}
+            <span class="progress-tracker-desc">{{ step.description }}</span>
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ol>

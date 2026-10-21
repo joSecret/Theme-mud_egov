@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Button Group
+status: stable
+group: Globals
+version: 1.0.0
+description: Layout container for stacking multiple button elements with consistent spacing and shared orientation.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    button_group_label:
+      type: ['string', 'null']
+      title: Accessible label
+      description: aria-label forwarded to the group element. Required when no surrounding label exists.
+      default: null
+
+    # component variations
+    button_group_orientation:
+      type: ['string', 'null']
+      title: Orientation
+      description: "horizontal (default) | vertical"
+      default: null
+      enum:
+        - null
+        - horizontal
+        - vertical
+
+    button_group_attached:
+      type: boolean
+      title: Attached
+      description: Remove border-radius between adjacent buttons so they visually merge.
+      default: false
+
+    # uc -> utility_classes
+    button_group_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    button_group_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_buttons:
+    title: Buttons
+    description: One or more button components.

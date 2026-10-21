@@ -1,0 +1,131 @@
+{#-
+/**
+  * @file
+  * Form Element component - wraps label, field, description, and error.
+  *
+  * Available values:
+  * - form_element_type (string|null) (default: null)
+  * - form_element_label (string|null) (default: null)
+  * - form_element_label_display (string) Default: 'before' — before | after | invisible | none
+  * - form_element_required (boolean|null) (default: false)
+  * - form_element_id (string|null) (default: null)
+  * - form_element_description (string|null) (default: null)
+  * - form_element_description_display (string) Default: 'after' — before | after | invisible | none
+  * - form_element_error (string|null) (default: null)
+  * - form_element_prefix (string|null) (default: null)
+  * - form_element_suffix (string|null) (default: null)
+  * - form_element_disabled (boolean|null) (default: false)
+  * - form_element_name (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - form_element_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - form_element_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots:
+  * - form_element_field (required): The main form field content
+  */
+-#}
+
+{#- Set default values -#}
+{% set form_element_type = form_element_type|default(null) %}
+{% set form_element_label = form_element_label|default(null) %}
+{% set form_element_label_display = form_element_label_display|default('before') %}
+{% set form_element_required = form_element_required|default(false) %}
+{% set form_element_id = form_element_id|default(null) %}
+{% set form_element_description = form_element_description|default(null) %}
+{% set form_element_description_display = form_element_description_display|default('after') %}
+{% set form_element_error = form_element_error|default(null) %}
+{% set form_element_prefix = form_element_prefix|default(null) %}
+{% set form_element_suffix = form_element_suffix|default(null) %}
+{% set form_element_disabled = form_element_disabled|default(false) %}
+{% set form_element_name = form_element_name|default(null) %}
+
+{#- Create attributes -#}
+{% set form_element_att = form_element_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set form_element_classes = [
+  'c--formElement',
+  'js-form-item',
+  'form-item',
+  form_element_type ? 'js-form-type-' ~ form_element_type|clean_class,
+  form_element_type ? 'form-item--type-' ~ form_element_type|clean_class,
+  form_element_name ? 'form-item-' ~ form_element_name|clean_class,
+  form_element_name ? 'js-form-item-' ~ form_element_name|clean_class,
+  form_element_label_display ? 'isLabel--' ~ form_element_label_display|clean_class,
+  form_element_disabled ? 'form-disabled',
+  form_element_error ? 'form-item--error',
+]|merge(form_element_uc ?: []) %}
+
+{#- Generate description ID for aria-describedby -#}
+{% set description_id = form_element_id and form_element_description ? form_element_id ~ '-description' : null %}
+{% set error_id = form_element_id and form_element_error ? form_element_id ~ '-error' : null %}
+
+{#- Render component -#}
+<div{{ form_element_att.addClass(form_element_classes) }}>
+  {#- Label - before -#}
+  {%- if form_element_label_display in ['before', 'invisible'] and form_element_label -%}
+    {% include 'mud_egov:label' with {
+      label_text: form_element_label,
+      label_for: form_element_id,
+      label_required: form_element_required,
+      label_visible: form_element_label_display == 'invisible' ? false : true,
+    } only %}
+  {%- endif -%}
+
+  {#- Prefix -#}
+  {%- if form_element_prefix -%}
+    <span class="field-prefix">
+      {{- form_element_prefix -}}
+    </span>
+  {%- endif -%}
+
+  {#- Description - before -#}
+  {%- if form_element_description_display == 'before' and form_element_description -%}
+    {% include 'mud_egov:description' with {
+      description_text: form_element_description,
+      description_id: description_id,
+      description_display: 'visible',
+    } only %}
+  {%- endif -%}
+
+  {#- Main field content (slot) -#}
+  {% block form_element_field -%}
+    {{ form_element_field }}
+  {% endblock %}
+
+  {#- Suffix -#}
+  {%- if form_element_suffix -%}
+    <span class="field-suffix">
+      {{- form_element_suffix -}}
+    </span>
+  {%- endif -%}
+
+  {#- Label - after -#}
+  {%- if form_element_label_display == 'after' and form_element_label -%}
+    {% include 'mud_egov:label' with {
+      label_text: form_element_label,
+      label_for: form_element_id,
+      label_required: form_element_required,
+    } only %}
+  {%- endif -%}
+
+  {#- Error messages -#}
+  {%- if form_element_error -%}
+    {% include 'mud_egov:error' with {
+      error_message: form_element_error,
+      error_id: error_id,
+    } only %}
+  {%- endif -%}
+
+  {#- Description - after -#}
+  {%- if form_element_description_display in ['after', 'invisible'] and form_element_description -%}
+    {% include 'mud_egov:description' with {
+      description_text: form_element_description,
+      description_id: description_id,
+      description_display: form_element_description_display == 'invisible' ? 'invisible' : 'visible',
+    } only %}
+  {%- endif -%}
+</div>

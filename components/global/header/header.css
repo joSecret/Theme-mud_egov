@@ -1,0 +1,91 @@
+/**
+ * Header Component Styles
+ */
+
+.c--header {
+  /* Public API */
+  --_header_bg: var(--header_bg, var(--color-background-base-default, #fff));
+  --_header_c: var(--header_c, var(--color-text-base-default, #1a1a1a));
+  --_header_b-b: var(--header_b-b, none);
+  --_header_z: var(--header_z, 100);
+  --_header_p-b: var(--header_p-b, 0px);
+  --_header_p-i: var(--header_p-i, var(--size_600, 24px));
+  --_header_shadow: var(--header_shadow, 0 1px 4px rgba(0 0 0 / 0.08));
+
+  /* Pre-header */
+  --_header_pre-header_bg: var(--header_pre-header_bg, var(--color-background-brand-default, #0057b8));
+  --_header_pre-header_c: var(--header_pre-header_c, var(--color-text-inverse-default, #fff));
+  --_header_pre-header_p-b: var(--header_pre-header_p-b, 8px);
+  --_header_pre-header_p-i: var(--header_pre-header_p-i, var(--_header_p-i));
+
+  /* Bar */
+  --_header_bar_h: var(--header_bar_h, 64px);
+  --_header_bar_gap: var(--header_bar_gap, var(--size_400, 16px));
+
+  /* Styles */
+  background: var(--_header_bg);
+  color: var(--_header_c);
+  border-bottom: var(--_header_b-b);
+  box-shadow: var(--_header_shadow);
+  position: relative;
+  z-index: var(--_header_z);
+}
+
+.c--header--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.c--header--bordered {
+  --_header_b-b: var(--header_b-b, 1px solid var(--color-border-base-default, #e5e5e5));
+  --_header_shadow: var(--header_shadow, none);
+}
+
+/* Pre-header band */
+.c--header__pre-header {
+  background: var(--_header_pre-header_bg);
+  color: var(--_header_pre-header_c);
+  padding-block: var(--_header_pre-header_p-b);
+  padding-inline: var(--_header_pre-header_p-i);
+  font-size: var(--header_pre-header_f-s, 12px);
+  line-height: var(--header_pre-header_l-h, 16px);
+}
+
+.c--header__government-label {
+  font-weight: var(--header_gov-label_f-w, 600);
+}
+
+/* Main bar */
+.c--header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--_header_bar_gap);
+  min-height: var(--_header_bar_h);
+  padding-block: var(--_header_p-b);
+  padding-inline: var(--_header_p-i);
+  max-width: var(--container_m-w, 100%);
+  margin-inline: auto;
+}
+
+.c--header__logo {
+  flex: 0 0 auto;
+}
+
+.c--header__nav {
+  flex: 1 1 auto;
+}
+
+.c--header__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--header_actions_gap, var(--size_200, 8px));
+}
+
+.c--header__mobile-menu {
+  flex: 0 0 auto;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}

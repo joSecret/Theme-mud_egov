@@ -1,0 +1,109 @@
+{#-
+/**
+ * @file
+ * Template for the Switch component.
+ *
+ * Available variations:
+ * - switch_checked (boolean) (default: false)
+ * - switch_disabled (boolean) (default: false)
+ * - switch_required (boolean) (default: false)
+ * - switch_label_position (null|string) (start|end) (default: end)
+ *
+ * Available values:
+ * - switch_label (string|null) (default: null)
+ * - switch_name (string|null) (default: null)
+ * - switch_value (string|null) (default: 'on')
+ * - switch_id (string|null) (default: null — derived from switch_name)
+ * - switch_aria_label (string|null) (default: null)
+ *
+ * Available Utility classes -> uc
+ * - switch_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - switch_att (Drupal\Core\Template\Attribute)
+ *
+ * usage example: @see switch.md
+ */
+-#}
+
+{#- Defaults -#}
+{% set switch_checked = switch_checked|default(false) %}
+{% set switch_disabled = switch_disabled|default(false) %}
+{% set switch_required = switch_required|default(false) %}
+{% set switch_label_position = switch_label_position|default('end') %}
+{% set switch_label = switch_label|default(null) %}
+{% set switch_name = switch_name|default(null) %}
+{% set switch_value = switch_value|default('on') %}
+{% set switch_id = switch_id|default(switch_name) %}
+{% set switch_aria_label = switch_aria_label|default(null) %}
+
+{#- Create attributes -#}
+{% set switch_att = switch_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'switch',
+    switch_checked ? 'is-checked',
+    switch_disabled ? 'is-disabled',
+    switch_label ? 'has-label',
+    switch_label_position ? 'switch-label-' ~ switch_label_position,
+  ]|merge(switch_uc ?: [])
+%}
+
+{#- Input attributes -#}
+{% set input_att = create_attribute() %}
+{% set input_att = input_att
+  .setAttribute('type', 'checkbox')
+  .setAttribute('role', 'switch')
+  .setAttribute('class', 'switch__native')
+  .setAttribute('data-switch-input', '') %}
+
+{%- if switch_id -%}
+  {% set input_att = input_att.setAttribute('id', switch_id) %}
+{%- endif -%}
+{%- if switch_name -%}
+  {% set input_att = input_att.setAttribute('name', switch_name) %}
+{%- endif -%}
+{%- if switch_value -%}
+  {% set input_att = input_att.setAttribute('value', switch_value) %}
+{%- endif -%}
+{%- if switch_checked -%}
+  {% set input_att = input_att.setAttribute('checked', true) %}
+{%- endif -%}
+{%- if switch_disabled -%}
+  {% set input_att = input_att.setAttribute('disabled', true) %}
+{%- endif -%}
+{%- if switch_required -%}
+  {% set input_att = input_att.setAttribute('required', true).setAttribute('aria-required', 'true') %}
+{%- endif -%}
+{%- if switch_aria_label and not switch_label -%}
+  {% set input_att = input_att.setAttribute('aria-label', switch_aria_label) %}
+{%- endif -%}
+{%- if switch_label and switch_id -%}
+  {#- label element handles association via for= -#}
+{%- endif -%}
+
+{#- Render -#}
+<div{{ switch_att.addClass(classes).setAttribute('data-switch', '') }}>
+  <label class="switch__layout{%- if switch_label_position == 'start' -%} switch__layout--reverse{%- endif -%}">
+    {%- if switch_label and switch_label_position == 'start' -%}
+      <span class="switch__text">
+        <span class="switch__label-text">{{ switch_label }}</span>
+      </span>
+    {%- endif -%}
+
+    <span class="switch__control">
+      <span class="switch__track" aria-hidden="true">
+        <span class="switch__thumb"></span>
+      </span>
+      <input{{ input_att }} />
+    </span>
+
+    {%- if switch_label and switch_label_position != 'start' -%}
+      <span class="switch__text">
+        <span class="switch__label-text">{{ switch_label }}</span>
+      </span>
+    {%- endif -%}
+  </label>
+</div>

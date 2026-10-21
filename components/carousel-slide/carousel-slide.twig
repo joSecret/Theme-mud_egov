@@ -1,0 +1,59 @@
+{#-
+/**
+ * @file
+ * Carousel Slide component.
+ *
+ * Available props:
+ * - slide_heading (string|null)
+ * - slide_heading_tag (string) default: 'h2'
+ * - slide_description (string|null) rendered HTML
+ * - slide_image (string|null) URL
+ * - slide_image_alt (string|null)
+ * - slide_image_loading (eager|lazy) default: 'lazy'
+ * - slide_cta (object|null) { url, title }
+ *
+ * Available utility classes -> uc
+ * - slide_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - slide_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Defaults -#}
+{% set slide_heading_tag = slide_heading_tag|default('h2') %}
+{% set slide_image_loading = slide_image_loading|default('lazy') %}
+
+{#- Attributes -#}
+{% set slide_att = slide_att ?: create_attribute() %}
+
+{#- Classes -#}
+{% set slide_classes = [
+  'c--carousel-slide'
+]|merge(slide_uc ?: []) %}
+
+<div{{ slide_att.addClass(slide_classes) }}>
+  {%- if slide_heading or slide_description or slide_cta -%}
+    <div class="slide-text">
+      {%- if slide_heading -%}
+        <{{ slide_heading_tag }} class="slide-heading">
+          {{- slide_heading -}}
+        </{{ slide_heading_tag }}>
+      {%- endif -%}
+
+      {%- if slide_description -%}
+        <div class="slide-description">
+          {{- slide_description -}}
+        </div>
+      {%- endif -%}
+
+      {{- slide_cta -}}
+    </div>
+  {%- endif -%}
+
+  {%- if slide_image -%}
+    <div class="slide-media">
+      {{- slide_image -}}
+    </div>
+  {%- endif -%}
+</div>

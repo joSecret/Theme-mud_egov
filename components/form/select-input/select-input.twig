@@ -1,0 +1,100 @@
+{#-
+/**
+ * @file
+ * Template for the Select Input component (MUD-aligned).
+ *
+ * Props:
+ * - select_input_label (string|null) default: null
+ * - select_input_name (string|null) default: null
+ * - select_input_id (string|null) default: null
+ * - select_input_options (array) default: [] — [{value, label, selected?, disabled?}]
+ * - select_input_placeholder (string|null) default: null — empty option shown when nothing selected
+ * - select_input_helper_text (string|null) default: null
+ * - select_input_error_message (string|null) default: null
+ * - select_input_multiple (boolean) default: false
+ * - select_input_disabled (boolean) default: false
+ * - select_input_required (boolean) default: false
+ * - select_input_error (boolean) default: false
+ *
+ * Variations:
+ * - select_input_size (string|null) default: null — md | lg
+ *
+ * Utility classes: select_input_uc
+ * Attributes: select_input_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set select_input_id = select_input_id|default(select_input_name) %}
+{% set select_input_options = select_input_options|default([]) %}
+{% set select_input_multiple = select_input_multiple|default(false) %}
+{% set select_input_disabled = select_input_disabled|default(false) %}
+{% set select_input_required = select_input_required|default(false) %}
+{% set select_input_error = select_input_error|default(false) %}
+
+{#- IDs for aria wiring -#}
+{% set helper_id = select_input_id ? select_input_id ~ '-helper' : null %}
+{% set error_id = select_input_id ? select_input_id ~ '-error' : null %}
+
+{#- Create attributes -#}
+{% set select_input_att = select_input_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set select_input_classes = [
+    'c--select-input',
+    select_input_size ? 'c--select-input--' ~ select_input_size,
+    select_input_error ? 'select-input-error',
+    select_input_disabled ? 'is-disabled',
+  ]|merge(select_input_uc ?: [])
+%}
+
+{#- aria-describedby -#}
+{% set described_by = [] %}
+{%- if select_input_error and select_input_error_message and error_id -%}
+  {% set described_by = described_by|merge([error_id]) %}
+{%- elseif select_input_helper_text and helper_id -%}
+  {% set described_by = described_by|merge([helper_id]) %}
+{%- endif -%}
+
+{#- Render -#}
+<div{{ select_input_att.addClass(select_input_classes) }}>
+  {%- if select_input_label -%}
+    <label class="select-input-label" for="{{ select_input_id }}">
+      {{- select_input_label -}}
+      {%- if select_input_required -%}<span class="select-input-required" aria-hidden="true">*</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+
+  <div class="select-input-control">
+    <select
+      class="select-input-field"
+      {%- if select_input_id -%} id="{{ select_input_id }}"{%- endif -%}
+      {%- if select_input_name -%} name="{{ select_input_name }}{{ select_input_multiple ? '[]' : '' }}"{%- endif -%}
+      {%- if select_input_multiple -%} multiple{%- endif -%}
+      {%- if select_input_required -%} required aria-required="true"{%- endif -%}
+      {%- if select_input_disabled -%} disabled{%- endif -%}
+      {%- if select_input_error -%} aria-invalid="true"{%- endif -%}
+      {%- if described_by is not empty -%} aria-describedby="{{ described_by|join(' ') }}"{%- endif -%}
+    >
+      {%- if select_input_placeholder and not select_input_multiple -%}
+        <option value="" disabled selected>{{ select_input_placeholder }}</option>
+      {%- endif -%}
+
+      {%- for option in select_input_options -%}
+        <option
+          value="{{ option.value }}"
+          {%- if option.selected -%} selected{%- endif -%}
+          {%- if option.disabled -%} disabled{%- endif -%}
+        >{{ option.label }}</option>
+      {%- endfor -%}
+    </select>
+    <span class="select-input-chevron" aria-hidden="true"></span>
+  </div>
+
+  {%- if select_input_error and select_input_error_message -%}
+    <p class="select-input-error-message" id="{{ error_id }}" role="alert">{{- select_input_error_message -}}</p>
+  {%- elseif select_input_helper_text -%}
+    <p class="select-input-helper-text" id="{{ helper_id }}">{{- select_input_helper_text -}}</p>
+  {%- endif -%}
+</div>

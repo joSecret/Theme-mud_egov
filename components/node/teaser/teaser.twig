@@ -1,0 +1,105 @@
+{#-
+/**
+ * @file
+ * Teaser component (node).
+ *
+ * Props:
+ * - teaser_title (string)
+ * - teaser_description (string)
+ * - teaser_image (string|array)
+ * - teaser_date (string)
+ * - teaser_categories (string|array)
+ * - teaser_link (string)
+ * - teaser_uc (array)
+ * - teaser_att (Attribute)
+ *
+ * Slots:
+ * - slot_image
+ * - slot_date
+ * - slot_title
+ * - slot_description
+ * - slot_categories
+ */
+-#}
+
+{#- Set default values -#}
+{% set teaser_title = teaser_title|default(null) %}
+{% set teaser_description = teaser_description|default(null) %}
+{% set teaser_image = teaser_image|default(null) %}
+{% set teaser_date = teaser_date|default(null) %}
+{% set teaser_categories = teaser_categories|default(null) %}
+{% set teaser_link = teaser_link|default(null) %}
+
+{#- Create attributes -#}
+{% set teaser_att = teaser_att ?: create_attribute() %}
+
+{#- Detect if the image slot has renderable content. -#}
+{% set teaser_has_image = teaser_image|render|trim is not empty %}
+
+{#- Component classes -#}
+{% set teaser_classes = [
+  'c--teaser',
+  teaser_has_image ? '' : 'c--teaser-no-image',
+]|merge(teaser_uc ?: []) %}
+
+<article {{ teaser_att.addClass(teaser_classes) }}>
+  {{- title_prefix -}}
+  {{- title_suffix -}}
+
+  {% block slot_image %}
+    {% if teaser_has_image %}
+      <div class="teaser-image">
+        {{- teaser_image -}}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  <div class="teaser-content">
+    {% block slot_date %}
+      {%- if teaser_date -%}
+        <div class="teaser-date">
+          {{- teaser_date -}}
+        </div>
+      {%- endif -%}
+    {% endblock %}
+
+    {% block slot_title %}
+      {%- if teaser_title -%}
+        {% set title_content %}
+          {%- if teaser_link -%}
+            <a class="teaser-link stretched-link" href="{{ teaser_link }}">
+              {{- teaser_title -}}
+            </a>
+          {%- else -%}
+            {{- teaser_title -}}
+          {%- endif -%}
+        {% endset %}
+
+        {% embed 'mud_egov:heading' with {
+          heading_level: 5,
+          heading_uc: ['teaser-title'],
+        } %}
+          {% block slot_content %}
+            {{- title_content -}}
+          {% endblock %}
+        {% endembed %}
+      {%- endif -%}
+    {% endblock %}
+
+    {% block slot_description %}
+      {%- if teaser_description -%}
+        <div class="teaser-description">
+          {{- teaser_description -}}
+        </div>
+      {%- endif -%}
+    {% endblock %}
+
+    {% block slot_categories %}
+      {%- if teaser_categories -%}
+        <div class="teaser-categories">
+          {{- teaser_categories -}}
+        </div>
+      {%- endif -%}
+    {% endblock %}
+  </div>
+</article>

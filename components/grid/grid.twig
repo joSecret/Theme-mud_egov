@@ -1,0 +1,57 @@
+{#-
+/**
+  * @file
+  * Responsive Grid component.
+  *
+  * Available variations:
+  * - grid_col (numbers) (default: 4)
+  * - grid_min_width (numbers) (default: 220)
+  * - grid_gap (numbers) (default: 24)
+  *
+  * Available values:
+  * - grid_content (array) (default: [])
+  *
+  * Available Utility classes -> uc
+  * - grid_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - grid_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The content for the grid
+  */
+-#}
+
+{#- Set default value -#}
+{% set grid_content = grid_content|default(null) %}
+{% set grid_col = grid_col|default(null) %}
+{% set grid_min_width = grid_min_width|default(null) %}
+{% set grid_gap = grid_gap|default(null) %}
+
+{#- Create attributes -#}
+{% set grid_att = grid_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set grid_classes = [
+  'c--grid',
+]|merge(grid_uc ?: []) %}
+
+{#- Change attributes -#}
+{%- if grid_gap -%}
+  {% set grid_att = grid_att.setAttribute('style', '--grid_l-gap: ' ~ grid_gap ~ 'px;') %}
+{%- endif -%}
+
+{%- if grid_col -%}
+  {% set grid_att = grid_att.setAttribute('style', '--grid_col-count: ' ~ grid_col ~ ';') %}
+{%- endif -%}
+
+{%- if grid_min_width -%}
+  {% set grid_att = grid_att.setAttribute('style', '--grid_cell-min-width: ' ~ grid_min_width ~ 'px;') %}
+{%- endif -%}
+
+{#- Render component -#}
+<div{{ grid_att.addClass(grid_classes) }}>
+  {%- block slot_content -%}
+    {{- grid_content -}}
+  {%- endblock -%}
+</div>

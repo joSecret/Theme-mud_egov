@@ -1,0 +1,191 @@
+.c--search-input-rectangular {
+  /* Init vars — mapped from MUD --search-input-rectangular-* token namespace */
+  --search-rect_height: var(--search-input-rectangular-container-height-md);
+  --search-rect_p-i: var(--search-input-rectangular-container-padding-inline-md);
+  --search-rect_gap: var(--search-input-rectangular-container-gap-md);
+  --search-rect_radius: var(--search-input-rectangular-container-border-radius, 0.5rem);
+  --search-rect_b-w: var(--search-input-rectangular-container-border-width-default, 1px);
+  --search-rect_b-w-em: var(--search-input-rectangular-container-border-width-emphasized, 2px);
+  --search-rect_f-size: var(--search-input-rectangular-control-font-size-md);
+  --search-rect_l-h: var(--search-input-rectangular-control-line-height-md);
+  --search-rect_icon-size: var(--search-input-rectangular-icon-start-size-md, 20px);
+  --search-rect_bg: var(--search-input-rectangular-default-background-default);
+  --search-rect_c: var(--search-input-rectangular-default-text-default);
+  --search-rect_c-ph: var(--search-input-rectangular-default-text-placeholder);
+  --search-rect_b-c: var(--search-input-rectangular-default-border-default);
+  --search-rect_b-c-hover: var(--search-input-rectangular-default-border-hover);
+  --search-rect_b-c-focus: var(--search-input-rectangular-default-border-focus);
+  --search-rect_focus-ring: var(--search-input-rectangular-default-focus-ring);
+  --search-rect_focus-ring-w: var(--search-input-rectangular-container-focus-ring-width, 3px);
+  --search-rect_transition: var(--search-input-rectangular-container-transition-duration, 0.15s) var(--search-input-rectangular-container-transition-timing-function, ease-in-out);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--search-input-rectangular-field-gap, 0.375rem);
+  inline-size: 100%;
+  font-family: var(--search-input-rectangular-control-font-family, inherit);
+  color: var(--search-rect_c);
+}
+
+/* === Size: lg === */
+.c--search-input-rectangular--lg {
+  --search-rect_height: var(--search-input-rectangular-container-height-lg);
+  --search-rect_p-i: var(--search-input-rectangular-container-padding-inline-lg);
+  --search-rect_gap: var(--search-input-rectangular-container-gap-lg);
+  --search-rect_f-size: var(--search-input-rectangular-control-font-size-lg);
+  --search-rect_l-h: var(--search-input-rectangular-control-line-height-lg);
+  --search-rect_icon-size: var(--search-input-rectangular-icon-start-size-lg, 24px);
+}
+
+/* === Label === */
+.search-rect-label {
+  display: flex;
+  align-items: center;
+  gap: var(--search-input-rectangular-label-gap, 0.25rem);
+  font-family: var(--search-input-rectangular-label-font-family, inherit);
+  font-size: var(--search-input-rectangular-label-font-size, 0.875rem);
+  font-weight: var(--search-input-rectangular-label-font-weight, 500);
+  line-height: var(--search-input-rectangular-label-line-height, 1.4);
+  color: var(--search-input-rectangular-label-color-default);
+}
+
+.search-rect-required {
+  color: var(--color-text-danger-default, #c0392b);
+  margin-inline-start: 0.125rem;
+}
+
+/* === Control === */
+.search-rect-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  block-size: var(--search-rect_height);
+  background: var(--search-rect_bg);
+  border: var(--search-rect_b-w) solid var(--search-rect_b-c);
+  border-radius: var(--search-rect_radius);
+  padding-inline: var(--search-rect_p-i);
+  gap: var(--search-rect_gap);
+  transition: border-color var(--search-rect_transition), box-shadow var(--search-rect_transition);
+
+  &:hover {
+    border-color: var(--search-rect_b-c-hover);
+  }
+
+  &:focus-within {
+    border-color: var(--search-rect_b-c-focus);
+    border-width: var(--search-rect_b-w-em);
+    box-shadow: 0 0 0 var(--search-rect_focus-ring-w) var(--search-rect_focus-ring);
+    outline: none;
+  }
+}
+
+/* === Icon === */
+.search-rect-icon-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+  pointer-events: none;
+
+  svg {
+    width: var(--search-rect_icon-size);
+    height: var(--search-rect_icon-size);
+  }
+}
+
+/* === Field === */
+.search-rect-field {
+  flex: 1;
+  min-inline-size: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: var(--search-rect_f-size);
+  line-height: var(--search-rect_l-h);
+  color: var(--search-rect_c);
+  font-family: inherit;
+
+  &::placeholder {
+    color: var(--search-rect_c-ph);
+  }
+
+  /* Remove native search cancel button */
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    appearance: none;
+  }
+}
+
+/* === Submit button === */
+.search-rect-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  block-size: calc(var(--search-rect_height) - 0.5rem);
+  padding-inline: 1rem;
+  border-radius: calc(var(--search-rect_radius) - 2px);
+  border: none;
+  background: var(--color-background-brand-default, #1a56db);
+  color: var(--color-text-on-brand, #fff);
+  font-size: var(--search-rect_f-size);
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--search-rect_transition);
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--color-background-brand-default, #1a56db), #000 15%);
+  }
+
+  &:focus-visible {
+    outline: var(--search-rect_focus-ring-w) solid var(--search-rect_focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background: var(--color-background-disabled-default);
+    color: var(--color-text-base-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  svg {
+    width: var(--search-rect_icon-size);
+    height: var(--search-rect_icon-size);
+  }
+}
+
+/* === Disabled state === */
+.c--search-input-rectangular.is-disabled {
+  .search-rect-label {
+    color: var(--color-text-base-disabled);
+  }
+
+  .search-rect-control {
+    background: var(--color-background-disabled-default);
+    border-color: var(--color-background-disabled-default);
+    pointer-events: none;
+  }
+
+  .search-rect-field {
+    color: var(--color-text-base-disabled);
+    cursor: not-allowed;
+  }
+}
+
+/* === Visually hidden utility === */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

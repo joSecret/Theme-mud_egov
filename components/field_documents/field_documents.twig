@@ -1,0 +1,52 @@
+{#-
+/**
+  * @file
+  * Field Documents component.
+  *
+  * Renders a documents field as a stacked list. Each item's rendered markup
+  * (item.content) is passed through unchanged — media entities keep whatever
+  * display their view mode produces.
+  *
+  * Available values:
+  * - fieldDocuments_items (array) (default: [])
+  *   Each item: { content: renderable|string }
+  * - fieldDocuments_label (string|object|null) (default: null)
+  * - fieldDocuments_label_hidden (boolean) (default: false)
+  *
+  * Available Utility classes -> uc
+  * - fieldDocuments_uc (array) (default: [])
+  *
+  * Available attributes -> att
+  * - fieldDocuments_att (Drupal\Core\Template\Attribute)
+  */
+-#}
+
+{#- Set default value -#}
+{% set fieldDocuments_items = fieldDocuments_items|default([]) %}
+{% set fieldDocuments_label = fieldDocuments_label|default(null) %}
+{% set fieldDocuments_label_hidden = fieldDocuments_label_hidden|default(false) %}
+
+{#- Create attributes -#}
+{% set fieldDocuments_att = fieldDocuments_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set fieldDocuments_classes = [
+  'c--fieldDocuments',
+]|merge(fieldDocuments_uc ?: []) %}
+
+{#- Render component -#}
+<div{{ fieldDocuments_att.addClass(fieldDocuments_classes) }}>
+  {% if fieldDocuments_label and not fieldDocuments_label_hidden %}
+    {% include 'mud_egov:heading' with {
+      heading_level: 3,
+      heading_text: fieldDocuments_label,
+      heading_uc: ['fieldDocuments__label'],
+    } %}
+  {% endif %}
+
+  {% for item in fieldDocuments_items %}
+    <div class="fieldDocuments__item">
+      {{ item.content }}
+    </div>
+  {% endfor %}
+</div>

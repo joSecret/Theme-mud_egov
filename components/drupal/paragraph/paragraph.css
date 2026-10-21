@@ -1,0 +1,11 @@
+.paragraph {
+  --_paragraph_d: var(--paragraph_d, block);
+
+  display: var(--_paragraph_d);
+}
+
+.paragraph--unpublished {
+  --_paragraph_o: var(--paragraph_unpublished_o, 0.5);
+
+  opacity: var(--_paragraph_o);
+}

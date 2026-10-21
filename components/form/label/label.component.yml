@@ -1,0 +1,55 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Label
+status: stable
+version: 1.0.0
+group: Form
+description: 'A standalone form label component that can be used independently or included by other form components.'
+
+# Props.
+props:
+  type: object
+  required:
+    - label_text
+
+  properties:
+    # properties props
+    label_required:
+      type: ['boolean', 'null']
+      title: Required Indicator
+      description: Display a required asterisk (*) indicator.
+      default: false
+
+    # fields values
+    label_text:
+      type: string
+      title: Label Text
+      description: The visible text content of the label.
+
+    label_for:
+      type: ['string', 'null']
+      title: For
+      description: ID of the form field this label is associated with (for attribute).
+      default: null
+
+    label_required_symbol:
+      type: ['string', 'null']
+      title: Required Symbol
+      description: The symbol to indicate a required field. Default is an asterisk (*).
+      default: '*'
+
+    # uc -> utility_classes
+    label_uc:
+      type: array
+      items:
+        type: string
+      title: Label Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    label_att:
+      type: Drupal\Core\Template\Attribute
+      title: Label Attributes
+      description: A list of HTML attributes for the label element.
+
+      default: null

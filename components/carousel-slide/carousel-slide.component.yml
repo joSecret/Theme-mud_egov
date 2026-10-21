@@ -1,0 +1,67 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Carousel Slide
+status: stable
+version: 1.0.0
+group: Content
+description: 'Individual slide for the Carousel component. Renders heading, description, image and optional CTA.'
+
+props:
+  type: object
+  properties:
+    slide_heading:
+      type: ['string', 'null']
+      title: Heading
+      description: 'Main heading of the slide.'
+      default: null
+
+    slide_heading_tag:
+      type: string
+      title: Heading Tag
+      description: 'HTML tag for the heading.'
+      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+      default: 'h2'
+
+    slide_description:
+      type: ['string', 'null']
+      title: Description
+      description: 'Short subtitle or supporting text.'
+      default: null
+
+    slide_image:
+      type: ['string', 'null']
+      title: Image URL
+      description: 'URL of the slide image or illustration.'
+      default: null
+
+    slide_image_alt:
+      type: ['string', 'null']
+      title: Image Alt
+      description: 'Alt text for the image.'
+      default: ''
+
+    slide_image_loading:
+      type: string
+      title: Image Loading
+      description: 'Loading attribute for the image.'
+      enum: ['eager', 'lazy']
+      default: 'lazy'
+
+    slide_cta:
+      type: ['object', 'null']
+      title: CTA
+      description: 'Call-to-action link. Object with url and title keys.'
+      default: null
+
+    # uc -> utility_classes
+    slide_uc:
+      type: array
+      items:
+        type: string
+      title: Slide Utility Classes
+      default: []
+
+    # att -> attributes
+    slide_att:
+      type: Drupal\Core\Template\Attribute
+      title: Slide Attributes
+      default: null

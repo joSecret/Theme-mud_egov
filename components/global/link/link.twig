@@ -1,0 +1,127 @@
+{#-
+/**
+ * @file
+ * Template for a link component.
+ *
+ * Props:
+ * - link_url: (string | null) default: (null)
+ * - link_label: (string) default: ('')
+ * - link_target: (string | null) default: (null)
+ * - link_rel: (string | null) default: (null)
+ * - link_download: (string | null) default: (null)
+ * - link_aria_label: (string | null) default: (null)
+ * - link_variant: (string | null) default: (null)
+ *    enum: null | primary | strict | white
+ * - link_size: (string | null) default: (null)
+ *    enum: null | xs | sm | md | lg
+ * - link_underline: (string | null) default: (null)
+ *    enum: null | always | hover | none
+ * - link_standalone: (boolean) default: (false)
+ * - link_disabled: (boolean) default: (false)
+ * - link_external: (boolean) default: (true)
+ *
+ * Utility classes: link_uc
+ * Attributes: link_att
+ *
+ * Slots:
+ * - slot_icon_start: Leading icon
+ * - slot_icon_end: Trailing icon
+ */
+-#}
+
+{#- Defaults -#}
+{% set link_label = link_label|default('') %}
+{% set link_url = link_url|default(null) %}
+{% set link_target = link_target|default(null) %}
+{% set link_rel = link_rel|default(null) %}
+{% set link_download = link_download|default(null) %}
+{% set link_aria_label = link_aria_label|default(null) %}
+{% set link_variant = link_variant|default(null) %}
+{% set link_size = link_size|default(null) %}
+{% set link_underline = link_underline|default(null) %}
+{% set link_standalone = link_standalone|default(false) %}
+{% set link_disabled = link_disabled|default(false) %}
+{% set link_external = link_external ?? true %}
+
+{#- Auto rel for _blank targets -#}
+{%- if link_target == '_blank' and not link_rel -%}
+  {% set link_rel = 'noopener noreferrer' %}
+{%- endif -%}
+
+{#- Show external indicator when target=_blank and link_external=true -#}
+{% set show_external = link_target == '_blank' and link_external and not link_disabled -%}
+
+{#- Create attributes -#}
+{% set link_att = link_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set link_classes = [
+    'link',
+    link_variant ? 'link-' ~ link_variant,
+    link_size ? 'link-' ~ link_size,
+    link_underline ? 'link-underline-' ~ link_underline,
+    link_standalone ? 'link-standalone',
+    link_disabled ? 'link-disabled',
+    slot_icon_start is not empty ? 'link-has-icon-start',
+    (slot_icon_end is not empty or show_external) ? 'link-has-icon-end',
+  ]|merge(link_uc ?: [])
+%}
+
+{#- Anchor attributes -#}
+{%- if link_url -%}
+  {% set link_att = link_att.setAttribute('href', link_url) %}
+{%- endif -%}
+
+{%- if link_target -%}
+  {% set link_att = link_att.setAttribute('target', link_target) %}
+{%- endif -%}
+
+{%- if link_rel -%}
+  {% set link_att = link_att.setAttribute('rel', link_rel) %}
+{%- endif -%}
+
+{%- if link_download is not null -%}
+  {% set link_att = link_att.setAttribute('download', link_download) %}
+{%- endif -%}
+
+{%- if link_aria_label -%}
+  {% set link_att = link_att.setAttribute('aria-label', link_aria_label) %}
+{%- endif -%}
+
+{#- Disabled -#}
+{%- if link_disabled -%}
+  {% set link_att = link_att
+    .setAttribute('aria-disabled', 'true')
+    .setAttribute('tabindex', '-1')
+  %}
+{%- endif -%}
+
+{#- Render -#}
+<a{{ link_att.addClass(link_classes) }}>
+
+  {%- if slot_icon_start is not empty -%}
+    <span class="link__icon-start">
+      {{- slot_icon_start -}}
+    </span>
+  {%- endif -%}
+
+  <span class="link__label">
+    {{- link_label -}}
+  </span>
+
+  {%- if show_external -%}
+    <span class="link__external-indicator" aria-hidden="true">
+      <svg class="link__external-icon" viewBox="0 0 16 16" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/>
+        <path d="M9 2h5v5"/>
+        <path d="M14 2 8 8"/>
+      </svg>
+    </span>
+  {%- elseif slot_icon_end is not empty -%}
+    <span class="link__icon-end">
+      {{- slot_icon_end -}}
+    </span>
+  {%- endif -%}
+
+</a>

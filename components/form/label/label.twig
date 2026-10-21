@@ -1,0 +1,49 @@
+{#-
+/**
+  * @file
+  * Label component.
+  * - label_required (boolean|null) (default: false)
+  *
+  * Available values:
+  * - label_text (string) required
+  * - label_for (string|null) (default: null)
+  * - label_required_symbol (string|null) (default: '*')
+  *
+  * Available Utility classes -> uc
+  * - label_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - label_att (Drupal\Core\Template\Attribute)
+  */
+-#}
+
+{#- Set default value -#}
+{% set label_for = label_for|default(null) %}
+{% set label_required = label_required|default(false) %}
+{% set label_required_symbol = label_required_symbol|default('*') %}
+
+{#- Create attributes -#}
+{% set label_att = label_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set label_classes = [
+  'c--label',
+  'form-label',
+  label_required ? 'is-required',
+]|merge(label_uc ?: []) %}
+
+{#- Change attributes -#}
+{%- if label_for -%}
+  {% set label_att = label_att.setAttribute('for', label_for) %}
+{%- endif -%}
+
+{#- Render component -#}
+<label{{ label_att.addClass(label_classes) }}>
+  {{- label_text -}}
+
+  {%- if label_required -%}
+    <span class="label-symbol" aria-hidden="true">
+      {{- label_required_symbol -}}
+    </span>
+  {%- endif -%}
+</label>

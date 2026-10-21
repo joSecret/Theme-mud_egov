@@ -1,0 +1,62 @@
+{#-
+/**
+  * @file
+  * sectionCode component.
+  *
+  * Available variations:
+  *
+  * Available values:
+  * - sectionCode_heading (string|null) (default: null)
+  * - sectionCode_description (string|null) (default: null)
+  *
+  * Available Utility classes -> uc
+  * - sectionCode_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - sectionCode_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_content: The main content of the sectionCode
+  */
+-#}
+
+{#- Set default value -#}
+{% set sectionCode_heading = sectionCode_heading|default(null) %}
+{% set sectionCode_description = sectionCode_description|default(null) %}
+{% set sectionCode_code = sectionCode_code|default(null) %}
+
+{#- Create attributes -#}
+{% set sectionCode_att = sectionCode_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set sectionCode_classes = [
+  'c--sectionCode',
+]|merge(sectionCode_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set content -%}
+  {% block slot_content %}
+  {% endblock %}
+{%- endset %}
+
+{% set code -%}
+  <pre><code>
+    {{- sectionCode_code -}}
+  </code></pre>
+{%- endset %}
+
+{#- Render component -#}
+<div{{ sectionCode_att.addClass(sectionCode_classes) }}>
+  {% include "mud_egov:tabs" with {
+    tabs_tabs: [
+      {
+        title: 'Preview',
+        content: content
+      },
+      {
+        title: 'Code',
+        content: code
+      }
+    ]
+  } %}
+</div>

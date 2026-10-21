@@ -1,0 +1,35 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Plus Minus
+status: stable
+group: Global
+version: 1.0.0
+description: 'Animated plus/minus icon. Rotates 90° and collapses horizontal bar on hover or open state.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    plus_minus_open:
+      type: boolean
+      title: Open State
+      default: false
+      description: When true, displays the minus state (rotated, horizontal bar hidden).
+
+    # component variations
+
+    # uc -> utility_classes
+    plus_minus_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
+
+    # att -> attributes
+    plus_minus_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

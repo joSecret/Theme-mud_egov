@@ -1,0 +1,34 @@
+{#-
+/**
+ * @file
+ * Template for a Card Link component.
+ *
+ * Available variations:
+ * - card_link_url: (string|null)
+ * - card_link_icon: (string|null) Raw SVG or icon markup.
+ *
+ * Available Utility classes -> uc
+ * - card_link_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - card_link_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Set default value -#}
+{% set card_link_icon = card_link_icon|default('<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.6692 7.20193C26.6692 5.2231 24.1027 4.44606 23.0051 6.09253L12.2508 22.224C11.3647 23.5531 12.3175 25.3334 13.9149 25.3334H21.3358V32.7982C21.3358 34.777 23.9023 35.5541 24.9999 33.9076L35.7543 17.7761C36.6403 16.447 35.6876 14.6667 34.0902 14.6667H26.6692V7.20193Z" fill="#121212"/></svg>') %}
+
+{#- Create attributes -#}
+{% set card_link_att = card_link_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set card_link_classes = [
+  'c--card-link',
+]|merge(card_link_uc ?: []) %}
+
+{#- Render component -#}
+<div{{ card_link_att.addClass(card_link_classes) }}>
+  {{- card_link_icon|raw -}}
+
+  {{- card_link_url -}}
+</div>

@@ -1,0 +1,117 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Field
+status: stable
+version: 1.0.0
+group: Drupal
+description: 'mud_egov override for a Drupal field. Mirrors the logic of core field.html.twig.'
+
+# Props.
+props:
+  type: object
+  required:
+    - field_items
+
+  properties:
+    # component variations
+    field_label_display:
+      type: string
+      title: 'Label Display'
+      description: 'How the field label is displayed.'
+      enum:
+        - 'above'
+        - 'inline'
+        - 'visually_hidden'
+        - 'hidden'
+      'meta:enum':
+        above: 'Above the field'
+        inline: 'Inline with content'
+        visually_hidden: 'Visually hidden (screen readers only)'
+        hidden: 'Completely hidden'
+      default: 'above'
+
+    field_label_hidden:
+      type: boolean
+      title: 'Label Hidden'
+      description: 'Whether to hide the field label.'
+      default: false
+
+    field_multiple:
+      type: boolean
+      title: 'Multiple'
+      description: 'TRUE if the field can contain multiple items.'
+      default: false
+
+    field_default_wrap:
+      type: boolean
+      title: 'Multiple'
+      description: 'TRUE if need wpappers/divs.'
+      default: false
+
+    # fields values
+    field_label:
+      type: ['string', 'object', 'null']
+      title: 'Label'
+      description: 'The field label (string or render array).'
+      default: null
+
+    field_items:
+      type: array
+      title: 'Items'
+      description: 'List of all the field items. Each item contains attributes and content.'
+      items:
+        type: object
+        properties:
+          attributes:
+            type: ['string', 'object', 'array', 'null']
+          content:
+            type: ['string', 'object']
+
+    # uc -> utility_classes
+    field_uc:
+      type: array
+      items:
+        type: string
+      title: Field Utility Classes
+      description: An array of utility classes for the field wrapper.
+      default: []
+
+    field_label_uc:
+      type: array
+      items:
+        type: string
+      title: Field Label Utility Classes
+      description: An array of utility classes for the field label.
+      default: []
+
+    field_items_uc:
+      type: array
+      items:
+        type: string
+      title: Field Items Utility Classes
+      description: An array of utility classes for the items wrapper (when multiple).
+      default: []
+
+    field_item_uc:
+      type: array
+      items:
+        type: string
+      title: Field Item Utility Classes
+      description: An array of utility classes for each field item.
+      default: []
+
+    # att -> attributes
+    field_att:
+      type: ['string', 'object', 'array', 'null']
+      title: Field Attributes
+      description: HTML attributes for the field wrapper.
+
+    field_title_att:
+      type: ['string', 'object', 'array', 'null']
+      title: Field Title Attributes
+      description: HTML attributes for the field label.
+
+# Slots.
+slots:
+  slot_label:
+    title: Label
+    description: Override slot for the field label content.

@@ -1,0 +1,84 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Notification
+status: stable
+group: Globals
+version: 1.0.0
+description: Toast notification for transient status messages — info, success, warning, or error.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    notification_title:
+      type: ["string", "null"]
+      title: Title
+      description: Optional bold heading rendered above the body.
+      default: null
+
+    notification_message:
+      type: ["string", "array", "null"]
+      title: Message
+      description: Single string, or an array of strings — arrays are rendered as a bullet list (used for Drupal messenger multi-message groups).
+      default: null
+
+    notification_sr_heading:
+      type: ["string", "null"]
+      title: Screen Reader Heading
+      description: Visually hidden heading rendered before the body — used by Drupal status-messages for accessible severity labels.
+      default: null
+
+    notification_icon:
+      type: ["string", "null"]
+      title: Icon
+      description: SVG icon string. Include aria-hidden="true".
+      default: null
+
+    notification_close_label:
+      type: ["string", "null"]
+      title: Close Label
+      description: Accessible label for the close button.
+      default: "Close"
+
+    # component variations
+    notification_variant:
+      type: ["string", "null"]
+      title: Variant
+      default: null
+      enum: [null, info, success, warning, error]
+
+    notification_emphasis:
+      type: ["string", "null"]
+      title: Emphasis
+      description: solid (default toast — full colored surface) or subtle (tinted surface for inline messenger).
+      default: solid
+      enum: [null, solid, subtle]
+
+    notification_dismissible:
+      type: boolean
+      title: Dismissible
+      description: Renders a trailing close button when true.
+      default: false
+
+    # uc -> utility_classes
+    notification_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    notification_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.
+
+slots:
+  slot_content:
+    title: Content
+    description: Message body — plain text or rich inline content.
+  slot_actions:
+    title: Actions
+    description: Optional inline action group rendered below the body.

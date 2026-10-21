@@ -1,0 +1,65 @@
+{#-
+/**
+  * @file
+  * Node Details component.
+  *
+  * Available values:
+  * - nodeDetails_title (string|null) (default: null)
+  * - nodeDetails_title_tag (string) (default: 'h5')
+  *
+  * Available Utility classes -> uc
+  * - nodeDetails_uc (array) (default: [''])
+  * - nodeDetails_body_uc (array) (default: [''])
+  *
+  * Available attributes -> att
+  * - nodeDetails_att (Drupal\Core\Template\Attribute)
+  * - nodeDetails_body_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots
+  * - slot_title: Override slot for the section heading.
+  * - slot_items: The list of field_icon items inside the bordered body.
+  *
+  * usage example: @see README.md
+  */
+-#}
+
+{#- Set default value -#}
+{% set nodeDetails_title = nodeDetails_title|default(null) %}
+{% set nodeDetails_title_tag = nodeDetails_title_tag|default('h5') %}
+
+{#- Create attributes -#}
+{% set nodeDetails_att = nodeDetails_att ?: create_attribute() %}
+{% set nodeDetails_title_att = nodeDetails_title_att ?: create_attribute() %}
+{% set nodeDetails_body_att = nodeDetails_body_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set nodeDetails_classes = [
+  'c--nodeDetails',
+]|merge(nodeDetails_uc ?: []) %}
+
+{% set nodeDetails_title_classes = [
+  'nodeDetails-title',
+]|merge(nodeDetails_title_uc ?: []) %}
+
+{% set nodeDetails_body_classes = [
+  'nodeDetails-body',
+]|merge(nodeDetails_body_uc ?: []) %}
+
+{#- Change attributes -#}
+
+{#- Render component -#}
+<div{{ nodeDetails_att.addClass(nodeDetails_classes) }}>
+  {% block slot_title %}
+    {%- if nodeDetails_title -%}
+      <{{ nodeDetails_title_tag }}{{ nodeDetails_title_att.addClass(nodeDetails_title_classes) }}>
+        {{- nodeDetails_title -}}
+      </{{ nodeDetails_title_tag }}>
+    {%- endif -%}
+  {% endblock -%}
+
+  <div{{ nodeDetails_body_att.addClass(nodeDetails_body_classes) }}>
+    {%- block slot_items -%}
+      {{- content -}}
+    {%- endblock -%}
+  </div>
+</div>

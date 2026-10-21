@@ -1,0 +1,93 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Chip
+status: stable
+group: Globals
+version: 1.0.0
+description: Compact, pill-shaped control for filter selection or token display.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    chip_label:
+      type: ['string', 'null']
+      title: Label
+      description: Visible text content of the chip.
+      default: null
+
+    chip_count:
+      type: ['integer', 'null']
+      title: Count
+      description: Optional numeric badge rendered after the label (e.g. a result count).
+      default: null
+
+    chip_icon:
+      type: ['string', 'null']
+      title: Icon
+      description: SVG icon markup displayed before the label.
+      default: null
+
+    # component variations
+    chip_type:
+      type: ['string', 'null']
+      title: Type
+      description: Behavioral mode — filter (toggleable) or input (removable token).
+      default: filter
+      enum:
+        - null
+        - filter
+        - input
+
+    chip_size:
+      type: ['string', 'null']
+      title: Size
+      description: Visual size rung.
+      default: md
+      enum:
+        - null
+        - sm
+        - md
+
+    chip_selection_mode:
+      type: ['string', 'null']
+      title: Selection Mode
+      description: For type=filter — mono (radio-like) or multi (checkbox-like with leading checkmark).
+      default: mono
+      enum:
+        - null
+        - mono
+        - multi
+
+    chip_selected:
+      type: boolean
+      title: Selected
+      description: Selected state for type=filter chips.
+      default: false
+
+    chip_removable:
+      type: boolean
+      title: Removable
+      description: Show trailing remove button. Only used with type=input.
+      default: false
+
+    chip_disabled:
+      type: boolean
+      title: Disabled
+      description: Disables interactivity.
+      default: false
+
+    # uc -> utility_classes
+    chip_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    chip_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

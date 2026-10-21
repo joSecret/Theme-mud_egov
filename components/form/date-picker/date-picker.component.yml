@@ -1,0 +1,123 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Date Picker
+status: stable
+group: Forms
+version: 1.0.0
+description: Calendar-based date picker with single, range, and multi-select modes. Aligned with mud-date-picker.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    date_picker_label:
+      type: ['string', 'null']
+      title: Label
+      default: null
+
+    date_picker_name:
+      type: ['string', 'null']
+      title: Name
+      default: null
+
+    date_picker_id:
+      type: ['string', 'null']
+      title: ID
+      default: null
+
+    date_picker_value:
+      type: ['string', 'null']
+      title: Value
+      description: ISO YYYY-MM-DD date string.
+      default: null
+
+    date_picker_min:
+      type: ['string', 'null']
+      title: Min Date
+      description: Inclusive lower bound ISO date.
+      default: null
+
+    date_picker_max:
+      type: ['string', 'null']
+      title: Max Date
+      description: Inclusive upper bound ISO date.
+      default: null
+
+    date_picker_placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      default: null
+
+    date_picker_helper_text:
+      type: ['string', 'null']
+      title: Helper Text
+      default: null
+
+    date_picker_error_message:
+      type: ['string', 'null']
+      title: Error Message
+      default: null
+
+    date_picker_locale:
+      type: ['string', 'null']
+      title: Locale
+      description: BCP-47 locale for weekday and month labels (e.g. ro-RO).
+      default: null
+
+    # component variations
+    date_picker_mode:
+      type: ['string', 'null']
+      title: Mode
+      description: "single (default) | range | multi"
+      default: null
+      enum:
+        - null
+        - single
+        - range
+        - multi
+
+    date_picker_size:
+      type: ['string', 'null']
+      title: Size
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+        - lg
+
+    date_picker_disabled:
+      type: boolean
+      title: Disabled
+      default: false
+
+    date_picker_required:
+      type: boolean
+      title: Required
+      default: false
+
+    date_picker_error:
+      type: boolean
+      title: Error
+      default: false
+
+    date_picker_inline:
+      type: boolean
+      title: Inline
+      description: Show calendar inline (docked) instead of in a popup.
+      default: false
+
+    # uc -> utility_classes
+    date_picker_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    date_picker_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

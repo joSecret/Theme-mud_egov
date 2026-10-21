@@ -1,0 +1,79 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Node Details
+status: stable
+version: 1.0.0
+group: Components
+description: 'A details panel with a heading and a left-bordered list of field items (e.g. date, time, location, organiser).'
+
+# Props.
+props:
+  type: object
+
+  properties:
+    # component props
+    nodeDetails_title_tag:
+      type: ['string', 'null']
+      title: Title Tag
+      description: 'The HTML tag for the section heading (e.g. "h2", "h3", "h4").'
+      enum:
+        - 'h2'
+        - 'h3'
+        - 'h4'
+        - 'h5'
+        - 'h6'
+      default: 'h5'
+
+    # fields values
+    nodeDetails_title:
+      type: ['string', 'null']
+      title: Title
+      description: 'The section heading (e.g. "Event Details").'
+      default: null
+
+    # uc -> utility_classes
+    nodeDetails_uc:
+      type: array
+      items:
+        type: string
+      title: Node Details Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    nodeDetails_title_uc:
+      type: array
+      items:
+        type: string
+      title: Node Details Title Utility Classes
+
+    nodeDetails_body_uc:
+      type: array
+      items:
+        type: string
+      title: Node Details Body Utility Classes
+
+    # att -> attributes
+    nodeDetails_att:
+      type: Drupal\Core\Template\Attribute
+      title: Node Details Attributes
+      description: A list of HTML attributes for the component wrapper.
+
+      default: null
+    nodeDetails_title_att:
+      type: Drupal\Core\Template\Attribute
+      title: Node Details Title Attributes
+
+      default: null
+    nodeDetails_body_att:
+      type: Drupal\Core\Template\Attribute
+      title: Node Details Body Attributes
+
+      default: null
+# Slots.
+slots:
+  slot_title:
+    title: Title
+    description: Override slot for the section heading.
+
+  slot_items:
+    title: Items
+    description: The list of field_icon items inside the bordered body.

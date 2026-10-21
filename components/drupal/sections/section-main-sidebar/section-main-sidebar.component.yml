@@ -1,0 +1,99 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Page layout with sidebar
+status: stable
+version: 1.0.0
+description: 'Section main with optional left and right sidebars'
+group: Layout
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    section_main_sidebar_container:
+      type: ['boolean', 'null']
+      title: Section main container
+      description: Whether to wrap the main section in a container class.
+      default: true
+
+    # uc -> utility_classes
+    section_main_sidebar_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+
+    section_main_sidebar_main_uc:
+      type: array
+      items:
+        type: string
+      title: Utility classes main section
+      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+
+    section_main_sidebar_left_uc:
+      type: array
+      items:
+        type: string
+      title: Utility classes sidebar left
+      description: An array of utility classes for the left sidebar.
+
+    section_main_sidebar_right_uc:
+      type: array
+      items:
+        type: string
+      title: Utility classes sidebar right
+      description: An array of utility classes for the right sidebar.
+
+    # att -> attributes
+    section_main_sidebar_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the section main component.
+
+      default: null
+    section_main_sidebar_main_att:
+      type: Drupal\Core\Template\Attribute
+      title: Main section attributes
+      description: A list of HTML attributes for the main section element.
+      default: null
+
+    section_main_sidebar_content_att:
+      type: Drupal\Core\Template\Attribute
+      title: Content attributes
+      description: A list of HTML attributes for the content element.
+      default: null
+
+    section_main_sidebar_left_att:
+      type: Drupal\Core\Template\Attribute
+      title: Left sidebar attributes
+      description: A list of HTML attributes for the left sidebar aside element.
+      default: null
+
+    section_main_sidebar_right_att:
+      type: Drupal\Core\Template\Attribute
+      title: Right sidebar attributes
+      description: A list of HTML attributes for the right sidebar aside element.
+      default: null
+
+# Slots.
+slots:
+  slot_highlighted:
+    title: Highlighted
+    description: Default content text for the tab.
+
+  slot_content:
+    title: Content
+    description: Main content area.
+
+  slot_sidebar_left:
+    title: Sidebar left
+    description: Content for the left sidebar.
+
+  slot_sidebar_right:
+    title: Sidebar right
+    description: Content for the right sidebar.
+
+  slot_bottom:
+    title: Content bottom
+    description: Default content text for the tab.

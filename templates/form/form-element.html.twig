@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * mud_egov theme implementation for a form element.
+ */
+#}
+
+{% embed 'mud_egov:form-element' with {
+  form_element_type: type,
+  form_element_label: label['#title'] ?? null,
+  form_element_label_display: label_display ?? 'before',
+  form_element_required: label['#required'] ?? false,
+  form_element_id: label['#id'] ?? null,
+  form_element_description: description.content ?? null,
+  form_element_description_display: description_display ?? 'after',
+  form_element_description_att: description.attributes ?? null,
+  form_element_error: errors,
+  form_element_prefix: prefix,
+  form_element_suffix: suffix,
+  form_element_disabled: disabled == 'disabled' ? true : false,
+  form_element_name: name,
+  form_element_att: attributes,
+} %}
+  {% block form_element_field %}
+    {{- children -}}
+  {% endblock %}
+{% endembed %}

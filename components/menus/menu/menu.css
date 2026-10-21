@@ -1,0 +1,77 @@
+.c--menu {
+  --_c-menu_bg: var(--c-menu_bg, inherit);
+  --_c-menu_c: var(--c-menu_c, var(--c_fg-muted));
+
+  --_c-menu_link_bg: var(--c-menu_link_bg, transparent);
+
+  display: var(--menu_d, flex);
+  flex-direction: var(--menu_f-d, row);
+  gap: var(--menu_gap, 16px);
+
+  background: var(--c-menu_ul_bg, var(--_c-menu_bg));
+  border-radius: var(--c-menu_ul_b-r, 0);
+
+  padding-block: var(--menu_p-b, 0);
+  padding-inline: var(--menu_p-i, 0);
+  margin: var(--menu_m, 0);
+
+  &,
+  ul {
+    list-style: none;
+  }
+
+  ul {
+    margin: var(--menu_m_ul, 0px);
+    padding-block: var(--menu_p-b_ul, 0px);
+    padding-inline: var(--menu_p-i_ul, 0px);
+  }
+
+  li {
+    color: var(--c-menu_li_c);
+    background: var(--c-menu_bg_c);
+    border-radius: var(--c-menu_li_b-r);
+  }
+
+  a {
+    --link_c: var(--c-menu_link_c, var(--_c-menu_c));
+    --link_bg: var(--_c-menu_link_bg);
+    --link_d: var(--c-menu_link_d, none);
+    --link_b-r: var(--c-menu_link_b-r, var(--size_100));
+    --link_p-b: var(--c-menu_link_p-b, var(--size_150));
+    --link_p-i: var(--c-menu_link_p-i, var(--size_300));
+
+    --link_c_h: var(--c-menu_link_c_h, var(--c_neutral_fg));
+    --_link_bg_h: var(--c-menu_link_bg_h, var(--c_hover-bg));
+
+    --_link_bg_a: var(--c-menu_link_bg_a, var(--c_hover-bg));
+
+    display: var(--c-menu_link_display);
+
+    &.is-active {
+      --_link_c: var(--c-menu_link_c_a, var(--c_neutral));
+      --_link_bg: var(--c-menu_link_bg_a, var(--c_hover-bg));
+    }
+  }
+
+  &.has-direction_vertical {
+    --menu_f-d: column;
+  }
+}
+
+.sidebar-menu {
+  --sidebar-menu_p-i: 24px;
+
+  --menu_gap: 0;
+  --c-menu_link_c: var(--color-text-base-secondary);
+  --c-menu_link_display: flex;
+  --c-menu_link_p-b: 12px;
+  --c-menu_link_p-i: var(--sidebar-menu_p-i) 16px;
+
+  .is-link_active-trail {
+    --c-menu_link_c: var(--color-text-brand-default);
+    --c-menu_link_c_a: var(--color-text-brand-default);
+    --c-menu_link_b-r: none;
+    background: var(--color-background-brand-secondary);
+    border-inline-start: 3px solid var(--c-menu_link_c);
+  }
+}

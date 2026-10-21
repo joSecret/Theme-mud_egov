@@ -1,0 +1,97 @@
+{#-
+/**
+ * @file
+ * Template for the Search Input Rectangular component (MUD-aligned).
+ *
+ * Props:
+ * - search_rect_label (string|null) default: null
+ * - search_rect_placeholder (string|null) default: null
+ * - search_rect_name (string|null) default: null
+ * - search_rect_id (string|null) default: null
+ * - search_rect_value (string|null) default: null
+ * - search_rect_button_label (string) default: 'Caută'
+ *
+ * Variations:
+ * - search_rect_size (string|null) default: null — md | lg
+ * - search_rect_disabled (boolean) default: false
+ * - search_rect_required (boolean) default: false
+ * - search_rect_show_button (boolean) default: false
+ *
+ * Utility classes: search_rect_uc
+ * Attributes: search_rect_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set search_rect_id = search_rect_id|default(search_rect_name) %}
+{% set search_rect_disabled = search_rect_disabled|default(false) %}
+{% set search_rect_required = search_rect_required|default(false) %}
+{% set search_rect_show_button = search_rect_show_button|default(false) %}
+{% set search_rect_button_label = search_rect_button_label|default('Caută') %}
+
+{#- IDs for aria wiring -#}
+{% set label_id = search_rect_id ? 'label-' ~ search_rect_id : null %}
+
+{#- Create attributes -#}
+{% set search_rect_att = search_rect_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'c--search-input-rectangular',
+    search_rect_size ? 'c--search-input-rectangular--' ~ search_rect_size,
+    search_rect_disabled ? 'is-disabled',
+    search_rect_show_button ? 'has-button',
+  ]|merge(search_rect_uc ?: [])
+%}
+
+{#- Render -#}
+<div{{ search_rect_att.addClass(classes) }}>
+  {%- if search_rect_label -%}
+    <label
+      class="search-rect-label"
+      {%- if search_rect_id -%} for="{{ search_rect_id }}"{%- endif -%}
+      {%- if label_id -%} id="{{ label_id }}"{%- endif -%}
+    >
+      {{- search_rect_label -}}
+      {%- if search_rect_required -%}
+        <span class="search-rect-required" aria-hidden="true">*</span>
+      {%- endif -%}
+    </label>
+  {%- endif -%}
+
+  <div class="search-rect-control">
+    <span class="search-rect-icon-start" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </span>
+
+    <input
+      class="search-rect-field"
+      type="search"
+      {%- if search_rect_id -%} id="{{ search_rect_id }}"{%- endif -%}
+      {%- if search_rect_name -%} name="{{ search_rect_name }}"{%- endif -%}
+      {%- if search_rect_value -%} value="{{ search_rect_value }}"{%- endif -%}
+      {%- if search_rect_placeholder -%} placeholder="{{ search_rect_placeholder }}"{%- endif -%}
+      {%- if search_rect_required -%} required aria-required="true"{%- endif -%}
+      {%- if search_rect_disabled -%} disabled aria-disabled="true"{%- endif -%}
+      {%- if label_id -%} aria-labelledby="{{ label_id }}"{%- endif -%}
+      autocomplete="off"
+    >
+
+    {%- if search_rect_show_button -%}
+      <button
+        class="search-rect-button"
+        type="submit"
+        aria-label="{{ search_rect_button_label }}"
+        {%- if search_rect_disabled -%} disabled aria-disabled="true"{%- endif -%}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span class="visually-hidden">{{ search_rect_button_label }}</span>
+      </button>
+    {%- endif -%}
+  </div>
+</div>

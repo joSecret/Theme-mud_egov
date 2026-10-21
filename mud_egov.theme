@@ -1,0 +1,395 @@
+<?php
+
+/**
+ * @file
+ * MUD eGov theme theme file.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Render\Element;
+use Drupal\media\Entity\Media;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function mud_egov_preprocess_page(array &$variables): void {
+  foreach (['sidebar', 'sidebar_right'] as $region) {
+    $has_content = FALSE;
+    if (!empty($variables['page'][$region]) && is_array($variables['page'][$region])) {
+      foreach (Element::children($variables['page'][$region]) as $key) {
+        $access = $variables['page'][$region][$key]['#access'] ?? TRUE;
+        if ($access === FALSE || (is_object($access) && !$access->isAllowed())) {
+          continue;
+        }
+        $has_content = TRUE;
+        break;
+      }
+    }
+    $variables['has_' . $region] = $has_content;
+  }
+
+  // $messenger = \Drupal::messenger();
+  // $messenger->addMessage(t('Acesta este un mesaj informativ (status).'), MessengerInterface::TYPE_STATUS);
+  // $messenger->addMessage(t('Operațiunea a fost efectuată cu succes.'), MessengerInterface::TYPE_STATUS);
+  // $messenger->addMessage(t('Atenție! Verifică datele înainte de a continua.'), MessengerInterface::TYPE_WARNING);
+  // $messenger->addMessage(t('Acesta este un mesaj informativ single'), MessengerInterface::TYPE_STATUS);
+  // $messenger->addMessage(t('A apărut o eroare. Încearcă din nou.'), MessengerInterface::TYPE_ERROR);
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function mud_egov_theme_suggestions_alter(
+  array &$suggestions,
+  array $variables,
+  $hook,
+) {
+  switch ($hook) {
+    case 'block':
+      if (!empty($variables['elements']['#id'])) {
+        $block = Block::load($variables['elements']['#id']);
+        if (!empty($block)) {
+          $region = $block->getRegion();
+          if (!empty($region)) {
+            array_splice($suggestions, 2, 0, $hook . '__region__' . $region);
+            $plugin_id = $variables['elements']['#plugin_id'] ?? '';
+            if (str_starts_with($plugin_id, 'system_menu_block')) {
+              $suggestions[] = $hook . '__system_menu_block__region__' . $region;
+            }
+          }
+          if ($block->getThirdPartySetting('mud_egov', 'bare')) {
+            $suggestions[] = $hook . '__bare';
+          }
+        }
+      }
+
+      if (isset($variables['elements']['content']['#block_content'])) {
+        $bundle = $variables['elements']['content']['#block_content']->bundle();
+        array_splice($suggestions, 3, 0, $hook . '__block_content__' . $bundle);
+        if ($bundle == 'c_blocks') {
+          $block_id = str_replace('-', '_', $variables['elements']['content']['#block_content']->get('field_block_custom_id')
+            ->getString());
+          array_splice($suggestions, 4, 0, $hook . '__custom_block__' . $block_id);
+        }
+      }
+      break;
+
+    case 'field':
+      $element = $variables['element'];
+      $suggestions[] = $hook . '__' . $element['#entity_type'] . '__' . $element['#field_name'] . '__' . $element['#bundle'] . '__' . $element['#view_mode'];
+      break;
+
+    case 'taxonomy_term':
+      $term = $variables['elements']['#taxonomy_term'];
+      $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+      array_splice($suggestions, 0, 0, $hook . '__' . $sanitized_view_mode);
+      array_splice($suggestions, 2, 0, $hook . '__' . $term->bundle() . '__' . $sanitized_view_mode);
+      break;
+
+    case 'paragraph':
+      $paragraph = $variables['elements']['#paragraph'];
+      $parent = $paragraph->getParentEntity();
+      $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+      $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $sanitized_view_mode;
+
+      // Change view mode for edw_card inside cards based on parent style.
+      if ($paragraph->bundle() == 'edw_card' && $parent && $parent->getEntityTypeId() == 'paragraph') {
+        $cards_style = $parent->getBehaviorSetting('style_options', 'cards_style');
+
+        if (!empty($cards_style)) {
+          $vm = $cards_style['css_class'] == 0 ? 'default' : 'card_vm__' . $cards_style['css_class'];
+          $variables['elements']['#view_mode'] = $vm;
+        }
+      }
+
+      if ($parent) {
+        array_splice($suggestions, 1, 0, 'paragraph__' . $parent->bundle() . '__' . $paragraph->bundle());
+        array_splice($suggestions, 2, 0, 'paragraph__' . $parent->bundle() . '__' . $variables['elements']['#view_mode']);
+        $suggestions[] = 'paragraph__' . $parent->bundle() . '__' . $paragraph->bundle() . '__' . $variables['elements']['#view_mode'];
+      }
+      break;
+
+    case 'page':
+      if (\Drupal::routeMatch()
+        ->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()
+        ->getRawParameter('taxonomy_term')) {
+        $term = Term::load($tid);
+        array_splice($suggestions, 1, 0, $hook . '__taxonomy__' . $term->bundle());
+      }
+
+      if ($node = \Drupal::request()->attributes->get('node')) {
+        if ($node->getType() !== 'page') {
+          array_splice($suggestions, 1, 0, [
+            $hook . '__node__sidebar',
+            $hook . '__node__' . $node->getType(),
+          ]);
+        }
+        else {
+          array_splice($suggestions, 1, 0, $hook . '__node__' . $node->getType());
+        }
+      }
+      break;
+
+    case 'form':
+      $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+      break;
+
+    case 'form_element':
+    case 'input':
+      if (!empty($variables['element']['#type'])) {
+        $suggestions[] = $hook . '__' . $variables['element']['#type'];
+      }
+      break;
+
+    case 'container':
+      $element = $variables['element'];
+      // Add suggestions for form actions containers.
+      if (!empty($element['#type']) && $element['#type'] === 'actions') {
+        $suggestions[] = 'container__actions';
+        // #form_id is injected via hook_form_alter() below.
+        if (!empty($element['#form_id'])) {
+          $suggestions[] = 'container__actions__' . $element['#form_id'];
+        }
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_block_form.
+ */
+function mud_egov_form_search_block_form_alter(array &$form, $form_state, string $form_id): void {
+  unset($form['keys'], $form['actions']);
+
+  $form['search_circular'] = [
+    '#type' => 'component',
+    '#component' => 'mud_egov:search-input-circular',
+    '#props' => [
+      'search_circular_name' => 'keys',
+      'search_circular_id' => 'edit-keys',
+      'search_circular_placeholder' => t('Caută'),
+      'search_circular_value' => '',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form (search results page).
+ */
+function mud_egov_form_search_form_alter(array &$form, $form_state, string $form_id): void {
+  // Ascundem containerul original dar îl lăsăm în DOM ca Drupal să
+  // proceseze valoarea 'keys' din POST → $form_state->getValue('keys').
+  $form['basic']['#attributes']['class'][] = 'visually-hidden';
+  $form['basic']['#attributes']['aria-hidden'] = 'true';
+
+  unset($form['actions']);
+
+  $form['search_circular'] = [
+    '#type' => 'component',
+    '#component' => 'mud_egov:search-input-circular',
+    '#props' => [
+      'search_circular_name' => 'keys',
+      'search_circular_id' => 'edit-keys-ui',
+      'search_circular_placeholder' => t('Caută'),
+      'search_circular_value' => \Drupal::request()->query->get('keys', ''),
+      'search_circular_with_button' => TRUE,
+      'search_circular_with_clear' => TRUE,
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function mud_egov_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] !== 'language_block:language_interface') {
+    return;
+  }
+
+  $variables['#cache']['contexts'][] = 'languages:language_interface';
+
+  $language_manager = \Drupal::languageManager();
+  $current_language = $language_manager->getCurrentLanguage();
+
+  $variables['current_language_label'] = ucfirst(strtolower($current_language->getId()));
+
+  $route_match = \Drupal::routeMatch();
+  $languages = $language_manager->getLanguages();
+  $items = [];
+  foreach ($languages as $langcode => $language) {
+    $url = \Drupal\Core\Url::fromRouteMatch($route_match);
+    $url->setOption('language', $language);
+    $items[] = [
+      'label' => $language->getName(),
+      'url' => $url->toString(),
+      'active' => $langcode === $current_language->getId(),
+      'disabled' => FALSE,
+      'icon' => NULL,
+    ];
+  }
+  $variables['language_menu_items'] = $items;
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function mud_egov_preprocess_menu(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  _mud_egov_process_menu_items($variables['items'], $current_path, $current_alias);
+}
+
+function _mud_egov_process_menu_items(array &$items, string $current_path = '', string $current_alias = '') {
+  foreach ($items as &$item) {
+    $url = $item['url'];
+    $options = $url->getOptions();
+    if (!empty($options['attributes']['button_style'])) {
+      $classes = array_filter(explode(' ', $options['attributes']['button_style']));
+      foreach ($classes as $class) {
+        $options['attributes']['class'][] = $class;
+      }
+      unset($options['attributes']['button_style']);
+      $url->setOptions($options);
+    }
+    if (empty($item['in_active_trail']) && $url instanceof \Drupal\Core\Url && $url->isRouted()) {
+      try {
+        $item_path = '/' . ltrim($url->getInternalPath(), '/');
+        $item_alias = \Drupal::service('path_alias.manager')->getAliasByPath($item_path);
+        if (
+          $item_path === $current_path
+          || $item_alias === $current_alias
+          || ($item_path !== '/' && str_starts_with($current_path, $item_path . '/'))
+          || ($item_alias !== '/' && str_starts_with($current_alias, $item_alias . '/'))
+        ) {
+          $item['in_active_trail'] = TRUE;
+        }
+      }
+      catch (\Exception $e) {
+      }
+    }
+    if (!empty($item['below'])) {
+      _mud_egov_process_menu_items($item['below'], $current_path, $current_alias);
+      if (empty($item['in_active_trail'])) {
+        foreach ($item['below'] as $child) {
+          if (!empty($child['in_active_trail'])) {
+            $item['in_active_trail'] = TRUE;
+            break;
+          }
+        }
+      }
+    }
+  }
+  unset($item);
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function mud_egov_page_attachments(array &$attachments): void {
+  $theme_path = \Drupal::service('extension.list.theme')->getPath('mud_egov');
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'preload',
+        'href' => base_path() . $theme_path . '/fonts/onest-variable-latin.woff2',
+        'as' => 'font',
+        'type' => 'font/woff2',
+        'crossorigin' => 'anonymous',
+      ],
+    ],
+    'mud-egov-font-preload',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for file_link.
+ *
+ * Prepares variables consumed by the mud_egov:file_link component:
+ * - fileLink_url: Direct URL to the file.
+ * - fileLink_title: Filename without extension, "_"/"-" replaced by spaces,
+ *   first letter capitalized.
+ * - fileLink_extension: Lowercase extension (no dot).
+ * - fileLink_date: Pre-formatted publication date pulled from the parent
+ *   Media entity (field_publication_date), when available.
+ */
+function mud_egov_preprocess_file_link(array &$variables): void {
+  $file = $variables['file'] ?? NULL;
+  if (!$file) {
+    return;
+  }
+
+  $filename = $file->getFilename();
+  $dot = strrpos($filename, '.');
+  $base = $dot !== FALSE ? substr($filename, 0, $dot) : $filename;
+  $extension = $dot !== FALSE ? strtolower(substr($filename, $dot + 1)) : '';
+
+  $variables['fileLink_url'] = \Drupal::service('file_url_generator')
+    ->generate($file->getFileUri())
+    ->toString();
+  $variables['fileLink_title'] = ucfirst(str_replace(['_', '-'], ' ', $base));
+  $variables['fileLink_extension'] = $extension;
+
+  // Pull publication date from the parent Media entity when the file is
+  // referenced by one that has field_publication_date.
+  $usage = \Drupal::service('file.usage')->listUsage($file);
+  $media_usage = $usage['file']['media'] ?? [];
+  if ($media_usage) {
+    $mid = (int) array_key_first($media_usage);
+    $media = Media::load($mid);
+    if (
+      $media
+      && $media->hasField('field_publication_date')
+      && !$media->get('field_publication_date')->isEmpty()
+    ) {
+      $date = $media->get('field_publication_date')->date;
+      if ($date) {
+        $variables['fileLink_date'] = \Drupal::service('date.formatter')
+          ->format($date->getTimestamp(), 'custom', 'd.m.Y');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for region.html.twig.
+ */
+function mud_egov_preprocess_region(&$variables) {
+  $nowrap = [
+    'content',
+    'header',
+  ];
+  $themeSettings = \Drupal::service('Drupal\Core\Extension\ThemeSettingsProvider');
+  $region = $variables['elements']['#region'];
+
+  if ($themeSettings->getSetting('mud_egov_region_class_' . $region) !== NULL) {
+    $variables['attributes']['class'][] = $themeSettings->getSetting('mud_egov_region_class_' . $region);
+  } elseif (!in_array($region, $nowrap)) {
+    $variables['attributes']['class'][] = '';
+  }
+
+  if ($themeSettings->getSetting('mud_egov_region_wrapper_' . $region) !== NULL) {
+    $variables['wrapper'] = $themeSettings->getSetting('mud_egov_region_wrapper_' . $region);
+  } else {
+    $variables['wrapper'] = FALSE;
+  }
+
+  if ($themeSettings->getSetting('mud_egov_region_no_wrapper_' . $region) !== NULL) {
+    $variables['no_wrapper'] = $themeSettings->getSetting('mud_egov_region_no_wrapper_' . $region);
+  } else {
+    $variables['no_wrapper'] = FALSE;
+  }
+
+  $bg_class = $themeSettings->getSetting('mud_egov_region_bg_class_' . $region);
+  if ($bg_class) {
+    $variables['attributes']['class'][] = $bg_class;
+  }
+}
+

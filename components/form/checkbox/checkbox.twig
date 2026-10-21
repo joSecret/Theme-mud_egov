@@ -1,0 +1,69 @@
+{#-
+/**
+ * @file
+ * Template for the Checkbox component (MUD-aligned).
+ *
+ * Props:
+ * - checkbox_label (string|null) default: null
+ * - checkbox_name (string|null) default: null
+ * - checkbox_value (string|null) default: null — submitted value when checked (defaults to "on")
+ * - checkbox_id (string|null) default: null
+ * - checkbox_checked (boolean) default: false
+ * - checkbox_disabled (boolean) default: false
+ * - checkbox_required (boolean) default: false
+ * - checkbox_indeterminate (boolean) default: false — visual-only dash glyph
+ * - checkbox_error (boolean) default: false
+ *
+ * Variations:
+ * - checkbox_size (string|null) default: null — sm | md
+ *
+ * Utility classes: checkbox_uc
+ * Attributes: checkbox_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set checkbox_id = checkbox_id|default(checkbox_name) %}
+{% set checkbox_checked = checkbox_checked|default(false) %}
+{% set checkbox_disabled = checkbox_disabled|default(false) %}
+{% set checkbox_required = checkbox_required|default(false) %}
+{% set checkbox_indeterminate = checkbox_indeterminate|default(false) %}
+{% set checkbox_error = checkbox_error|default(false) %}
+
+{#- Create attributes -#}
+{% set checkbox_att = checkbox_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set checkbox_classes = [
+    'c--checkbox',
+    checkbox_size ? 'c--checkbox--' ~ checkbox_size,
+    checkbox_error ? 'checkbox-error',
+    checkbox_disabled ? 'is-disabled',
+    checkbox_indeterminate ? 'is-indeterminate',
+  ]|merge(checkbox_uc ?: [])
+%}
+
+{#- Render -#}
+<div{{ checkbox_att.addClass(checkbox_classes) }}>
+  {% block checkbox_input %}
+  <input
+    class="checkbox-input"
+    type="checkbox"
+    {%- if checkbox_id -%} id="{{ checkbox_id }}"{%- endif -%}
+    {%- if checkbox_name -%} name="{{ checkbox_name }}"{%- endif -%}
+    {%- if checkbox_value -%} value="{{ checkbox_value }}"{%- endif -%}
+    {%- if checkbox_checked -%} checked{%- endif -%}
+    {%- if checkbox_required -%} required aria-required="true"{%- endif -%}
+    {%- if checkbox_disabled -%} disabled{%- endif -%}
+    {%- if checkbox_error -%} aria-invalid="true"{%- endif -%}
+  >
+  {% endblock -%}
+
+  {%- if checkbox_label -%}
+    <label class="checkbox-label" for="{{ checkbox_id }}">
+      {{- checkbox_label -}}
+      {%- if checkbox_required -%}<span class="checkbox-required" aria-hidden="true">*</span>{%- endif -%}
+    </label>
+  {%- endif -%}
+</div>

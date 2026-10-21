@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Drupal pager override — renders via the mud_egov:pagination component.
+ *
+ * Drupal provides precomputed hrefs in `items.previous/next/pages/first/last`
+ * and ellipsis hints in `ellipses.previous/next`. We pass these through to
+ * the pagination component in "items mode", so URLs stay exactly as Drupal
+ * generates them (preserving query strings, zero-indexed `?page=` convention,
+ * etc.).
+ */
+#}
+{{ include('mud_egov:pagination', {
+  pagination_current: current ?: 1,
+  pagination_items: items,
+  pagination_ellipses: ellipses,
+}) }}

@@ -1,0 +1,71 @@
+.c--dateTimezone {
+  --_date-timezone_c: var(--date-timezone_c, var(--c_white));
+  --_date-timezone_timezone_c: var(--date-timezone_timezone_c, var(--c_gray_100));
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+   grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "date time"
+    "date zone";
+  align-items: center;
+  grid-row-gap: 0.25rem;
+  grid-column-gap: 0.5rem;
+  color: var(--_date-timezone_c);
+}
+
+  .c--dateTimezone .date-short {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 1;
+    grid-area: date;
+    background-color: var(--c_blue-dark, var(--c_primary_800));
+    color: var(--_date-timezone_c);
+    padding: 0.5rem;
+    border-radius: 2px;
+    font-size: 1.25rem;
+    min-width: 3rem;
+    text-align: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    line-height: 1;
+  }
+
+  .c--dateTimezone .date-short .day {
+      font-weight: 600;
+    }
+
+  @media (max-width: 75rem) {
+
+  .c--dateTimezone .date-short {
+      font-size: 0.9375rem
+  }
+    }
+
+  @media (max-width: 28.4375rem) {
+
+  .c--dateTimezone .date-short {
+      font-size: 1.25rem
+  }
+    }
+
+  .c--dateTimezone .time {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    align-self: flex-end;
+    grid-area: time;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: var(--_date-timezone_c);
+  }
+
+  .c--dateTimezone .timezone {
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+    padding-block-end: 2px;
+    grid-area: zone;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--_date-timezone_timezone_c);
+  }

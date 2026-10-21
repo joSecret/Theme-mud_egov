@@ -1,0 +1,185 @@
+{#-
+/**
+ * @file
+ * Gallery Carousel component.
+ *
+ * Available props:
+ * - gallery_id (string|int|null)
+ * - gallery_slides (array) items: { src, srcset, alt, caption, thumb_src, thumb_srcset }
+ * - gallery_lightbox (bool) default: true
+ * - gallery_arrows (bool) default: true
+ * - gallery_counter (bool) default: true
+ *
+ * Available utility classes -> uc
+ * - gallery_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - gallery_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Defaults -#}
+{% set gallery_slides = gallery_slides|default([]) %}
+{% set gallery_id = 'gal-' ~ (gallery_id|default(random(99999))) %}
+{% set gallery_lightbox = gallery_lightbox ?? true %}
+{% set gallery_arrows = gallery_arrows ?? true %}
+{% set gallery_counter = gallery_counter ?? true %}
+{% set total = gallery_slides|length %}
+
+{#- Attributes -#}
+{% set gallery_att = gallery_att ?: create_attribute() %}
+{% set gallery_att = gallery_att
+  .setAttribute('data-gallery', '')
+  .setAttribute('data-lightbox', gallery_lightbox ? 'true' : 'false')
+%}
+
+{#- Classes -#}
+{% set gallery_classes = [
+  'c--gallery-carousel',
+  'w-content_full'
+]|merge(gallery_uc ?: []) %}
+
+{%- if gallery_slides is not empty -%}
+  <div{{ gallery_att.addClass(gallery_classes) }}>
+
+    <div class="gallery-main">
+      <div
+        class="gallery-viewport"
+        tabindex="0"
+        aria-label="{{ 'Image gallery'|t }}"
+      >
+        {% for slide in gallery_slides %}
+          {% set slide_id = gallery_id ~ '-' ~ loop.index %}
+          <figure
+            id="{{ slide_id }}"
+            class="gallery-slide"
+            data-index="{{ loop.index0 }}"
+          >
+            <img
+              src="{{ slide.src }}"
+              {% if slide.srcset %}srcset="{{ slide.srcset }}"{% endif %}
+              alt="{{ slide.alt|default('') }}"
+              loading="{{ loop.first ? 'eager' : 'lazy' }}"
+              decoding="async"
+            >
+            {%- if slide.caption -%}
+              <figcaption class="gallery-caption">
+                {{- slide.caption -}}
+              </figcaption>
+            {%- endif -%}
+          </figure>
+        {% endfor %}
+      </div>
+
+      {%- if gallery_arrows and total > 1 -%}
+        <div class="gallery-btns">
+          <button
+            class="gallery-btn gallery-btn--prev"
+            type="button"
+            aria-label="{{ 'Previous image'|t }}"
+          >
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button
+            class="gallery-btn gallery-btn--next"
+            type="button"
+            aria-label="{{ 'Next image'|t }}"
+          >
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      {%- endif -%}
+
+      {%- if gallery_counter and total > 1 -%}
+        <div class="gallery-counter" aria-live="polite">
+          <span class="gallery-counter__current">1</span>
+          <span class="gallery-counter__sep">/</span>
+          <span class="gallery-counter__total">{{ total }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if total > 1 -%}
+      <div
+        class="gallery-thumbs"
+        role="tablist"
+        aria-label="{{ 'Gallery thumbnails'|t }}"
+      >
+        {% for slide in gallery_slides %}
+          <button
+            type="button"
+            class="gallery-thumb"
+            role="tab"
+            aria-controls="{{ gallery_id ~ '-' ~ loop.index }}"
+            aria-selected="{{ loop.first ? 'true' : 'false' }}"
+            data-index="{{ loop.index0 }}"
+          >
+            <img
+              src="{{ slide.thumb_src ?: slide.src }}"
+              {% if slide.thumb_srcset %}srcset="{{ slide.thumb_srcset }}"{% endif %}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            >
+          </button>
+        {% endfor %}
+      </div>
+    {%- endif -%}
+
+    {%- if gallery_lightbox -%}
+      <dialog class="gallery-lightbox" aria-label="{{ 'Image viewer'|t }}">
+        <div class="lightbox-inner">
+          <button
+            type="button"
+            class="lightbox-close"
+            aria-label="{{ 'Close'|t }}"
+          >
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          {%- if total > 1 -%}
+            <button
+              type="button"
+              class="lightbox-btn lightbox-btn--prev"
+              aria-label="{{ 'Previous image'|t }}"
+            >
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="lightbox-btn lightbox-btn--next"
+              aria-label="{{ 'Next image'|t }}"
+            >
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          {%- endif -%}
+
+          <figure class="lightbox-figure">
+            <img class="lightbox-image" src="" alt="">
+            <figcaption class="lightbox-caption"></figcaption>
+          </figure>
+
+          {%- if total > 1 -%}
+            <div class="lightbox-counter" aria-live="polite">
+              <span class="lightbox-counter__current">1</span>
+              <span class="lightbox-counter__sep">/</span>
+              <span class="lightbox-counter__total">{{ total }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </dialog>
+    {%- endif -%}
+
+  </div>
+{%- endif -%}

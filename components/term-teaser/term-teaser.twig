@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Template for the Term Teaser component.
+ *
+ * Props:
+ * - term_title (string|null) — label below the image.
+ * - term_url (string|null) — wraps teaser in a link.
+ * - term_uc (array) — utility classes.
+ * - term_att (Attribute) — extra attributes.
+ *
+ * Slots:
+ * - term_image — rendered image or SVG field.
+ */
+#}
+
+{% set term_att = term_att ?: create_attribute() %}
+{%
+  set term_classes = [
+    'term-teaser',
+    term_variant ? 'term-teaser-' ~ term_variant,
+  ]|merge(term_uc ?: [])
+%}
+
+{% set term_inner %}
+  {%- if term_image -%}
+    <div class="term-teaser__image">
+      {{- term_image -}}
+    </div>
+  {%- endif -%}
+
+  {%- if term_title -%}
+    <div class="term-teaser__title">
+      {{- term_title -}}
+    </div>
+  {%- endif -%}
+{% endset %}
+
+<article{{ term_att.addClass(term_classes) }}>
+  {% if term_url %}
+    <a href="{{ term_url }}" class="term-teaser__link">
+      {{- term_inner -}}
+    </a>
+  {% else %}
+    {{- term_inner -}}
+  {% endif %}
+</article>

@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Paragraph template for Statistics Item.
+ * Maps Drupal fields to the mud_egov:statistics-item SDC component.
+ */
+#}
+
+{% include 'mud_egov:statistics-item' with {
+  item_number: paragraph.field_number.value,
+  item_label: paragraph.field_label.value,
+  item_digital_badge: paragraph.field_digital_badge.value,
+  item_is_digital: paragraph.field_special.value ? true : false,
+} only %}

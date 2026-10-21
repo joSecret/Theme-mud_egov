@@ -1,0 +1,74 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Teaser
+status: stable
+group: Node
+description: 'Teaser component with side-by-side layout: image on the left, content on the right (date, title, description, categories).'
+props:
+  type: object
+  properties:
+    teaser_title:
+      type: ['string', 'null']
+      title: Title
+      description: The title of the teaser.
+
+    teaser_description:
+      type: ['string', 'null']
+      title: Description
+      description: The description text for the teaser.
+
+    teaser_image:
+      type: ['string', 'array', 'null']
+      title: Image
+      description: Image render array or markup for the teaser.
+
+    teaser_date:
+      type: ['string', 'null']
+      title: Date
+      description: Date to display above the title.
+
+    teaser_categories:
+      type: ['string', 'array', 'null']
+      title: Categories
+      description: Categories list (render array or markup).
+
+    teaser_link:
+      type: ['string', 'null']
+      title: Link URL
+      description: URL for the stretched link wrapping the teaser.
+
+    # uc -> utility_classes
+    teaser_uc:
+      type: array
+      items:
+        type: string
+      title: Teaser Utility Classes
+      description: Extra classes to add to the teaser component.
+      default: []
+
+    # att -> attributes
+    teaser_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: HTML attributes for the teaser wrapper.
+      default: null
+
+slots:
+  slot_image:
+    title: Image
+    description: Image area (left column).
+
+  slot_date:
+    title: Date
+    description: Date shown above the title.
+
+  slot_title:
+    title: Title
+    description: Title of the teaser.
+
+  slot_description:
+    title: Description
+    description: Description text.
+
+  slot_categories:
+    title: Categories
+    description: Categories area (bottom of content column).

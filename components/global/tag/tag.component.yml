@@ -1,0 +1,104 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Tag
+status: stable
+group: Global
+version: 1.0.0
+description: 'Tag component for labeling and categorizing content with color and appearance variants.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    tag_content:
+      type: ['string', 'null']
+      title: Content
+      description: The text content to display inside the tag.
+      default: null
+
+    tag_tag:
+      type: ['string', 'null']
+      title: HTML Tag
+      description: The HTML element to render.
+      default: span
+      enum:
+        - span
+        - div
+        - a
+
+    tag_url:
+      type: ['string', 'null']
+      title: URL
+      description: URL for when the tag is rendered as an anchor. Automatically sets tag_tag to 'a'.
+      default: null
+
+    # component variations
+    tag_type:
+      type: ['string', 'null']
+      title: Appearance Type
+      description: Visual appearance style — subtle, strong, or outlined.
+      default: null
+      enum:
+        - null
+        - subtle
+        - strong
+        - outlined
+
+    tag_color:
+      type: ['string', 'null']
+      title: Color
+      description: Color variant of the tag.
+      default: null
+      enum:
+        - null
+        - muted
+        - neutral
+        - accent
+        - success
+        - brand
+        - danger
+
+    tag_size:
+      type: ['string', 'null']
+      title: Size
+      description: Size variant of the tag.
+      default: null
+      enum:
+        - null
+        - sm
+
+    tag_icon_position:
+      type: ['string', 'null']
+      title: Icon Position
+      description: Position of the icon slot relative to the text content.
+      default: null
+      enum:
+        - null
+        - ''
+        - left
+        - right
+
+    # uc -> utility_classes
+    tag_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
+
+    # att -> attributes
+    tag_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the tag component.
+
+      default: null
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: The main text content of the tag.
+  slot_icon:
+    title: Icon
+    description: Icon content displayed left or right based on tag_icon_position.

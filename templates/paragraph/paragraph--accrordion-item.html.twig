@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Paragraph template for Accordion Item.
+ */
+#}
+
+{% include 'mud_egov:accordion-item' with {
+  item_title: paragraph.field_title.value,
+  item_icon: content.field_illustration_or_icon,
+  item_description: content.field_description,
+  item_content: paragraph.field_body.processed,
+  item_name: 'accordion-' ~ paragraph.getParentEntity().id(),
+} only %}

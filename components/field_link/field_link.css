@@ -1,0 +1,52 @@
+/**
+ * Field Link Component Styles
+ *
+ * A link field rendered as a stacked list of links, each prefixed with an
+ * external or internal icon.
+ */
+
+.c--fieldLink {
+  --_fieldLink_m-b-s: var(--fieldLink_m-b-s, clamp(16px, calc(13.091px + 0.909vw), 24px));
+  --_fieldLink_g: var(--fieldLink_g, clamp(16px, calc(13.091px + 0.909vw), 24px));
+
+  /* Variables — item */
+  --_fieldLink-item_g: var(--fieldLink-item_g, 12px);
+
+  /* Variables — icon */
+  --_fieldLink-icon_s: var(--fieldLink-icon_s, 24px);
+  --_fieldLink-icon_c: var(--fieldLink-icon_c, var(--c_primary, #0058d2));
+
+  /* Variables — link */
+  --_fieldLink-link_c: var(--fieldLink-link_c, inherit);
+  --_fieldLink-link_td: var(--fieldLink-link_td, underline);
+  --_fieldLink-link_td-c: var(--fieldLink-link_td-c, currentColor);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_fieldLink_g);
+
+  &:not(:first-child) {
+    margin-block-start: var(--_fieldLink_m-b-s);
+  }
+
+  .fieldLink__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--_fieldLink-item_g);
+  }
+
+  .c--fieldLink__icon {
+    flex: 0 0 var(--_fieldLink-icon_s);
+    width: var(--_fieldLink-icon_s);
+    height: var(--_fieldLink-icon_s);
+    color: var(--_fieldLink-icon_c);
+    margin-block-start: 2px;
+  }
+
+  a {
+    color: var(--_fieldLink-link_c);
+    text-decoration: var(--_fieldLink-link_td);
+    text-decoration-color: var(--_fieldLink-link_td-c);
+    text-underline-offset: 3px;
+  }
+}

@@ -1,0 +1,123 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Table
+status: stable
+group: Globals
+version: 1.0.0
+description: Data table with optional sorting, selection, and zebra/divided/borderless row styles. Aligned with mud-table.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    table_caption:
+      type: ['string', 'null']
+      title: Caption
+      description: Accessible table caption (visually hidden by default).
+      default: null
+
+    table_aria_label:
+      type: ['string', 'null']
+      title: Aria Label
+      description: aria-label on the table element.
+      default: null
+
+    table_headers:
+      type: array
+      title: Headers
+      description: "Column definitions: [{key, label, sortable?, align?, width?}]"
+      default: []
+      items:
+        type: object
+        properties:
+          key:
+            type: string
+            title: Key
+          label:
+            type: string
+            title: Label
+          sortable:
+            type: boolean
+            title: Sortable
+            default: false
+          align:
+            type: ['string', 'null']
+            title: Align
+            enum: [null, start, center, end]
+            default: null
+          width:
+            type: ['string', 'null']
+            title: Width
+            default: null
+
+    table_rows:
+      type: array
+      title: Rows
+      description: "Array of row data objects keyed by column key."
+      default: []
+
+    table_sort_column:
+      type: ['string', 'null']
+      title: Sort Column
+      description: Currently sorted column key.
+      default: null
+
+    table_sort_direction:
+      type: ['string', 'null']
+      title: Sort Direction
+      description: asc | desc
+      default: null
+      enum:
+        - null
+        - asc
+        - desc
+
+    # component variations
+    table_header_style:
+      type: ['string', 'null']
+      title: Header Style
+      description: "default (subtle gray) | inverted (dark) | white"
+      default: null
+      enum:
+        - null
+        - default
+        - inverted
+        - white
+
+    table_row_style:
+      type: ['string', 'null']
+      title: Row Style
+      description: "divided (default) | zebra | borderless"
+      default: null
+      enum:
+        - null
+        - divided
+        - zebra
+        - borderless
+
+    table_hoverable:
+      type: boolean
+      title: Hoverable
+      description: Highlight rows on hover.
+      default: false
+
+    table_sticky_header:
+      type: boolean
+      title: Sticky Header
+      description: Keep the header visible while scrolling.
+      default: false
+
+    # uc -> utility_classes
+    table_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    table_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the table wrapper.

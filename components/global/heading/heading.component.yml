@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Heading
+status: stable
+group: Globals
+version: 1.0.0
+description: 'Semantic heading element (h1–h6) with optional visual level override.'
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    heading_text:
+      type: ['string', 'null']
+      title: Text
+      description: Heading text content. Use slot_content for rich markup.
+      default: null
+
+    # component variations
+    heading_level:
+      type: integer
+      title: Heading level
+      description: Semantic HTML tag level (1 = h1 … 6 = h6).
+      default: 2
+      enum: [1, 2, 3, 4, 5, 6]
+
+    heading_display:
+      type: ['integer', 'null']
+      title: Display level
+      description: Visual size override — decouples visual appearance from semantic level.
+      default: null
+      enum: [null, 1, 2, 3, 4, 5, 6]
+
+    # uc -> utility_classes
+    heading_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+      description: Extra CSS classes added to the heading element.
+
+    # att -> attributes
+    heading_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the heading element.
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Rich content slot — used instead of heading_text when markup is needed.

@@ -1,0 +1,57 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Gallery Carousel
+status: stable
+version: 1.0.0
+group: Content
+description: 'Image gallery with main viewport, synced thumbnails strip and native <dialog> lightbox. Scroll-snap navigation, minimal JS, no external libraries.'
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+
+props:
+  type: object
+  properties:
+    gallery_id:
+      type: ['string', 'integer', 'null']
+      title: Gallery ID
+      description: 'Unique identifier used to generate slide anchor IDs. Defaults to a random value.'
+      default: null
+
+    gallery_slides:
+      type: array
+      title: Slides
+      description: 'Array of slide objects. Each item: { src, srcset, alt, caption, thumb_src, thumb_srcset }.'
+      default: []
+
+    gallery_lightbox:
+      type: boolean
+      title: Enable lightbox
+      description: 'Open fullscreen <dialog> lightbox when clicking the main image.'
+      default: true
+
+    gallery_arrows:
+      type: boolean
+      title: Show arrows
+      default: true
+
+    gallery_counter:
+      type: boolean
+      title: Show counter
+      description: 'Show current slide counter (e.g. "3 / 12") in the main viewport.'
+      default: true
+
+    # uc -> utility_classes
+    gallery_uc:
+      type: array
+      items:
+        type: string
+      title: Gallery Utility Classes
+      default: []
+
+    # att -> attributes
+    gallery_att:
+      type: Drupal\Core\Template\Attribute
+      title: Gallery Attributes
+      default: null

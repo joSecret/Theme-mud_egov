@@ -1,0 +1,130 @@
+{#-
+/**
+ * @file
+ * Template for a receipt component.
+ *
+ * Props:
+ * - receipt_service: (string | null) default: null
+ *    enum: null | mpay | mpass | msign | mdelivery
+ * - receipt_status: (string | null) default: null
+ *    enum: null | paid | confirmed | pending | failed
+ * - receipt_title: (string | null) default: null
+ * - receipt_reference: (string | null) default: null
+ * - receipt_items: (array) default: []
+ *    Each item: { label: string, value: string }
+ * - receipt_total_label: (string | null) default: null
+ * - receipt_total_value: (string | null) default: null
+ * - receipt_date: (string | null) default: null
+ * - receipt_footer_text: (string | null) default: null
+ *
+ * Utility classes: receipt_uc
+ * Attributes: receipt_att
+ */
+-#}
+
+{#- Defaults -#}
+{% set receipt_service = receipt_service|default(null) %}
+{% set receipt_status = receipt_status|default(null) %}
+{% set receipt_title = receipt_title|default(null) %}
+{% set receipt_reference = receipt_reference|default(null) %}
+{% set receipt_items = receipt_items|default([]) %}
+{% set receipt_total_label = receipt_total_label|default(null) %}
+{% set receipt_total_value = receipt_total_value|default(null) %}
+{% set receipt_date = receipt_date|default(null) %}
+{% set receipt_footer_text = receipt_footer_text|default(null) %}
+
+{#- Create attributes -#}
+{% set receipt_att = receipt_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{%
+  set classes = [
+    'receipt',
+    receipt_service ? 'receipt-' ~ receipt_service,
+    receipt_status ? 'receipt-status-' ~ receipt_status,
+  ]|merge(receipt_uc ?: [])
+%}
+
+{#- Status label map -#}
+{% set status_labels = {
+  paid: 'Plătit',
+  confirmed: 'Confirmat',
+  pending: 'În curs',
+  failed: 'Refuzat',
+} %}
+
+{#- Default title map -#}
+{% set service_titles = {
+  mpay: 'Bon de plată',
+  mpass: 'Confirmare autentificare',
+  msign: 'Confirmare semnătură',
+  mdelivery: 'Confirmare livrare',
+} %}
+
+{% set resolved_title = receipt_title ?: (receipt_service ? service_titles[receipt_service] : 'Bon de plată') %}
+
+{#- Render -#}
+<article{{ receipt_att.addClass(classes) }}>
+  {#- Header -#}
+  <header class="receipt__header">
+    {%- if receipt_service -%}
+      <span class="receipt__service-badge receipt__service-badge--{{ receipt_service }}">
+        {{ receipt_service|upper }}
+      </span>
+    {%- endif -%}
+
+    <h2 class="receipt__title">{{ resolved_title }}</h2>
+
+    {%- if receipt_status -%}
+      <span class="receipt__status receipt__status--{{ receipt_status }}">
+        {{ status_labels[receipt_status] ?? receipt_status }}
+      </span>
+    {%- endif -%}
+  </header>
+
+  {#- Body -#}
+  <div class="receipt__body">
+    {%- if receipt_date -%}
+      <div class="receipt__row">
+        <span class="receipt__row-label">Data</span>
+        <span class="receipt__row-value">{{ receipt_date }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if receipt_reference -%}
+      <div class="receipt__row">
+        <span class="receipt__row-label">Cod tranzacție</span>
+        <span class="receipt__row-value receipt__row-value--mono">{{ receipt_reference }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if receipt_items -%}
+      <div class="receipt__divider" role="separator"></div>
+
+      {% for item in receipt_items %}
+        <div class="receipt__row">
+          <span class="receipt__row-label">{{ item.label }}</span>
+          <span class="receipt__row-value">{{ item.value }}</span>
+        </div>
+      {% endfor %}
+    {%- endif -%}
+
+    {%- if receipt_total_value -%}
+      <div class="receipt__divider" role="separator"></div>
+
+      <div class="receipt__amount">
+        {%- if receipt_total_label -%}
+          <span class="receipt__amount-label">{{ receipt_total_label }}</span>
+        {%- endif -%}
+        <span class="receipt__amount-value">{{ receipt_total_value }}</span>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {#- Footer -#}
+  {%- if receipt_footer_text -%}
+    <footer class="receipt__footer">
+      <p class="receipt__footer-text">{{ receipt_footer_text }}</p>
+    </footer>
+  {%- endif -%}
+</article>

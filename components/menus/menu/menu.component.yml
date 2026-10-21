@@ -1,0 +1,57 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Menu
+status: stable
+
+version: 1.0.0
+group: Layout
+description: '[component description]'
+
+# Props.
+props:
+  type: object
+  properties:
+    # component variations
+    menu_variant:
+      type: string
+      title: Menu Variant
+      description: 'The variant of the menu to display.'
+      enum:
+        - horizontal
+        - vertical
+      default: horizontal
+
+    menu_tag_nav:
+      type: ['boolean']
+      title: Add tab nav
+      default: false
+
+    # fields values
+    menu_items:
+      type: ['array', 'null']
+      title: 'Menu Items'
+      description: 'An array of menu items to display in the menu.'
+
+    # uc -> utility_classes
+    menu_uc:
+      type: array
+      items:
+        type: string
+      title: Menu Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    menu_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the Menu.
+
+      default: null
+  required:
+    - menu_items
+
+# Slots.
+slots:
+  slot_content:
+    title: Content
+    description: Default content text for the Menu.

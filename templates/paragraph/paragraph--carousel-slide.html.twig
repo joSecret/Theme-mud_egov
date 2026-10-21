@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Paragraph template for Carousel Slide.
+ * Maps Drupal fields to the mud_egov:carousel-slide SDC component.
+ */
+#}
+
+{% set media = paragraph.field_media.entity %}
+
+{% include 'mud_egov:carousel-slide' with {
+  slide_heading: paragraph.field_title.value,
+  slide_description: paragraph.field_body.processed,
+  slide_image: content.field_media,
+  slide_cta: content.field_cta_primary.0,
+} only %}

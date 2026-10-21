@@ -1,0 +1,79 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Logo
+status: stable
+group: Globals
+version: 1.0.0
+description: Government / brand logo component backed by MUD mud-logo assets.
+
+# Props.
+props:
+  type: object
+  properties:
+    # fields values
+    logo_src:
+      type: ['string', 'null']
+      title: Image Source
+      description: URL for a custom image logo (used when not relying on mud-logo assets).
+      default: null
+
+    logo_alt:
+      type: ['string', 'null']
+      title: Alt Text
+      description: Accessible alt text for the logo image. Leave null for decorative logos.
+      default: null
+
+    logo_url:
+      type: ['string', 'null']
+      title: URL
+      description: Wraps the logo in an anchor when set.
+      default: null
+
+    logo_title:
+      type: ['string', 'null']
+      title: Title
+      description: Title attribute for the wrapping anchor or the image.
+      default: null
+
+    logo_name:
+      type: ['string', 'null']
+      title: MUD Logo Name
+      description: "MUD mud-logo asset identifier (e.g. \"mpay-logo-logomark-only\"). When set, renders a <mud-logo> web component instead of <img>."
+      default: null
+
+    # component variations
+    logo_size:
+      type: ['string', 'null']
+      title: Size
+      description: Predefined size token — sm / md / lg.
+      default: null
+      enum:
+        - null
+        - sm
+        - md
+        - lg
+
+    logo_variant:
+      type: ['string', 'null']
+      title: Variant
+      description: Color treatment — color / white / black.
+      default: null
+      enum:
+        - null
+        - color
+        - white
+        - black
+
+    # uc -> utility_classes
+    logo_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      default: []
+
+    # att -> attributes
+    logo_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      default: null
+      description: A list of HTML attributes for the component.

@@ -1,0 +1,124 @@
+/**
+ * Service Button Component Styles
+ */
+
+.c--service-button {
+  /* Public API */
+  --_service-button_h: var(--service-button_h, 48px);
+  --_service-button_p-i-start: var(--service-button_p-i-start, 16px);
+  --_service-button_p-i-end: var(--service-button_p-i-end, 20px);
+  --_service-button_b-r: var(--service-button_b-r, var(--border-radius-8, 8px));
+  --_service-button_gap: var(--service-button_gap, 12px);
+  --_service-button_f-s: var(--service-button_f-s, 14px);
+  --_service-button_f-w: var(--service-button_f-w, 500);
+  --_service-button_l-h: var(--service-button_l-h, 20px);
+  --_service-button_cursor: var(--service-button_cursor, pointer);
+  --_service-button_t: var(--service-button_t, color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out);
+  --_service-button_w: var(--service-button_w, fit-content);
+
+  /* Primary (default) colors */
+  --_service-button_bg: var(--service-button_bg, var(--color-background-brand-default, #0057b8));
+  --_service-button_c: var(--service-button_c, var(--color-text-inverse-default, #fff));
+  --_service-button_b: var(--service-button_b, none);
+
+  /* Badge */
+  --_service-button_badge_s: var(--service-button_badge_s, 24px);
+
+  /* Styles */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_service-button_gap);
+  height: var(--_service-button_h);
+  padding-inline-start: var(--_service-button_p-i-start);
+  padding-inline-end: var(--_service-button_p-i-end);
+  border-radius: var(--_service-button_b-r);
+  border: var(--_service-button_b);
+  background: var(--_service-button_bg);
+  color: var(--_service-button_c);
+  font-size: var(--_service-button_f-s);
+  font-weight: var(--_service-button_f-w);
+  line-height: var(--_service-button_l-h);
+  cursor: var(--_service-button_cursor);
+  text-decoration: none;
+  white-space: nowrap;
+  width: var(--_service-button_w);
+  transition: var(--_service-button_t);
+  box-sizing: border-box;
+
+  &:hover {
+    --_service-button_bg: var(--service-button_bg_h, color-mix(in oklab, var(--color-background-brand-default, #0057b8), black 15%));
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--service-button_o-c, color-mix(in oklab, var(--color-background-brand-default, #0057b8), white 5%));
+    outline-offset: var(--service-button_o-o, 2px);
+  }
+
+  &:active {
+    --_service-button_bg: var(--service-button_bg_a, color-mix(in oklab, var(--color-background-brand-default, #0057b8), black 30%));
+  }
+}
+
+/* Badge slot */
+.c--service-button__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--_service-button_badge_s);
+  height: var(--_service-button_badge_s);
+  flex-shrink: 0;
+
+  mud-logo {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Content */
+.c--service-button__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.c--service-button__label {
+  font-weight: var(--_service-button_f-w);
+}
+
+.c--service-button__description {
+  font-size: var(--service-button_desc_f-s, 12px);
+  line-height: var(--service-button_desc_l-h, 16px);
+  font-weight: var(--service-button_desc_f-w, 400);
+  opacity: var(--service-button_desc_o, 0.8);
+}
+
+/* === Variants === */
+.c--service-button--neutral {
+  --_service-button_bg: var(--service-button_neutral_bg, var(--color-background-base-secondary, #f5f5f5));
+  --_service-button_c: var(--service-button_neutral_c, var(--color-text-base-default, #1a1a1a));
+
+  &:hover {
+    --_service-button_bg: var(--service-button_neutral_bg_h, var(--color-background-base-tertiary, #e8e8e8));
+  }
+
+  &:active {
+    --_service-button_bg: var(--service-button_neutral_bg_a, color-mix(in oklab, var(--color-background-base-secondary, #f5f5f5), black 10%));
+  }
+}
+
+/* Full width */
+.c--service-button--full-width {
+  --_service-button_w: var(--service-button_full-width_w, 100%);
+}
+
+/* Disabled */
+.c--service-button--disabled,
+.c--service-button[disabled],
+.c--service-button[aria-disabled="true"] {
+  --_service-button_bg: var(--service-button_disabled_bg, var(--color-background-disabled-default, #e5e5e5));
+  --_service-button_c: var(--service-button_disabled_c, var(--color-text-base-disabled, #9e9e9e));
+  --_service-button_cursor: not-allowed;
+
+  pointer-events: none;
+}

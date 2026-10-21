@@ -1,0 +1,58 @@
+{#-
+/**
+ * @file
+ * Template for a Section main component.
+ * Available variations:
+ * - section_main_container [boolean|null] (default: false)
+ *
+ * Available values:
+ *
+ * Available config:
+ * - section_main_uc: (optional) Utility classes.
+ * - section_main_main_uc: (optional) Utility classes main section.
+*/
+-#}
+
+{#- Set default value -#}
+{% set section_main_container = section_main_container|default(false) %}
+
+{#- Create attributres -#}
+{% set section_main_att = section_main_att ?: create_attribute() %}
+{% set section_main_main_att = section_main_main_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set section_main_classes = [
+  'c--section-main',
+  'section_main',
+]|merge(section_main_uc ?: []) %}
+
+{% set main_classes = [
+  'section_main',
+  section_main_container ? 'w-content',
+]|merge(section_main_main_uc ?: []) %}
+
+{#- Change attributes -#}
+{% set section_main_att = section_main_att.setAttribute('role', 'main' ) %}
+
+{#- Render component -#}
+<main {{ section_main_att.addClass(section_main_classes)}}>
+  {{- page.hero -}}
+
+  {% block slot_highlighted %}
+    {{- page.highlighted -}}
+  {% endblock %}
+
+  {% block slot_content %}
+    <section{{ section_main_main_att.addClass(main_classes) }}>
+      {{- page.content -}}
+    </section>
+  {% endblock %}
+
+  {% block slot_bottom %}
+    {%- if page.content_bottom -%}
+      <section class="content-bottom">
+        {{- page.content_bottom -}}
+      </section>
+    {%- endif -%}
+  {% endblock -%}
+</main>

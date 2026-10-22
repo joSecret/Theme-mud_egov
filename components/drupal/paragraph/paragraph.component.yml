@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Paragraph
 status: stable
-group: Paragraphs
-version: 1.0.0
+group: Drupal
+version: 1.1.0
 description: Generic paragraph entity wrapper with bundle type and view mode class modifiers.
 
 # Props.

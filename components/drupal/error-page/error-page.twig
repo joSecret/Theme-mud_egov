@@ -4,35 +4,47 @@
  * Template for the error-page component.
  *
  * Props:
- * - title: (string) required — main heading
- * - description: (string | null) default: null
- * - code: (string | int | null) default: null — HTTP error code
- * - primary_label: (string | null) default: null
- * - primary_url: (string | null) default: null
- * - secondary_label: (string | null) default: null
- * - secondary_url: (string | null) default: null
- * - illustration: (string | null) default: null — raw HTML/SVG
+ * - error_page_title: (string) required — main heading
+ * - error_page_description: (string | null) default: null
+ * - error_page_code: (string | int | null) default: null — HTTP error code
+ * - error_page_primary_label: (string | null) default: null
+ * - error_page_secondary_label: (string | null) default: null
+ * - error_page_illustration: (string | null) default: null — raw HTML/SVG
+ * - error_page_uc: (array) Utility classes.
+ * - error_page_att: (Drupal\Core\Template\Attribute) Extra attributes.
  *
  * Slots:
+ * - slot_ctas: Action buttons
+ * - slot_links: Inline text links
  * - slot_illustration: Custom illustration content
  */
 -#}
 
-<div class="c--error-page wrapper">
+{#- Create attributes -#}
+{% set error_page_att = error_page_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set error_page_classes = [
+  'c--error-page',
+  'wrapper',
+]|merge(error_page_uc ?: []) %}
+
+{#- Render component -#}
+<div{{ error_page_att.addClass(error_page_classes) }}>
   <div class="ep_w_info">
     <h1 class="ep_title">
-      {{- title -}}
+      {{- error_page_title -}}
     </h1>
 
     {%- if block('slot_ctas') is not empty -%}
       <div class="ep_description">
-        {{- description -}}
+        {{- error_page_description -}}
       </div>
     {%- endif -%}
 
-    {%- if code -%}
+    {%- if error_page_code -%}
       <div class="ep_code">
-        {{- 'Error Code:'|t }} {{ code -}}
+        {{- 'Error Code:'|t }} {{ error_page_code -}}
       </div>
     {%- endif -%}
 
@@ -52,10 +64,10 @@
     {%- endif -%}
   </div>
 
-  {%- if slot_illustration or illustration -%}
+  {%- if slot_illustration or error_page_illustration -%}
     <div class="ep_illustration" aria-hidden="true">
       {%- block slot_illustration -%}
-        {{- illustration|raw -}}
+        {{- error_page_illustration|raw -}}
       {%- endblock -%}
     </div>
   {%- endif -%}

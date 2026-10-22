@@ -3,8 +3,8 @@
   * @file
   * Page layout component.
   * Available variations:
-  * - page_layout_attributes|default(null)
   * - page_layout_main_container: ['boolean', 'null']|default(true)
+  * - page_layout_padding_block: ['number', 'null']|default(null)
   *
   * Available variables:
   *
@@ -19,10 +19,9 @@
 
 {#- Set default value -#}
 {% set page_layout_main_container = page_layout_main_container|default(true) %}
-{% set page_layout_attributes = page_layout_attributes|default(null) %}
 
 {#- Create attributes -#}
-{% set page_layout_attributes = page_layout_attributes ?: create_attribute() %}
+{% set page_layout_att = page_layout_att ?: create_attribute() %}
 
 {#- Component classes -#}
 {%
@@ -33,11 +32,11 @@
 
 {#- Change attributes -#}
 {%- if page_layout_padding_block -%}
-  {% set page_layout_attributes = page_layout_attributes.setAttribute('style', '--_pl_main_p-b:' ~ page_layout_padding_block ~ 'px') %}
+  {% set page_layout_att = page_layout_att.setAttribute('style', '--_pl_main_p-b:' ~ page_layout_padding_block ~ 'px') %}
 {%- endif -%}
 
 {#- Render component -#}
-<div{{page_layout_attributes.addClass(page_layout_classes)}}>
+<div{{ page_layout_att.addClass(page_layout_classes)}}>
   {{- page.top_region -}}
 
   {% block slot_header -%}

@@ -1,3 +1,10 @@
+---
+title: Paragraph
+group: Drupal
+version: 1.1.0
+css_prefix: paragraph
+---
+
 # Paragraph
 
 Generic paragraph entity wrapper. Generates bundle type and view mode modifier classes matching the Drupal paragraph template convention.
@@ -51,3 +58,8 @@ Given `paragraph_bundle = 'image'` and `paragraph_view_mode = 'default'`:
 ```
 paragraph paragraph--t--image paragraph--v-m--default paragraph--image--default
 ```
+
+## Accessibility
+
+- Wrapper-ul este un `div` fără rol propriu; structura semantică (titluri, liste, linkuri) vine din câmpurile randate în `slot_content`.
+- Paragrafele nepublicate (`paragraph--unpublished`) sunt doar atenuate vizual (opacitate), fără a ascunde conținutul; nu transmite starea numai prin opacitate în interfața de editare.

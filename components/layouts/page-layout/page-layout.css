@@ -1,5 +1,7 @@
 .c--page-layout {
-  min-height: 100dvh;
+  --_page-layout_m-h: var(--page-layout_m-h, 100dvh);
+
+  min-height: var(--_page-layout_m-h);
   display: flex;
   flex-direction: column;
 
@@ -11,18 +13,19 @@
 }
 
 .region--bottom-fixed {
-  --_region--bottom-fixed_space: var(--region--bottom-fixed_space, 16px);
-  --_region--bottom-fixed_p-b: var(--region--bottom-fixed_p-b, var(--_region--bottom-fixed_space));
-  --_region--bottom-fixed_p-i: var(--region--bottom-fixed_p-i, var(--_region--bottom-fixed_space));
+  --_page-layout_bottom-fixed_gap: var(--page-layout_bottom-fixed_gap, var(--spacing-16));
+  --_page-layout_bottom-fixed_p-b: var(--page-layout_bottom-fixed_p-b, var(--_page-layout_bottom-fixed_gap));
+  --_page-layout_bottom-fixed_p-i: var(--page-layout_bottom-fixed_p-i, var(--_page-layout_bottom-fixed_gap));
+  --_page-layout_bottom-fixed_w: var(--page-layout_bottom-fixed_w, 400px);
 
   position: fixed;
-  padding-block: var(--_region--bottom-fixed_p-b);
-  padding-inline: var(--_region--bottom-fixed_p-i);
+  padding-block: var(--_page-layout_bottom-fixed_p-b);
+  padding-inline: var(--_page-layout_bottom-fixed_p-i);
   bottom: 0;
   right: 0;
-  width: 400px;
+  width: var(--_page-layout_bottom-fixed_w);
 
   .notification + .notification {
-    margin-block-start: var(--_region--bottom-fixed_space);
+    margin-block-start: var(--_page-layout_bottom-fixed_gap);
   }
 }

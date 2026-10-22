@@ -49,10 +49,10 @@
 %}
 
 {% embed 'mud_egov:error-page' with {
-  title: content.field_title,
-  description: content.field_body,
-  code: content.field_error_code,
-  illustration: content.field_illustration_or_icon}
+  error_page_title: content.field_title,
+  error_page_description: content.field_body,
+  error_page_code: content.field_error_code,
+  error_page_illustration: content.field_illustration_or_icon}
 %}
   {%- block slot_ctas -%}
     {{- content.field_cta_primary -}}

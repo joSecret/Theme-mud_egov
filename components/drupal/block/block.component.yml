@@ -2,9 +2,9 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Block
 status: stable
 
-version: 1.0.0
+version: 1.1.0
 group: Drupal
-description: 'Block component.'
+description: 'Wrapper pentru un bloc Drupal: etichetă (vizibilă sau ascunsă), descriere opțională și conținut, cu tag HTML configurabil.'
 
 # Props.
 props:
@@ -67,7 +67,7 @@ props:
       type: array
       items:
         type: string
-      title: Block Title Utility Classes
+      title: Block Label Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
       default: []
 
@@ -82,20 +82,20 @@ props:
     # att -> attributes
     block_label_att:
       type: Drupal\Core\Template\Attribute
-      title: Attributes
+      title: Label attributes
       description: A list of HTML attributes for the Block Title.
-
       default: null
+
     block_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       description: A list of HTML attributes for the Block.
-
       default: null
+
 # Slots.
 slots:
   slot_label:
-    title: Content
+    title: Label
     description: Default content text for the Label.
 
   slot_description:

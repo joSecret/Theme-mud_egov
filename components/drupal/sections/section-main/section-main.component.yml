@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Page layout
+name: Section main
 status: stable
-version: 1.0.0
-description: 'Section main'
-group: Layout
+version: 1.1.0
+description: 'Elementul <main> al paginii: hero, zonă evidențiată, conținut principal și zonă de jos, fără bare laterale.'
+group: Drupal
 
 # Props.
 props:
@@ -24,38 +24,39 @@ props:
       items:
         type: string
       title: Utility Classes
-      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+      description: An array of utility classes for the main element.
+      default: []
 
     section_main_main_uc:
       type: array
       items:
         type: string
       title: Utility classes main section
-      description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the main section.
+      description: An array of utility classes for the inner section element.
+      default: []
 
     # att -> attributes
     section_main_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
-      description: A list of HTML attributes for the section main component.
-
+      description: A list of HTML attributes for the main element.
       default: null
     section_main_main_att:
       type: Drupal\Core\Template\Attribute
       title: Main section attributes
-      description: A list of HTML attributes for the main section element.
-
+      description: A list of HTML attributes for the inner section element.
       default: null
+
 # Slots.
 slots:
   slot_highlighted:
     title: Highlighted
-    description: Default content text for the tab.
+    description: Zona evidențiată, după hero.
 
   slot_content:
     title: Content
-    description: Default content text for the tab.
+    description: Conținutul principal al paginii.
 
   slot_bottom:
     title: Content bottom
-    description: Default content text for the tab.
+    description: Zona de sub conținut.

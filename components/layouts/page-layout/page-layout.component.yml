@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Page layout
 status: stable
-version: 1.0.0
+version: 1.1.0
 group: Layout
-description: 'Page layout description'
+description: 'Structura paginii pe toată înălțimea ferestrei: antet, zonă principală și subsol, plus regiunea fixă de jos pentru notificări.'
 
 # Props.
 props:
@@ -31,13 +31,13 @@ props:
         type: string
       title: Page layout Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
     # att -> attributes
     page_layout_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       description: A list of HTML attributes for the page layout component.
-
       default: null
 # Slots.
 slots:

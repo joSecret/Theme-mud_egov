@@ -1,32 +1,26 @@
 .c--block {
-  /* === Default Values === */
-  --block_c: var(--body-c);
-  --block_bg: var(--body-bg);
+  --_block_c: var(--block_c, inherit);
+  --_block_bg: var(--block_bg, transparent);
+  --_block_p: var(--block_p, var(--spacing-0));
+  --_block_b-r: var(--block_b-r, var(--border-radius-4));
+  --_block_f-s: var(--block_f-s, inherit);
+  --_block_trn: var(--block_trn, color 0.3s, background 0.3s);
+  --_block_description_m-b: var(--block_description_m-b, var(--spacing-0));
 
-  /* === Computed Values === */
-  --_block_c: var(--block-type_c, var(--block_c));
-  --_block_bg: var(--block-type_bg, var(--block_bg));
-
-  --_block-label_c: var(--block-label_c, var(--color-text-base-default));
-  --_block-label_m-b-e: var(--block-label_m-b-e, var(--size_700));
-
-  --_block-description_m-b-e: var(--block-description_m-b-e, var(--size_600));
-
-  /* === Properties === */
-  --_block_p: var(--block_p, 0px);
-  --_block_b-r: var(--block_b-r, 0.25rem);
-  --_block_fz: var(--block_fz, inherit);
-
-  /* === Apply Styles === */
   color: var(--_block_c);
   background: var(--_block_bg);
   padding: var(--_block_p);
   border-radius: var(--_block_b-r);
-  font-size: var(--_block_fz);
-  transition: color 0.3s, background 0.3s;
+  font-size: var(--_block_f-s);
+  transition: var(--_block_trn);
 
   .block-description {
-    margin-block-end: var(--_block-description_m-b-e);
+    margin-block-end: var(--_block_description_m-b);
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .c--block {
+    transition: none;
+  }
+}

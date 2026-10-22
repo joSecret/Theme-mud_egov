@@ -2,49 +2,65 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Error Page
 status: stable
 group: Drupal
-version: 1.0.0
+version: 1.1.0
 description: Full-page error display with title, description, error code, and CTA actions. Supports 404, 403, 500 and other HTTP error states.
 
 props:
   type: object
   required:
-    - title
+    - error_page_title
 
   properties:
-    title:
+    error_page_title:
       type: string
       title: Title
       description: Main heading displayed to the user.
       default: 'Pagina nu a fost găsită'
 
-    description:
+    error_page_description:
       type: ['string', 'null']
       title: Description
       description: Explanatory text below the heading.
       default: null
 
-    code:
+    error_page_code:
       type: ['string', 'integer', 'null']
       title: Error Code
       description: 'HTTP status code displayed as "Error Code: X".'
       default: null
 
-    primary_label:
+    error_page_primary_label:
       type: ['string', 'null']
       title: Primary CTA Label
       description: Label for the main action button.
       default: null
 
-    secondary_label:
+    error_page_secondary_label:
       type: ['string', 'null']
       title: Secondary Link Label
       description: Label for the secondary text link.
       default: null
 
-    illustration:
+    error_page_illustration:
       type: ['string', 'null']
       title: Illustration
       description: HTML/SVG illustration rendered on the right side.
+      default: null
+
+    # uc -> utility_classes
+    error_page_uc:
+      type: array
+      items:
+        type: string
+      title: Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    error_page_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the component.
       default: null
 
 slots:

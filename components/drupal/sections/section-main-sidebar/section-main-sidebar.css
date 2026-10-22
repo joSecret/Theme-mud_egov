@@ -1,7 +1,6 @@
 .c--sms {
-  --_sms_p-b: var(--sms_p-b, 32px);
-  --_sms_p-i: var(--sms_p-i, 0px);
-  --_sms_w_c-gap: var(--sms_w_c-gap, clamp(24px, 4vw, 74px));
+  --_sms_p-b: var(--sms_p-b, var(--spacing-32));
+  --_sms_p-i: var(--sms_p-i, var(--spacing-0));
 
   container-type: inline-size;
   padding-block: var(--_sms_p-b);
@@ -9,22 +8,22 @@
 }
 
 .c--sms_w {
-  display: grid;
-  grid-template-columns: var(--_sms_w_g-t-c, 1fr);
-  grid-template-rows: 1fr;
-  column-gap: var(--_sms_w_c-gap);
-  row-gap: var(--_sms_w_r-gap, 20px);
+  --_sms_w_g-t-c: var(--sms_w_g-t-c, 1fr);
+  --_sms_w_col_gap: var(--sms_w_col_gap, clamp(24px, 4vw, 74px));
+  --_sms_w_row_gap: var(--sms_w_row_gap, var(--spacing-20));
+  --_sms_left_d: var(--sms_left_d, none);
 
-  @container (width <= 720px) {
-  }
+  display: grid;
+  grid-template-columns: var(--_sms_w_g-t-c);
+  grid-template-rows: 1fr;
+  gap: var(--_sms_w_row_gap) var(--_sms_w_col_gap);
 
   @container (720px < width) {
-    --_sms_w_g-t-c: 1fr 348px;
-
-    --_sms_s-left_d: block;
+    --_sms_w_g-t-c: var(--sms_w_g-t-c, 1fr 348px);
+    --_sms_left_d: var(--sms_left_d, block);
 
     &:has(.c--sms_sidebar_left:not(:empty)) {
-      --_sms_w_g-t-c: 352px 1fr;
+      --_sms_w_g-t-c: var(--sms_w_g-t-c, 352px 1fr);
     }
   }
 }
@@ -36,15 +35,22 @@
 }
 
 .c--sms_sidebar_left {
-  display: var(--_sms_s-left_d, none);
-  border: 1px solid var(--color-border-base-default);
-  border-radius: var(--border-radius-16);
+  --_sms_left_b-w: var(--sms_left_b-w, var(--border-width-1));
+  --_sms_left_b-c: var(--sms_left_b-c, var(--color-border-base-default));
+  --_sms_left_b-r: var(--sms_left_b-r, var(--border-radius-16));
+  --_sms_left_inset: var(--sms_left_inset, calc(var(--navbar_desktop_heigh) + var(--_sms_p-b)));
+
+  display: var(--_sms_left_d);
+  border: var(--_sms_left_b-w) solid var(--_sms_left_b-c);
+  border-radius: var(--_sms_left_b-r);
   align-self: flex-start;
   position: sticky;
-  inset-block-start: calc(var(--navbar_desktop_heigh) + var(--_sms_p-b));
+  inset-block-start: var(--_sms_left_inset);
   overflow: hidden;
 }
 
 .block-page-title-block h1 {
-  margin-block-end: 24px;
+  --_sms_title_m-b: var(--sms_title_m-b, var(--spacing-24));
+
+  margin-block-end: var(--_sms_title_m-b);
 }

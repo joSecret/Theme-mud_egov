@@ -127,4 +127,7 @@
   --color-border-positive-default: var(--palette-green-700);
   --color-border-warning-default: var(--palette-apricot-600);
   --color-border-danger-default: var(--palette-red-600);
+
+  /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
+  --color-background-transparent-inactive: var(--palette-alpha-black-200-alpha);
 }

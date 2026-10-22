@@ -63,4 +63,10 @@
   --inline-message-success-icon: var(--color-icon-positive-on-secondary);
   --inline-message-error-text: var(--color-icon-danger-default);
   --inline-message-error-icon: var(--color-icon-danger-default);
+
+  /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
+  --link-label-underline-offset-xs: var(--spacing-2); /* nefolosit */
+  --link-label-underline-offset-sm: 3px; /* nefolosit */
+  --link-label-underline-offset-md: var(--spacing-4); /* nefolosit */
+  --link-label-underline-offset-lg: var(--spacing-6); /* nefolosit */
 }

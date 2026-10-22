@@ -2,6 +2,7 @@
  * Nivel 2: valorile default ale componentelor, pe categorii.
  * Numele vin din MUD JS și nu se schimbă; valorile vin numai din tokenuri.
  */
+@import "defaults/actions.css";
 @import "defaults/links.css";
 @import "defaults/navigation.css";
 @import "defaults/forms.css";

@@ -215,4 +215,44 @@
   --service-button-disabled-background: var(--color-background-disabled-default); /* nefolosit */
   --service-button-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
   --service-button-disabled-badge-opacity: 0.3; /* nefolosit */
+
+  /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
+  --accordion-item-padding-block-desktop: var(--spacing-32); /* nefolosit */
+  --accordion-item-padding-block-mobile: var(--spacing-24); /* nefolosit */
+  --accordion-item-heading-font-family: var(--font-family-primary); /* nefolosit */
+  --accordion-item-heading-font-weight: var(--font-weight-semibold); /* nefolosit */
+  --accordion-item-heading-font-size-desktop: var(--font-size-24); /* nefolosit */
+  --accordion-item-heading-font-size-mobile: var(--font-size-22); /* nefolosit */
+  --accordion-item-heading-line-height-desktop: var(--line-height-32); /* nefolosit */
+  --accordion-item-heading-line-height-mobile: var(--line-height-30); /* nefolosit */
+  --accordion-item-heading-letter-spacing: -0.01em; /* nefolosit */
+  --accordion-item-heading-color-default: var(--color-text-base-default-on-color); /* nefolosit */
+  --accordion-item-heading-color-open: var(--color-text-brand-default); /* nefolosit */
+  --accordion-item-heading-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --accordion-item-supporting-font-family: var(--font-family-primary); /* nefolosit */
+  --accordion-item-trigger-border-radius: var(--border-radius-full); /* nefolosit */
+  --accordion-item-trigger-color-default: var(--color-text-base-default-on-color); /* nefolosit */
+  --accordion-item-trigger-color-open: var(--color-text-base-default-on-color); /* nefolosit */
+  --accordion-item-trigger-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --accordion-item-panel-font-family: var(--font-family-primary); /* nefolosit */
+  --accordion-item-panel-font-size: var(--font-size-16); /* nefolosit */
+  --accordion-item-panel-line-height: var(--line-height-24); /* nefolosit */
+  --accordion-item-panel-font-weight: var(--font-weight-regular); /* nefolosit */
+  --accordion-item-panel-trail-sites-padding-block-end: var(--spacing-32); /* nefolosit */
+  --accordion-item-panel-trail-sites-padding-inline-end: var(--spacing-48); /* nefolosit */
+  --accordion-item-trail-sites-heading-color: var(--color-text-brand-default); /* nefolosit */
+  --accordion-item-trail-sites-supporting-color: var(--color-text-base-secondary-on-color); /* nefolosit */
+  --accordion-item-trail-sites-trigger-color: var(--color-text-brand-default); /* nefolosit */
+  --badge-background-disabled: var(--color-background-base-tertiary-active); /* nefolosit */
+  --badge-text-disabled: var(--color-background-disabled-default); /* nefolosit */
+  --separator-padding-block: var(--spacing-2); /* nefolosit */
+  --tag-info-strong-background: var(--color-background-brand-secondary); /* nefolosit */
+  --tag-info-strong-label: var(--color-text-base-secondary); /* nefolosit */
+  --tag-info-subtle-background: transparent; /* nefolosit */
+  --tag-info-subtle-label: var(--color-text-base-tertiary); /* nefolosit */
+  --tag-info-padding-inline-icon: var(--spacing-4); /* nefolosit */
+  --tag-disabled-background: var(--color-background-disabled-default); /* nefolosit */
+  --tag-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --tag-disabled-outlined-border: var(--color-border-disabled-default); /* nefolosit */
+  --tag-disabled-outlined-label: var(--color-text-disabled-on-disabled); /* nefolosit */
 }

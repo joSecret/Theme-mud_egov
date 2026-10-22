@@ -23,4 +23,10 @@
   --drop-shadow-thumb: 0 0 0.5px 0 rgb(0 0 0 / 30%), 0 1px 3px 0 rgb(0 0 0 / 16%);
   --drop-shadow-segment: 0 0 0.25px rgb(0 0 0 / 30%), 0 1px 1.5px rgb(0 0 0 / 16%);
   --drop-shadow-menu: 0 0 0.5px 0 rgb(0 0 0 / 15%), 0 1px 3px 0 rgb(0 0 0 / 8%), 0 5px 12px 0 rgb(0 0 0 / 8%);
+
+  /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
+  --focus-ring-color-halo-brand: var(--palette-blue-sky-200);
+  --focus-ring-color-halo-danger: var(--palette-red-200);
+  --focus-ring-color-halo-warning: var(--palette-apricot-200);
+  --focus-ring-color-halo-positive: var(--palette-green-200);
 }

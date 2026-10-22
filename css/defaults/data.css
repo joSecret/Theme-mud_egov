@@ -113,4 +113,10 @@
   --receipt-transaction-id-line-height: var(--line-height-16); /* nefolosit */
   --receipt-transaction-id-font-weight: var(--font-weight-regular); /* nefolosit */
   --receipt-transaction-id-color: var(--color-text-base-tertiary); /* nefolosit */
+
+  /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
+  --table-divider-width: 0.5px; /* nefolosit */
+  --table-selection-padding-inline-desktop: var(--spacing-24); /* nefolosit */
+  --table-selection-padding-inline-mobile: var(--spacing-16); /* nefolosit */
+  --table-selection-checkbox-size: 20px; /* nefolosit */
 }

@@ -1,70 +1,77 @@
 /**
  * Icon component.
  *
- * External CSS API  (--icon_*): consumed by callers to customise this instance.
- * Internal vars     (--_icon_*): private aliases used in property values.
+ * Override public: --icon_size, --icon_c (și pe stări: --icon_c_h, --icon_c_a, --icon_c_d).
  */
 
 .icon {
-  /* External API */
-  --icon_size: var(--spacing-16, 16px);
-  --icon_color: currentColor;
-
-  /* Internal aliases */
-  --_icon_size: var(--icon_size);
-  --_icon_color: var(--icon_color);
+  --_icon_size: var(--icon_size, var(--spacing-16));
+  --_icon_c: var(--icon_c, currentColor);
+  --_icon_c_h: var(--icon_c_h, var(--color-icon-brand-default));
+  --_icon_c_a: var(--icon_c_a, currentColor);
+  --_icon_c_d: var(--icon_c_d, var(--color-icon-disabled-default));
+  --_icon_trn: var(--icon_trn, color 0.1s ease-in-out);
 
   display: inline-flex;
-  width: var(--_icon_size);
-  height: var(--_icon_size);
-  vertical-align: middle;
-  color: var(--_icon_color);
   flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_icon_size);
+  block-size: var(--_icon_size);
+  vertical-align: middle;
+  color: var(--_icon_c);
+  transition: var(--_icon_trn);
+
+  & > svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
 }
 
-.icon mud-icon {
-  display: contents;
-}
-
-/* === Size modifiers === */
+/* === Mărimi === */
 .icon-12 {
-  --icon_size: var(--spacing-12, 12px);
+  --_icon_size: var(--icon_size, var(--spacing-12));
 }
 
 .icon-16 {
-  --icon_size: var(--spacing-16, 16px);
+  --_icon_size: var(--icon_size, var(--spacing-16));
 }
 
 .icon-20 {
-  --icon_size: var(--spacing-20, 20px);
+  --_icon_size: var(--icon_size, var(--spacing-20));
 }
 
 .icon-24 {
-  --icon_size: var(--spacing-24, 24px);
+  --_icon_size: var(--icon_size, var(--spacing-24));
 }
 
-/* === Interactive === */
+/* === Interactiv === */
 .icon-interactive {
   cursor: pointer;
 
   &:hover {
-    --icon_color: var(--color-icon-brand-default, currentColor);
+    color: var(--_icon_c_h);
   }
 
   &:active {
-    --icon_color: var(--color-icon-brand-strong, currentColor);
+    color: var(--_icon_c_a);
   }
 
   &:focus-visible {
-    outline: var(--border-width-2, 2px) solid var(--color-border-brand-default);
-    outline-offset: var(--spacing-2, 2px);
-    border-radius: 2px;
+    outline-color: transparent;
+    box-shadow: var(--focus-ring);
   }
 }
 
-/* === Disabled === */
+/* === Dezactivat === */
 .icon-disabled {
   cursor: not-allowed;
   pointer-events: none;
-  --icon_color: var(--color-icon-base-disabled, #b2b2b2);
+  color: var(--_icon_c_d);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
 }

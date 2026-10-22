@@ -456,25 +456,25 @@ egov_global_elements:
       group_label: 'Icon — size'
       group_layout: row
       props:
-        icon_name: 'home'
+        icon_name: 'home-line'
         icon_size: '12'
 
     - component: 'mud_egov:icon'
       group: icon_size
       props:
-        icon_name: 'home'
+        icon_name: 'home-line'
         icon_size: '16'
 
     - component: 'mud_egov:icon'
       group: icon_size
       props:
-        icon_name: 'home'
+        icon_name: 'home-line'
         icon_size: '20'
 
     - component: 'mud_egov:icon'
       group: icon_size
       props:
-        icon_name: 'home'
+        icon_name: 'home-line'
         icon_size: '24'
 
     # ── Link ────────────────────────────────────────────────────────────────

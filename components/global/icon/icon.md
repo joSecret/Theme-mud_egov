@@ -1,12 +1,19 @@
+---
+title: Icon
+group: Globals
+version: 1.1.0
+css_prefix: icon
+---
+
 # Icon
 
-Inline SVG icon from the MUD icon set, identified by name with optional size and color.
+Inline SVG icon from the MUD icon set (`assets/outlined/`, `assets/filled/`, copied from MUD JS 1.2.1), identified by name with optional size and color. The SVG is inlined with `source()`, so it inherits `currentColor`; no web component is needed.
 
 ## Usage
 
 ```twig
 {% include 'mud_egov:icon' with {
-  icon_name: 'check',
+  icon_name: 'checkmark-small',
   icon_size: '20'
 } %}
 ```
@@ -15,7 +22,7 @@ Inline SVG icon from the MUD icon set, identified by name with optional size and
 
 ```twig
 {% include 'mud_egov:icon' with {
-  icon_name: 'check-filled',
+  icon_name: 'circle-checkmark-filled',
   icon_size: '24'
 } %}
 ```
@@ -24,7 +31,7 @@ Inline SVG icon from the MUD icon set, identified by name with optional size and
 
 ```twig
 {% include 'mud_egov:icon' with {
-  icon_name: 'close',
+  icon_name: 'cross-small',
   icon_size: '16',
   icon_aria_label: 'Close dialog'
 } %}
@@ -34,10 +41,10 @@ Inline SVG icon from the MUD icon set, identified by name with optional size and
 
 ```twig
 {% include 'mud_egov:icon' with {
-  icon_name: 'favorite',
+  icon_name: 'bookmark',
   icon_size: '20',
   icon_interactive: true,
-  icon_aria_label: 'Add to favorites'
+  icon_aria_label: 'Save'
 } %}
 ```
 
@@ -57,7 +64,7 @@ Inline SVG icon from the MUD icon set, identified by name with optional size and
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `icon_name` | `string` | `'check'` | Icon identifier (kebab-case). Suffix `-filled` selects the filled variant. |
+| `icon_name` | `string` | `'checkmark-small'` | File name from `assets/` (kebab-case). Suffix `-filled` selects the filled drawing; a name missing in one style falls back to the other. Unknown names render an empty box. |
 | `icon_size` | `string\|null` | `null` | Pixel size: `'12'`, `'16'`, `'20'`, `'24'`. |
 | `icon_color` | `string\|null` | `null` | CSS color value. Defaults to `currentColor` (inherits). |
 | `icon_interactive` | `boolean` | `false` | Enables cursor, hover and focus-ring treatment. |
@@ -68,7 +75,19 @@ Inline SVG icon from the MUD icon set, identified by name with optional size and
 
 ## CSS variables
 
+All are empty by default; set them in a specific context.
+
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--icon_size` | `16px` | Size of the icon (width and height). |
-| `--icon_color` | `currentColor` | Icon fill/stroke color. |
+| `--icon_size` | `var(--spacing-16)` (or the `icon_size` class) | Width and height. |
+| `--icon_c` | `currentColor` | Icon color (also set inline by `icon_color`). |
+| `--icon_c_h` | `var(--color-icon-brand-default)` | Hover color of interactive icons. |
+| `--icon_c_a` | `currentColor` | Active color of interactive icons. |
+| `--icon_c_d` | `var(--color-icon-disabled-default)` | Disabled color. |
+
+## Accessibility
+
+- Without `icon_aria_label` the icon is decorative (`aria-hidden="true"`).
+- With `icon_aria_label` the label is set on the wrapper; pair interactive icons with a label, since they get `role="button"` and `tabindex="0"`.
+- Interactive icons show the MUD focus ring (`--focus-ring`) on `:focus-visible`.
+- The color transition is disabled under `prefers-reduced-motion: reduce`.

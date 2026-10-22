@@ -4,7 +4,7 @@
  * Template for an icon component.
  *
  * Props:
- * - icon_name: (string) default: ('check') — icon identifier (kebab-case); append `-filled` for filled variant
+ * - icon_name: (string) default: ('checkmark-small') — icon identifier (kebab-case); append `-filled` for filled variant
  * - icon_size: (string | null) default: (null)
  *    enum: null | '12' | '16' | '20' | '24'
  * - icon_color: (string | null) default: (null) — CSS color value; null inherits currentColor
@@ -21,7 +21,7 @@
 -#}
 
 {#- Defaults -#}
-{% set icon_name = icon_name|default('check') %}
+{% set icon_name = icon_name|default('checkmark-small') %}
 {% set icon_size = icon_size|default(null) %}
 {% set icon_color = icon_color|default(null) %}
 {% set icon_interactive = icon_interactive|default(false) %}
@@ -44,6 +44,9 @@
 {#- Accessibility -#}
 {%- if icon_aria_label -%}
   {% set icon_att = icon_att.setAttribute('aria-label', icon_aria_label) %}
+  {%- if not icon_interactive -%}
+    {% set icon_att = icon_att.setAttribute('role', 'img') %}
+  {%- endif -%}
 {%- else -%}
   {% set icon_att = icon_att.setAttribute('aria-hidden', 'true') %}
 {%- endif -%}
@@ -60,21 +63,20 @@
 
 {#- Inline color style -#}
 {%- if icon_color -%}
-  {% set icon_att = icon_att.setAttribute('style', '--icon_color: ' ~ icon_color ~ ';') %}
+  {% set icon_att = icon_att.setAttribute('style', '--icon_c: ' ~ icon_color ~ ';') %}
 {%- endif -%}
+
+{#- SVG din setul MUD: `<nume>-filled` caută întâi în filled/, altfel în outlined/; fiecare cade pe celălalt stil. -#}
+{% set icon_dir = '@mud_egov/components/global/icon/assets/' %}
+{% set icon_filled = icon_name ends with '-filled' %}
+{% set icon_base = icon_filled ? icon_name|slice(0, -7) : icon_name %}
+{% set icon_order = icon_filled ? ['filled', 'outlined'] : ['outlined', 'filled'] %}
 
 {#- Render -#}
 <span{{ icon_att.addClass(icon_classes) }}>
   {%- if slot_svg is not empty -%}
     {{- slot_svg -}}
   {%- else -%}
-    <mud-icon
-      name="{{ icon_name }}"
-      {%- if icon_size -%} size="{{ icon_size }}"{%- endif -%}
-      {%- if icon_color -%} color="{{ icon_color }}"{%- endif -%}
-      {%- if icon_interactive -%} interactive{%- endif -%}
-      {%- if icon_disabled -%} disabled{%- endif -%}
-      {%- if icon_aria_label -%} aria-label="{{ icon_aria_label }}"{%- endif -%}
-    ></mud-icon>
+    {{- source(icon_dir ~ icon_order[0] ~ '/' ~ icon_base ~ '.svg', ignore_missing = true) ?: source(icon_dir ~ icon_order[1] ~ '/' ~ icon_base ~ '.svg', ignore_missing = true) -}}
   {%- endif -%}
 </span>

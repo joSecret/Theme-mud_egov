@@ -53,7 +53,7 @@ Visual divider between groups of content with optional inline label, orientation
 ```twig
 {% include 'mud_egov:separator' with {} %}
   {% block slot_label %}
-    {% include 'mud_egov:icon' with { icon_name: 'star', icon_size: '16' } %}
+    {% include 'mud_egov:icon' with { icon_name: 'checkmark-small', icon_size: '16' } %}
     <span>Featured</span>
   {% endblock %}
 {% endinclude %}

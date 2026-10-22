@@ -6,11 +6,11 @@
   --_svc-btn_h: var(--svc-btn_h, var(--service-button-container-height));
   --_svc-btn_m-w: var(--svc-btn_m-w, var(--service-button-container-min-width));
   --_svc-btn_p-i: var(--svc-btn_p-i, var(--service-button-container-padding-inline-start) var(--service-button-container-padding-inline-end));
-  --_svc-btn_gap: var(--svc-btn_gap, var(--service-button-container-gap));
+  --_svc-btn_gap: var(--svc-btn_gap, var(--spacing-12));
   --_svc-btn_b-r: var(--svc-btn_b-r, var(--service-button-container-border-radius));
   --_svc-btn_f-f: var(--svc-btn_f-f, var(--service-button-label-font-family));
-  --_svc-btn_f-s: var(--svc-btn_f-s, var(--service-button-label-font-size));
-  --_svc-btn_l-h: var(--svc-btn_l-h, var(--service-button-label-line-height));
+  --_svc-btn_f-s: var(--svc-btn_f-s, var(--font-size-14));
+  --_svc-btn_l-h: var(--svc-btn_l-h, var(--line-height-20));
   --_svc-btn_f-w: var(--svc-btn_f-w, var(--service-button-label-font-weight));
   --_svc-btn_w: var(--svc-btn_w, fit-content);
   --_svc-btn_trn: var(--svc-btn_trn, var(--service-button-container-transition-duration) var(--service-button-container-transition-timing-function));
@@ -22,11 +22,11 @@
 
   /* primary (implicit) */
   --_svc-btn_bg: var(--svc-btn_bg, var(--service-button-primary-background-default));
-  --_svc-btn_bg_h: var(--svc-btn_bg_h, var(--service-button-primary-background-hover));
-  --_svc-btn_bg_a: var(--svc-btn_bg_a, var(--service-button-primary-background-active));
-  --_svc-btn_c: var(--svc-btn_c, var(--service-button-primary-label));
+  --_svc-btn_bg_h: var(--svc-btn_bg_h, color-mix(in oklab, var(--color-background-brand-default), var(--palette-black-1000) 15%));
+  --_svc-btn_bg_a: var(--svc-btn_bg_a, color-mix(in oklab, var(--color-background-brand-default), var(--palette-black-1000) 30%));
+  --_svc-btn_c: var(--svc-btn_c, var(--color-text-base-inverse-default));
   --_svc-btn_bg_d: var(--svc-btn_bg_d, var(--service-button-disabled-background));
-  --_svc-btn_c_d: var(--svc-btn_c_d, var(--service-button-disabled-label));
+  --_svc-btn_c_d: var(--svc-btn_c_d, var(--color-text-base-disabled));
   --_svc-btn_badge_o: var(--svc-btn_badge_o, 1);
 
   display: inline-flex;
@@ -106,8 +106,8 @@
 /* === Variante === */
 .c--service-button--neutral {
   --_svc-btn_bg: var(--svc-btn_neutral_bg, var(--service-button-neutral-background-default));
-  --_svc-btn_bg_h: var(--svc-btn_neutral_bg_h, var(--service-button-neutral-background-hover));
-  --_svc-btn_bg_a: var(--svc-btn_neutral_bg_a, var(--service-button-neutral-background-active));
+  --_svc-btn_bg_h: var(--svc-btn_neutral_bg_h, var(--color-background-base-tertiary));
+  --_svc-btn_bg_a: var(--svc-btn_neutral_bg_a, color-mix(in oklab, var(--color-background-base-secondary), var(--palette-black-1000) 10%));
   --_svc-btn_c: var(--svc-btn_neutral_c, var(--service-button-neutral-label));
 }
 

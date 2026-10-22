@@ -1,6 +1,6 @@
 .c--dateTimezone {
-  --_date-timezone_c: var(--date-timezone_c, var(--palette-white-1000));
-  --_date-timezone_timezone_c: var(--date-timezone_timezone_c, var(--palette-gray-100));
+  --_date-timezone_c: var(--date-timezone_c, var(--c_white));
+  --_date-timezone_timezone_c: var(--date-timezone_timezone_c, var(--c_gray_100));
 
   display: grid;
   grid-template-columns: auto 1fr;
@@ -19,7 +19,7 @@
     -ms-grid-row-span: 3;
     -ms-grid-column: 1;
     grid-area: date;
-    background-color: var(--palette-blue-sky-800);
+    background-color: var(--c_blue-dark, var(--c_primary_800));
     color: var(--_date-timezone_c);
     padding: 0.5rem;
     border-radius: 2px;

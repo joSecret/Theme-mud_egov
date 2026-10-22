@@ -7,11 +7,11 @@
   --_label_d: var(--label_d, block);
   --_label_f-s: var(--label_f-s, var(--form_f-s));
   --_label_f-w: var(--label_f-w, var(--form_f-w));
-  --_label_m-b: var(--label_m-b, var(--spacing-4));
+  --_label_m-b: var(--label_m-b, var(--size_100));
 
   /* Variables — required indicator */
-  --_label-required_c: var(--label-required_c, var(--color-text-danger-default));
-  --_label-required_m-i-s: var(--label-required_m-i-s, var(--spacing-4));
+  --_label-required_c: var(--label-required_c, var(--c_danger));
+  --_label-required_m-i-s: var(--label-required_m-i-s, var(--size_100));
 
   display: var(--_label_d);
   color: var(--_label_c);

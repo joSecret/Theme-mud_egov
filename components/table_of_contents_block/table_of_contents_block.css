@@ -1,7 +1,7 @@
 .c--tableOfContentsBlock {
-  --_c-tcb_c: var(--c_tcb_c, var(--palette-gray-500));
+  --_c-tcb_c: var(--c_tcb_c, var(--c_gray_500));
 
-  --_c-tcb_heading_c: var(--c_tcb_heading_c, var(--palette-gray-800));
+  --_c-tcb_heading_c: var(--c_tcb_heading_c, var(--c_bray-800));
   --_c-tcb_heading_f-s: var(--c_tcb_heading_f-s, .75rem);
   --_c-tcb_heading_f-style: var(--c_tcb_heading_f-style, normal);
   --_c-tcb_heading_f-w: var(--c_tcb_heading_f-w, 400);
@@ -12,7 +12,7 @@
   --_c-tcb_heading_m-i: var(--c_tcb_heading_m-i, 0);
 
   --_nav_scrollspy_gap: var(--nav_scrollspy_gap, 0px);
-  --_nav_scrollspy_b-c: var(--nav_scrollspy_b-c, var(--palette-blue-sky-500));
+  --_nav_scrollspy_b-c: var(--nav_scrollspy_b-c, var(--c_primary_500));
   --_nav_scrollspy_b-w: var(--nav_scrollspy_b-w, 1px);
   --_nav_scrollspy_b: var(--nav_scrollspy_b-c, var(--_nav_scrollspy_b-w) solid var(--_nav_scrollspy_b-c));
 
@@ -39,9 +39,9 @@
 
   .nav-link {
     --_link_c: var(--_c-tcb_c);
-    --_link_c_h: var(--color-text-brand-default);
+    --_link_c_h: var(--c_primary);
     --_link_d: none;
-    --_c-tcb_link_c: var(--c_tcb_link_c, var(--palette-blue-sky-500));
+    --_c-tcb_link_c: var(--c_tcb_link_c, var(--c_primary_500));
     --_c-tcb_link_f-s: var(--c_tcb_link_f-s, 16px);
     --_c-tcb_link_f-w: var(--c_tcb_link_f-w, 400);
     --_c-tcb_link_f-w_a: var(--c_tcb_link_f-w_a, 600);

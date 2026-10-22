@@ -1,7 +1,7 @@
 .c--navScroll {
   --_nav-scroll_track_gap: 0px;
   --_nav-scroll_track_p-i: var(--_nav-scroll_btns_w, 0px);
-  --_nav-scroll_track_b-b: 1px solid var(--color-border-base-default);
+  --_nav-scroll_track_b-b: 1px solid var(--c_border);
 
   --nav-scroll_btns_d: flex;
   --nav-scroll_btns_i-b-s: 0px;
@@ -10,18 +10,18 @@
   --_nav-scroll_btns_b-r: 0px;
 
   --_nav-scroll_item_p: 0.5rem 1rem;
-  --_nav-scroll_item_bg: var(--palette-white-1000);
-  --_nav-scroll_item_c: var(--color-text-base-default);
+  --_nav-scroll_item_bg: var(--c_white);
+  --_nav-scroll_item_c: var(--body_c);
   --_nav-scroll_item_f-s: 1rem;
   --_nav-scroll_item_f-w: 500;
   --_nav-scroll_item_transition: all 0.2s ease;
   --_nav-scroll_item_b-r: 0px;
   --_nav-scroll_item_b: none;
 
-  --_nav-scroll_item_bg_a: var(--palette-blue-sky-500);
-  --_nav-scroll_item_c_a: var(--palette-white-1000);
+  --_nav-scroll_item_bg_a: var(--c_primary_500);
+  --_nav-scroll_item_c_a: var(--c_white);
 
-  --_nav-scroll_btn_bg: var(--palette-white-1000);
+  --_nav-scroll_btn_bg: var(--c_white);
   --_nav-scroll_btn_b: none;
   --_nav-scroll_btn_disabled-opacity: 0.5;
 

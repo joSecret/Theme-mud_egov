@@ -14,7 +14,7 @@
 
   /* Variables — icon */
   --_fieldLink-icon_s: var(--fieldLink-icon_s, 24px);
-  --_fieldLink-icon_c: var(--fieldLink-icon_c, var(--color-text-brand-default));
+  --_fieldLink-icon_c: var(--fieldLink-icon_c, var(--c_primary, #0058d2));
 
   /* Variables — link */
   --_fieldLink-link_c: var(--fieldLink-link_c, inherit);

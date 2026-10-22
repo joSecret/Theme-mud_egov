@@ -7,15 +7,15 @@
 .c--nodeDetails {
   /* Variables — main component */
   --_nodeDetails_gap: var(--nodeDetails_gap, 1.25rem);
-  --_nodeDetails_c: var(--nodeDetails_c, var(--color-text-base-default));
+  --_nodeDetails_c: var(--nodeDetails_c, var(--body_c));
 
   /* Variables — title */
   --_nodeDetails-title_f-s: var(--nodeDetails-title_f-s, 12px);
-  --_nodeDetails-title_c: var(--nodeDetails-title_c, var(--palette-gray-300));
+  --_nodeDetails-title_c: var(--nodeDetails-title_c, var(--c_gray_300));
   --_nodeDetails-title_m-b: var(--nodeDetails-title_m-b, 30px);
 
   /* Variables — body (left border) */
-  --_nodeDetails-body_b-c: var(--nodeDetails-body_b-c, var(--palette-blue-sky-700));
+  --_nodeDetails-body_b-c: var(--nodeDetails-body_b-c, var(--c_primary_700));
   --_nodeDetails-body_b-w: var(--nodeDetails-body_b-w, 1px);
   --_nodeDetails-body_p-i-s: var(--nodeDetails-body_p-i-s, 16px);
   --_nodeDetails-body_gap: var(--nodeDetails-body_gap, 16px);

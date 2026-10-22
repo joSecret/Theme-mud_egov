@@ -126,7 +126,7 @@
   --_nav-scroll_btns_w: 40px;
   --_nav-scroll_btns_b-r: 0px;
 
-  --_nav-scroll_btn_bg: var(--palette-white-1000);
+  --_nav-scroll_btn_bg: var(--c-white);
   --_nav-scroll_btn_b: none;
   --_nav-scroll_btn_disabled-opacity: 0.5;
 

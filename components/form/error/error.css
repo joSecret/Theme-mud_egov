@@ -4,7 +4,7 @@
  */
 
 .c--error {
-  --_error-c: var(--error_color, var(--palette-red-500));
+  --_error-c: var(--error_color, var(--color-danger_500));
   --_error_m-b-s: var(--error_m-b-s, 0.25rem);
   --_error_f-s: var(--error_f-s, 0.875em);
   --_error_l-h: var(--error_l-h, 1.5);
@@ -38,12 +38,12 @@
 
 /* Error type variants */
 .c--error.has-type_critical {
-  color: var(--error-critical-color, var(--color-text-danger-default));
+  color: var(--error-critical-color, var(--c_danger_fg));
   font-weight: var(--error-critical-font-weight, 600);
 }
 
 .c--error.has-type_warning {
-  color: var(--error-warning_color, var(--color-text-warning-default));
+  color: var(--error-warning_color, var(--c_warning_fg));
 }
 
 /* Animation */

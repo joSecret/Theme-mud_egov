@@ -63,8 +63,8 @@
   }
 
   .radio-required {
-    color: var(--color-text-danger-default);
-    margin-inline-start: var(--spacing-4);
+    color: var(--c_danger);
+    margin-inline-start: var(--size_50, 4px);
   }
 }
 

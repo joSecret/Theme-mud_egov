@@ -1,6 +1,6 @@
 .c--menu {
   --_c-menu_bg: var(--c-menu_bg, inherit);
-  --_c-menu_c: var(--c-menu_c, var(--color-text-base-secondary));
+  --_c-menu_c: var(--c-menu_c, var(--c_fg-muted));
 
   --_c-menu_link_bg: var(--c-menu_link_bg, transparent);
 
@@ -36,20 +36,20 @@
     --link_c: var(--c-menu_link_c, var(--_c-menu_c));
     --link_bg: var(--_c-menu_link_bg);
     --link_d: var(--c-menu_link_d, none);
-    --link_b-r: var(--c-menu_link_b-r, var(--spacing-4));
-    --link_p-b: var(--c-menu_link_p-b, var(--spacing-6));
-    --link_p-i: var(--c-menu_link_p-i, var(--spacing-12));
+    --link_b-r: var(--c-menu_link_b-r, var(--size_100));
+    --link_p-b: var(--c-menu_link_p-b, var(--size_150));
+    --link_p-i: var(--c-menu_link_p-i, var(--size_300));
 
-    --link_c_h: var(--c-menu_link_c_h, var(--color-text-base-default));
-    --_link_bg_h: var(--c-menu_link_bg_h, var(--color-background-base-default-hover));
+    --link_c_h: var(--c-menu_link_c_h, var(--c_neutral_fg));
+    --_link_bg_h: var(--c-menu_link_bg_h, var(--c_hover-bg));
 
-    --_link_bg_a: var(--c-menu_link_bg_a, var(--color-background-base-default-hover));
+    --_link_bg_a: var(--c-menu_link_bg_a, var(--c_hover-bg));
 
     display: var(--c-menu_link_display);
 
     &.is-active {
-      --_link_c: var(--c-menu_link_c_a, var(--color-text-base-default));
-      --_link_bg: var(--c-menu_link_bg_a, var(--color-background-base-default-hover));
+      --_link_c: var(--c-menu_link_c_a, var(--c_neutral));
+      --_link_bg: var(--c-menu_link_bg_a, var(--c_hover-bg));
     }
   }
 

@@ -4,7 +4,7 @@
   --_cl_br: var(--card-link_br, 1rem);
   --_cl_p: var(--card-link_p, 1.5rem);
   --_cl_gap: var(--card-link_gap, 1rem);
-  --_cl_c: var(--card-link_c, var(--color-text-base-default));
+  --_cl_c: var(--card-link_c, var(--body_c, inherit));
   --_cl_icon-size: var(--card-link_icon-size, 2rem);
 
   --link_c: var(--color-text-base-default);

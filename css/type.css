@@ -59,7 +59,7 @@
 .lead {
   --lead-font-weight: 300;
 
-  font-size: var(--lead_f-s, var(--font-size-20));
+  font-size: var(--lead_f-s, inherit);
   font-weight: var(--lead-font-weight);
 }
 
@@ -79,12 +79,12 @@ p {
 }
 
 :where(small, .small) {
-  font-size: var(--font-size_sm);
+  font-size: var(--small_f-s, inherit);
 }
 
 :where(mark, .mark) {
   padding: var(--mark-padding, 0.1875em);
-  background-color: var(--highlight-bg, var(--color-background-base-tertiary));
+  background-color: var(--highlight-bg, transparent);
 }
 
 :where(sub, sup) {
@@ -116,7 +116,7 @@ sup {
 
   margin: 0;
   margin-block-end: var(--blockquote_m-b-e);
-  font-size: var(--_blockquote_f-s);
+  font-size: var(--blockquote_f-s, inherit);
 
   & > :last-child {
     margin-bottom: 0;
@@ -124,8 +124,8 @@ sup {
 }
 
 .blockquote-footer {
-  --blockquote-footer_f-s: var(--font-size_sm);
-  --blockquote-footer_c: var(--color-text-base-secondary);
+  --blockquote-footer_f-s: 1em;
+  --blockquote-footer_c: currentcolor;
 
   margin-top: calc(var(--blockquote_m-b-e) * -1);
   margin-bottom: var(--blockquote_m-b-e);

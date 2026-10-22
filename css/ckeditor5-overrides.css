@@ -179,15 +179,15 @@
   }
 
   .button-info {
-    --btn-color_c: var(--btn-info_color, var(--color-text-brand-default));
+    --btn-color_c: var(--btn-info_color);
   }
 
   .button-light {
-    --btn-color_c: var(--btn-light_color, var(--color-text-base-inverse-default));
+    --btn-color_c: var(--btn-light_color);
   }
 
   .button-dark {
-    --btn-color_c: var(--btn-dark_color, var(--color-text-base-default));
+    --btn-color_c: var(--btn-dark_color);
   }
 
   /* === Size === */

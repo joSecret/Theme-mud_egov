@@ -8,41 +8,41 @@
 
 .c--textarea {
   /* Variables — wrapper */
-  --_textarea_gap: var(--textarea_gap, var(--spacing-4));
+  --_textarea_gap: var(--textarea_gap, var(--size_100));
   --_textarea_m-b: var(--textarea_m-b, 0);
 
   /* Variables — label */
-  --_textarea-label_f-s: var(--textarea-label_f-s, var(--font-size-14));
-  --_textarea-label_f-w: var(--textarea-label_f-w, var(--font-weight-semibold));
-  --_textarea-label_c: var(--textarea-label_c, var(--color-text-base-default));
+  --_textarea-label_f-s: var(--textarea-label_f-s, var(--f-s_sm));
+  --_textarea-label_f-w: var(--textarea-label_f-w, var(--f-w_semibold));
+  --_textarea-label_c: var(--textarea-label_c, var(--body_c));
 
   /* Variables — required indicator */
-  --_textarea-required_c: var(--textarea-required_c, var(--color-text-danger-default));
-  --_textarea-required_m-i-s: var(--textarea-required_m-i-s, var(--spacing-2));
+  --_textarea-required_c: var(--textarea-required_c, var(--c_danger));
+  --_textarea-required_m-i-s: var(--textarea-required_m-i-s, var(--size_50));
 
   /* Variables — field */
   --_textarea-field_w: var(--textarea-field_w, 100%);
-  --_textarea-field_p-b: var(--textarea-field_p-b, var(--spacing-8));
-  --_textarea-field_p-i: var(--textarea-field_p-i, var(--spacing-12));
-  --_textarea-field_f-s: var(--textarea-field_f-s, var(--font-size-16));
+  --_textarea-field_p-b: var(--textarea-field_p-b, var(--size_200));
+  --_textarea-field_p-i: var(--textarea-field_p-i, var(--size_300));
+  --_textarea-field_f-s: var(--textarea-field_f-s, var(--f-s_base));
   --_textarea-field_l-h: var(--textarea-field_l-h, 1.5);
-  --_textarea-field_c: var(--textarea-field_c, var(--color-text-base-default));
-  --_textarea-field_bg: var(--textarea-field_bg, var(--palette-white-1000));
-  --_textarea-field_b-w: var(--textarea-field_b-w, var(--border-width-1));
-  --_textarea-field_b-c: var(--textarea-field_b-c, var(--color-border-base-default));
+  --_textarea-field_c: var(--textarea-field_c, var(--body_c));
+  --_textarea-field_bg: var(--textarea-field_bg, var(--c_white));
+  --_textarea-field_b-w: var(--textarea-field_b-w, var(--b-w, 1px));
+  --_textarea-field_b-c: var(--textarea-field_b-c, var(--c_gray_100, #d1d5db));
   --_textarea-field_b-r: var(--textarea-field_b-r, 6px);
-  --_textarea-field_t-t: var(--textarea-field_t-t, none);
+  --_textarea-field_t-t: var(--textarea-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
 
   /* Variables — field focus */
-  --_textarea-field_b-c_focus: var(--textarea-field_b-c_focus, var(--color-border-brand-default));
+  --_textarea-field_b-c_focus: var(--textarea-field_b-c_focus, var(--c_primary));
 
   /* Variables — field error */
-  --_textarea-field_b-c_error: var(--textarea-field_b-c_error, var(--color-border-danger-default));
+  --_textarea-field_b-c_error: var(--textarea-field_b-c_error, var(--c_danger));
 
   /* Variables — helper / error text */
-  --_textarea-helper_f-s: var(--textarea-helper_f-s, var(--font-size-14));
-  --_textarea-helper_c: var(--textarea-helper_c, var(--color-text-base-secondary));
-  --_textarea-error-msg_c: var(--textarea-error-msg_c, var(--color-text-danger-default));
+  --_textarea-helper_f-s: var(--textarea-helper_f-s, var(--f-s_sm));
+  --_textarea-helper_c: var(--textarea-helper_c, var(--c_muted));
+  --_textarea-error-msg_c: var(--textarea-error-msg_c, var(--c_danger));
 
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@
     &:focus {
       border-color: var(--_textarea-field_b-c_focus);
       outline: 0;
-      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--color-background-brand-default), transparent 75%);
+      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
     }
 
     &:disabled {
@@ -109,20 +109,20 @@
   border-color: var(--_textarea-field_b-c_error);
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--color-background-danger-default), transparent 75%);
+    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
   }
 }
 
 /* Size — md (explicit, same as default) */
 .c--textarea.c--textarea--md {
-  --_textarea-field_p-b: var(--textarea-field_p-b--md, var(--spacing-8));
-  --_textarea-field_p-i: var(--textarea-field_p-i--md, var(--spacing-12));
-  --_textarea-field_f-s: var(--textarea-field_f-s--md, var(--font-size-16));
+  --_textarea-field_p-b: var(--textarea-field_p-b--md, var(--size_200));
+  --_textarea-field_p-i: var(--textarea-field_p-i--md, var(--size_300));
+  --_textarea-field_f-s: var(--textarea-field_f-s--md, var(--f-s_base));
 }
 
 /* Size — lg */
 .c--textarea.c--textarea--lg {
-  --_textarea-field_p-b: var(--textarea-field_p-b--lg, var(--spacing-12));
-  --_textarea-field_p-i: var(--textarea-field_p-i--lg, var(--spacing-16));
+  --_textarea-field_p-b: var(--textarea-field_p-b--lg, var(--size_300));
+  --_textarea-field_p-i: var(--textarea-field_p-i--lg, var(--size_400));
   --_textarea-field_f-s: var(--textarea-field_f-s--lg, 1.125rem);
 }

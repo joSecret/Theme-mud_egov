@@ -13,7 +13,7 @@
   --_breadcrumb_ol_p: 0px;
 
   --_breadcrumb_li_last_c: var(--color-text-base-default);
-  --_breadcrumb_li_after_c: var(--breadcrumb_li_after_c, var(--color-text-base-secondary));
+  --_breadcrumb_li_after_c: var(--breadcrumb_li_after_c, var(--c_fg-muted));
 
   display: flex;
   align-items: center;

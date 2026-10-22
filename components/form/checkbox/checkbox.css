@@ -62,8 +62,8 @@
   }
 
   .checkbox-required {
-    color: var(--checkbox-destructive-label, var(--color-text-danger-default));
-    margin-inline-start: var(--spacing-4);
+    color: var(--checkbox-destructive-label, var(--c_danger));
+    margin-inline-start: var(--size_50, 4px);
   }
 }
 

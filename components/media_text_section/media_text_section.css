@@ -2,13 +2,13 @@
   --_mediaText-wrap_gap: var(--mediaText-wrap_gap, 30px);
   --_mediaText-wrap_text-w: var(--mediaText-wrap_text-w, 320px);
 
-  --_mediaText-title_c: var(--mediaText-title_c, var(--palette-blue-sky-700));
+  --_mediaText-title_c: var(--mediaText-title_c, var(--c_primary_700));
   --_mediaText-title_m-b: var(--mediaText-title_m-b, 40px);
 
   --_mediaText-media_a-r: var(--mediaText-media_a-r, 16 / 9);
 
   --_mediaText-text_top-offset: var(--mediaText-text_top-offset, 20px);
-  --_mediaText-text_bg: var(--mediaText-text_bg, var(--palette-gray-50));
+  --_mediaText-text_bg: var(--mediaText-text_bg, var(--c_gray_50));
   --_mediaText-text_p: var(--mediaText-text_p, 24px);
   --_mediaText-text_f-s: var(--mediaText-text_f-s, 14px);
 

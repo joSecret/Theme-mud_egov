@@ -6,7 +6,7 @@
 
   --_carousel-btn-s: var(--carousel-btn-s, 48px);
   --_carousel-btn-bg: var(--carousel-btn-bg, #fff);
-  --_carousel-btn-c: var(--carousel-btn-c, var(--color-text-brand-default));
+  --_carousel-btn-c: var(--carousel-btn-c, var(--c_primary, #1a3a6b));
   --_carousel-btn-shadow: var(--carousel-btn-shadow, 0 2px 8px rgba(0, 0, 0, 0.12));
   --_carousel-btn-offset: var(--carousel-btn-offset, 16px);
 

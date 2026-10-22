@@ -1,13 +1,17 @@
+/**
+ * Spinner: indicator circular de încărcare, doar CSS, pe variabilele --spinner-*.
+ */
 .spinner {
-  --_spinner_b-c: var(--spinner_b-c, var(--color-border-brand-default));
-  --_spinner_s: var(--spinner_s, 32px);
-  --_spinner_b-w: var(--spinner_b-w, 3px);
+  --_spinner_b-c: var(--spinner_b-c, var(--spinner-arc-color-brand));
+  --_spinner_size: var(--spinner_size, var(--spinner-size-md));
+  --_spinner_b-w: var(--spinner_b-w, var(--spinner-stroke-width-md));
+  --_spinner_anim: var(--spinner_anim, spinner-rotate var(--spinner-transition-duration) var(--spinner-transition-timing-function) infinite);
 
   display: inline-block;
   position: relative;
   flex-shrink: 0;
-  inline-size: var(--_spinner_s);
-  block-size: var(--_spinner_s);
+  inline-size: var(--_spinner_size);
+  block-size: var(--_spinner_size);
 
   /* Arc */
   .arc {
@@ -21,34 +25,29 @@
     border-top-color: transparent;
     box-sizing: border-box;
     rotate: 45deg;
-    animation: var(--spinner_anim, spinner-rotate 800ms linear infinite);
+    animation: var(--_spinner_anim);
   }
 }
 
-/* Size modifiers */
+/* Size modifiers (md e implicită) */
 .spinner-xs {
-  --_spinner_s: var(--spinner_xs_s, 16px);
-  --_spinner_b-w: var(--spinner_xs_b-w, 2px);
+  --_spinner_size: var(--spinner_xs_size, var(--spinner-size-xs));
+  --_spinner_b-w: var(--spinner_xs_b-w, var(--spinner-stroke-width-xs));
 }
 
 .spinner-sm {
-  --_spinner_s: var(--spinner_sm_s, 20px);
-  --_spinner_b-w: var(--spinner_sm_b-w, 2px);
-}
-
-.spinner-md {
-  --_spinner_s: var(--spinner_md_s, 32px);
-  --_spinner_b-w: var(--spinner_md_b-w, 3px);
+  --_spinner_size: var(--spinner_sm_size, var(--spinner-size-sm));
+  --_spinner_b-w: var(--spinner_sm_b-w, var(--spinner-stroke-width-sm));
 }
 
 .spinner-lg {
-  --_spinner_s: var(--spinner_lg_s, 40px);
-  --_spinner_b-w: var(--spinner_lg_b-w, 4px);
+  --_spinner_size: var(--spinner_lg_size, var(--spinner-size-lg));
+  --_spinner_b-w: var(--spinner_lg_b-w, var(--spinner-stroke-width-lg));
 }
 
 /* Variant modifiers */
 .spinner-brand {
-  --_spinner_b-c: var(--spinner_brand_b-c, var(--color-border-brand-default));
+  --_spinner_b-c: var(--spinner_brand_b-c, var(--spinner-arc-color-brand));
 }
 
 .spinner-dark {
@@ -56,11 +55,11 @@
 }
 
 .spinner-light {
-  --_spinner_b-c: var(--spinner_light_b-c, var(--color-border-base-subtle));
+  --_spinner_b-c: var(--spinner_light_b-c, var(--spinner-arc-color-light));
 }
 
 .spinner-light-on-color {
-  --_spinner_b-c: var(--spinner_light-on-color_b-c, var(--color-border-base-subtle));
+  --_spinner_b-c: var(--spinner_light-on-color_b-c, var(--spinner-arc-color-light-on-color));
 }
 
 @keyframes spinner-rotate {

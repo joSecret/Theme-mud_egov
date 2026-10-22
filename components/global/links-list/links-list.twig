@@ -4,23 +4,23 @@
  * Template for the LinksList component.
  *
  * Available props:
- * - links_links: (array) List of link items with link, text, attributes, text_attributes.
- * - links_orientation: (string|null) 'vertical' | 'horizontal'.
- * - links_uc:          (array) Utility classes for the <ul>.
- * - links_att:         (Drupal\Core\Template\Attribute) Extra attributes for the <ul>.
+ * - links_list_links: (array) List of link items with link, text, attributes, text_attributes.
+ * - links_list_orientation: (string|null) 'vertical' | 'horizontal'.
+ * - links_list_uc:          (array) Utility classes for the <ul>.
+ * - links_list_att:         (Drupal\Core\Template\Attribute) Extra attributes for the <ul>.
  */
 -#}
 
-{% set links_att = links_att ?: create_attribute() %}
+{% set links_list_att = links_list_att ?: create_attribute() %}
 {%
   set links_classes = [
     'c--links-list',
-    links_orientation ? 'links-list-' ~ links_orientation,
-  ]|merge(links_uc ?: [])
+    links_list_orientation ? 'links-list-' ~ links_list_orientation,
+  ]|merge(links_list_uc ?: [])
 %}
 
-<ul{{ links_att.addClass(links_classes) }}>
-  {%- for key, item in links_links -%}
+<ul{{ links_list_att.addClass(links_classes) }}>
+  {%- for key, item in links_list_links -%}
     {% set item_link = item.link|merge({'#title': key|capitalize}) %}
     <li{{ item.attributes }}>
       {%- if item.link -%}

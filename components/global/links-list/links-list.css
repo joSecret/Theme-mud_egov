@@ -1,26 +1,31 @@
+/**
+ * Links List: listă de legături (ul), în rând și fără marcatori. Legăturile nu sunt subliniate,
+ * cu excepția celei active (.is-active).
+ */
 .c--links-list {
   --_links-list_d: var(--links-list_d, flex);
-  --_links_f-d: var(--links_f-d);
-  --_links_f-w: var(--links_f-w, wrap);
+  --_links-list_f-d: var(--links-list_f-d, row);
   --_links-list_gap: var(--links-list_gap, var(--spacing-16));
   --_links-list_p: var(--links-list_p, 0);
   --_links-list_m: var(--links-list_m, 0);
-  --_links-list_lst: var(--links-list_lst, none);
-
-  --link_d: none;
+  --_links-list_t-d: var(--links-list_t-d, none);
 
   display: var(--_links-list_d);
-  flex-direction: var(--_links_f-d);
+  flex-direction: var(--_links-list_f-d);
   gap: var(--_links-list_gap);
   padding: var(--_links-list_p);
   margin: var(--_links-list_m);
-  list-style: var(--_links-list_lst);
+  list-style: none;
+
+  a {
+    text-decoration: var(--_links-list_t-d);
+  }
 
   .is-active {
-    --link_d: underline;
+    --_links-list_t-d: var(--links-list_active_t-d, underline);
   }
 }
 
 .links-list-vertical {
-  --_links_f-d: row;
+  --_links-list_f-d: var(--links-list_vertical_f-d, row);
 }

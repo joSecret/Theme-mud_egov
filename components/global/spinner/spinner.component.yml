@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Spinner
 status: stable
 group: Globals
-version: 1.0.0
-description: CSS-only animated circular loading indicator ported from mud-spinner.
+version: 1.1.0
+description: CSS-only animated circular loading indicator, in four sizes and four color treatments.
 
 # Props.
 props:
@@ -11,7 +11,7 @@ props:
   properties:
     # component variations
     # fields values
-    size:
+    spinner_size:
       type: ['string', 'null']
       title: Size
       description: Visual size rung.
@@ -23,7 +23,7 @@ props:
         - md
         - lg
 
-    variant:
+    spinner_variant:
       type: ['string', 'null']
       title: Variant
       description: Color treatment.
@@ -36,7 +36,7 @@ props:
         - light
         - light-on-color
 
-    label:
+    spinner_label:
       type: string
       title: Label
       description: Accessible label for screen readers.

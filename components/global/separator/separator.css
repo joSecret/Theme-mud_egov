@@ -1,64 +1,59 @@
 /**
- * Separator component.
- *
- * External CSS API  (--separator_*): consumed by callers to customise this instance.
- * Internal vars     (--_separator_*): private aliases used in property values.
- *
- * Design tokens sourced from MUD: --separator-* (core.tokens.css).
+ * Separator: linie de separare (orizontală sau verticală), cu etichetă opțională, pe variabilele --separator-*.
  */
-
 .separator {
-  /* External API */
-  --separator_color: var(--separator-color-subtle, #d9d9d9);
-  --separator_size: var(--separator-size-thin, 1px);
-  --separator_inset: 0px;
-
-  /* Internal aliases */
-  --_separator_color: var(--separator_color);
-  --_separator_size: var(--separator_size);
-  --_separator_inset: var(--separator_inset);
+  --_separator_bg: var(--separator_bg, var(--separator-color-subtle));
+  --_separator_size: var(--separator_size, var(--separator-size-thin));
+  --_separator_inset: var(--separator_inset, 0px);
+  --_separator_c: var(--separator_c, var(--separator-label-color));
+  --_separator_gap: var(--separator_gap, var(--separator-label-gap));
+  --_separator_label_p-i: var(--separator_label_p-i, var(--separator-label-padding-inline));
+  --_separator_label_f-f: var(--separator_label_f-f, var(--font-family-primary));
+  --_separator_label_f-s: var(--separator_label_f-s, var(--separator-label-font-size));
+  --_separator_label_f-w: var(--separator_label_f-w, var(--separator-label-font-weight));
+  --_separator_label_l-h: var(--separator_label_l-h, var(--separator-label-line-height));
 
   display: block;
   box-sizing: border-box;
   inline-size: 100%;
   block-size: auto;
   padding-block: var(--_separator_inset);
-  color: var(--separator-label-color, #757575);
+  color: var(--_separator_c);
 }
 
-/* === Variant modifiers === */
+/* === Variant modifiers (subtle e implicită) === */
 .separator-subtle {
-  --separator_color: var(--separator-color-subtle, #d9d9d9);
+  --_separator_bg: var(--separator_subtle_bg, var(--separator-color-subtle));
 }
 
 .separator-mild {
-  --separator_color: var(--separator-color-mild, #b2b2b2);
+  --_separator_bg: var(--separator_mild_bg, var(--separator-color-mild));
 }
 
 .separator-strong {
-  --separator_color: var(--separator-color-strong, #444444);
+  --_separator_bg: var(--separator_strong_bg, var(--separator-color-strong));
 }
 
 /* === Size modifiers === */
 .separator-extra-thin {
-  --separator_size: var(--separator-size-extra-thin, 0.5px);
+  --_separator_size: var(--separator_extra-thin_size, var(--separator-size-extra-thin));
 }
 
 .separator-thin {
-  --separator_size: var(--separator-size-thin, 1px);
+  --_separator_size: var(--separator_thin_size, var(--separator-size-thin));
 }
 
 .separator-medium {
-  --separator_size: var(--separator-size-medium, 1.5px);
+  --_separator_size: var(--separator_medium_size, var(--separator-size-medium));
 }
 
 .separator-thick {
-  --separator_size: var(--separator-size-thick, 2px);
+  --_separator_size: var(--separator_thick_size, var(--separator-size-thick));
 }
 
 /* === Inset === */
 .separator-inset {
-  --separator_inset: var(--separator-inset-spacing, 8px);
+  --_separator_inset: var(--separator_inset, var(--separator-inset-spacing));
 }
 
 /* === Orientation: vertical === */
@@ -73,28 +68,47 @@
 /* === Line === */
 .separator__line {
   display: block;
-  background-color: var(--_separator_color);
+  background-color: var(--_separator_bg);
   border: 0;
 }
 
-/* Horizontal line */
-.separator:not(.separator-vertical) > .separator__line {
-  inline-size: 100%;
-  block-size: var(--_separator_size);
+/* Reguli pentru .separator__line, ordonate crescător după specificitate */
+
+/* Linie în layout (cu etichetă) */
+.separator__layout .separator__line {
+  flex: 1 1 auto;
 }
 
-/* Vertical line */
+/* Linie verticală */
 .separator-vertical > .separator__line {
   inline-size: var(--_separator_size);
   block-size: 100%;
   min-block-size: 1em;
 }
 
-/* === Layout (with label) === */
+/* Linie orizontală */
+.separator:not(.separator-vertical) > .separator__line {
+  inline-size: 100%;
+  block-size: var(--_separator_size);
+}
+
+/* Linie verticală în layout */
+.separator-vertical .separator__layout .separator__line {
+  inline-size: var(--_separator_size);
+  block-size: auto;
+}
+
+/* Linie orizontală în layout */
+.separator:not(.separator-vertical) .separator__layout .separator__line {
+  block-size: var(--_separator_size);
+  inline-size: auto;
+}
+
+/* === Layout (cu etichetă) === */
 .separator__layout {
   display: flex;
   align-items: center;
-  gap: var(--separator-label-gap, 8px);
+  gap: var(--_separator_gap);
   inline-size: 100%;
 }
 
@@ -104,39 +118,23 @@
   inline-size: auto;
 }
 
-.separator__layout .separator__line {
-  flex: 1 1 auto;
-}
-
-/* Horizontal line inside layout */
-.separator:not(.separator-vertical) .separator__layout .separator__line {
-  block-size: var(--_separator_size);
-  inline-size: auto;
-}
-
-/* Vertical line inside layout */
-.separator-vertical .separator__layout .separator__line {
-  inline-size: var(--_separator_size);
-  block-size: auto;
-}
-
 /* === Label === */
 .separator__label {
   display: inline-flex;
   align-items: center;
-  gap: var(--separator-label-gap, 8px);
+  gap: var(--_separator_gap);
   flex: 0 0 auto;
-  padding-inline: var(--separator-label-padding-inline, 8px);
-  font-family: var(--font-family-primary, sans-serif);
-  font-size: var(--separator-label-font-size, 14px);
-  font-weight: var(--separator-label-font-weight, 400);
-  line-height: var(--separator-label-line-height, 20px);
-  color: var(--separator-label-color, #757575);
+  padding-inline: var(--_separator_label_p-i);
+  font-family: var(--_separator_label_f-f);
+  font-size: var(--_separator_label_f-s);
+  font-weight: var(--_separator_label_f-w);
+  line-height: var(--_separator_label_l-h);
+  color: var(--_separator_c);
   white-space: nowrap;
 }
 
 .separator-vertical .separator__label {
   padding-inline: 0;
-  padding-block: var(--separator-label-padding-inline, 8px);
+  padding-block: var(--_separator_label_p-i);
   writing-mode: vertical-rl;
 }

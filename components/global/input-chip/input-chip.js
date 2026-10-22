@@ -1,10 +1,7 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.inputChip = {
     attach(context) {
-      context.querySelectorAll('[data-input-chip]').forEach(el => {
-        if (el.hasAttribute('data-input-chip-initialized')) return;
-        el.setAttribute('data-input-chip-initialized', 'true');
-
+      once('input-chip', '[data-input-chip]', context).forEach(el => {
         const field = el.querySelector('.input-chip-field');
         const input = el.querySelector('.input-chip-input');
         const hidden = el.querySelector('.input-chip-hidden');
@@ -91,4 +88,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

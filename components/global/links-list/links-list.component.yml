@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: LinksList
 status: stable
 group: Globals
-version: 1.0.0
+version: 1.1.0
 description: Renders an unordered list of links. Each item can be a rendered link, text with attributes, or plain text.
 
 # Props.
@@ -10,14 +10,14 @@ props:
   type: object
   properties:
     # fields values
-    links_links:
+    links_list_links:
       type: array
       title: Links
       default: []
       description: Array of link items. Each item may have link (rendered markup), text, attributes (for <li>), and text_attributes (for <span>).
 
     # component variations
-    links_orientation:
+    links_list_orientation:
       type: ['string', 'null']
       title: Orientation
       default: null
@@ -25,7 +25,7 @@ props:
       description: Layout direction of the list items.
 
     # uc -> utility_classes
-    links_uc:
+    links_list_uc:
       type: array
       items:
         type: string
@@ -34,7 +34,7 @@ props:
       description: An array of utility classes to add to the <ul> element.
 
     # att -> attributes
-    links_att:
+    links_list_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null

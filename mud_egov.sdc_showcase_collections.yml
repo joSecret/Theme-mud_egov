@@ -543,22 +543,22 @@ egov_global_elements:
       group_label: 'Spinner — size'
       group_layout: row
       props:
-        size: xs
+        spinner_size: xs
 
     - component: 'mud_egov:spinner'
       group: spinner_size
       props:
-        size: sm
+        spinner_size: sm
 
     - component: 'mud_egov:spinner'
       group: spinner_size
       props:
-        size: md
+        spinner_size: md
 
     - component: 'mud_egov:spinner'
       group: spinner_size
       props:
-        size: lg
+        spinner_size: lg
 
     # ── Segmented Control ───────────────────────────────────────────────────
     - component: 'mud_egov:segmented-control'

@@ -1,3 +1,10 @@
+---
+title: Heading
+group: Globals
+version: 1.1.0
+css_prefix: heading
+---
+
 # Heading
 
 Semantic heading element (`h1`–`h6`) with optional visual level override.
@@ -36,14 +43,22 @@ Semantic heading element (`h1`–`h6`) with optional visual level override.
 | `heading_uc`      | array          | `[]`    | Extra utility CSS classes.                       |
 | `heading_att`     | Attribute      | `null`  | Extra HTML attributes.                           |
 
-## CSS Custom Properties
+## CSS Variables
 
-| Property            | Default                        | Description              |
+Public overrides, empty by default. The display sizes link to the theme variables `--h1_font-size` … `--h6_font-size` (`css/theme/vars.css`).
+
+| Variable            | Default                        | Description              |
 |---------------------|--------------------------------|--------------------------|
 | `--heading_c`       | `--color-text-base-default`    | Text color override.     |
-| `--heading_d1_f-s`  | `--h1_font-size` (40px)        | Display-1 font size.     |
-| `--heading_d2_f-s`  | `--h2_font-size` (32px)        | Display-2 font size.     |
-| `--heading_d3_f-s`  | `--h3_font-size` (24px)        | Display-3 font size.     |
-| `--heading_d4_f-s`  | `--h4_font-size` (20px)        | Display-4 font size.     |
-| `--heading_d5_f-s`  | `--h5_font-size` (18px)        | Display-5 font size.     |
-| `--heading_d6_f-s`  | `--h6_font-size` (16px)        | Display-6 font size.     |
+| `--heading_d1_f-s`  | `--h1_font-size`               | Display-1 font size.     |
+| `--heading_d2_f-s`  | `--h2_font-size`               | Display-2 font size.     |
+| `--heading_d3_f-s`  | `--h3_font-size`               | Display-3 font size.     |
+| `--heading_d4_f-s`  | `--h4_font-size`               | Display-4 font size.     |
+| `--heading_d5_f-s`  | `--h5_font-size`               | Display-5 font size.     |
+| `--heading_d6_f-s`  | `--h6_font-size`               | Display-6 font size.     |
+
+## Accessibility
+
+- `heading_level` sets the real `h1`–`h6` tag, so the document outline stays correct; use `heading_display` only to change the look, never to skip levels.
+- Keep one `h1` per page and do not jump more than one level down.
+- The default text color (`--color-text-base-default`) meets 4.5:1 on light backgrounds; check it if you override `--heading_c`.

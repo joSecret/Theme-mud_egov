@@ -1,29 +1,62 @@
+/**
+ * Input Chip: câmp cu valori multiple, fiecare valoare confirmată e un chip care se poate șterge.
+ */
 .input-chip {
-  --_input-chip_b-c: var(--input-chip_b-c, var(--color-border-base-default, #cbd5e1));
-  --_input-chip_b-r: var(--input-chip_b-r, var(--border-radius-8, 8px));
-  --_input-chip_bg: var(--input-chip_bg, var(--color-background-base-primary, #fff));
-  --_input-chip_min-h: var(--input-chip_min-h, 44px);
-  --_input-chip_p: var(--input-chip_p, 6px 12px);
-  --_input-chip_gap: var(--input-chip_gap, 6px);
-  --_input-chip_label_f-s: var(--input-chip_label_f-s, 14px);
-  --_input-chip_label_f-w: var(--input-chip_label_f-w, 500);
-  --_input-chip_label_c: var(--input-chip_label_c, var(--color-text-base-default, #0f172a));
+  --_input-chip_b-c: var(--input-chip_b-c, var(--color-border-base-default));
+  --_input-chip_b-w: var(--input-chip_b-w, var(--border-width-1));
+  --_input-chip_b-r: var(--input-chip_b-r, var(--border-radius-8));
+  --_input-chip_bg: var(--input-chip_bg, var(--color-background-base-default));
+  --_input-chip_m-h: var(--input-chip_m-h, 44px);
+  --_input-chip_p: var(--input-chip_p, var(--spacing-6) var(--spacing-12));
+  --_input-chip_gap: var(--input-chip_gap, var(--spacing-6));
+  --_input-chip_stack_gap: var(--input-chip_stack_gap, var(--spacing-6));
+  --_input-chip_trn: var(--input-chip_trn, 0.15s);
+  --_input-chip_b-c_f: var(--input-chip_b-c_f, var(--color-border-brand-default));
+  --_input-chip_o_d: var(--input-chip_o_d, 0.5);
+
+  /* label și mesaje */
+  --_input-chip_label_f-s: var(--input-chip_label_f-s, var(--font-size-14));
+  --_input-chip_label_f-w: var(--input-chip_label_f-w, var(--font-weight-medium));
+  --_input-chip_label_c: var(--input-chip_label_c, var(--color-text-base-default));
+  --_input-chip_required_c: var(--input-chip_required_c, var(--color-text-danger-default));
+  --_input-chip_error_f-s: var(--input-chip_error_f-s, var(--font-size-12));
+  --_input-chip_error_c: var(--input-chip_error_c, var(--color-text-danger-default));
+  --_input-chip_helper_f-s: var(--input-chip_helper_f-s, var(--font-size-12));
+  --_input-chip_helper_c: var(--input-chip_helper_c, var(--color-text-base-secondary));
+
+  /* câmpul de text */
+  --_input-chip_input_f-s: var(--input-chip_input_f-s, var(--font-size-14));
+  --_input-chip_input_c: var(--input-chip_input_c, var(--color-text-base-default));
+  --_input-chip_input_m-w: var(--input-chip_input_m-w, 80px);
+
+  /* valoarea (chip) */
+  --_input-chip_chip_bg: var(--input-chip_chip_bg, var(--color-background-brand-secondary));
+  --_input-chip_chip_c: var(--input-chip_chip_c, var(--color-text-brand-default));
+  --_input-chip_chip_b-r: var(--input-chip_chip_b-r, var(--border-radius-full));
+  --_input-chip_chip_gap: var(--input-chip_chip_gap, var(--spacing-4));
+  --_input-chip_chip_p-i: var(--input-chip_chip_p-i, var(--spacing-10));
+  --_input-chip_chip_p-b: var(--input-chip_chip_p-b, 3px);
+  --_input-chip_chip_f-s: var(--input-chip_chip_f-s, 13px);
+  --_input-chip_chip_f-w: var(--input-chip_chip_f-w, var(--font-weight-medium));
+  --_input-chip_chip_mx-w: var(--input-chip_chip_mx-w, 200px);
+  --_input-chip_remove_o: var(--input-chip_remove_o, 0.7);
+  --_input-chip_remove_o_h: var(--input-chip_remove_o_h, 1);
 
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--_input-chip_stack_gap);
 }
 
 .input-chip-lg {
-  --_input-chip_min-h: var(--input-chip_lg_min-h, 52px);
+  --_input-chip_m-h: var(--input-chip_lg_m-h, 52px);
 }
 
 .input-chip.is-invalid {
-  --_input-chip_b-c: var(--input-chip_invalid_b-c, var(--color-border-danger-default, #ef4444));
+  --_input-chip_b-c: var(--input-chip_invalid_b-c, var(--color-border-danger-default));
 }
 
 .input-chip.is-disabled {
-  opacity: 0.5;
+  opacity: var(--_input-chip_o_d);
   pointer-events: none;
 }
 
@@ -34,7 +67,7 @@
 }
 
 .input-chip-required {
-  color: var(--color-text-danger-default, #ef4444);
+  color: var(--_input-chip_required_c);
 }
 
 .input-chip-field {
@@ -42,32 +75,31 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--_input-chip_gap);
-  min-height: var(--_input-chip_min-h);
+  min-height: var(--_input-chip_m-h);
   padding: var(--_input-chip_p);
   background: var(--_input-chip_bg);
-  border: 1px solid var(--_input-chip_b-c);
+  border: var(--_input-chip_b-w) solid var(--_input-chip_b-c);
   border-radius: var(--_input-chip_b-r);
   cursor: text;
-  transition: border-color 0.15s;
+  transition: border-color var(--_input-chip_trn);
 
   &:focus-within {
-    border-color: var(--input-chip_focus_b-c, var(--color-border-brand-default, #3b82f6));
-    outline: none;
+    border-color: var(--_input-chip_b-c_f);
   }
 }
 
 .input-chip-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding-inline: 10px;
-  padding-block: 3px;
-  background: var(--input-chip_chip_bg, var(--color-background-brand-subtle, #eff6ff));
-  color: var(--input-chip_chip_c, var(--color-text-brand-default, #3b82f6));
-  border-radius: var(--border-radius-999, 9999px);
-  font-size: 13px;
-  font-weight: 500;
-  max-width: 200px;
+  gap: var(--_input-chip_chip_gap);
+  padding-inline: var(--_input-chip_chip_p-i);
+  padding-block: var(--_input-chip_chip_p-b);
+  background: var(--_input-chip_chip_bg);
+  color: var(--_input-chip_chip_c);
+  border-radius: var(--_input-chip_chip_b-r);
+  font-size: var(--_input-chip_chip_f-s);
+  font-weight: var(--_input-chip_chip_f-w);
+  max-width: var(--_input-chip_chip_mx-w);
 }
 
 .input-chip-chip-label {
@@ -85,32 +117,38 @@
   padding: 0;
   color: inherit;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: var(--_input-chip_remove_o);
 
   &:hover {
-    opacity: 1;
+    opacity: var(--_input-chip_remove_o_h);
   }
 }
 
 .input-chip-input {
   flex: 1;
-  min-width: 80px;
+  min-width: var(--_input-chip_input_m-w);
   border: none;
   outline: none;
   background: transparent;
-  font-size: 14px;
-  color: var(--color-text-base-default, #0f172a);
+  font-size: var(--_input-chip_input_f-s);
+  color: var(--_input-chip_input_c);
   padding: 0;
 }
 
 .input-chip-error {
-  font-size: 12px;
-  color: var(--color-text-danger-default, #ef4444);
+  font-size: var(--_input-chip_error_f-s);
+  color: var(--_input-chip_error_c);
   margin: 0;
 }
 
 .input-chip-helper {
-  font-size: 12px;
-  color: var(--color-text-base-secondary, #64748b);
+  font-size: var(--_input-chip_helper_f-s);
+  color: var(--_input-chip_helper_c);
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input-chip-field {
+    transition: none;
+  }
 }

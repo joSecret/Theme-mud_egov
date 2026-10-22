@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Input Chip
 status: stable
 group: Globals
-version: 1.0.0
-description: Multi-value text-entry control where each confirmed value renders as a removable chip. Aligned with mud-input-chip.
+version: 1.1.0
+description: Multi-value text-entry control where each confirmed value renders as a removable chip. Add values with Enter or comma, remove with Backspace or the remove button.
 
 # Props.
 props:
@@ -98,3 +98,8 @@ props:
       title: Attributes
       default: null
       description: A list of HTML attributes for the component.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

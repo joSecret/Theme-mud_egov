@@ -2,7 +2,7 @@
 @import "utils/wrapper.css";
 @import "utils/grid.css";
 @import "utils/background.css";
-@import "../components/global/button/button.css";
+@import "utils/button.css";
 @import "utils/content.css";
 @import "utils/temp.css";
 
@@ -21,29 +21,6 @@
 
 .button.paragraphs-button--add-more {
   --btn_w-s: normal;
-}
-
-/* Butonul din antet (clasa se pune din configurația blocului). */
-.button.btn-header {
-  --btn_size: 24px;
-  --btn_bg: transparent;
-  --btn_bg_h: var(--color-background-base-tertiary-hover);
-
-  @container body (width <= 768px) {
-    --btn_c_h: var(--color-text-brand-default);
-    --btn_bg_h: transparent;
-    --btn_p-i: 10px;
-  }
-
-  @container body (768px < width) {
-    --btn_p-i: var(--spacing-8);
-
-    aspect-ratio: 1;
-
-    svg + span {
-      display: none;
-    }
-  }
 }
 
 .sidebar-menu__parent-title {

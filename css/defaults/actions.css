@@ -7,139 +7,139 @@
   --button-group-gap-horizontal: var(--spacing-12);
   --button-group-gap-vertical: var(--spacing-12);
   --button-container-height-sm: 32px;
-  --button-container-height-md: 40px;
-  --button-container-height-lg: 48px;
+  --button-container-height-md: 40px; /* nefolosit */
+  --button-container-height-lg: 48px; /* nefolosit */
   --button-container-touch-target-sm: 40px;
-  --button-container-touch-target-md: 48px;
-  --button-container-touch-target-lg: 48px;
-  --button-container-max-width: 400px;
-  --button-container-min-width-sm: 52px;
-  --button-container-min-width-md: 56px;
-  --button-container-min-width-lg: 72px;
-  --button-container-padding-inline-sm: var(--spacing-12);
-  --button-container-padding-inline-md: var(--spacing-16);
-  --button-container-padding-inline-lg: var(--spacing-20);
-  --button-container-padding-inline-icon-sm: var(--spacing-8);
-  --button-container-padding-inline-icon-md: var(--spacing-12);
-  --button-container-padding-inline-icon-lg: var(--spacing-16);
-  --button-container-gap-sm: var(--spacing-6);
-  --button-container-gap-md: var(--spacing-6);
-  --button-container-gap-lg: var(--spacing-6);
-  --button-container-border-radius-rectangular-sm: var(--border-radius-6);
-  --button-container-border-radius-rectangular-md: var(--border-radius-6);
-  --button-container-border-radius-rectangular-lg: var(--border-radius-8);
+  --button-container-touch-target-md: 48px; /* nefolosit */
+  --button-container-touch-target-lg: 48px; /* nefolosit */
+  --button-container-max-width: 400px; /* nefolosit */
+  --button-container-min-width-sm: 52px; /* nefolosit */
+  --button-container-min-width-md: 56px; /* nefolosit */
+  --button-container-min-width-lg: 72px; /* nefolosit */
+  --button-container-padding-inline-sm: var(--spacing-12); /* nefolosit */
+  --button-container-padding-inline-md: var(--spacing-16); /* nefolosit */
+  --button-container-padding-inline-lg: var(--spacing-20); /* nefolosit */
+  --button-container-padding-inline-icon-sm: var(--spacing-8); /* nefolosit */
+  --button-container-padding-inline-icon-md: var(--spacing-12); /* nefolosit */
+  --button-container-padding-inline-icon-lg: var(--spacing-16); /* nefolosit */
+  --button-container-gap-sm: var(--spacing-6); /* nefolosit */
+  --button-container-gap-md: var(--spacing-6); /* nefolosit */
+  --button-container-gap-lg: var(--spacing-6); /* nefolosit */
+  --button-container-border-radius-rectangular-sm: var(--border-radius-6); /* nefolosit */
+  --button-container-border-radius-rectangular-md: var(--border-radius-6); /* nefolosit */
+  --button-container-border-radius-rectangular-lg: var(--border-radius-8); /* nefolosit */
   --button-container-border-radius-circular-sm: var(--border-radius-full); /* nefolosit */
-  --button-container-border-radius-circular-md: var(--border-radius-full);
+  --button-container-border-radius-circular-md: var(--border-radius-full); /* nefolosit */
   --button-container-border-radius-circular-lg: var(--border-radius-full); /* nefolosit */
   --button-container-transition-duration: 150ms;
   --button-container-transition-timing-function: ease-out;
-  --button-label-font-family: var(--font-family-primary);
-  --button-label-font-size-sm: var(--font-size-14);
-  --button-label-font-size-md: var(--font-size-14);
-  --button-label-font-size-lg: var(--font-size-16);
-  --button-label-line-height-sm: var(--line-height-20);
-  --button-label-line-height-md: var(--line-height-20);
-  --button-label-line-height-lg: var(--line-height-24);
-  --button-label-font-weight: var(--font-weight-medium);
+  --button-label-font-family: var(--font-family-primary); /* nefolosit */
+  --button-label-font-size-sm: var(--font-size-14); /* nefolosit */
+  --button-label-font-size-md: var(--font-size-14); /* nefolosit */
+  --button-label-font-size-lg: var(--font-size-16); /* nefolosit */
+  --button-label-line-height-sm: var(--line-height-20); /* nefolosit */
+  --button-label-line-height-md: var(--line-height-20); /* nefolosit */
+  --button-label-line-height-lg: var(--line-height-24); /* nefolosit */
+  --button-label-font-weight: var(--font-weight-medium); /* nefolosit */
   --button-badge-size: 24px; /* nefolosit */
   --button-badge-disabled-opacity: 0.3; /* nefolosit */
   --button-badge-neutral-background-default: var(--color-background-base-default-hover); /* nefolosit */
   --button-icon-size-sm: 16px;
-  --button-icon-size-md: 20px;
-  --button-icon-size-lg: 20px;
-  --button-primary-background-default: var(--color-background-brand-default);
-  --button-primary-background-hover: var(--color-background-brand-default-hover);
-  --button-primary-background-active: var(--color-background-brand-default-active);
-  --button-primary-label: var(--color-text-base-inverse-default);
+  --button-icon-size-md: 20px; /* nefolosit */
+  --button-icon-size-lg: 20px; /* nefolosit */
+  --button-primary-background-default: var(--color-background-brand-default); /* nefolosit */
+  --button-primary-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
+  --button-primary-background-active: var(--color-background-brand-default-active); /* nefolosit */
+  --button-primary-label: var(--color-text-base-inverse-default); /* nefolosit */
   --button-primary-icon: var(--color-icon-base-inverse-default); /* nefolosit */
-  --button-secondary-background-default: var(--color-background-brand-secondary);
-  --button-secondary-background-hover: var(--color-background-brand-secondary-hover);
-  --button-secondary-background-active: var(--color-background-brand-secondary-active);
-  --button-secondary-label: var(--color-text-brand-on-secondary);
+  --button-secondary-background-default: var(--color-background-brand-secondary); /* nefolosit */
+  --button-secondary-background-hover: var(--color-background-brand-secondary-hover); /* nefolosit */
+  --button-secondary-background-active: var(--color-background-brand-secondary-active); /* nefolosit */
+  --button-secondary-label: var(--color-text-brand-on-secondary); /* nefolosit */
   --button-secondary-icon: var(--color-icon-brand-on-secondary); /* nefolosit */
-  --button-strict-background-default: var(--color-background-base-inverse-default);
-  --button-strict-background-hover: var(--color-background-base-inverse-default-hover);
-  --button-strict-background-active: var(--color-background-base-inverse-default-active);
-  --button-strict-label: var(--color-text-base-inverse-default);
+  --button-strict-background-default: var(--color-background-base-inverse-default); /* nefolosit */
+  --button-strict-background-hover: var(--color-background-base-inverse-default-hover); /* nefolosit */
+  --button-strict-background-active: var(--color-background-base-inverse-default-active); /* nefolosit */
+  --button-strict-label: var(--color-text-base-inverse-default); /* nefolosit */
   --button-strict-icon: var(--color-icon-base-inverse-default); /* nefolosit */
-  --button-neutral-background-default: var(--color-background-disabled-default);
-  --button-neutral-background-hover: var(--color-background-base-tertiary-hover);
-  --button-neutral-background-active: var(--color-background-base-tertiary-active);
-  --button-neutral-label: var(--color-text-base-default);
+  --button-neutral-background-default: var(--color-background-disabled-default); /* nefolosit */
+  --button-neutral-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --button-neutral-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
+  --button-neutral-label: var(--color-text-base-default); /* nefolosit */
   --button-neutral-icon: var(--color-icon-base-default); /* nefolosit */
-  --button-destructive-background-default: var(--color-background-danger-default);
-  --button-destructive-background-hover: var(--color-background-danger-default-hover);
-  --button-destructive-background-active: var(--color-background-danger-default-active);
-  --button-destructive-label: var(--color-text-base-inverse-default);
+  --button-destructive-background-default: var(--color-background-danger-default); /* nefolosit */
+  --button-destructive-background-hover: var(--color-background-danger-default-hover); /* nefolosit */
+  --button-destructive-background-active: var(--color-background-danger-default-active); /* nefolosit */
+  --button-destructive-label: var(--color-text-base-inverse-default); /* nefolosit */
   --button-destructive-icon: var(--color-icon-base-inverse-default); /* nefolosit */
-  --button-disabled-background: var(--color-background-disabled-default);
-  --button-disabled-label: var(--color-text-disabled-on-disabled);
+  --button-disabled-background: var(--color-background-disabled-default); /* nefolosit */
+  --button-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
   --button-disabled-icon: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --button-outlined-primary-border-default: var(--color-border-brand-default);
-  --button-outlined-primary-border-hover: transparent;
-  --button-outlined-primary-border-active: transparent;
-  --button-outlined-primary-border-disabled: var(--color-border-disabled-default);
-  --button-outlined-primary-background-default: transparent;
-  --button-outlined-primary-background-hover: var(--color-background-brand-default-hover);
-  --button-outlined-primary-background-active: var(--color-background-brand-default-active);
-  --button-outlined-primary-background-disabled: transparent;
-  --button-outlined-primary-label-default: var(--color-text-brand-default);
-  --button-outlined-primary-label-hover: var(--color-text-base-inverse-default);
-  --button-outlined-primary-label-active: var(--color-text-base-inverse-default);
-  --button-outlined-primary-label-disabled: var(--color-text-disabled-on-disabled);
+  --button-outlined-primary-border-default: var(--color-border-brand-default); /* nefolosit */
+  --button-outlined-primary-border-hover: transparent; /* nefolosit */
+  --button-outlined-primary-border-active: transparent; /* nefolosit */
+  --button-outlined-primary-border-disabled: var(--color-border-disabled-default); /* nefolosit */
+  --button-outlined-primary-background-default: transparent; /* nefolosit */
+  --button-outlined-primary-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
+  --button-outlined-primary-background-active: var(--color-background-brand-default-active); /* nefolosit */
+  --button-outlined-primary-background-disabled: transparent; /* nefolosit */
+  --button-outlined-primary-label-default: var(--color-text-brand-default); /* nefolosit */
+  --button-outlined-primary-label-hover: var(--color-text-base-inverse-default); /* nefolosit */
+  --button-outlined-primary-label-active: var(--color-text-base-inverse-default); /* nefolosit */
+  --button-outlined-primary-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --button-outlined-primary-icon-default: var(--color-icon-brand-default); /* nefolosit */
   --button-outlined-primary-icon-hover: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-primary-icon-active: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-primary-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --button-outlined-strict-border-default: var(--color-border-base-strong);
+  --button-outlined-strict-border-default: var(--color-border-base-strong); /* nefolosit */
   --button-outlined-strict-border-hover: transparent; /* nefolosit */
   --button-outlined-strict-border-active: transparent; /* nefolosit */
   --button-outlined-strict-border-disabled: var(--color-border-disabled-default); /* nefolosit */
   --button-outlined-strict-background-default: transparent; /* nefolosit */
-  --button-outlined-strict-background-hover: var(--color-background-base-inverse-default-hover);
-  --button-outlined-strict-background-active: var(--color-background-base-inverse-default-active);
+  --button-outlined-strict-background-hover: var(--color-background-base-inverse-default-hover); /* nefolosit */
+  --button-outlined-strict-background-active: var(--color-background-base-inverse-default-active); /* nefolosit */
   --button-outlined-strict-background-disabled: transparent; /* nefolosit */
-  --button-outlined-strict-label-default: var(--color-text-base-default);
-  --button-outlined-strict-label-hover: var(--color-text-base-inverse-default);
-  --button-outlined-strict-label-active: var(--color-text-base-inverse-default);
+  --button-outlined-strict-label-default: var(--color-text-base-default); /* nefolosit */
+  --button-outlined-strict-label-hover: var(--color-text-base-inverse-default); /* nefolosit */
+  --button-outlined-strict-label-active: var(--color-text-base-inverse-default); /* nefolosit */
   --button-outlined-strict-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --button-outlined-strict-icon-default: var(--color-icon-base-default); /* nefolosit */
   --button-outlined-strict-icon-hover: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-strict-icon-active: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-strict-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --button-outlined-destructive-border-default: var(--color-border-danger-default);
+  --button-outlined-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
   --button-outlined-destructive-border-hover: transparent; /* nefolosit */
   --button-outlined-destructive-border-active: transparent; /* nefolosit */
   --button-outlined-destructive-border-disabled: var(--color-border-disabled-default); /* nefolosit */
   --button-outlined-destructive-background-default: transparent; /* nefolosit */
-  --button-outlined-destructive-background-hover: var(--color-background-danger-default-hover);
-  --button-outlined-destructive-background-active: var(--color-background-danger-default-active);
+  --button-outlined-destructive-background-hover: var(--color-background-danger-default-hover); /* nefolosit */
+  --button-outlined-destructive-background-active: var(--color-background-danger-default-active); /* nefolosit */
   --button-outlined-destructive-background-disabled: transparent; /* nefolosit */
-  --button-outlined-destructive-label-default: var(--color-background-danger-default);
-  --button-outlined-destructive-label-hover: var(--color-text-base-inverse-default);
-  --button-outlined-destructive-label-active: var(--color-text-base-inverse-default);
+  --button-outlined-destructive-label-default: var(--color-background-danger-default); /* nefolosit */
+  --button-outlined-destructive-label-hover: var(--color-text-base-inverse-default); /* nefolosit */
+  --button-outlined-destructive-label-active: var(--color-text-base-inverse-default); /* nefolosit */
   --button-outlined-destructive-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --button-outlined-destructive-icon-default: var(--color-icon-danger-default); /* nefolosit */
   --button-outlined-destructive-icon-hover: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-destructive-icon-active: var(--color-icon-base-inverse-default); /* nefolosit */
   --button-outlined-destructive-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --button-text-primary-background-default: transparent;
-  --button-text-primary-background-hover: var(--color-background-brand-secondary-hover);
-  --button-text-primary-background-active: var(--color-background-brand-secondary-active);
-  --button-text-primary-background-disabled: transparent;
-  --button-text-primary-label-default: var(--color-text-brand-default);
-  --button-text-primary-label-hover: var(--color-text-brand-default);
-  --button-text-primary-label-active: var(--color-text-brand-default);
-  --button-text-primary-label-disabled: var(--color-text-disabled-on-disabled);
+  --button-text-primary-background-default: transparent; /* nefolosit */
+  --button-text-primary-background-hover: var(--color-background-brand-secondary-hover); /* nefolosit */
+  --button-text-primary-background-active: var(--color-background-brand-secondary-active); /* nefolosit */
+  --button-text-primary-background-disabled: transparent; /* nefolosit */
+  --button-text-primary-label-default: var(--color-text-brand-default); /* nefolosit */
+  --button-text-primary-label-hover: var(--color-text-brand-default); /* nefolosit */
+  --button-text-primary-label-active: var(--color-text-brand-default); /* nefolosit */
+  --button-text-primary-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --button-text-primary-icon-default: var(--color-icon-brand-default); /* nefolosit */
   --button-text-primary-icon-hover: var(--color-icon-brand-default); /* nefolosit */
   --button-text-primary-icon-active: var(--color-icon-brand-default); /* nefolosit */
   --button-text-primary-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
   --button-text-strict-background-default: transparent; /* nefolosit */
-  --button-text-strict-background-hover: var(--color-background-base-tertiary-hover);
-  --button-text-strict-background-active: var(--color-background-base-tertiary-active);
+  --button-text-strict-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --button-text-strict-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
   --button-text-strict-background-disabled: transparent; /* nefolosit */
-  --button-text-strict-label-default: var(--color-text-base-default);
+  --button-text-strict-label-default: var(--color-text-base-default); /* nefolosit */
   --button-text-strict-label-hover: var(--color-text-base-default); /* nefolosit */
   --button-text-strict-label-active: var(--color-text-base-default); /* nefolosit */
   --button-text-strict-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
@@ -148,10 +148,10 @@
   --button-text-strict-icon-active: var(--color-icon-base-default); /* nefolosit */
   --button-text-strict-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
   --button-text-destructive-background-default: transparent; /* nefolosit */
-  --button-text-destructive-background-hover: var(--color-background-danger-secondary-hover);
-  --button-text-destructive-background-active: var(--color-background-danger-secondary-active);
+  --button-text-destructive-background-hover: var(--color-background-danger-secondary-hover); /* nefolosit */
+  --button-text-destructive-background-active: var(--color-background-danger-secondary-active); /* nefolosit */
   --button-text-destructive-background-disabled: transparent; /* nefolosit */
-  --button-text-destructive-label-default: var(--color-background-danger-default);
+  --button-text-destructive-label-default: var(--color-background-danger-default); /* nefolosit */
   --button-text-destructive-label-hover: var(--color-background-danger-default); /* nefolosit */
   --button-text-destructive-label-active: var(--color-background-danger-default); /* nefolosit */
   --button-text-destructive-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */

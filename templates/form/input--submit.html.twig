@@ -27,8 +27,8 @@
 {% endset %}
 
 {% include "mud_egov:button" with {
-  button_label: attributes.value,
+  label: attributes.value,
   button_tag: 'input',
-  button_variant: btnColor|trim,
+  button_color: btnColor,
   button_att: attributes,
 } %}

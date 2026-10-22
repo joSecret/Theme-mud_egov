@@ -9,25 +9,25 @@ egov_global_elements:
       group_label: 'Button — appearance'
       group_layout: row
       props:
-        button_label: 'Default'
+        label: 'Default'
 
     - component: 'mud_egov:button'
       group: btn_appearance
       props:
-        button_label: 'Filled'
-        button_appearance: filled
+        label: 'Filled'
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_appearance
       props:
-        button_label: 'Outlined'
-        button_appearance: outlined
+        label: 'Outlined'
+        appearance: outlined
 
     - component: 'mud_egov:button'
       group: btn_appearance
       props:
-        button_label: 'Text'
-        button_appearance: text
+        label: 'Text'
+        appearance: text
 
     # ── Button: variant ─────────────────────────────────────────────────────
     - component: 'mud_egov:button'
@@ -35,30 +35,30 @@ egov_global_elements:
       group_label: 'Button — variant'
       group_layout: row
       props:
-        button_label: 'Primary'
-        button_variant: primary
-        button_appearance: filled
+        label: 'Primary'
+        variant: primary
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_variant
       props:
-        button_label: 'Secondary'
-        button_variant: secondary
-        button_appearance: filled
+        label: 'Secondary'
+        variant: secondary
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_variant
       props:
-        button_label: 'Strict'
-        button_variant: strict
-        button_appearance: filled
+        label: 'Strict'
+        variant: strict
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_variant
       props:
-        button_label: 'Destructive'
-        button_variant: destructive
-        button_appearance: filled
+        label: 'Destructive'
+        variant: destructive
+        appearance: filled
 
     # ── Button: size ────────────────────────────────────────────────────────
     - component: 'mud_egov:button'
@@ -66,60 +66,60 @@ egov_global_elements:
       group_label: 'Button — size'
       group_layout: row
       props:
-        button_label: 'Small'
-        button_variant: primary
-        button_appearance: filled
-        button_size: sm
+        label: 'Small'
+        variant: primary
+        appearance: filled
+        size: sm
 
     - component: 'mud_egov:button'
       group: btn_size
       props:
-        button_label: 'Medium'
-        button_variant: primary
-        button_appearance: filled
-        button_size: md
+        label: 'Medium'
+        variant: primary
+        appearance: filled
+        size: md
 
     - component: 'mud_egov:button'
       group: btn_size
       props:
-        button_label: 'Large'
-        button_variant: primary
-        button_appearance: filled
-        button_size: lg
+        label: 'Large'
+        variant: primary
+        appearance: filled
+        size: lg
 
     # ── Button: shape ───────────────────────────────────────────────────────
     - component: 'mud_egov:button'
       group_label: 'Button — shape'
       group: btn_shape
       props:
-        button_label: 'None'
-        button_variant: primary
-        button_appearance: filled
-        button_shape: none
+        label: 'None'
+        variant: primary
+        appearance: filled
+        shape: none
 
     - component: 'mud_egov:button'
       group: btn_shape
       group_layout: row
       props:
-        button_label: 'Default'
-        button_variant: primary
-        button_appearance: filled
+        label: 'Default'
+        variant: primary
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_shape
       props:
-        button_label: 'Rectangular'
-        button_variant: primary
-        button_appearance: filled
-        button_shape: rectangular
+        label: 'Rectangular'
+        variant: primary
+        appearance: filled
+        shape: rectangular
 
     - component: 'mud_egov:button'
       group: btn_shape
       props:
-        button_label: 'Circular'
-        button_variant: primary
-        button_appearance: filled
-        button_shape: circular
+        label: 'Circular'
+        variant: primary
+        appearance: filled
+        shape: circular
 
     # ── Button: states ──────────────────────────────────────────────────────
     - component: 'mud_egov:button'
@@ -127,25 +127,25 @@ egov_global_elements:
       group_label: 'Button — states'
       group_layout: row
       props:
-        button_label: 'Normal'
-        button_variant: primary
-        button_appearance: filled
+        label: 'Normal'
+        variant: primary
+        appearance: filled
 
     - component: 'mud_egov:button'
       group: btn_states
       props:
-        button_label: 'Disabled'
-        button_variant: primary
-        button_appearance: filled
-        button_disabled: true
+        label: 'Disabled'
+        variant: primary
+        appearance: filled
+        disabled: true
 
     - component: 'mud_egov:button'
       group: btn_states
       props:
-        button_label: 'Loading'
-        button_variant: primary
-        button_appearance: filled
-        button_loading: true
+        label: 'Loading'
+        variant: primary
+        appearance: filled
+        loading: true
 
     # ── Badge: color ────────────────────────────────────────────────────────
     - component: 'mud_egov:badge'

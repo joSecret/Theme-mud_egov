@@ -159,7 +159,7 @@
   --footer-divider-width: 1px; /* nefolosit */
   --footer-column-gap: var(--spacing-16); /* nefolosit */
   --footer-column-link-gap: var(--spacing-12); /* nefolosit */
-  --footer-contact-gap: var(--spacing-16); /* nefolosit */
+  --footer-contact-gap: var(--spacing-16);
   --footer-contact-row-gap: var(--spacing-8); /* nefolosit */
   --footer-contact-icon-size: 20px; /* nefolosit */
   --footer-contact-icon-color: var(--color-icon-base-secondary); /* nefolosit */

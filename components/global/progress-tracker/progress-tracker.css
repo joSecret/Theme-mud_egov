@@ -1,33 +1,46 @@
+/**
+ * Progress Tracker: pași numerotați cu conector, orizontal sau vertical, pe tokenuri și pe variabilele
+ * --progress-tracker-* din MUD JS acolo unde valoarea coincide.
+ * Starea pasului (pending, current/active, available, complete, error) alege culorile indicatorului.
+ */
 .progress-tracker {
-  --_pt_gap: var(--progress-tracker_gap, 8px);
-  --_pt_indicator_size: var(--progress-tracker_indicator_size, 32px);
-  --_pt_connector_size: var(--progress-tracker_connector_size, 2px);
-  --_pt_connector_c: var(--progress-tracker_connector_c, var(--color-border-base-default, #e2e8f0));
-  --_pt_label_f-s: var(--progress-tracker_label_f-s, 14px);
-  --_pt_label_f-w: var(--progress-tracker_label_f-w, 500);
-  --_pt_label_c: var(--progress-tracker_label_c, var(--color-text-base-default, #0f172a));
-  --_pt_desc_f-s: var(--progress-tracker_desc_f-s, 12px);
-  --_pt_desc_c: var(--progress-tracker_desc_c, var(--color-text-base-secondary, #64748b));
+  --_progress-tracker_gap: var(--progress-tracker_gap, var(--spacing-8));
+  --_progress-tracker_step_gap: var(--progress-tracker_step_gap, var(--spacing-12));
+  --_progress-tracker_indicator_size: var(--progress-tracker_indicator_size, var(--spacing-32));
+  --_progress-tracker_compact_indicator_size: var(--progress-tracker_compact_indicator_size, var(--spacing-12));
+  --_progress-tracker_indicator_b-w: var(--progress-tracker_indicator_b-w, var(--border-width-2));
+  --_progress-tracker_indicator_f-s: var(--progress-tracker_indicator_f-s, 13px);
+  --_progress-tracker_indicator_f-w: var(--progress-tracker_indicator_f-w, var(--font-weight-semibold));
+  --_progress-tracker_indicator_trn: var(--progress-tracker_indicator_trn, background 0.2s, border-color 0.2s, color 0.2s);
+  --_progress-tracker_connector_h: var(--progress-tracker_connector_h, var(--border-width-2));
+  --_progress-tracker_connector_bg: var(--progress-tracker_connector_bg, var(--color-border-base-default));
+  --_progress-tracker_label_gap: var(--progress-tracker_label_gap, var(--spacing-2));
+  --_progress-tracker_label_f-s: var(--progress-tracker_label_f-s, var(--font-size-14));
+  --_progress-tracker_label_f-w: var(--progress-tracker_label_f-w, var(--font-weight-medium));
+  --_progress-tracker_label_c: var(--progress-tracker_label_c, var(--color-text-base-default));
+  --_progress-tracker_desc_f-s: var(--progress-tracker_desc_f-s, var(--font-size-12));
+  --_progress-tracker_desc_c: var(--progress-tracker_desc_c, var(--color-text-base-secondary));
+  --_progress-tracker_o_d: var(--progress-tracker_o_d, 0.4);
 
-  /* State colors */
-  --_pt_pending_bg: var(--progress-tracker_pending_bg, transparent);
-  --_pt_pending_b-c: var(--progress-tracker_pending_b-c, var(--color-border-base-default, #cbd5e1));
-  --_pt_pending_c: var(--progress-tracker_pending_c, var(--color-text-base-secondary, #94a3b8));
-  --_pt_current_bg: var(--progress-tracker_current_bg, transparent);
-  --_pt_current_b-c: var(--progress-tracker_current_b-c, var(--color-border-brand-default, #3b82f6));
-  --_pt_current_c: var(--progress-tracker_current_c, var(--color-text-brand-default, #3b82f6));
-  --_pt_complete_bg: var(--progress-tracker_complete_bg, var(--color-background-brand-default, #3b82f6));
-  --_pt_complete_b-c: var(--progress-tracker_complete_b-c, var(--color-border-brand-default, #3b82f6));
-  --_pt_complete_c: var(--progress-tracker_complete_c, var(--color-text-inverse-default, #fff));
-  --_pt_error_bg: var(--progress-tracker_error_bg, transparent);
-  --_pt_error_b-c: var(--progress-tracker_error_b-c, var(--color-border-danger-default, #ef4444));
-  --_pt_error_c: var(--progress-tracker_error_c, var(--color-text-danger-default, #ef4444));
+  /* Culorile indicatorului, pe stări */
+  --_progress-tracker_pending_bg: var(--progress-tracker_pending_bg, transparent);
+  --_progress-tracker_pending_b-c: var(--progress-tracker_pending_b-c, var(--color-border-base-default));
+  --_progress-tracker_pending_c: var(--progress-tracker_pending_c, var(--color-text-base-secondary));
+  --_progress-tracker_current_bg: var(--progress-tracker_current_bg, transparent);
+  --_progress-tracker_current_b-c: var(--progress-tracker_current_b-c, var(--progress-tracker-current-indicator-border));
+  --_progress-tracker_current_c: var(--progress-tracker_current_c, var(--progress-tracker-current-indicator-text));
+  --_progress-tracker_complete_bg: var(--progress-tracker_complete_bg, var(--progress-tracker-completed-indicator-background));
+  --_progress-tracker_complete_b-c: var(--progress-tracker_complete_b-c, var(--progress-tracker-completed-indicator-border));
+  --_progress-tracker_complete_c: var(--progress-tracker_complete_c, var(--progress-tracker-completed-indicator-text));
+  --_progress-tracker_error_bg: var(--progress-tracker_error_bg, transparent);
+  --_progress-tracker_error_b-c: var(--progress-tracker_error_b-c, var(--progress-tracker-error-indicator-border));
+  --_progress-tracker_error_c: var(--progress-tracker_error_c, var(--color-text-danger-default));
 
   display: flex;
-  gap: var(--_pt_gap);
-  list-style: none;
+  gap: var(--_progress-tracker_gap);
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .progress-tracker-horizontal {
@@ -40,11 +53,11 @@
 }
 
 .progress-tracker-step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   position: relative;
+  display: flex;
   flex: 1;
+  align-items: center;
+  gap: var(--_progress-tracker_step_gap);
 }
 
 .progress-tracker-vertical .progress-tracker-step {
@@ -52,97 +65,104 @@
   align-items: flex-start;
 }
 
-/* Connector line */
+/* Conectorul dintre pași */
 .progress-tracker-horizontal .progress-tracker-step:not(:last-child)::after {
   content: '';
   position: absolute;
-  inset-block-start: calc(var(--_pt_indicator_size) / 2);
-  inset-inline-start: calc(var(--_pt_indicator_size) + 12px);
-  inset-inline-end: calc(-1 * var(--_pt_gap) - 100% + var(--_pt_indicator_size) + 12px);
-  height: var(--_pt_connector_size);
-  background: var(--_pt_connector_c);
+  inset-block-start: calc(var(--_progress-tracker_indicator_size) / 2);
+  inset-inline:
+    calc(var(--_progress-tracker_indicator_size) + var(--_progress-tracker_step_gap))
+    calc(-1 * var(--_progress-tracker_gap) - 100% + var(--_progress-tracker_indicator_size) + var(--_progress-tracker_step_gap));
+  block-size: var(--_progress-tracker_connector_h);
+  background: var(--_progress-tracker_connector_bg);
 }
 
 .progress-tracker-step-complete:not(:last-child)::after,
 .progress-tracker-step-completed:not(:last-child)::after {
-  background: var(--_pt_complete_bg);
+  background: var(--_progress-tracker_complete_bg);
 }
 
 .progress-tracker-indicator {
-  flex-shrink: 0;
-  width: var(--_pt_indicator_size);
-  height: var(--_pt_indicator_size);
-  border-radius: 50%;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--_pt_pending_b-c);
-  background: var(--_pt_pending_bg);
-  color: var(--_pt_pending_c);
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  inline-size: var(--_progress-tracker_indicator_size);
+  block-size: var(--_progress-tracker_indicator_size);
+  border: var(--_progress-tracker_indicator_b-w) solid var(--_progress-tracker_pending_b-c);
+  border-radius: 50%;
+  background: var(--_progress-tracker_pending_bg);
+  color: var(--_progress-tracker_pending_c);
+  font-size: var(--_progress-tracker_indicator_f-s);
+  font-weight: var(--_progress-tracker_indicator_f-w);
+  transition: var(--_progress-tracker_indicator_trn);
 }
 
 .progress-tracker-step-current .progress-tracker-indicator,
 .progress-tracker-step-active .progress-tracker-indicator {
-  border-color: var(--_pt_current_b-c);
-  color: var(--_pt_current_c);
+  border-color: var(--_progress-tracker_current_b-c);
+  color: var(--_progress-tracker_current_c);
 }
 
 .progress-tracker-step-complete .progress-tracker-indicator,
 .progress-tracker-step-completed .progress-tracker-indicator {
-  border-color: var(--_pt_complete_b-c);
-  background: var(--_pt_complete_bg);
-  color: var(--_pt_complete_c);
+  border-color: var(--_progress-tracker_complete_b-c);
+  background: var(--_progress-tracker_complete_bg);
+  color: var(--_progress-tracker_complete_c);
 }
 
 .progress-tracker-step-available .progress-tracker-indicator {
-  border-color: var(--_pt_current_b-c);
-  color: var(--_pt_current_c);
+  border-color: var(--_progress-tracker_current_b-c);
+  color: var(--_progress-tracker_current_c);
 }
 
 .progress-tracker-step-error .progress-tracker-indicator {
-  border-color: var(--_pt_error_b-c);
-  color: var(--_pt_error_c);
+  border-color: var(--_progress-tracker_error_b-c);
+  color: var(--_progress-tracker_error_c);
 }
 
 .progress-tracker-step.is-disabled {
-  opacity: 0.4;
+  opacity: var(--_progress-tracker_o_d);
   pointer-events: none;
 }
 
 .progress-tracker-label-block {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  gap: var(--_progress-tracker_label_gap);
+  min-inline-size: 0;
 }
 
 .progress-tracker-label {
-  font-size: var(--_pt_label_f-s);
-  font-weight: var(--_pt_label_f-w);
-  color: var(--_pt_label_c);
+  color: var(--_progress-tracker_label_c);
+  font-size: var(--_progress-tracker_label_f-s);
+  font-weight: var(--_progress-tracker_label_f-w);
   white-space: nowrap;
 }
 
 .progress-tracker-desc {
-  font-size: var(--_pt_desc_f-s);
-  color: var(--_pt_desc_c);
+  color: var(--_progress-tracker_desc_c);
+  font-size: var(--_progress-tracker_desc_f-s);
   white-space: nowrap;
 }
 
-/* Compact (dot rail) */
+/* Compact: doar punctele */
 .progress-tracker-compact .progress-tracker-label-block {
   display: none;
 }
 
 .progress-tracker-compact .progress-tracker-indicator {
-  width: 12px;
-  height: 12px;
+  inline-size: var(--_progress-tracker_compact_indicator_size);
+  block-size: var(--_progress-tracker_compact_indicator_size);
 }
 
 .progress-tracker-compact .progress-tracker-num,
 .progress-tracker-compact .progress-tracker-icon {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-tracker-indicator {
+    transition: none;
+  }
 }

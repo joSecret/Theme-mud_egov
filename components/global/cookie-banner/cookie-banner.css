@@ -1,216 +1,239 @@
-/* === Cookie Banner Component === */
-
-/* External tokens (override from outside) */
+/**
+ * Cookie Banner: cerere de consimțământ fixată sus sau jos, pe variabilele --cookie-banner-* din MUD JS.
+ * Poziția (bottom, top) alege marginea; sub 540px cardul ocupă toată lățimea.
+ * Chenarul cardului (--cookie-banner_b) e dezactivat implicit, ca în versiunea anterioară.
+ */
 .cookie-banner {
-  --cookie-banner_max-width: var(--cookie-banner-container-max-width, 960px);
-  --cookie-banner_bg: var(--cookie-banner-container-background, var(--color-background-base-primary, #fff));
-  --cookie-banner_b-w: var(--cookie-banner-container-border-width, 1px);
-  --cookie-banner_b: var(--cookie-banner-container-border, var(--cookie-banner_b-w) solid var(--color-border-base-default, #e2e8f0));
-  --cookie-banner_b-r: var(--cookie-banner-container-border-radius, var(--border-radius-12, 12px));
-  --cookie-banner_shadow: var(--cookie-banner-container-shadow-small, 0 -2px 12px 0 rgb(0 0 0 / 0.08));
-  --cookie-banner_z: var(--cookie-banner-container-stack-z-index, 1000);
-  --cookie-banner_p-i: var(--cookie-banner-container-padding-inline-desktop, 24px);
+  --_cookie-banner_mx-w: var(--cookie-banner_mx-w, var(--cookie-banner-container-max-width));
+  --_cookie-banner_bg: var(--cookie-banner_bg, var(--cookie-banner-container-background));
+  --_cookie-banner_b: var(--cookie-banner_b, none);
+  --_cookie-banner_b-r: var(--cookie-banner_b-r, var(--cookie-banner-container-border-radius));
+  --_cookie-banner_bottom_sm_b-r: var(--cookie-banner_bottom_sm_b-r, var(--cookie-banner-container-border-radius-mobile) var(--cookie-banner-container-border-radius-mobile) 0 0);
+  --_cookie-banner_top_sm_b-r: var(--cookie-banner_top_sm_b-r, 0 0 var(--cookie-banner-container-border-radius-mobile) var(--cookie-banner-container-border-radius-mobile));
+  --_cookie-banner_bs: var(--cookie-banner_bs, var(--cookie-banner-container-shadow-small));
+  --_cookie-banner_z: var(--cookie-banner_z, var(--cookie-banner-container-stack-z-index));
+  --_cookie-banner_p: var(--cookie-banner_p, var(--cookie-banner-container-edge-offset));
+  --_cookie-banner_p-i: var(--cookie-banner_p-i, var(--cookie-banner-container-padding-inline-desktop));
+  --_cookie-banner_sm_p-i: var(--cookie-banner_sm_p-i, var(--cookie-banner-container-padding-inline-mobile));
 
-  /* Internal tokens */
-  --_cookie-banner_title_ff: var(--cookie-banner-title-font-family, inherit);
-  --_cookie-banner_title_fs: var(--cookie-banner-title-font-size, 1rem);
-  --_cookie-banner_title_lh: var(--cookie-banner-title-line-height, 1.5rem);
-  --_cookie-banner_title_fw: var(--cookie-banner-title-font-weight, 600);
-  --_cookie-banner_title_ls: var(--cookie-banner-title-letter-spacing, normal);
-  --_cookie-banner_title_c: var(--cookie-banner-title-color, var(--color-text-base-default, #1a202c));
+  --_cookie-banner_header_p-b: var(--cookie-banner_header_p-b, var(--cookie-banner-header-padding-top) var(--cookie-banner-header-padding-bottom));
 
-  --_cookie-banner_body_ff: var(--cookie-banner-body-font-family, inherit);
-  --_cookie-banner_body_fs: var(--cookie-banner-body-font-size, 0.875rem);
-  --_cookie-banner_body_lh: var(--cookie-banner-body-line-height, 1.375rem);
-  --_cookie-banner_body_fw: var(--cookie-banner-body-font-weight, 400);
-  --_cookie-banner_body_c: var(--cookie-banner-body-color, var(--color-text-base-secondary, #718096));
+  --_cookie-banner_title_f-f: var(--cookie-banner_title_f-f, var(--cookie-banner-title-font-family));
+  --_cookie-banner_title_f-s: var(--cookie-banner_title_f-s, var(--cookie-banner-title-font-size));
+  --_cookie-banner_title_sm_f-s: var(--cookie-banner_title_sm_f-s, var(--cookie-banner-title-font-size-mobile));
+  --_cookie-banner_title_l-h: var(--cookie-banner_title_l-h, var(--cookie-banner-title-line-height));
+  --_cookie-banner_title_f-w: var(--cookie-banner_title_f-w, var(--cookie-banner-title-font-weight));
+  --_cookie-banner_title_l-s: var(--cookie-banner_title_l-s, var(--cookie-banner-title-letter-spacing));
+  --_cookie-banner_title_c: var(--cookie-banner_title_c, var(--cookie-banner-title-color));
 
-  --_cookie-banner_link_c: var(--cookie-banner-link-color, var(--color-text-brand-default, #2b6cb0));
+  --_cookie-banner_body_p-b: var(--cookie-banner_body_p-b, var(--cookie-banner-body-padding-top) var(--cookie-banner-body-padding-bottom));
+  --_cookie-banner_body_f-f: var(--cookie-banner_body_f-f, var(--cookie-banner-body-font-family));
+  --_cookie-banner_body_f-s: var(--cookie-banner_body_f-s, var(--cookie-banner-body-font-size));
+  --_cookie-banner_body_sm_f-s: var(--cookie-banner_body_sm_f-s, var(--cookie-banner-body-font-size-mobile));
+  --_cookie-banner_body_l-h: var(--cookie-banner_body_l-h, var(--cookie-banner-body-line-height));
+  --_cookie-banner_body_f-w: var(--cookie-banner_body_f-w, var(--cookie-banner-body-font-weight));
+  --_cookie-banner_body_c: var(--cookie-banner_body_c, var(--cookie-banner-body-color));
 
-  --_cookie-banner_footer_gap: var(--cookie-banner-footer-gap, 8px);
-  --_cookie-banner_footer_p-t: var(--cookie-banner-footer-padding-top, 16px);
-  --_cookie-banner_footer_p-b: var(--cookie-banner-footer-padding-bottom, 16px);
+  --_cookie-banner_link_c: var(--cookie-banner_link_c, var(--color-text-brand-default));
 
-  /* === Styles === */
+  --_cookie-banner_footer_gap: var(--cookie-banner_footer_gap, var(--cookie-banner-footer-gap));
+  --_cookie-banner_footer_p-b: var(--cookie-banner_footer_p-b, var(--cookie-banner-footer-padding-top) var(--cookie-banner-footer-padding-bottom));
+  --_cookie-banner_footer_sm_p-b: var(--cookie-banner_footer_sm_p-b, var(--cookie-banner-footer-padding-top) var(--cookie-banner-footer-padding-bottom-mobile));
+
+  /* Butoanele */
+  --_cookie-banner_btn_p-b: var(--cookie-banner_btn_p-b, var(--spacing-8));
+  --_cookie-banner_btn_p-i: var(--cookie-banner_btn_p-i, var(--spacing-16));
+  --_cookie-banner_btn_b-w: var(--cookie-banner_btn_b-w, var(--border-width-1));
+  --_cookie-banner_btn_b-r: var(--cookie-banner_btn_b-r, var(--border-radius-8));
+  --_cookie-banner_btn_f-s: var(--cookie-banner_btn_f-s, var(--font-size-14));
+  --_cookie-banner_btn_f-w: var(--cookie-banner_btn_f-w, var(--font-weight-medium));
+  --_cookie-banner_btn_l-h: var(--cookie-banner_btn_l-h, var(--line-height-20));
+  --_cookie-banner_btn_trn: var(--cookie-banner_btn_trn, background 0.2s ease, color 0.2s ease, border-color 0.2s ease);
+
+  --_cookie-banner_settings_c: var(--cookie-banner_settings_c, var(--color-text-base-secondary));
+  --_cookie-banner_settings_b-c: var(--cookie-banner_settings_b-c, var(--color-border-base-default));
+  --_cookie-banner_settings_bg_h: var(--cookie-banner_settings_bg_h, var(--color-background-base-secondary));
+
+  --_cookie-banner_decline_c: var(--cookie-banner_decline_c, var(--color-text-base-default));
+  --_cookie-banner_decline_b-c: var(--cookie-banner_decline_b-c, var(--color-border-base-default));
+  --_cookie-banner_decline_bg_h: var(--cookie-banner_decline_bg_h, var(--color-background-base-secondary));
+
+  --_cookie-banner_accept_c: var(--cookie-banner_accept_c, var(--color-text-base-inverse-default));
+  --_cookie-banner_accept_bg: var(--cookie-banner_accept_bg, var(--color-background-brand-default));
+  --_cookie-banner_accept_b-c: var(--cookie-banner_accept_b-c, var(--color-background-brand-default));
+  --_cookie-banner_accept_bg_h: var(--cookie-banner_accept_bg_h, color-mix(in oklab, var(--color-background-brand-default), var(--palette-black-1000) 15%));
+  --_cookie-banner_accept_b-c_h: var(--cookie-banner_accept_b-c_h, color-mix(in oklab, var(--color-background-brand-default), var(--palette-black-1000) 15%));
+
   position: fixed;
   inset-inline: 0;
-  z-index: var(--cookie-banner_z);
+  z-index: var(--_cookie-banner_z);
   display: flex;
   justify-content: center;
-  padding-inline: 16px;
-  padding-block: 16px;
+  padding: var(--_cookie-banner_p);
 }
 
 .cookie-banner--bottom {
-  inset-block-end: 0;
-  inset-block-start: auto;
+  inset-block: auto 0;
 }
 
 .cookie-banner--top {
-  inset-block-start: 0;
-  inset-block-end: auto;
+  inset-block: 0 auto;
 }
 
-/* Hidden state (set by JS after consent) */
+/* Ascuns după alegerea utilizatorului (setat din JS) */
 .cookie-banner[hidden],
 .cookie-banner.is-hidden {
   display: none;
 }
 
-/* Inner card */
+/* Cardul */
 .cookie-banner__inner {
-  width: 100%;
-  max-width: var(--cookie-banner_max-width);
-  background: var(--cookie-banner_bg);
-  border: var(--cookie-banner_b);
-  border-radius: var(--cookie-banner_b-r);
-  box-shadow: var(--cookie-banner_shadow);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0;
-  padding-inline: var(--cookie-banner_p-i);
+  inline-size: 100%;
+  max-inline-size: var(--_cookie-banner_mx-w);
+  padding-inline: var(--_cookie-banner_p-i);
+  border: var(--_cookie-banner_b);
+  border-radius: var(--_cookie-banner_b-r);
+  background-color: var(--_cookie-banner_bg);
+  box-shadow: var(--_cookie-banner_bs);
 }
 
-/* Header */
 .cookie-banner__header {
-  width: 100%;
-  padding-block-start: var(--cookie-banner-header-padding-top, 20px);
-  padding-block-end: var(--cookie-banner-header-padding-bottom, 4px);
+  inline-size: 100%;
+  padding-block: var(--_cookie-banner_header_p-b);
 }
 
 .cookie-banner__title {
-  font-family: var(--_cookie-banner_title_ff);
-  font-size: var(--_cookie-banner_title_fs);
-  line-height: var(--_cookie-banner_title_lh);
-  font-weight: var(--_cookie-banner_title_fw);
-  letter-spacing: var(--_cookie-banner_title_ls);
-  color: var(--_cookie-banner_title_c);
   margin: 0;
+  color: var(--_cookie-banner_title_c);
+  font-family: var(--_cookie-banner_title_f-f);
+  font-size: var(--_cookie-banner_title_f-s);
+  font-weight: var(--_cookie-banner_title_f-w);
+  line-height: var(--_cookie-banner_title_l-h);
+  letter-spacing: var(--_cookie-banner_title_l-s);
 }
 
-/* Body */
 .cookie-banner__body {
-  width: 100%;
-  padding-block-start: var(--cookie-banner-body-padding-top, 8px);
-  padding-block-end: var(--cookie-banner-body-padding-bottom, 0);
+  inline-size: 100%;
+  padding-block: var(--_cookie-banner_body_p-b);
 }
 
 .cookie-banner__description {
-  font-family: var(--_cookie-banner_body_ff);
-  font-size: var(--_cookie-banner_body_fs);
-  line-height: var(--_cookie-banner_body_lh);
-  font-weight: var(--_cookie-banner_body_fw);
-  color: var(--_cookie-banner_body_c);
   margin: 0;
+  color: var(--_cookie-banner_body_c);
+  font-family: var(--_cookie-banner_body_f-f);
+  font-size: var(--_cookie-banner_body_f-s);
+  font-weight: var(--_cookie-banner_body_f-w);
+  line-height: var(--_cookie-banner_body_l-h);
 }
 
 .cookie-banner__policy-link {
   color: var(--_cookie-banner_link_c);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 0.125rem;
 
   &:hover {
     text-decoration: none;
   }
 }
 
-/* Footer */
 .cookie-banner__footer {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--_cookie-banner_footer_gap);
-  padding-block-start: var(--_cookie-banner_footer_p-t);
-  padding-block-end: var(--_cookie-banner_footer_p-b);
   justify-content: flex-end;
+  gap: var(--_cookie-banner_footer_gap);
+  inline-size: 100%;
+  padding-block: var(--_cookie-banner_footer_p-b);
 }
 
-/* Buttons */
+/* Butoanele */
 .cookie-banner__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding-inline: 16px;
-  padding-block: 8px;
-  border-radius: var(--border-radius-8, 8px);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  border: 1px solid transparent;
+  padding-block: var(--_cookie-banner_btn_p-b);
+  padding-inline: var(--_cookie-banner_btn_p-i);
+  border: var(--_cookie-banner_btn_b-w) solid transparent;
+  border-radius: var(--_cookie-banner_btn_b-r);
+  font-size: var(--_cookie-banner_btn_f-s);
+  font-weight: var(--_cookie-banner_btn_f-w);
+  line-height: var(--_cookie-banner_btn_l-h);
   white-space: nowrap;
+  cursor: pointer;
+  transition: var(--_cookie-banner_btn_trn);
 }
 
 .cookie-banner__btn--settings {
-  color: var(--color-text-base-secondary, #718096);
+  border-color: var(--_cookie-banner_settings_b-c);
   background: transparent;
-  border-color: var(--color-border-base-default, #e2e8f0);
+  color: var(--_cookie-banner_settings_c);
 
   &:hover {
-    background: var(--color-background-base-secondary, #f7fafc);
+    background: var(--_cookie-banner_settings_bg_h);
   }
 }
 
 .cookie-banner__btn--decline {
-  color: var(--color-text-base-default, #1a202c);
+  border-color: var(--_cookie-banner_decline_b-c);
   background: transparent;
-  border-color: var(--color-border-base-default, #e2e8f0);
+  color: var(--_cookie-banner_decline_c);
 
   &:hover {
-    background: var(--color-background-base-secondary, #f7fafc);
+    background: var(--_cookie-banner_decline_bg_h);
   }
 }
 
 .cookie-banner__btn--accept {
-  color: var(--color-text-inverse-default, #fff);
-  background: var(--color-background-brand-default, #2b6cb0);
-  border-color: var(--color-background-brand-default, #2b6cb0);
+  border-color: var(--_cookie-banner_accept_b-c);
+  background: var(--_cookie-banner_accept_bg);
+  color: var(--_cookie-banner_accept_c);
 
   &:hover {
-    background: color-mix(in oklab, var(--color-background-brand-default, #2b6cb0), #000 15%);
-    border-color: color-mix(in oklab, var(--color-background-brand-default, #2b6cb0), #000 15%);
+    border-color: var(--_cookie-banner_accept_b-c_h);
+    background: var(--_cookie-banner_accept_bg_h);
   }
 }
 
-/* Mobile */
-@media (max-width: 540px) {
+/* Mobil */
+@media (width <= 540px) {
   .cookie-banner {
-    --cookie-banner_b-r: var(--cookie-banner-container-border-radius-mobile, 12px 12px 0 0);
-    --cookie-banner_p-i: var(--cookie-banner-container-padding-inline-mobile, 16px);
+    --_cookie-banner_p-i: var(--_cookie-banner_sm_p-i);
 
-    padding-inline: 0;
-    padding-block: 0;
+    padding: 0;
   }
 
-  .cookie-banner--bottom {
-    .cookie-banner__inner {
-      border-radius: 12px 12px 0 0;
-    }
+  .cookie-banner--bottom .cookie-banner__inner {
+    border-radius: var(--_cookie-banner_bottom_sm_b-r);
   }
 
-  .cookie-banner--top {
-    .cookie-banner__inner {
-      border-radius: 0 0 12px 12px;
-    }
+  .cookie-banner--top .cookie-banner__inner {
+    border-radius: var(--_cookie-banner_top_sm_b-r);
   }
 
   .cookie-banner__title {
-    font-size: var(--cookie-banner-title-font-size-mobile, 0.9375rem);
+    font-size: var(--_cookie-banner_title_sm_f-s);
   }
 
   .cookie-banner__description {
-    font-size: var(--cookie-banner-body-font-size-mobile, 0.8125rem);
+    font-size: var(--_cookie-banner_body_sm_f-s);
   }
 
   .cookie-banner__footer {
-    padding-block-end: var(--cookie-banner-footer-padding-bottom-mobile, 20px);
+    padding-block: var(--_cookie-banner_footer_sm_p-b);
   }
 
   .cookie-banner__btn {
     flex: 1 1 auto;
     justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner__btn {
+    transition: none;
   }
 }

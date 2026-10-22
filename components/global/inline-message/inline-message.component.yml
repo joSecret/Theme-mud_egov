@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Inline Message
 status: stable
 group: Globals
-version: 1.0.0
+version: 1.1.0
 description: Lightweight in-context feedback — coloured leading icon plus a short text line, no surface or border.
 
 # Props.

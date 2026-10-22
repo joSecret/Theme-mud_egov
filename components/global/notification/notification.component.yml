@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Notification
 status: stable
 group: Globals
-version: 1.0.0
+version: 1.1.0
 description: Toast notification for transient status messages — info, success, warning, or error.
 
 # Props.

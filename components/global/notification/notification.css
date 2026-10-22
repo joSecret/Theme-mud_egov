@@ -1,178 +1,175 @@
+/**
+ * Notification: mesaj de stare cu pictogramă, titlu, text, acțiuni și buton de închidere,
+ * pe variabilele --notification-* din MUD JS.
+ * Varianta (info, success, warning, error) alege culorile; accentul subtle folosește o suprafață transparentă.
+ * Implicit: info, accent plin. Butonul de închidere este componenta button-close.
+ */
 .notification {
-  --notification_bg: initial;
-  --notification_c: initial;
-  --notification_b-r: initial;
-  --notification_w: initial;
-  --notification_p-t: initial;
-  --notification_p-b: initial;
-  --notification_p-i: initial;
-  --notification_gap: initial;
-  --notification_icon-s: initial;
-  --notification_title-f-s: initial;
-  --notification_title-f-w: initial;
-  --notification_body-f-s: initial;
-  --notification_close-s: initial;
-
-  /* Internal resolved properties */
-  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
-  --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
-  --_notification_b-r: var(--notification_b-r, var(--notification-container-border-radius, 8px));
+  --_notification_bg: var(--notification_bg, var(--notification-info-background));
+  --_notification_c: var(--notification_c, var(--notification-info-text));
+  --_notification_b-r: var(--notification_b-r, var(--notification-container-border-radius));
   --_notification_w: var(--notification_w, var(--notification-container-width));
-  --_notification_p-t: var(--notification_p-t, var(--notification-container-padding-top, 12px));
-  --_notification_p-b: var(--notification_p-b, var(--notification-container-padding-bottom, 16px));
-  --_notification_p-i: var(--notification_p-i, var(--notification-container-padding-inline, 12px));
-  --_notification_gap: var(--notification_gap, var(--notification-container-gap, 16px));
-  --_notification_icon-s: var(--notification_icon-s, var(--notification-icon-size, 24px));
-  --_notification_title-f-s: var(--notification_title-f-s, var(--notification-title-font-size, 18px));
-  --_notification_title-f-w: var(--notification_title-f-w, var(--notification-title-font-weight, 600));
-  --_notification_body-f-s: var(--notification_body-f-s, var(--notification-body-font-size, 14px));
-  --_notification_close-s: var(--notification_close-s, var(--notification-close-icon-size, 16px));
+  --_notification_p-b: var(--notification_p-b, var(--notification-container-padding-top) var(--notification-container-padding-bottom));
+  --_notification_p-i: var(--notification_p-i, var(--notification-container-padding-inline));
+  --_notification_gap: var(--notification_gap, var(--notification-container-gap));
+  --_notification_f-s: var(--notification_f-s, var(--notification-body-font-size));
+  --_notification_icon_size: var(--notification_icon_size, var(--notification-icon-size));
+  --_notification_icon_p: var(--notification_icon_p, var(--notification-icon-padding));
+  --_notification_body_gap: var(--notification_body_gap, var(--notification-container-heading-gap));
+  --_notification_body_l-h: var(--notification_body_l-h, var(--notification-body-line-height));
+  --_notification_title_f-s: var(--notification_title_f-s, var(--notification-title-font-size));
+  --_notification_title_f-w: var(--notification_title_f-w, var(--notification-title-font-weight));
+  --_notification_title_l-h: var(--notification_title_l-h, var(--notification-title-line-height));
+  --_notification_title_l-s: var(--notification_title_l-s, var(--notification-title-letter-spacing));
+  --_notification_link_f-w: var(--notification_link_f-w, var(--font-weight-semibold));
+  --_notification_link_t-d-c_h: var(--notification_link_t-d-c_h, color-mix(in srgb, currentColor 60%, transparent));
+  --_notification_link_trn: var(--notification_link_trn, text-decoration-color 0.2s ease-in-out);
+  --_notification_link_ol-o: var(--notification_link_ol-o, var(--spacing-2));
+  --_notification_actions_gap: var(--notification_actions_gap, var(--spacing-8));
+  --_notification_actions_m-b: var(--notification_actions_m-b, var(--spacing-4));
+  --_notification_list_gap: var(--notification_list_gap, var(--spacing-4));
 
   display: flex;
   align-items: flex-start;
   gap: var(--_notification_gap);
-  width: var(--_notification_w);
-  max-width: 100%;
+  box-sizing: border-box;
+  inline-size: var(--_notification_w);
+  max-inline-size: 100%;
+  padding-block: var(--_notification_p-b);
+  padding-inline: var(--_notification_p-i);
+  border-radius: var(--_notification_b-r);
   background-color: var(--_notification_bg);
   color: var(--_notification_c);
-  border-radius: var(--_notification_b-r);
-  padding-top: var(--_notification_p-t);
-  padding-bottom: var(--_notification_p-b);
-  padding-inline: var(--_notification_p-i);
-  box-sizing: border-box;
-  font-size: var(--_notification_body-f-s);
+  font-size: var(--_notification_f-s);
 }
 
 .notification-icon {
   display: inline-flex;
-  align-items: center;
   flex-shrink: 0;
-  width: var(--_notification_icon-s);
-  height: var(--_notification_icon-s);
-  padding: var(--notification-icon-padding, 2px);
+  align-items: center;
   box-sizing: border-box;
+  inline-size: var(--_notification_icon_size);
+  block-size: var(--_notification_icon_size);
+  padding: var(--_notification_icon_p);
   color: inherit;
-}
 
-.notification-icon svg {
-  width: 100%;
-  height: 100%;
+  & svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
 }
 
 .notification-body {
   display: flex;
-  flex-direction: column;
-  gap: var(--notification-container-heading-gap, 6px);
   flex: 1 1 auto;
-  min-width: 0;
+  flex-direction: column;
+  gap: var(--_notification_body_gap);
+  min-inline-size: 0;
+
+  & a {
+    color: inherit;
+    font-weight: var(--_notification_link_f-w);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: var(--_notification_link_trn);
+
+    &:hover {
+      text-decoration-color: var(--_notification_link_t-d-c_h);
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: var(--_notification_link_ol-o);
+      border-radius: 2px;
+    }
+  }
 }
 
 .notification-title {
   margin: 0;
-  font-size: var(--_notification_title-f-s);
-  font-weight: var(--_notification_title-f-w);
-  line-height: var(--notification-title-line-height, 26px);
-  letter-spacing: var(--notification-title-letter-spacing, -0.18px);
   color: inherit;
+  font-size: var(--_notification_title_f-s);
+  font-weight: var(--_notification_title_f-w);
+  line-height: var(--_notification_title_l-h);
+  letter-spacing: var(--_notification_title_l-s);
 }
 
 .notification-message {
   color: inherit;
-  line-height: var(--notification-body-line-height, 20px);
-}
-
-.notification-body a {
-  color: inherit;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s ease-in-out;
-
-  &:hover {
-    text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
-  }
-
-  &:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+  line-height: var(--_notification_body_l-h);
 }
 
 .notification-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
+  gap: var(--_notification_actions_gap);
+  margin-block-start: var(--_notification_actions_m-b);
 }
 
-/* ============================================================
-   Variants
-   ============================================================ */
-
+/* === Variante (accent plin) === */
 .notification-info {
-  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
-  --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
+  --_notification_bg: var(--notification_info_bg, var(--notification-info-background));
+  --_notification_c: var(--notification_info_c, var(--notification-info-text));
 }
 
 .notification-success {
-  --_notification_bg: var(--notification_bg, var(--notification-success-background, var(--color-background-success-default, #12b76a)));
-  --_notification_c: var(--notification_c, var(--notification-success-text, #fff));
+  --_notification_bg: var(--notification_success_bg, var(--notification-success-background));
+  --_notification_c: var(--notification_success_c, var(--notification-success-text));
 }
 
 .notification-warning {
-  --_notification_bg: var(--notification_bg, var(--notification-warning-background, var(--color-background-warning-default, #fdb022)));
-  --_notification_c: var(--notification_c, var(--notification-warning-text, #1a1a1a));
+  --_notification_bg: var(--notification_warning_bg, var(--notification-warning-background));
+  --_notification_c: var(--notification_warning_c, var(--notification-warning-text));
 }
 
 .notification-error {
-  --_notification_bg: var(--notification_bg, var(--notification-error-background, var(--color-background-danger-default, #f04438)));
-  --_notification_c: var(--notification_c, var(--notification-error-text, #fff));
+  --_notification_bg: var(--notification_error_bg, var(--notification-error-background));
+  --_notification_c: var(--notification_error_c, var(--notification-error-text));
 }
 
-/* ============================================================
-   Emphasis — subtle (tinted surface for inline messenger)
-   ============================================================ */
-
+/* === Accent subtle: suprafață transparentă, pentru mesajele din pagină === */
 .notification-emphasis-subtle {
   &.notification-info {
-    --_notification_bg: color-mix(in srgb, var(--color-background-info-default, #0ba5ec) 10%, transparent);
-    --_notification_c: var(--color-text-info, #0058d2);
+    --_notification_bg: var(--notification_info_subtle_bg, color-mix(in srgb, var(--color-background-brand-default) 10%, transparent));
+    --_notification_c: var(--notification_info_subtle_c, var(--color-text-brand-default));
   }
 
   &.notification-success {
-    --_notification_bg: color-mix(in srgb, var(--color-background-success-default, #12b76a) 10%, transparent);
-    --_notification_c: var(--color-text-success, #027a48);
+    --_notification_bg: var(--notification_success_subtle_bg, color-mix(in srgb, var(--color-background-positive-default) 10%, transparent));
+    --_notification_c: var(--notification_success_subtle_c, var(--color-text-success-default));
   }
 
   &.notification-warning {
-    --_notification_bg: color-mix(in srgb, var(--color-background-warning-default, #fdb022) 15%, transparent);
-    --_notification_c: var(--color-text-warning, #b54708);
+    --_notification_bg: var(--notification_warning_subtle_bg, color-mix(in srgb, var(--color-background-warning-default) 15%, transparent));
+    --_notification_c: var(--notification_warning_subtle_c, var(--color-text-warning-default));
   }
 
   &.notification-error {
-    --_notification_bg: color-mix(in srgb, var(--color-background-danger-default, #f04438) 10%, transparent);
-    --_notification_c: var(--color-text-danger, #b42318);
+    --_notification_bg: var(--notification_error_subtle_bg, color-mix(in srgb, var(--color-background-danger-default) 10%, transparent));
+    --_notification_c: var(--notification_error_subtle_c, var(--color-text-danger-default));
   }
 }
 
-/* ============================================================
-   Multi-message list (Drupal messenger groups)
-   ============================================================ */
-
+/* === Listă de mesaje (grupuri din Drupal messenger) === */
 .notification-list {
   margin: 0;
-  padding-left: 1.25rem;
-  list-style: disc;
+  padding-inline-start: 1.25rem;
   color: inherit;
+  list-style: disc;
 }
 
 .notification-list-item {
   color: inherit;
-  line-height: var(--notification-body-line-height, 20px);
+  line-height: var(--_notification_body_l-h);
 }
 
 .notification-list-item + .notification-list-item {
-  margin-top: 4px;
+  margin-block-start: var(--_notification_list_gap);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-body a {
+    transition: none;
+  }
 }

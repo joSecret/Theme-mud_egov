@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Info Box
 status: stable
 group: Globals
-version: 1.0.0
+version: 1.1.0
 description: Inline information callout with optional heading, body, actions, and close button — fills the content column width.
 
 # Props.

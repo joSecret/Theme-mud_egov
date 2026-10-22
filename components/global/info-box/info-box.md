@@ -1,16 +1,15 @@
 ---
 title: Info Box
 group: Globals
-slug: info-box
-description: Inline information callout with optional heading, body, actions, and close button — fills the content column width.
-version: 1.0.0
+version: 1.1.0
+css_prefix: info-box
 ---
 
 # Info Box Component
 
 ## Overview
 
-Inline, in-content callout that highlights key messages, announcements, alerts, or explanations within the page flow. Mapped to `mud-info-box`. Unlike `mud-notification` (fixed-width toast) or `mud-banner` (page bar), the info box sits inside the content column and fills container width.
+Inline, in-content callout that highlights key messages, announcements, alerts, or explanations within the page flow. Unlike `notification` (toast) or `banner` (page bar), the info box sits inside the content column and fills container width.
 
 Supports four variants — `info` (neutral icon), `info-moderate` (brand-blue icon), `warning`, and `error` — combined with two emphasis levels: `subtle` (neutral grey surface) and `strong` (tinted semantic surface).
 
@@ -72,17 +71,22 @@ Optional inline action group (links or buttons) rendered below the body.
 
 ## CSS Variables
 
+Valorile implicite vin din `--info-box-*` (MUD, `css/defaults/feedback.css`) și din tokenuri. Variabilele publice sunt goale implicit; se setează într-un context anume.
+
 | Variable | Description |
 |---|---|
-| `--info-box_bg` | Background color override |
-| `--info-box_c` | Text color override |
-| `--info-box_icon-c` | Icon color override |
-| `--info-box_b-r` | Border radius |
-| `--info-box_p-b` | Block padding |
-| `--info-box_p-i` | Inline padding |
-| `--info-box_gap` | Gap between icon and body |
-| `--info-box_icon-s` | Icon size |
-| `--info-box_heading-f-s` | Heading font size |
-| `--info-box_heading-f-w` | Heading font weight |
-| `--info-box_body-f-s` | Body font size |
-| `--info-box_close-s` | Close button icon size |
+| `--info-box_bg`, `--info-box_c`, `--info-box_icon_c` | Fundal, text și pictogramă (implicit, info subtle) |
+| `--info-box_b-r`, `--info-box_p-b`, `--info-box_p-i`, `--info-box_gap` | Rotunjire, padding și spațiul dintre pictogramă și conținut |
+| `--info-box_f-f`, `--info-box_f-s`, `--info-box_l-h` | Fontul textului |
+| `--info-box_heading_f-f`, `--info-box_heading_f-s`, `--info-box_heading_f-w`, `--info-box_heading_l-h` | Fontul titlului |
+| `--info-box_icon_size`, `--info-box_body_gap` | Mărimea pictogramei, spațiul dintre titlu și text |
+| `--info-box_actions_gap`, `--info-box_actions_m-b` | Spațierea grupului de acțiuni |
+| `--info-box_close_size`, `--info-box_close_icon_size`, `--info-box_close_b-r`, `--info-box_close_bg_h`, `--info-box_close_ol-o` | Butonul de închidere |
+| `--info-box_<variantă>_<accent>_bg`, `_c`, `_icon_c` | Culorile unei perechi, ex. `--info-box_warning_strong_bg` (variantă: `info`, `info-moderate`, `warning`, `error`; accent: `subtle`, `strong`) |
+
+## Accessibility
+
+- Nu este regiune ARIA live: mesajul se citește în ordinea paginii. Pentru mesaje dinamice folosește `notification`.
+- Pictograma este decorativă (`aria-hidden`); sensul vine din titlu și text, nu doar din culoare.
+- Butonul de închidere are nume accesibil din `info_box_close_label` și contur vizibil la `:focus-visible`.
+- Nu are animații.

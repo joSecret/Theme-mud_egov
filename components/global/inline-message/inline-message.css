@@ -1,101 +1,71 @@
-/* ============================================================
-   Inline Message — in-context feedback icon + text line
-   Aligned with mud-inline-message (variant: info|success|warning|error,
-   size: small|medium, hideIcon)
-   Token names map to --inline-message-* from core.tokens.css
-   ============================================================ */
-
+/**
+ * Inline Message: pictogramă colorată și o linie de text, fără fundal sau chenar,
+ * pe variabilele --inline-message-* din MUD JS.
+ * Implicit: info, medie. Mărimea mică (sm) schimbă fontul, spațiul și pictograma.
+ */
 .inline-message {
-  /* External custom properties (consumer API) */
-  --inline-message_c: initial;
-  --inline-message_icon-c: initial;
-  --inline-message_f-s: initial;
-  --inline-message_l-h: initial;
-  --inline-message_f-w: initial;
-  --inline-message_gap: initial;
-  --inline-message_icon-s: initial;
-
-  /* Internal resolved properties — medium size defaults */
-  --_inline-message_c: var(--inline-message_c, var(--inline-message-info-text, var(--color-foreground-neutral-default, #1a1a1a)));
-  --_inline-message_icon-c: var(--inline-message_icon-c, var(--inline-message-info-icon, var(--color-background-brand-default, #1570ef)));
-  --_inline-message_f-s: var(--inline-message_f-s, var(--inline-message-font-size-medium, 14px));
-  --_inline-message_l-h: var(--inline-message_l-h, var(--inline-message-line-height-medium, 20px));
-  --_inline-message_f-w: var(--inline-message_f-w, var(--inline-message-font-weight, 400));
-  --_inline-message_gap: var(--inline-message_gap, var(--inline-message-gap-medium, 4px));
-  --_inline-message_icon-s: var(--inline-message_icon-s, var(--inline-message-icon-size-medium, 20px));
+  --_inline-message_c: var(--inline-message_c, var(--inline-message-info-text));
+  --_inline-message_icon_c: var(--inline-message_icon_c, var(--inline-message-info-icon));
+  --_inline-message_f-f: var(--inline-message_f-f, var(--inline-message-font-family));
+  --_inline-message_f-s: var(--inline-message_f-s, var(--inline-message-font-size-medium));
+  --_inline-message_l-h: var(--inline-message_l-h, var(--inline-message-line-height-medium));
+  --_inline-message_f-w: var(--inline-message_f-w, var(--inline-message-font-weight));
+  --_inline-message_gap: var(--inline-message_gap, var(--inline-message-gap-medium));
+  --_inline-message_icon_size: var(--inline-message_icon_size, var(--inline-message-icon-size-medium));
 
   display: inline-flex;
   align-items: flex-start;
   gap: var(--_inline-message_gap);
   color: var(--_inline-message_c);
+  font-family: var(--_inline-message_f-f);
   font-size: var(--_inline-message_f-s);
   font-weight: var(--_inline-message_f-w);
-  font-family: var(--inline-message-font-family, inherit);
   line-height: var(--_inline-message_l-h);
 }
 
 .inline-message-icon {
   display: inline-flex;
-  align-items: center;
   flex-shrink: 0;
-  width: var(--_inline-message_icon-s);
-  height: var(--_inline-message_icon-s);
-  color: var(--_inline-message_icon-c);
-}
+  align-items: center;
+  inline-size: var(--_inline-message_icon_size);
+  block-size: var(--_inline-message_icon_size);
+  color: var(--_inline-message_icon_c);
 
-.inline-message-icon svg {
-  width: 100%;
-  height: 100%;
+  & svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
 }
 
 .inline-message-text {
   color: inherit;
 }
 
-/* ============================================================
-   Sizes
-   ============================================================ */
-
+/* === Mărime (medie e implicită) === */
 .inline-message-small {
-  --_inline-message_f-s: var(--inline-message_f-s, var(--inline-message-font-size-small, 12px));
-  --_inline-message_l-h: var(--inline-message_l-h, var(--inline-message-line-height-small, 16px));
-  --_inline-message_gap: var(--inline-message_gap, var(--inline-message-gap-small, 2px));
-  --_inline-message_icon-s: var(--inline-message_icon-s, var(--inline-message-icon-size-small, 16px));
+  --_inline-message_f-s: var(--inline-message_sm_f-s, var(--inline-message-font-size-small));
+  --_inline-message_l-h: var(--inline-message_sm_l-h, var(--inline-message-line-height-small));
+  --_inline-message_gap: var(--inline-message_sm_gap, var(--inline-message-gap-small));
+  --_inline-message_icon_size: var(--inline-message_icon_sm_size, var(--inline-message-icon-size-small));
 }
 
-.inline-message-medium {
-  --_inline-message_f-s: var(--inline-message_f-s, var(--inline-message-font-size-medium, 14px));
-  --_inline-message_l-h: var(--inline-message_l-h, var(--inline-message-line-height-medium, 20px));
-  --_inline-message_gap: var(--inline-message_gap, var(--inline-message-gap-medium, 4px));
-  --_inline-message_icon-s: var(--inline-message_icon-s, var(--inline-message-icon-size-medium, 20px));
-}
-
-/* ============================================================
-   Variants
-   ============================================================ */
-
+/* === Variante === */
 .inline-message-info {
-  --_inline-message_c: var(--inline-message_c, var(--inline-message-info-text, var(--color-foreground-neutral-default, #1a1a1a)));
-  --_inline-message_icon-c: var(--inline-message_icon-c, var(--inline-message-info-icon, var(--color-background-brand-default, #1570ef)));
+  --_inline-message_c: var(--inline-message_info_c, var(--inline-message-info-text));
+  --_inline-message_icon_c: var(--inline-message_info_icon_c, var(--inline-message-info-icon));
 }
 
 .inline-message-success {
-  --_inline-message_c: var(--inline-message_c, var(--inline-message-success-text, var(--color-foreground-success-default, #027a48)));
-  --_inline-message_icon-c: var(--inline-message_icon-c, var(--inline-message-success-icon, var(--color-foreground-success-default, #027a48)));
+  --_inline-message_c: var(--inline-message_success_c, var(--inline-message-success-text));
+  --_inline-message_icon_c: var(--inline-message_success_icon_c, var(--inline-message-success-icon));
 }
 
 .inline-message-warning {
-  --_inline-message_c: var(--inline-message_c, var(--inline-message-warning-text, var(--color-foreground-warning-default, #b54708)));
-  --_inline-message_icon-c: var(--inline-message_icon-c, var(--inline-message-warning-icon, var(--color-foreground-warning-default, #b54708)));
+  --_inline-message_c: var(--inline-message_warning_c, var(--inline-message-warning-text));
+  --_inline-message_icon_c: var(--inline-message_warning_icon_c, var(--inline-message-warning-icon));
 }
 
 .inline-message-error {
-  --_inline-message_c: var(--inline-message_c, var(--inline-message-error-text, var(--color-foreground-danger-default, #b42318)));
-  --_inline-message_icon-c: var(--inline-message_icon-c, var(--inline-message-error-icon, var(--color-foreground-danger-default, #b42318)));
-}
-
-/* No-icon variant — removes the leading icon slot entirely via twig,
-   this class is present only for optional external targeting */
-.inline-message-no-icon {
-  /* icon is not rendered */
+  --_inline-message_c: var(--inline-message_error_c, var(--inline-message-error-text));
+  --_inline-message_icon_c: var(--inline-message_error_icon_c, var(--inline-message-error-icon));
 }

@@ -4,46 +4,44 @@
   * Field Icon component.
   *
   * Available values:
-  * - fieldEmail_icon (string|null) (default: null)
-  * - fieldEmail_value (string|null) (default: null)
+  * - field_icon_icon (string|null) (default: null)
+  * - field_icon_value (string|null) (default: null)
   *
   * Available Utility classes -> uc
-  * - fieldEmail_uc (array) (default: [''])
+  * - field_icon_uc (array) (default: [])
   *
   * Available attributes -> att
-  * - fieldEmail_att (Drupal\Core\Template\Attribute)
+  * - field_icon_att (Drupal\Core\Template\Attribute)
   *
   * Available slots
   * - slot_icon: The icon element (SVG, img, or icon component).
   * - slot_content: The field content displayed next to the icon.
   *
-  * usage example: @see README.md
+  * usage example: @see field-icon.md
   */
 -#}
 
 {#- Set default value -#}
-{% set fieldEmail_icon = fieldEmail_icon|default(null) %}
-{% set fieldEmail_value = fieldEmail_value|default(null) %}
+{% set field_icon_icon = field_icon_icon|default(null) %}
+{% set field_icon_value = field_icon_value|default(null) %}
 
 {#- Create attributes -#}
-{% set fieldEmail_att = fieldEmail_att ?: create_attribute() %}
+{% set field_icon_att = field_icon_att ?: create_attribute() %}
 
 {#- Component classes -#}
-{% set fieldEmail_classes = [
-  'c--fieldEmail',
-]|merge(fieldEmail_uc ?: []) %}
-
-{#- Strip non-digit characters for tel: href -#}
+{% set field_icon_classes = [
+  'c--field-icon',
+]|merge(field_icon_uc ?: []) %}
 
 {#- Render component -#}
-<div{{ fieldEmail_att.addClass(fieldEmail_classes) }}>
-  {%- if block('slot_icon') is not empty or fieldEmail_icon -%}
+<div{{ field_icon_att.addClass(field_icon_classes) }}>
+  {%- if block('slot_icon') is not empty or field_icon_icon -%}
     {% block slot_icon %}
-      {{- fieldEmail_icon|raw -}}
+      {{- field_icon_icon|raw -}}
     {% endblock %}
   {%- endif -%}
 
   {% block slot_content -%}
-    {{- fieldEmail_value -}}
+    {{- field_icon_value -}}
   {% endblock %}
 </div>

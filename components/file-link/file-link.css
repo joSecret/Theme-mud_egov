@@ -5,52 +5,64 @@
  * title + meta on the right. Whole card is clickable.
  */
 
-.c--fileLink {
-  /* Wrapper */
-  --_fileLink_g: var(--fileLink_g, 16px);
-  --_fileLink_p-b: var(--fileLink_p-b, 12px);
-  --_fileLink_p-i: var(--fileLink_p-i, 16px);
-  --_fileLink_b-r: var(--fileLink_b-r, 8px);
-  --_fileLink_bg: var(--fileLink_bg, var(--color-background-base-secondary, #f3f4f6));
-  --_fileLink_bg_h: var(--fileLink_bg_h, var(--color-background-brand-secondary, #e0ecff));
-  --_fileLink_t-t: var(--fileLink_t-t, background-color 0.2s ease);
+.c--file-link {
+  /* Variables — main component */
+  --_file-link_gap: var(--file-link_gap, var(--spacing-16));
+  --_file-link_p-b: var(--file-link_p-b, var(--spacing-12));
+  --_file-link_p-i: var(--file-link_p-i, var(--spacing-16));
+  --_file-link_b-r: var(--file-link_b-r, var(--border-radius-8));
+  --_file-link_bg: var(--file-link_bg, var(--color-background-base-secondary));
+  --_file-link_bg_h: var(--file-link_bg_h, var(--color-background-brand-secondary));
+  --_file-link_trn: var(--file-link_trn, background-color 0.2s ease);
 
-  /* Icon */
-  --_fileLink-icon_s: var(--fileLink-icon_s, 40px);
-  --_fileLink-icon_c: var(--fileLink-icon_c, #6b7280);
+  /* Variables — body */
+  --_file-link_body_gap: var(--file-link_body_gap, var(--spacing-4));
 
-  /* Title */
-  --_fileLink-title_f-s: var(--fileLink-title_f-s, var(--font-size-16, 16px));
-  --_fileLink-title_f-w: var(--fileLink-title_f-w, 600);
-  --_fileLink-title_l-h: var(--fileLink-title_l-h, 1.4);
-  --_fileLink-title_c: var(--fileLink-title_c, inherit);
+  /* Variables — icon */
+  --_file-link_icon_size: var(--file-link_icon_size, var(--spacing-40));
+  --_file-link_icon_c: var(--file-link_icon_c, var(--color-icon-base-secondary));
 
-  /* Meta */
-  --_fileLink-meta_f-s: var(--fileLink-meta_f-s, var(--font-size-14, 14px));
-  --_fileLink-meta_c: var(--fileLink-meta_c, var(--color-text-base-secondary, #6b7280));
-  --_fileLink-meta_g: var(--fileLink-meta_g, 6px);
+  /* Variables — icon color per file family */
+  --_file-link_pdf_icon_c: var(--file-link_pdf_icon_c, var(--color-icon-danger-default));
+  --_file-link_doc_icon_c: var(--file-link_doc_icon_c, var(--color-icon-brand-default));
+  --_file-link_xls_icon_c: var(--file-link_xls_icon_c, var(--color-icon-positive-default));
+  --_file-link_ppt_icon_c: var(--file-link_ppt_icon_c, var(--color-icon-warning-default));
+  --_file-link_txt_icon_c: var(--file-link_txt_icon_c, var(--color-icon-base-secondary));
+  --_file-link_zip_icon_c: var(--file-link_zip_icon_c, var(--color-icon-warning-on-secondary));
+  --_file-link_img_icon_c: var(--file-link_img_icon_c, var(--palette-purple-600));
+
+  /* Variables — title */
+  --_file-link_title_f-s: var(--file-link_title_f-s, var(--font-size-16));
+  --_file-link_title_f-w: var(--file-link_title_f-w, var(--font-weight-semibold));
+  --_file-link_title_l-h: var(--file-link_title_l-h, 1.4);
+  --_file-link_title_c: var(--file-link_title_c, inherit);
+
+  /* Variables — meta */
+  --_file-link_meta_f-s: var(--file-link_meta_f-s, var(--font-size-14));
+  --_file-link_meta_c: var(--file-link_meta_c, var(--color-text-base-secondary));
+  --_file-link_meta_gap: var(--file-link_meta_gap, var(--spacing-6));
 
   display: flex;
   align-items: center;
-  gap: var(--_fileLink_g);
-  padding-block: var(--_fileLink_p-b);
-  padding-inline: var(--_fileLink_p-i);
-  border-radius: var(--_fileLink_b-r);
-  background-color: var(--_fileLink_bg);
+  gap: var(--_file-link_gap);
+  padding-block: var(--_file-link_p-b);
+  padding-inline: var(--_file-link_p-i);
+  border-radius: var(--_file-link_b-r);
+  background-color: var(--_file-link_bg);
   color: inherit;
   text-decoration: none;
-  transition: var(--_fileLink_t-t);
+  transition: var(--_file-link_trn);
 
   &:hover,
   &:focus-visible {
-    background-color: var(--_fileLink_bg_h);
+    background-color: var(--_file-link_bg_h);
   }
 
-  .fileLink__icon {
-    flex: 0 0 var(--_fileLink-icon_s);
-    width: var(--_fileLink-icon_s);
+  .file-link__icon {
+    flex: 0 0 var(--_file-link_icon_size);
+    width: var(--_file-link_icon_size);
     display: inline-flex;
-    color: var(--_fileLink-icon_c);
+    color: var(--_file-link_icon_c);
 
     svg {
       display: block;
@@ -59,38 +71,63 @@
     }
   }
 
-  .fileLink__body {
+  .file-link__body {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--_file-link_body_gap);
     min-width: 0;
   }
 
-  .fileLink__title {
-    font-size: var(--_fileLink-title_f-s);
-    font-weight: var(--_fileLink-title_f-w);
-    line-height: var(--_fileLink-title_l-h);
-    color: var(--_fileLink-title_c);
+  .file-link__title {
+    font-size: var(--_file-link_title_f-s);
+    font-weight: var(--_file-link_title_f-w);
+    line-height: var(--_file-link_title_l-h);
+    color: var(--_file-link_title_c);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .fileLink__meta {
+  .file-link__meta {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--_fileLink-meta_g);
-    font-size: var(--_fileLink-meta_f-s);
-    color: var(--_fileLink-meta_c);
+    gap: var(--_file-link_meta_gap);
+    font-size: var(--_file-link_meta_f-s);
+    color: var(--_file-link_meta_c);
   }
 }
 
-/* === Color variants per file family === */
-.c--fileLink-pdf     { --_fileLink-icon_c: #dc2626; }
-.c--fileLink-doc     { --_fileLink-icon_c: #2563eb; }
-.c--fileLink-xls     { --_fileLink-icon_c: #16a34a; }
-.c--fileLink-ppt     { --_fileLink-icon_c: #ea580c; }
-.c--fileLink-txt     { --_fileLink-icon_c: #4b5563; }
-.c--fileLink-zip     { --_fileLink-icon_c: #a16207; }
-.c--fileLink-img     { --_fileLink-icon_c: #9333ea; }
-.c--fileLink-generic { --_fileLink-icon_c: #6b7280; }
+/* Color variants per file family */
+.c--file-link-pdf {
+  --_file-link_icon_c: var(--_file-link_pdf_icon_c);
+}
+
+.c--file-link-doc {
+  --_file-link_icon_c: var(--_file-link_doc_icon_c);
+}
+
+.c--file-link-xls {
+  --_file-link_icon_c: var(--_file-link_xls_icon_c);
+}
+
+.c--file-link-ppt {
+  --_file-link_icon_c: var(--_file-link_ppt_icon_c);
+}
+
+.c--file-link-txt {
+  --_file-link_icon_c: var(--_file-link_txt_icon_c);
+}
+
+.c--file-link-zip {
+  --_file-link_icon_c: var(--_file-link_zip_icon_c);
+}
+
+.c--file-link-img {
+  --_file-link_icon_c: var(--_file-link_img_icon_c);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--file-link {
+    transition: none;
+  }
+}

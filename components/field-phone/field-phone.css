@@ -1,29 +1,36 @@
 /**
- * Field Icon Component Styles
+ * Field Phone Component Styles
  *
- * A field row with an icon on the left and content on the right.
+ * A phone link (tel:) with a leading icon.
  */
 
-.c--fieldPhone {
+.c--field-phone {
   /* Variables — main component */
-  --_fieldPhone_gap: var(--fieldPhone_gap, 8px);
+  --_field-phone_gap: var(--field-phone_gap, var(--spacing-8));
+  --_field-phone_c: var(--field-phone_c, inherit);
+  --_field-phone_f-s: var(--field-phone_f-s, inherit);
+  --_field-phone_f-w: var(--field-phone_f-w, inherit);
+  --_field-phone_p-b: var(--field-phone_p-b, var(--spacing-0));
+  --_field-phone_t-d: var(--field-phone_t-d, none);
 
-  --link_d: none;
+  /* Variables — icon */
+  --_field-phone_icon_size: var(--field-phone_icon_size, auto);
+  --_field-phone_icon_c: var(--field-phone_icon_c, inherit);
 
   display: flex;
   align-items: center;
-  gap: var(--_fieldPhone_gap);
-  color: var(--fieldPhone_c);
-  font-size: var(--fieldPhone_f-s);
-  font-weight: var(--fieldPhone_f-w);
-  padding-block: var(--fieldPhone_p-b);
+  gap: var(--_field-phone_gap);
+  color: var(--_field-phone_c);
+  font-size: var(--_field-phone_f-s);
+  font-weight: var(--_field-phone_f-w);
+  padding-block: var(--_field-phone_p-b);
+  text-decoration: var(--_field-phone_t-d);
 
   svg,
   img {
     display: block;
-    flex: 0 0 var(--_fieldPhone-icon_s);
-    color: var(--fieldPhone-icon_c);
-    width: var(--fieldPhone-icon_s);
-    height: var(--fieldPhone-icon_h, var(--fieldPhone-icon_s));
+    color: var(--_field-phone_icon_c);
+    width: var(--_field-phone_icon_size);
+    height: var(--_field-phone_icon_size);
   }
 }

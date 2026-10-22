@@ -1,8 +1,8 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Field Icon
 status: stable
-version: 1.0.0
-group: Components
+version: 1.1.0
+group: Fields
 description: 'A field row with an icon on the left and content on the right.'
 
 # Props.
@@ -11,34 +11,34 @@ props:
 
   properties:
     # fields values
-    fieldIcon_icon:
+    field_icon_icon:
       type: ['string', 'null']
       title: Icon
-      description: 'The icon element (SVG, img, or icon component).'
+      description: 'The icon element (SVG or img markup).'
       default: null
 
-    fieldIcon_value:
+    field_icon_value:
       type: ['string', 'null']
       title: Value
       description: 'The value displayed next to the icon.'
       default: null
 
-    # uc -> utility_classes
-    fieldIcon_uc:
+    # uc -> utility classes
+    field_icon_uc:
       type: array
       items:
         type: string
       title: Field Icon Utility Classes
-      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      description: 'Extra classes merged onto the wrapper.'
       default: []
 
     # att -> attributes
-    fieldIcon_att:
-      type: Drupal\Core\Template\Attribute
+    field_icon_att:
+      type: ['string', 'object', 'array', 'null']
       title: Field Icon Attributes
-      description: A list of HTML attributes for the component wrapper.
-
+      description: 'HTML attributes for the component wrapper.'
       default: null
+
 # Slots.
 slots:
   slot_icon:

@@ -4,24 +4,25 @@
  * A documents field rendered as a stacked list of document items.
  */
 
-.c--fieldDocuments {
-  --_fieldDocuments_m-b-s: var(--fieldDocuments_m-b-s, clamp(16px, calc(13.091px + 0.909vw), 24px));
-  --_fieldDocuments_g: var(--fieldDocuments_g, clamp(16px, calc(13.091px + 0.909vw), 24px));
+.c--field-documents {
+  /* Variables — main component */
+  --_field-documents_m-b: var(--field-documents_m-b, clamp(16px, calc(13.091px + 0.909vw), 24px));
+  --_field-documents_gap: var(--field-documents_gap, clamp(16px, calc(13.091px + 0.909vw), 24px));
 
   /* Variables — item */
-  --_fieldDocuments-item_g: var(--fieldDocuments-item_g, 12px);
+  --_field-documents_item_gap: var(--field-documents_item_gap, var(--spacing-12));
 
   display: flex;
   flex-direction: column;
-  gap: var(--_fieldDocuments_g);
+  gap: var(--_field-documents_gap);
 
   &:not(:first-child) {
-    margin-block-start: var(--_fieldDocuments_m-b-s);
+    margin-block-start: var(--_field-documents_m-b);
   }
 
-  .fieldDocuments__item {
+  .field-documents__item {
     display: flex;
     flex-direction: column;
-    gap: var(--_fieldDocuments-item_g);
+    gap: var(--_field-documents_item_gap);
   }
 }

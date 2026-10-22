@@ -1,8 +1,8 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Field Documents
 status: stable
-version: 1.0.0
-group: Components
+version: 1.1.0
+group: Fields
 description: 'A documents field rendered as a stacked list of document items with an optional h3 label.'
 
 # Props.
@@ -11,34 +11,36 @@ props:
 
   properties:
     # fields values
-    fieldDocuments_items:
+    field_documents_items:
       type: array
       title: Items
       description: 'List of document items. Each item: { content: renderable }.'
       default: []
 
-    fieldDocuments_label:
+    field_documents_label:
       type: ['string', 'object', 'null']
       title: Label
       description: 'Optional field label displayed above the list.'
       default: null
 
-    fieldDocuments_label_hidden:
+    field_documents_label_hidden:
       type: boolean
       title: Hide label
       description: 'When true, the label is not rendered.'
       default: false
 
     # uc -> utility classes
-    fieldDocuments_uc:
+    field_documents_uc:
       type: array
+      items:
+        type: string
       title: Field Documents Utility Classes
       description: 'Extra classes merged onto the wrapper.'
       default: []
 
     # att -> attributes
-    fieldDocuments_att:
-      type: Drupal\Core\Template\Attribute
+    field_documents_att:
+      type: ['string', 'object', 'array', 'null']
       title: Field Documents Attributes
       description: 'HTML attributes for the component wrapper.'
       default: null

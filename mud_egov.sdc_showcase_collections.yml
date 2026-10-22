@@ -1446,3 +1446,10 @@ egov_content:
           - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23789%22/%3E%3C/svg%3E', alt: 'Imaginea 1', caption: 'Prima imagine', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23789%22/%3E%3C/svg%3E' }
           - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23987%22/%3E%3C/svg%3E', alt: 'Imaginea 2', caption: 'A doua imagine', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23987%22/%3E%3C/svg%3E' }
           - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23879%22/%3E%3C/svg%3E', alt: 'Imaginea 3', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23879%22/%3E%3C/svg%3E' }
+
+    # ── Field icon ────────────────────────────────────────────────────────────
+    - component: 'mud_egov:field-icon'
+      group_label: 'Field icon'
+      props:
+        field_icon_icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>'
+        field_icon_value: 'Chișinău, str. Exemplu 1'

@@ -4,33 +4,38 @@
  * A field row with an icon on the left and content on the right.
  */
 
-.c--fieldIcon {
+.c--field-icon {
   /* Variables — main component */
-  --_fieldIcon_gap: var(--fieldIcon_gap, 8px);
-  --_fieldIcon_c: var(--fieldIcon_c, var(--body_c));
-  --_fieldIcon_f-w: var(--fieldIcon_f-w, var(--f-w_light));
-  --_fieldIcon_p-b: var(--fieldIcon_p-b, 0px);
+  --_field-icon_gap: var(--field-icon_gap, var(--spacing-8));
+  --_field-icon_c: var(--field-icon_c, inherit);
+  --_field-icon_f-s: var(--field-icon_f-s, inherit);
+  --_field-icon_f-w: var(--field-icon_f-w, inherit);
+  --_field-icon_p-b: var(--field-icon_p-b, var(--spacing-0));
 
   /* Variables — icon */
-  --_fieldIcon-icon_a-s: var(--fieldIcon-icon_a-s, flex-start);
-  --_fieldIcon-icon_m-b-s: var(--fieldIcon-icon_m-b-s, 4px);
+  --_field-icon_icon_size: var(--field-icon_icon_size, auto);
+  --_field-icon_icon_c: var(--field-icon_icon_c, inherit);
 
-  --link_d: none;
+  /* Variables — link inside the value */
+  --_field-icon_link_t-d: var(--field-icon_link_t-d, none);
 
   display: flex;
   align-items: center;
-  gap: var(--_fieldIcon_gap);
-  color: var(--_fieldIcon_c);
-  font-size: var(--fieldIcon_f-s);
-  font-weight: var(--_fieldIcon_f-w);
-  padding-block: var(--_fieldIcon_p-b);
+  gap: var(--_field-icon_gap);
+  color: var(--_field-icon_c);
+  font-size: var(--_field-icon_f-s);
+  font-weight: var(--_field-icon_f-w);
+  padding-block: var(--_field-icon_p-b);
 
   svg,
   img {
     display: block;
-    flex: 0 0 var(--_fieldIcon-icon_s);
-    color: var(--fieldIcon-icon_c);
-    width: var(--fieldIcon-icon_s);
-    height: var(--fieldIcon-icon_h, var(--fieldIcon-icon_s));
+    color: var(--_field-icon_icon_c);
+    width: var(--_field-icon_icon_size);
+    height: var(--_field-icon_icon_size);
+  }
+
+  a {
+    text-decoration: var(--_field-icon_link_t-d);
   }
 }

@@ -1,29 +1,36 @@
 /**
- * Field Icon Component Styles
+ * Field Mail Component Styles
  *
- * A field row with an icon on the left and content on the right.
+ * An email link (mailto:) with a leading icon.
  */
 
-.c--fieldMail {
+.c--field-mail {
   /* Variables — main component */
-  --_fieldMail_gap: var(--fieldMail_gap, 8px);
+  --_field-mail_gap: var(--field-mail_gap, var(--spacing-8));
+  --_field-mail_c: var(--field-mail_c, inherit);
+  --_field-mail_f-s: var(--field-mail_f-s, inherit);
+  --_field-mail_f-w: var(--field-mail_f-w, inherit);
+  --_field-mail_p-b: var(--field-mail_p-b, var(--spacing-0));
+  --_field-mail_t-d: var(--field-mail_t-d, none);
 
-  --link_d: none;
+  /* Variables — icon */
+  --_field-mail_icon_size: var(--field-mail_icon_size, auto);
+  --_field-mail_icon_c: var(--field-mail_icon_c, inherit);
 
   display: flex;
   align-items: center;
-  gap: var(--_fieldMail_gap);
-  color: var(--fieldMail_c);
-  font-size: var(--fieldMail_f-s);
-  font-weight: var(--fieldMail_f-w);
-  padding-block: var(--fieldMail_p-b);
+  gap: var(--_field-mail_gap);
+  color: var(--_field-mail_c);
+  font-size: var(--_field-mail_f-s);
+  font-weight: var(--_field-mail_f-w);
+  padding-block: var(--_field-mail_p-b);
+  text-decoration: var(--_field-mail_t-d);
 
   svg,
   img {
     display: block;
-    flex: 0 0 var(--_fieldMail-icon_s);
-    color: var(--fieldMail-icon_c);
-    width: var(--fieldMail-icon_s);
-    height: var(--fieldMail-icon_h, var(--fieldMail-icon_s));
+    color: var(--_field-mail_icon_c);
+    width: var(--_field-mail_icon_size);
+    height: var(--_field-mail_icon_size);
   }
 }

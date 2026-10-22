@@ -1,8 +1,8 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: File Link
 status: stable
-version: 1.0.0
-group: Components
+version: 1.1.0
+group: Fields
 description: 'Downloadable file card: format SVG badge on the left (color-coded by extension), title + meta (extension, size, date) on the right. Whole card is clickable.'
 
 # Props.
@@ -11,45 +11,48 @@ props:
 
   properties:
     # fields values
-    fileLink_url:
+    file_link_url:
       type: string
       title: URL
       description: 'Href for the file download.'
+      default: ''
 
-    fileLink_title:
+    file_link_title:
       type: ['string', 'null']
       title: Title
       description: 'Human-readable title. Usually derived from the filename (underscores stripped, first letter capitalized).'
       default: null
 
-    fileLink_extension:
+    file_link_extension:
       type: ['string', 'null']
       title: Extension
       description: 'File extension (lowercase, no dot). Drives the icon color.'
       default: null
 
-    fileLink_size:
+    file_link_size:
       type: ['string', 'null']
       title: Size
       description: 'Pre-formatted file size (e.g. "1.3 MB").'
       default: null
 
-    fileLink_date:
+    file_link_date:
       type: ['string', 'null']
       title: Date
       description: 'Pre-formatted publication date.'
       default: null
 
     # uc -> utility classes
-    fileLink_uc:
+    file_link_uc:
       type: array
+      items:
+        type: string
       title: File Link Utility Classes
       description: 'Extra classes merged onto the anchor.'
       default: []
 
     # att -> attributes
-    fileLink_att:
-      type: Drupal\Core\Template\Attribute
+    file_link_att:
+      type: ['string', 'object', 'array', 'null']
       title: File Link Attributes
       description: 'HTML attributes for the anchor.'
       default: null

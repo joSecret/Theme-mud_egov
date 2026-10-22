@@ -1,9 +1,9 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
-name: Field Icon
+name: Field Phone
 status: stable
-version: 1.0.0
-group: Components
-description: 'A field row with an icon on the left and content on the right.'
+version: 1.1.0
+group: Fields
+description: 'A phone number rendered as a tel: link (Moldova country code 373 added when missing) with a leading phone icon.'
 
 # Props.
 props:
@@ -11,17 +11,26 @@ props:
 
   properties:
     # fields values
-    fieldPhone_value:
+    field_phone_value:
       type: ['string', 'null']
       title: Value
-      description: 'The value displayed next to the icon.'
+      description: 'The phone number displayed next to the icon and used for the link.'
       default: null
 
+    # uc -> utility classes
+    field_phone_uc:
+      type: array
+      items:
+        type: string
+      title: Field Phone Utility Classes
+      description: 'Extra classes merged onto the link.'
+      default: []
+
     # att -> attributes
-    fieldPhone_att:
-      type: Drupal\Core\Template\Attribute
-      title: Field Icon Attributes
-      description: A list of HTML attributes for the component wrapper.
+    field_phone_att:
+      type: ['string', 'object', 'array', 'null']
+      title: Field Phone Attributes
+      description: 'HTML attributes for the link.'
       default: null
 
 # Slots.

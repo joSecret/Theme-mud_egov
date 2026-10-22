@@ -5,11 +5,11 @@
  *
  * Delegates to the mud_egov:file-link component. Extra variables prepared by
  * mud_egov_preprocess_file_link():
- * - fileLink_url: Direct URL to the file.
- * - fileLink_title: Human-readable title (filename without extension,
+ * - file_link_url: Direct URL to the file.
+ * - file_link_title: Human-readable title (filename without extension,
  *   underscores replaced by spaces, first letter capitalized).
- * - fileLink_extension: Lowercase extension (no dot).
- * - fileLink_date: Pre-formatted publication date from the parent Media entity
+ * - file_link_extension: Lowercase extension (no dot).
+ * - file_link_date: Pre-formatted publication date from the parent Media entity
  *   (field_publication_date), when available.
  *
  * Core variables used:
@@ -18,10 +18,10 @@
  */
 #}
 {% include 'mud_egov:file-link' with {
-  fileLink_url: fileLink_url,
-  fileLink_title: fileLink_title,
-  fileLink_extension: fileLink_extension,
-  fileLink_size: file_size,
-  fileLink_date: fileLink_date|default(null),
-  fileLink_att: attributes,
+  file_link_url: file_link_url,
+  file_link_title: file_link_title,
+  file_link_extension: file_link_extension,
+  file_link_size: file_size,
+  file_link_date: file_link_date|default(null),
+  file_link_att: attributes,
 } only %}

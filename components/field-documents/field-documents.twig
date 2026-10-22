@@ -8,44 +8,44 @@
   * display their view mode produces.
   *
   * Available values:
-  * - fieldDocuments_items (array) (default: [])
+  * - field_documents_items (array) (default: [])
   *   Each item: { content: renderable|string }
-  * - fieldDocuments_label (string|object|null) (default: null)
-  * - fieldDocuments_label_hidden (boolean) (default: false)
+  * - field_documents_label (string|object|null) (default: null)
+  * - field_documents_label_hidden (boolean) (default: false)
   *
   * Available Utility classes -> uc
-  * - fieldDocuments_uc (array) (default: [])
+  * - field_documents_uc (array) (default: [])
   *
   * Available attributes -> att
-  * - fieldDocuments_att (Drupal\Core\Template\Attribute)
+  * - field_documents_att (Drupal\Core\Template\Attribute)
   */
 -#}
 
 {#- Set default value -#}
-{% set fieldDocuments_items = fieldDocuments_items|default([]) %}
-{% set fieldDocuments_label = fieldDocuments_label|default(null) %}
-{% set fieldDocuments_label_hidden = fieldDocuments_label_hidden|default(false) %}
+{% set field_documents_items = field_documents_items|default([]) %}
+{% set field_documents_label = field_documents_label|default(null) %}
+{% set field_documents_label_hidden = field_documents_label_hidden|default(false) %}
 
 {#- Create attributes -#}
-{% set fieldDocuments_att = fieldDocuments_att ?: create_attribute() %}
+{% set field_documents_att = field_documents_att ?: create_attribute() %}
 
 {#- Component classes -#}
-{% set fieldDocuments_classes = [
-  'c--fieldDocuments',
-]|merge(fieldDocuments_uc ?: []) %}
+{% set field_documents_classes = [
+  'c--field-documents',
+]|merge(field_documents_uc ?: []) %}
 
 {#- Render component -#}
-<div{{ fieldDocuments_att.addClass(fieldDocuments_classes) }}>
-  {% if fieldDocuments_label and not fieldDocuments_label_hidden %}
+<div{{ field_documents_att.addClass(field_documents_classes) }}>
+  {% if field_documents_label and not field_documents_label_hidden %}
     {% include 'mud_egov:heading' with {
       heading_level: 3,
-      heading_text: fieldDocuments_label,
-      heading_uc: ['fieldDocuments__label'],
+      heading_text: field_documents_label,
+      heading_uc: ['field-documents__label'],
     } %}
   {% endif %}
 
-  {% for item in fieldDocuments_items %}
-    <div class="fieldDocuments__item">
+  {% for item in field_documents_items %}
+    <div class="field-documents__item">
       {{ item.content }}
     </div>
   {% endfor %}

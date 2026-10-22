@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Badge
 status: stable
-group: Global
-version: 1.0.0
+group: Globals
+version: 1.1.0
 description: 'Badge component for counters, indicators and notification markers.'
 
 # Props.

@@ -1,9 +1,8 @@
 ---
 title: Badge
-group: Global
-slug: badge
-description: Badge component for counters, indicators and notification markers.
-version: 1.0.0
+group: Globals
+version: 1.1.0
+css_prefix: badge
 ---
 
 # Badge Component
@@ -82,8 +81,7 @@ Use instead of `badge_content` for complex markup inside the badge.
 Offset can be overridden via CSS:
 ```css
 .my-context .badge-positioned {
-  --badge_offset-top: -4px;
-  --badge_offset-right: -4px;
+  --badge_inset: -4px -4px auto auto;
 }
 ```
 
@@ -100,5 +98,13 @@ Offset can be overridden via CSS:
 | `--badge_f-w` | `var(--badge-font-weight)` | Font weight |
 | `--badge_bg` | `var(--badge-background-default)` | Background color |
 | `--badge_c` | `var(--badge-text-default)` | Text color |
-| `--badge_offset-top` | `var(--badge-offset-top)` | Top offset for positioned mode |
-| `--badge_offset-right` | `var(--badge-offset-right)` | Right offset for positioned mode |
+| `--badge_inset` | `var(--badge-offset-top) var(--badge-offset-right) auto auto` | Position in positioned mode |
+| `--badge_<size>_<property>` | size defaults | Per size, e.g. `--badge_lg_f-s` |
+| `--badge_<color>_bg`, `--badge_<color>_c` | color defaults | Per color, e.g. `--badge_brand_bg` |
+| `--badge_dot_size` | `var(--badge-dot-size-md)` | Inner pip of dot badges |
+
+## Accessibility
+
+- `role="status"` with `aria-live="polite"`: count changes are announced.
+- The accessible name is `badge_aria_label`, or the visible count; dot badges fall back to "Notification", so pass a meaningful `badge_aria_label`.
+- The badge is not interactive (`pointer-events: none`).

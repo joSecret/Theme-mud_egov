@@ -1,9 +1,8 @@
 ---
 title: Tag
-group: Global
-slug: tag
-description: Tag component for labeling and categorizing content with color and appearance variants.
-version: 1.0.0
+group: Globals
+version: 1.1.0
+css_prefix: tag
 ---
 
 # Tag Component
@@ -110,8 +109,17 @@ Icon content. Position controlled by `tag_icon_position`.
 | `--tag_f-s` | `var(--tag-label-font-size-md)` | Font size |
 | `--tag_l-h` | `var(--tag-label-line-height-md)` | Line height |
 | `--tag_f-w` | `var(--tag-label-font-weight-info)` | Font weight |
-| `--tag_bg` | subtle-muted background | Background color |
-| `--tag_c` | subtle-muted label | Text color |
-| `--tag_b-c` | `transparent` | Border color |
-| `--tag_icon-s` | `var(--tag-icon-size-md)` | Icon size |
-| `--tag_group-gap` | `var(--tag-container-group-gap)` | Gap in tag-group wrapper |
+| `--tag_subtle_bg`, `--tag_subtle_c` | muted | Subtle colors (also the default) |
+| `--tag_strong_bg`, `--tag_strong_c` | muted | Strong colors |
+| `--tag_outlined_b-c`, `--tag_outlined_c` | muted | Outlined colors |
+| `--tag_<color>_<type>_<property>` | per color | e.g. `--tag_brand_strong_bg` |
+| `--tag_icon_size` | `var(--tag-icon-size-md)` | Icon size |
+| `--tag_group_gap` | `var(--tag-container-group-gap)` | Gap in tag-group wrapper |
+
+Sizes: `--tag_sm_h`, `--tag_sm_f-s`, etc.
+
+## Accessibility
+
+- A tag is static text; as a link (`tag_url`) it is a normal `<a>` with the global focus ring.
+- The icon is decorative; put meaning in the text.
+- Color pairs come from the MUD defaults; strong and subtle pairs meet 4.5:1.

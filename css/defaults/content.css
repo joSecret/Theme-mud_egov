@@ -162,7 +162,7 @@
   --tag-strong-label-success: var(--color-text-brand-inverse);
   --tag-strong-label-brand: var(--color-text-brand-inverse);
   --tag-strong-label-danger: var(--color-text-brand-inverse);
-  --tag-outlined-background: transparent; /* nefolosit */
+  --tag-outlined-background: transparent;
   --tag-outlined-border-muted: var(--color-border-base-default);
   --tag-outlined-border-neutral: var(--color-border-base-default);
   --tag-outlined-border-accent: var(--color-border-warning-default);

@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Term Teaser
 status: stable
 group: Content
-version: 1.0.0
+version: 1.1.0
 description: Simple taxonomy term teaser with image/svg on top and text below.
 
 # Props.
@@ -10,20 +10,20 @@ props:
   type: object
   properties:
     # fields values
-    term_title:
+    term_teaser_title:
       type: ['string', 'null']
       title: Title
       default: null
       description: Term label displayed below the image.
 
-    term_url:
+    term_teaser_url:
       type: ['string', 'null']
       title: URL
       default: null
       description: Wraps the teaser in a link when set.
 
     # component variations
-    term_variant:
+    term_teaser_variant:
       type: ['string', 'null']
       title: Variant
       default: icon
@@ -31,7 +31,7 @@ props:
       description: 'Image sizing. "icon" = small square (64px). "cover" = wide responsive image.'
 
     # uc -> utility_classes
-    term_uc:
+    term_teaser_uc:
       type: array
       items:
         type: string
@@ -40,7 +40,7 @@ props:
       description: An array of utility classes to add to the component.
 
     # att -> attributes
-    term_att:
+    term_teaser_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null

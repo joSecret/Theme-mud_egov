@@ -22,8 +22,8 @@
   * - card_subtitle_tag: (optional) Card subtitle tag.
   * - card_text_tag: (optional) Card text tag.
   * - card_border: (optional) Card border.
-  * - attributes: (optional) Any additional classes to add to the card.
-  * - card_utility_classes: (optional) Any additional classes to add to the card.
+  * - card_att: (optional) Attributes for the card (Attribute).
+  * - card_uc: (optional) Any additional classes to add to the card.
   * - card_title_prefix: (optional) Corresponds to title_prefix in entity templates.
   * - card_title_suffix: (optional) Corresponds to title_suffix in entity templates.
  */
@@ -38,6 +38,7 @@
 {% set card_image_cap = card_image_cap|default('top') %}
 {% set card_link_icon = card_link_icon|default(null) %}
 {% set card_link_icon_position = card_link_icon_position|default('right') %}
+{% set card_title_level = card_title_tag matches '/^h[1-6]$/' ? card_title_tag|slice(1) : 3 %}
 
 {%
   set card_title_classes = [
@@ -79,10 +80,10 @@
 {%
   set card_classes = [
     'card',
-  ]|merge(card_utility_classes ?: [])|merge(card_border ?: [])
+  ]|merge(card_uc ?: [])|merge(card_border ?: [])
 %}
 
-{% set attributes = attributes ?: create_attribute() %}
+{% set card_att = card_att ?: create_attribute() %}
 {% set card_body_attributes = create_attribute() %}
 {% set card_text_attributes = create_attribute() %}
 {% set card_title_attributes = create_attribute() %}
@@ -91,10 +92,6 @@
 {% set card_subtitle_attributes = create_attribute() %}
 {% set card_image_attributes = create_attribute() %}
 {% set card_link_attributes = create_attribute() %}
-
-{%- if card_image_alt -%}
-  {% set card_image_attributes = card_image_attributes.setAttribute('alt', card_image_alt ) %}
-{%- endif -%}
 
 {%
   set card_image_classes = [
@@ -111,14 +108,15 @@
     {%
       include 'mud_egov:image' with {
         src: card_image_src,
-        image_uc: card_image_classes
+        alt: card_image_alt,
+        image_att: card_image_attributes.addClass(card_image_classes)
       }
     %}
   {%- endif -%}
 {% endset -%}
 
 {% apply spaceless %}
-<{{ card_tag }} {{ attributes.addClass(card_classes) }}>
+<{{ card_tag }} {{ card_att.addClass(card_classes) }}>
   {% block slot_card %}
     {%- if card_header -%}
       <div {{ card_header_attributes.addClass(card_header_classes) }}>
@@ -137,14 +135,16 @@
         {{ card_title_prefix }}
 
         {%- if card_title -%}
-          {%
-            include 'mud_egov:heading' with {
-              heading_html_tag: card_title_tag,
-              content: card_title,
-              heading_attributes: card_title_attributes,
-              heading_utility_classes: card_title_classes
-            }
-          %}
+          {% embed 'mud_egov:heading' with {
+            heading_level: card_title_level,
+            heading_att: card_title_attributes,
+            heading_uc: card_title_classes,
+            card_title: card_title,
+          } %}
+            {% block slot_content %}
+              {{- card_title -}}
+            {% endblock %}
+          {% endembed %}
         {%- endif -%}
 
         {{ card_title_suffix }}
@@ -163,10 +163,10 @@
           {%
             include 'mud_egov:button' with {
               button_uc: card_link_classes,
-              button_label: card_link_text,
-              button_url: card_link_url,
-              button_icon_position: card_link_icon_position,
-              button_icon: card_link_icon
+              label: card_link_text,
+              url: card_link_url,
+              icon_position: card_link_icon_position,
+              icon: card_link_icon
             }
           %}
         {%- endif -%}

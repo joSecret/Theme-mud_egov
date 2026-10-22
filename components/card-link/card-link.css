@@ -1,46 +1,57 @@
+/**
+ * Card Link: card cu pictogramă și un link întins peste întreaga suprafață.
+ * Nu are default-uri MUD; valorile vin din tokenuri.
+ */
 .c--card-link {
-  --_cl_bg: var(--card-link_bg, var(--color-background-base-secondary));
-  --_cl_bg_h: var(--card-link_bg_h, var(--color-background-base-secondary-hover));
-  --_cl_br: var(--card-link_br, 1rem);
-  --_cl_p: var(--card-link_p, 1.5rem);
-  --_cl_gap: var(--card-link_gap, 1rem);
-  --_cl_c: var(--card-link_c, var(--body_c, inherit));
-  --_cl_icon-size: var(--card-link_icon-size, 2rem);
-
-  --link_c: var(--color-text-base-default);
-  --link_c_h: var(--color-text-base-default);
-  --link_d: none;
+  --_card-link_bg: var(--card-link_bg, var(--color-background-base-secondary));
+  --_card-link_b-r: var(--card-link_b-r, var(--border-radius-16));
+  --_card-link_p: var(--card-link_p, var(--spacing-24));
+  --_card-link_gap: var(--card-link_gap, var(--spacing-16));
+  --_card-link_c: var(--card-link_c, inherit);
+  --_card-link_m-h: var(--card-link_m-h, 156px);
+  --_card-link_link_c: var(--card-link_link_c, var(--color-text-base-default));
+  --_card-link_link_c_h: var(--card-link_link_c_h, var(--color-text-base-default));
+  --_card-link_link_c_a: var(--card-link_link_c_a, var(--link-primary-label-active));
+  --_card-link_f-s: var(--card-link_f-s, var(--font-size-18));
+  --_card-link_icon_size: var(--card-link_icon_size, 40px);
 
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--_cl_gap);
-  padding: var(--_cl_p);
-  background-color: var(--_cl_bg);
-  border-radius: var(--_cl_br);
-  color: var(--_cl_c);
+  gap: var(--_card-link_gap);
+  padding: var(--_card-link_p);
+  background-color: var(--_card-link_bg);
+  border-radius: var(--_card-link_b-r);
+  color: var(--_card-link_c);
   text-decoration: none;
-  transition: background-color 0.2s ease;
-  min-height: 156px;
+  min-height: var(--_card-link_m-h);
 
   a {
-    font-size: var(--font-size-18);
+    font-size: var(--_card-link_f-s);
     margin-block-start: auto;
+    color: var(--_card-link_link_c);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--_card-link_link_c_h);
+    }
+
+    &:active,
+    &:focus-visible {
+      color: var(--_card-link_link_c_a);
+    }
 
     &::after {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       z-index: 1;
       content: "";
     }
   }
 
   img {
-    width: 40px;
+    width: var(--_card-link_icon_size);
     height: 100%;
-    max-height: 40px;
+    max-height: var(--_card-link_icon_size);
   }
 }

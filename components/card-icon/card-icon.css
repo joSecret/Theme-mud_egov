@@ -1,15 +1,27 @@
+/**
+ * Card Icon: card cu pictogramă, titlu și descriere.
+ * Nu are default-uri MUD; valorile vin din tokenuri.
+ */
 .c--card-icon {
+  --_card-icon_bg: var(--card-icon_bg, var(--color-background-base-secondary));
+  --_card-icon_b-r: var(--card-icon_b-r, var(--border-radius-8));
+  --_card-icon_p: var(--card-icon_p, var(--spacing-24));
+  --_card-icon_gap: var(--card-icon_gap, var(--spacing-8));
+  --_card-icon_header_gap: var(--card-icon_header_gap, var(--spacing-12));
+  --_card-icon_title_f-w: var(--card-icon_title_f-w, var(--font-weight-semibold));
+  --_card-icon_title_f-s: var(--card-icon_title_f-s, var(--font-size-20));
+
   display: grid;
-  gap: var(--spacing-8);
-  padding: var(--spacing-24);
-  background-color: var(--color-neutral-100, #f3f4f6);
-  border-radius: var(--border-radius-md, 8px);
+  gap: var(--_card-icon_gap);
+  padding: var(--_card-icon_p);
+  background-color: var(--_card-icon_bg);
+  border-radius: var(--_card-icon_b-r);
 }
 
 .card-icon-header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-12);
+  gap: var(--_card-icon_header_gap);
 }
 
 .card-icon-icon {
@@ -19,9 +31,6 @@
 
 .card-icon-title {
   margin: 0;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-20);
-}
-
-.card-icon-description {
+  font-weight: var(--_card-icon_title_f-w);
+  font-size: var(--_card-icon_title_f-s);
 }

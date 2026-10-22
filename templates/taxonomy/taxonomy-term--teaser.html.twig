@@ -20,9 +20,9 @@
  */
 #}
 {% include 'mud_egov:term-teaser' with {
-  term_att: attributes.setAttribute('id', 'taxonomy-term-' ~ term.id),
-  term_uc: ['vocabulary-' ~ term.bundle|clean_class],
-  term_title: name,
-  term_url: url,
+  term_teaser_att: attributes.setAttribute('id', 'taxonomy-term-' ~ term.id),
+  term_teaser_uc: ['vocabulary-' ~ term.bundle|clean_class],
+  term_teaser_title: name,
+  term_teaser_url: url,
   term_image: content,
 } %}

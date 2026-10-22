@@ -1,9 +1,18 @@
+/**
+ * Term Teaser: teaser de termen de taxonomie, cu imagine sau SVG sus și text dedesubt.
+ * Variante: icon (pătrat mic, implicit) și cover (imagine lată).
+ * Nu are default-uri MUD; valorile vin din tokenuri.
+ */
 .term-teaser {
   --_term-teaser_gap: var(--term-teaser_gap, var(--spacing-12));
-  --_term-teaser_img-s: var(--term-teaser_img-s, 64px);
+  --_term-teaser_img_size: var(--term-teaser_img_size, 64px);
   --_term-teaser_t-a: var(--term-teaser_t-a, center);
   --_term-teaser_f-s: var(--term-teaser_f-s, var(--font-size-16));
   --_term-teaser_f-w: var(--term-teaser_f-w, var(--font-weight-semibold));
+
+  --_term-teaser_cover_img_size: var(--term-teaser_cover_img_size, 100%);
+  --_term-teaser_cover_t-a: var(--term-teaser_cover_t-a, left);
+  --_term-teaser_cover_f-s: var(--term-teaser_cover_f-s, var(--font-size-18));
 
   display: flex;
   flex-direction: column;
@@ -12,22 +21,20 @@
   text-align: var(--_term-teaser_t-a);
 
   & .term-teaser__link {
-    --link_d: none;
-    --link_c: inherit;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--_term-teaser_gap);
     color: inherit;
+    text-decoration: none;
   }
 
   & .term-teaser__image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--_term-teaser_img-s);
-    height: var(--_term-teaser_img-s);
+    width: var(--_term-teaser_img_size);
+    height: var(--_term-teaser_img_size);
     overflow: hidden;
 
     & img,
@@ -45,9 +52,9 @@
 }
 
 .term-teaser-cover {
-  --_term-teaser_img-s: 100%;
-  --_term-teaser_t-a: left;
-  --_term-teaser_f-s: var(--font-size-18);
+  --_term-teaser_img_size: var(--_term-teaser_cover_img_size);
+  --_term-teaser_t-a: var(--_term-teaser_cover_t-a);
+  --_term-teaser_f-s: var(--_term-teaser_cover_f-s);
 
   align-items: stretch;
 

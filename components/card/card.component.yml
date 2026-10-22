@@ -1,8 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Card
 status: stable
-description: 'A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.'
-group: Cards
+version: 1.1.0
+description: 'Flexible content container with optional header, footer, image, title, subtitle, text and link. Looks are set with CSS variables (--card_*); the defaults add no background or border.'
+group: Content
 props:
   type: object
   properties:
@@ -18,6 +19,7 @@ props:
     card_body:
       type: ['string', 'null']
       title: Card Body
+      default: null
 
     card_body_tag:
       type: ['string', 'null']
@@ -31,6 +33,7 @@ props:
     card_title:
       type: ['string', 'null']
       title: Card Title
+      default: null
 
     card_title_tag:
       type: ['string', 'null']
@@ -38,7 +41,6 @@ props:
       default: h3
       enum:
         - null
-        - div
         - h1
         - h2
         - h3
@@ -49,6 +51,7 @@ props:
     card_subtitle:
       type: ['string', 'null']
       title: Card Subtitle
+      default: null
 
     card_subtitle_tag:
       type: ['string', 'null']
@@ -76,19 +79,22 @@ props:
     card_link_text:
       type: ['string', 'null']
       title: Card Link Text
+      default: null
 
     card_link_url:
       type: ['string', 'null']
       title: Card Link URL
+      default: null
 
     card_link_icon:
       type: ['string', 'null']
       title: Card Link Icon (SVG)
+      default: null
 
     card_link_icon_position:
       type: ['string', 'null']
       title: Card Link Icon Position
-      default: left
+      default: right
       enum:
         - left
         - right
@@ -97,17 +103,20 @@ props:
     card_media:
       type: ['string', 'array', 'object', 'null']
       title: Card Media
+      default: null
 
     card_image_src:
       type: ['string', 'null']
       title: Card Image Source URL
+      default: null
 
     card_image_alt:
       type: ['string', 'null']
       title: Card Image Alternative Text
+      default: null
 
     card_image_cap:
-      type: 'string'
+      type: string
       title: Image Caption Position
       default: 'top'
       enum:
@@ -122,17 +131,19 @@ props:
     card_header:
       type: ['string', 'null']
       title: Card Header
+      default: null
 
     card_footer:
       type: ['string', 'null']
       title: Card Footer
+      default: null
 
     card_border:
       type: boolean
       title: Has Card Border?
       default: false
 
-    card_utility_classes:
+    card_uc:
       type: array
       items:
         type: string
@@ -195,6 +206,12 @@ props:
       title: Footer Utility Classes
       description: An array of utility classes. These can be used to add extra classes or custom CSS classes to the card footer component.
       default: []
+
+    card_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: HTML attributes for the card root element.
+      default: null
 
     card_title_prefix:
       type: array

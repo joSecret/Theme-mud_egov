@@ -1,7 +1,8 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Teaser
 status: stable
-group: Node
+version: 1.1.0
+group: Content
 description: 'Teaser component with side-by-side layout: image on the left, content on the right (date, title, description, categories).'
 props:
   type: object
@@ -10,31 +11,37 @@ props:
       type: ['string', 'null']
       title: Title
       description: The title of the teaser.
+      default: null
 
     teaser_description:
       type: ['string', 'null']
       title: Description
       description: The description text for the teaser.
+      default: null
 
     teaser_image:
       type: ['string', 'array', 'null']
       title: Image
       description: Image render array or markup for the teaser.
+      default: null
 
     teaser_date:
       type: ['string', 'null']
       title: Date
       description: Date to display above the title.
+      default: null
 
     teaser_categories:
       type: ['string', 'array', 'null']
       title: Categories
       description: Categories list (render array or markup).
+      default: null
 
     teaser_link:
       type: ['string', 'null']
       title: Link URL
       description: URL for the stretched link wrapping the teaser.
+      default: null
 
     # uc -> utility_classes
     teaser_uc:

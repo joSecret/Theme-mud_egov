@@ -1,43 +1,58 @@
+/**
+ * Card Document: card pentru un document sau o listă de documente.
+ * Nu are default-uri MUD; valorile vin din tokenuri.
+ */
 .c--card-document {
-  --_cd_bg: var(--card-document_bg, var(--color-background-base-primary, #fff));
-  --_cd_br: var(--card-document_br, 1rem);
-  --_cd_bc: var(--card-document_bc, var(--color-border-base-default, #e5e7eb));
-  --_cd_bc_h: var(--card-document_bc_h, var(--color-border-base-strong, #121212));
-  --_cd_p: var(--card-document_p, 1.5rem);
-  --_cd_gap: var(--card-document_gap, 0.75rem);
-  --_cd_c: var(--card-document_c, var(--color-text-base-default, #121212));
-  --_cd_c_meta: var(--card-document_c_meta, var(--color-text-base-muted, #6b7280));
-  --_cd_icon-size: var(--card-document_icon-size, 2.75rem);
-  --_cd_icon-bg: var(--card-document_icon-bg, var(--color-background-base-secondary, #f3f4f6));
+  --_card-document_bg: var(--card-document_bg, var(--color-background-base-default));
+  --_card-document_b-r: var(--card-document_b-r, var(--border-radius-16));
+  --_card-document_b-w: var(--card-document_b-w, var(--border-width-1));
+  --_card-document_b-c: var(--card-document_b-c, var(--color-border-base-default));
+  --_card-document_b-c_h: var(--card-document_b-c_h, var(--color-border-base-strong));
+  --_card-document_p: var(--card-document_p, var(--spacing-24));
+  --_card-document_gap: var(--card-document_gap, var(--spacing-12));
+  --_card-document_c: var(--card-document_c, var(--color-text-base-default));
+  --_card-document_trn: var(--card-document_trn, 0.2s ease);
+
+  --_card-document_meta_c: var(--card-document_meta_c, var(--color-text-base-tertiary));
+  --_card-document_meta_f-s: var(--card-document_meta_f-s, var(--font-size-14));
+
+  --_card-document_icon_size: var(--card-document_icon_size, 2.75rem);
+  --_card-document_icon_bg: var(--card-document_icon_bg, var(--color-background-base-secondary));
+
+  --_card-document_title_f-w: var(--card-document_title_f-w, var(--font-weight-semibold));
+  --_card-document_title_f-s: var(--card-document_title_f-s, var(--font-size-20));
+  --_card-document_title_l-h: var(--card-document_title_l-h, 1.3);
+
+  --_card-document_item_f-s: var(--card-document_item_f-s, var(--font-size-16));
 
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--_cd_gap);
-  padding: var(--_cd_p);
-  background-color: var(--_cd_bg);
-  border: 1px solid var(--_cd_bc);
-  border-radius: var(--_cd_br);
-  color: var(--_cd_c);
-  transition: border-color 0.2s ease;
+  gap: var(--_card-document_gap);
+  padding: var(--_card-document_p);
+  background-color: var(--_card-document_bg);
+  border: var(--_card-document_b-w) solid var(--_card-document_b-c);
+  border-radius: var(--_card-document_b-r);
+  color: var(--_card-document_c);
+  transition: border-color var(--_card-document_trn);
 
   .card-document-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--_cd_icon-size);
-    height: var(--_cd_icon-size);
+    width: var(--_card-document_icon_size);
+    height: var(--_card-document_icon_size);
     margin-block-end: 0.5rem;
-    background-color: var(--_cd_icon-bg);
+    background-color: var(--_card-document_icon_bg);
     border-radius: 50%;
-    color: var(--_cd_c);
+    color: var(--_card-document_c);
   }
 
   .card-document-title {
     margin: 0;
-    font-weight: var(--font-weight-semibold, 600);
-    font-size: var(--font-size-20, 1.25rem);
-    line-height: 1.3;
+    font-weight: var(--_card-document_title_f-w);
+    font-size: var(--_card-document_title_f-s);
+    line-height: var(--_card-document_title_l-h);
   }
 
   .card-document-link {
@@ -47,8 +62,8 @@
 
   .card-document-meta {
     margin: 0;
-    color: var(--_cd_c_meta);
-    font-size: var(--font-size-14, 0.875rem);
+    color: var(--_card-document_meta_c);
+    font-size: var(--_card-document_meta_f-s);
   }
 
   .card-document-items {
@@ -70,19 +85,19 @@
 
     &:hover,
     &:focus-visible {
-      color: var(--_cd_bc_h);
+      color: var(--_card-document_b-c_h);
     }
   }
 
   .card-document-item-title {
-    font-size: var(--font-size-16, 1rem);
+    font-size: var(--_card-document_item_f-s);
     text-decoration: underline;
     text-underline-offset: 0.25em;
   }
 
   .card-document-item-meta {
-    color: var(--_cd_c_meta);
-    font-size: var(--font-size-14, 0.875rem);
+    color: var(--_card-document_meta_c);
+    font-size: var(--_card-document_meta_f-s);
   }
 
   &.c--card-document__is-link {
@@ -95,7 +110,13 @@
 
     &:hover,
     &:focus-within {
-      border-color: var(--_cd_bc_h);
+      border-color: var(--_card-document_b-c_h);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--card-document {
+    transition: none;
   }
 }

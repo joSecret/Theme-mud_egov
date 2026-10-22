@@ -4,18 +4,18 @@
  * Card Icon component.
  *
  * Props:
- * - card_title (string|null)
- * - card_description (string|null)
+ * - card_icon_title (string|null)
+ * - card_icon_description (string|null)
  *
  * Slots:
  * - card_icon — rendered icon field
  */
 -#}
 
-{% set card_att = card_att ?: create_attribute() %}
-{% set card_classes = ['c--card-icon']|merge(card_uc ?: []) %}
+{% set card_icon_att = card_icon_att ?: create_attribute() %}
+{% set card_icon_classes = ['c--card-icon']|merge(card_icon_uc ?: []) %}
 
-<div{{ card_att.addClass(card_classes) }}>
+<div{{ card_icon_att.addClass(card_icon_classes) }}>
   <div class="card-icon-header">
     {%- if card_icon -%}
       <div class="card-icon-icon">
@@ -23,16 +23,16 @@
       </div>
     {%- endif -%}
 
-    {%- if card_title -%}
+    {%- if card_icon_title -%}
       <p class="card-icon-title">
-        {{- card_title -}}
+        {{- card_icon_title -}}
       </p>
     {%- endif -%}
   </div>
 
-  {%- if card_description -%}
+  {%- if card_icon_description -%}
     <div class="card-icon-description">
-      {{- card_description -}}
+      {{- card_icon_description -}}
     </div>
   {%- endif -%}
 </div>

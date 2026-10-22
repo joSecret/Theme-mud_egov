@@ -4,22 +4,22 @@
  * Template for the Term Teaser component.
  *
  * Props:
- * - term_title (string|null) — label below the image.
- * - term_url (string|null) — wraps teaser in a link.
- * - term_uc (array) — utility classes.
- * - term_att (Attribute) — extra attributes.
+ * - term_teaser_title (string|null) — label below the image.
+ * - term_teaser_url (string|null) — wraps teaser in a link.
+ * - term_teaser_uc (array) — utility classes.
+ * - term_teaser_att (Attribute) — extra attributes.
  *
  * Slots:
  * - term_image — rendered image or SVG field.
  */
 #}
 
-{% set term_att = term_att ?: create_attribute() %}
+{% set term_teaser_att = term_teaser_att ?: create_attribute() %}
 {%
   set term_classes = [
     'term-teaser',
-    term_variant ? 'term-teaser-' ~ term_variant,
-  ]|merge(term_uc ?: [])
+    term_teaser_variant ? 'term-teaser-' ~ term_teaser_variant,
+  ]|merge(term_teaser_uc ?: [])
 %}
 
 {% set term_inner %}
@@ -29,16 +29,16 @@
     </div>
   {%- endif -%}
 
-  {%- if term_title -%}
+  {%- if term_teaser_title -%}
     <div class="term-teaser__title">
-      {{- term_title -}}
+      {{- term_teaser_title -}}
     </div>
   {%- endif -%}
 {% endset %}
 
-<article{{ term_att.addClass(term_classes) }}>
-  {% if term_url %}
-    <a href="{{ term_url }}" class="term-teaser__link">
+<article{{ term_teaser_att.addClass(term_classes) }}>
+  {% if term_teaser_url %}
+    <a href="{{ term_teaser_url }}" class="term-teaser__link">
       {{- term_inner -}}
     </a>
   {% else %}

@@ -1,151 +1,153 @@
+/**
+ * Card: container flexibil cu antet, corp, subsol și imagine.
+ * Nu are default-uri MUD; valorile implicite păstrează aspectul curent (fără fundal și fără chenar).
+ */
 .card {
-  --_card_s: var(--card_s, 0px);
-  --_card_gap: var(--card_gap, 0px);
-  --_card_c: var(--card_c, var(--body_c));
+  --_card_p: var(--card_p, var(--spacing-0));
+  --_card_p-b: var(--card_p-b, var(--_card_p));
+  --_card_p-i: var(--card_p-i, var(--_card_p));
+  --_card_gap: var(--card_gap, var(--spacing-0));
+  --_card_c: var(--card_c, inherit);
   --_card_f-w: var(--card_f-w, normal);
-  --_card_pb: var(--card_pb, var(--_card_s));
-  --_card_pi: var(--card_pi, var(--_card_s));
-  --_card_bg: var(--card_bg, var(--c_gray_ultralight));
-  --_card_br: var(--card_br, var(--b-r));
-  --_card_bw: var(--card_bw, var(--b-w));
-  --_card_bc: var(--card_bc, var(--b-c));
+  --_card_bg: var(--card_bg, transparent);
+  --_card_b-r: var(--card_b-r, var(--border-radius-0));
+  --_card_b-w: var(--card_b-w, var(--spacing-0));
+  --_card_b-c: var(--card_b-c, transparent);
   --_card_f-d: var(--card_f-d, column);
+  --_card_lg_f-d: var(--card_lg_f-d, row);
 
-  --_card-cap_bg: var(
-    --card-cap_bg,
-    color-mix(in oklab, var(--_card_bg), black 20%)
-  );
-  --_card-cap_c: var(--card-cap_c, var(--_card_c));
-  --_card-cap_pb: var(--card-cap_pb, var(--_card_s));
-  --_card-cap_pi: var(--card-cap_pi, var(--_card_s));
+  --_card_cap_bg: var(--card_cap_bg, transparent);
+  --_card_cap_c: var(--card_cap_c, var(--_card_c));
+  --_card_cap_p-b: var(--card_cap_p-b, var(--_card_p));
+  --_card_cap_p-i: var(--card_cap_p-i, var(--_card_p));
 
-  --_card-title_c: var(--card-title_c, var(--c_primary_700));
-  --_card-subtitle_c: var(--_card-subtitle_c, var(--_card_c));
-  --card-title-spacer-y: 0.5rem;
+  --_card_header_p-b: var(--card_header_p-b, var(--_card_p-b));
+  --_card_header_p-i: var(--card_header_p-i, var(--_card_p-i) 0.375rem);
+  --_card_header_gap: var(--card_header_gap, 1.25rem);
+  --_card_header_f-s: var(--card_header_f-s, 0.875rem);
 
-  --card-inner_br: 0px;
-  --card-group-margin: 0.625rem;
+  --_card_title_c: var(--card_title_c, inherit);
+  --_card_title_trn: var(--card_title_trn, all 0.4s ease);
 
-  --_card-body_c: var(--card-body_c, var(--_card_c));
-  --_card-body_s: var(--card-body_s, var(--_card_s));
-  --_card-body_pb: var(--card-body_pb, var(--_card-body_s));
-  --_card-body_pi: var(--card-body_pi, var(--_card-body_s));
-  --_card-body_f-d: var(--card-body_f-d, column);
-  --_card-body_gap: var(--card-body_gap, var(--_card_gap));
+  --_card_subtitle_c: var(--card_subtitle_c, var(--_card_c));
+  --_card_subtitle_m-b: var(--card_subtitle_m-b, -0.25rem);
+  --_card_subtitle_f-s: var(--card_subtitle_f-s, 1rem);
 
-  --_card-title_m-b: var(--card-title_m-b, 0px);
+  --_card_body_c: var(--card_body_c, var(--_card_c));
+  --_card_body_p: var(--card_body_p, var(--_card_p));
+  --_card_body_p-b: var(--card_body_p-b, var(--_card_body_p));
+  --_card_body_p-i: var(--card_body_p-i, var(--_card_body_p));
+  --_card_body_f-d: var(--card_body_f-d, column);
+  --_card_body_gap: var(--card_body_gap, var(--_card_gap));
+  --_card_body_trn: var(--card_body_trn, all 0.4s ease);
+
+  --_card_link_m-i: var(--card_link_m-i, var(--spacing-0));
+
+  --_card_inner_b-r: var(--card_inner_b-r, var(--border-radius-0));
+  --_card_group_m-b: var(--card_group_m-b, 0.625rem);
 
   text-wrap: balance;
   position: relative;
   display: flex;
   overflow: hidden;
-
   font-weight: var(--_card_f-w);
   flex-direction: var(--_card_f-d);
   gap: var(--_card_gap);
-  padding-block: var(--_card_pb);
-  padding-inline: var(--_card_pi);
+  padding-block: var(--_card_p-b);
+  padding-inline: var(--_card_p-i);
   color: var(--_card_c);
-  border-radius: var(--_card_br);
+  border-radius: var(--_card_b-r);
   background-color: var(--_card_bg);
-  border: var(--_card_bw) solid var(--_card_bc);
+  border: var(--_card_b-w) solid var(--_card_b-c);
 }
 
-  .card .card-body {
-    transition: all 0.4s ease;
-    display: flex;
-    flex-direction: var(--_card-body_f-d);
-    gap: var(--_card-body_gap);
-    padding-block: var(--_card-body_pb);
-    padding-inline: var(--_card-body_pi);
-    color: var(--_card-body_c);
-  }
+.card .card-body {
+  transition: var(--_card_body_trn);
+  display: flex;
+  flex-direction: var(--_card_body_f-d);
+  gap: var(--_card_body_gap);
+  padding-block: var(--_card_body_p-b);
+  padding-inline: var(--_card_body_p-i);
+  color: var(--_card_body_c);
+}
 
-  .card > hr {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-  .card > .card-header + .list-group,
-  .card > .list-group + .card-footer {
-    border-top: 0;
-  }
-
-  .card:has(.stretched-link::after) {
-    position: relative;
-  }
-
-  @media (min-width: 48rem) {
-
+@media (width >= 48rem) {
   .card {
-    --_card_f-d: var(--card_f-d_mob, row)
-}
+    --_card_f-d: var(--_card_lg_f-d);
   }
+}
 
 .card-title {
-  color: var(--_card-title_c);
+  transition: var(--_card_title_trn);
+  color: var(--_card_title_c);
 }
 
 .card-subtitle {
-  margin-top: calc(-0.5 * var(--card-title-spacer-y));
-  margin-bottom: 0;
-  color: var(--_card-subtitle_c);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin-block: var(--_card_subtitle_m-b) 0;
+  font-size: var(--_card_subtitle_f-s);
+  color: var(--_card_subtitle_c);
 }
 
 .card-text:last-child {
   margin-bottom: 0;
 }
 
-.card-link:hover {
-    -webkit-text-decoration: var(--link_d_h);
-    text-decoration: var(--link_d_h);
-  }
-
 .card-link {
-
-  margin-left: var(--card_pb);
+  margin-top: auto;
+  margin-left: var(--_card_link_m-i);
+  align-self: start;
 }
 
-/* Optional textual caps */
+.card-link:hover {
+  text-decoration: none;
+}
 
+/* Antet și subsol */
 .card-header,
 .card-footer {
-  color: var(--_card-cap_c);
-  background-color: var(--_card-cap_bg);
-  padding-block: var(--_card-cap_pb);
-  padding-inline: var(--_card-cap_pi);
+  color: var(--_card_cap_c);
+  background-color: var(--_card_cap_bg);
+  padding-block: var(--_card_cap_p-b);
+  padding-inline: var(--_card_cap_p-i);
 }
 
 .card-header {
-  border-block-end: var(--_card_bw) solid var(--_card_bc);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--_card_header_gap);
+  padding-block: var(--_card_header_p-b);
+  padding-inline: var(--_card_header_p-i);
+  border-block-end: var(--_card_b-w) solid var(--_card_b-c);
   margin-block-end: 0;
+  font-size: var(--_card_header_f-s);
 }
 
 .card-footer {
-  border-block-start: var(--_card_bw) solid var(--_card_bc);
+  border-block-start: var(--_card_b-w) solid var(--_card_b-c);
 }
 
-/* Header navs */
-
 .card-header-tabs {
-  margin-right: calc(-0.5 * var(--_card-cap_pi));
-  margin-bottom: calc(-1 * var(--_card-cap_pb));
-  margin-left: calc(-0.5 * var(--_card-cap_pi));
+  margin-right: calc(-0.5 * var(--_card_cap_p-i));
+  margin-bottom: calc(-1 * var(--_card_cap_p-b));
+  margin-left: calc(-0.5 * var(--_card_cap_p-i));
   border-bottom: 0;
 }
 
 .card-header-tabs .nav-link.active {
-    background-color: var(--_card_bg);
-    border-bottom-color: var(--_card_bg);
-  }
-
-.card-header-pills {
-  margin-right: calc(-0.5 * var(--_card-cap_pi));
-  margin-left: calc(-0.5 * var(--_card-cap_pi));
+  background-color: var(--_card_bg);
+  border-bottom-color: var(--_card_bg);
 }
 
-/* Card image */
+.card-header-pills {
+  margin-right: calc(-0.5 * var(--_card_cap_p-i));
+  margin-left: calc(-0.5 * var(--_card_cap_p-i));
+}
 
+/* Imagine */
 .card-img,
 .card-img-top,
 .card-img-bottom {
@@ -154,65 +156,50 @@
 
 .card-img,
 .card-img-top {
-  border-top-left-radius: var(--card-inner_br);
-  border-top-right-radius: var(--card-inner_br);
+  border-top-left-radius: var(--_card_inner_b-r);
+  border-top-right-radius: var(--_card_inner_b-r);
 }
 
-/* Card groups */
-
+/* Grup de carduri */
 .card-group > .card {
-    margin-bottom: var(--card-group-margin);
-  }
+  margin-bottom: var(--_card_group_m-b);
+}
 
-@media (min-width: 36rem) {
-
-.card-group {
+@media (width >= 36rem) {
+  .card-group {
     display: flex;
-    flex-flow: row wrap
-}
-
-    .card-group > .card {
-      flex: 1 0 0%;
-      margin-bottom: 0;
-    }
-
-      .card-group > .card + .card {
-        margin-left: 0;
-        border-left: 0;
-      }
+    flex-flow: row wrap;
   }
 
-.card-header {
-  --_card-cap_bg: transparent;
-  --_card-cap_pb: var(--_card_pb);
-  --_card-cap_pi: var(--_card_pi) 0.375rem;
-  --_card_bw: transparent;
+  .card-group > .card {
+    flex: 1 0 0%;
+    margin-bottom: 0;
+  }
 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  font-size: 0.875rem;
-  color: var(--c_fg-muted);
+  .card-group > .card + .card {
+    margin-left: 0;
+    border-left: 0;
+  }
 }
 
-.card-title {
-  transition: all 0.4s ease;
+/* Compatibilitate cu liste și linii */
+.card > hr {
+  margin-right: 0;
+  margin-left: 0;
 }
 
-.card-subtitle {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  font-size: 1rem;
+.card > .card-header + .list-group,
+.card > .list-group + .card-footer {
+  border-top: 0;
 }
 
-.card-link {
-  --link_c: var(--c_highlight);
-  --btn-bg_h: transparent;
-  --btn-fs: 0.75rem;
-  --btn-c_h: var(--_card_bc);
+.card:has(.stretched-link::after) {
+  position: relative;
+}
 
-  margin-top: auto;
-  align-self: start;
+@media (prefers-reduced-motion: reduce) {
+  .card .card-body,
+  .card-title {
+    transition: none;
+  }
 }

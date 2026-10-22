@@ -4,29 +4,29 @@
  * Card Document component.
  *
  * Props:
- * - card_doc_title (string|null)
- * - card_doc_url (string|null)        — whole-card link when no items
- * - card_doc_meta (string|null)       — gray subtitle (single-item mode)
- * - card_doc_type (string)            — "link" | "document" (icon choice)
- * - card_doc_items (array)            — [{ url, title, meta?, type }]
- * - card_doc_uc (array)               — utility classes
- * - card_doc_att (Attribute)
+ * - card_document_title (string|null)
+ * - card_document_url (string|null)        — whole-card link when no items
+ * - card_document_meta (string|null)       — gray subtitle (single-item mode)
+ * - card_document_type (string)            — "link" | "document" (icon choice)
+ * - card_document_items (array)            — [{ url, title, meta?, type }]
+ * - card_document_uc (array)               — utility classes
+ * - card_document_att (Attribute)
  */
 -#}
 
-{% set card_doc_type = card_doc_type|default('link') %}
-{% set card_doc_items = card_doc_items|default([]) %}
-{% set card_doc_att = card_doc_att ?: create_attribute() %}
+{% set card_document_type = card_document_type|default('link') %}
+{% set card_document_items = card_document_items|default([]) %}
+{% set card_document_att = card_document_att ?: create_attribute() %}
 
-{% set is_list = card_doc_items|length > 1 %}
-{% set is_clickable = not is_list and card_doc_url %}
+{% set is_list = card_document_items|length > 1 %}
+{% set is_clickable = not is_list and card_document_url %}
 
-{% set card_doc_classes = [
+{% set card_document_classes = [
   'c--card-document',
-  'c--card-document__' ~ card_doc_type,
+  'c--card-document__' ~ card_document_type,
   is_clickable ? 'c--card-document__is-link',
   is_list ? 'c--card-document__is-list',
-]|merge(card_doc_uc ?: []) %}
+]|merge(card_document_uc ?: []) %}
 
 {% set icon_arrow %}
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -41,35 +41,35 @@
   </svg>
 {% endset %}
 
-{% set card_icon = card_doc_type == 'document' ? icon_document : icon_arrow %}
+{% set card_icon = card_document_type == 'document' ? icon_document : icon_arrow %}
 
-<div{{ card_doc_att.addClass(card_doc_classes) }}>
+<div{{ card_document_att.addClass(card_document_classes) }}>
 
   <div class="card-document-icon" aria-hidden="true">
     {{- card_icon -}}
   </div>
 
-  {% if card_doc_title %}
+  {% if card_document_title %}
     <p class="card-document-title">
       {%- if is_clickable -%}
-        <a href="{{ card_doc_url }}" class="card-document-link">
-          {{- card_doc_title -}}
+        <a href="{{ card_document_url }}" class="card-document-link">
+          {{- card_document_title -}}
         </a>
       {%- else -%}
-        {{- card_doc_title -}}
+        {{- card_document_title -}}
       {%- endif -%}
     </p>
   {% endif %}
 
-  {% if not is_list and card_doc_meta %}
+  {% if not is_list and card_document_meta %}
     <p class="card-document-meta">
-      {{- card_doc_meta -}}
+      {{- card_document_meta -}}
     </p>
   {% endif %}
 
   {% if is_list %}
     <ul class="card-document-items">
-      {% for item in card_doc_items %}
+      {% for item in card_document_items %}
         <li class="card-document-item card-document-item__{{ item.type|default('link') }}">
           <a href="{{ item.url }}" class="card-document-item-link">
             <span class="card-document-item-title">

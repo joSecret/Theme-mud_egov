@@ -1,29 +1,32 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Card Document
 status: stable
-version: 1.0.0
-group: Cards
+version: 1.1.0
+group: Content
 description: 'Card for a document node — single link/document makes the whole card clickable; multiple items are listed below the title.'
 
 props:
   type: object
   properties:
-    card_doc_title:
+    card_document_title:
       type: ['string', 'null']
       title: Title
       description: Node title shown on the card.
+      default: null
 
-    card_doc_url:
+    card_document_url:
       type: ['string', 'null']
       title: URL
       description: When set and no items are provided, the whole card becomes a link to this URL.
+      default: null
 
-    card_doc_meta:
+    card_document_meta:
       type: ['string', 'null']
       title: Meta
       description: 'Gray subtitle under the title (e.g. "PDF · 1.3 MB"). Only used in single-item mode.'
+      default: null
 
-    card_doc_type:
+    card_document_type:
       type: string
       title: Type
       description: Which icon to show in the top-left circle.
@@ -32,7 +35,7 @@ props:
         - document
       default: link
 
-    card_doc_items:
+    card_document_items:
       type: array
       title: Items
       description: 'List of items to render under the title. If more than one, the whole card is NOT a link.'
@@ -52,14 +55,14 @@ props:
               - link
               - document
 
-    card_doc_uc:
+    card_document_uc:
       type: array
       items:
         type: string
       title: Utility Classes
       default: []
 
-    card_doc_att:
+    card_document_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null

@@ -1,38 +1,41 @@
+/**
+ * Card Activity: card de activitate, cu logo sau copertă sus și titlu dedesubt.
+ * Nu are default-uri MUD; valorile vin din tokenuri.
+ */
 .c--card-activity {
-  --_ca_bg: var(--card-activity_bg, var(--color-background-base-primary, #fff));
-  --_ca_br: var(--card-activity_br, 1rem);
-  --_ca_bc: var(--card-activity_bc, var(--color-border-base-default, #e5e7eb));
-  --_ca_bc_h: var(--card-activity_bc_h, var(--color-border-base-strong, #121212));
-  --_ca_p: var(--card-activity_p, 1.5rem);
-  --_ca_gap: var(--card-activity_gap, 1rem);
-  --_ca_c: var(--card-activity_c, var(--color-text-base-default, #121212));
-  --_ca_t-t: var(--card-activity_t-t, 0.2s ease);
+  --_card-activity_bg: var(--card-activity_bg, var(--color-background-base-default));
+  --_card-activity_b-r: var(--card-activity_b-r, var(--border-radius-16));
+  --_card-activity_b-w: var(--card-activity_b-w, var(--border-width-1));
+  --_card-activity_b-c: var(--card-activity_b-c, var(--color-border-base-default));
+  --_card-activity_b-c_h: var(--card-activity_b-c_h, var(--color-border-base-strong));
+  --_card-activity_p: var(--card-activity_p, var(--spacing-24));
+  --_card-activity_gap: var(--card-activity_gap, var(--spacing-16));
+  --_card-activity_c: var(--card-activity_c, var(--color-text-base-default));
+  --_card-activity_trn: var(--card-activity_trn, 0.2s ease);
 
-  --_ca-image_size: var(--card-activity_image-size, 3rem);
+  --_card-activity_image_size: var(--card-activity_image_size, 3rem);
 
-  --_ca-title_f-s: var(--card-activity_title_f-s, var(--font-size-20, 1.25rem));
-  --_ca-title_l-h: var(--card-activity_title_l-h, var(--line-height-28, 1.3));
-  --_ca-title_f-w: var(--card-activity_title_f-w, var(--font-weight-semibold, 600));
+  --_card-activity_title_f-s: var(--card-activity_title_f-s, var(--font-size-20));
+  --_card-activity_title_l-h: var(--card-activity_title_l-h, var(--line-height-28));
+  --_card-activity_title_f-w: var(--card-activity_title_f-w, var(--font-weight-semibold));
 
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--_ca_gap);
-  padding: var(--_ca_p);
-  background-color: var(--_ca_bg);
-  border: 1px solid var(--_ca_bc);
-  border-radius: var(--_ca_br);
-  color: var(--_ca_c);
-  transition: border-color var(--_ca_t-t);
+  gap: var(--_card-activity_gap);
+  padding: var(--_card-activity_p);
+  background-color: var(--_card-activity_bg);
+  border: var(--_card-activity_b-w) solid var(--_card-activity_b-c);
+  border-radius: var(--_card-activity_b-r);
+  color: var(--_card-activity_c);
+  transition: border-color var(--_card-activity_trn);
 
   .card-activity-image {
-    --media_img_p-b: 0px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--_ca-image_size);
-    height: var(--_ca-image_size);
+    width: var(--_card-activity_image_size);
+    height: var(--_card-activity_image_size);
     overflow: hidden;
 
     img {
@@ -40,13 +43,17 @@
       height: 100%;
       object-fit: contain;
     }
+
+    .c--media img {
+      padding-block: 0;
+    }
   }
 
   .card-activity-title {
     margin: 0;
-    font-size: var(--_ca-title_f-s);
-    line-height: var(--_ca-title_l-h);
-    font-weight: var(--_ca-title_f-w);
+    font-size: var(--_card-activity_title_f-s);
+    line-height: var(--_card-activity_title_l-h);
+    font-weight: var(--_card-activity_title_f-w);
   }
 
   .card-activity-link {
@@ -64,7 +71,13 @@
   &.is-link {
     &:hover,
     &:focus-within {
-      border-color: var(--_ca_bc_h);
+      border-color: var(--_card-activity_b-c_h);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--card-activity {
+    transition: none;
   }
 }

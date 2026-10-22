@@ -1380,6 +1380,19 @@ egov_layout:
         receipt_total_label: 'Total'
         receipt_total_value: '300 MDL'
 
+    # ── Content layout ────────────────────────────────────────────────────────
+    # Conținutul și sidebarul vin prin sloturi (embed Twig); în showcase se vede doar structura.
+    - component: 'mud_egov:content'
+      group: content_layout
+      group_label: 'Content layout'
+      props:
+        content_layout_type: col_1
+
+    - component: 'mud_egov:content'
+      group: content_layout
+      props:
+        content_layout_type: col_2_sidebar
+
 egov_content:
   label: 'Conținut'
   description: 'Carduri, galerii și alte componente de conținut.'

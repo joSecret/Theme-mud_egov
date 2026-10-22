@@ -1,5 +1,27 @@
-<img
-  src="{{ src|default('') }}"
-  alt="{{ alt|default('') }}"
-  {{ image_att }}
->
+{#-
+/**
+ * @file
+ * Image component.
+ *
+ * Available values:
+ * - image_src (string) (default: '')
+ * - image_alt (string) (default: '')
+ *
+ * Available Utility classes -> uc
+ * - image_uc (array) (default: [])
+ *
+ * Available attributes -> att
+ * - image_att (Drupal\Core\Template\Attribute)
+ */
+-#}
+
+{#- Create attributes -#}
+{% set image_att = image_att ?: create_attribute() %}
+
+{#- Component classes -#}
+{% set image_classes = [
+  'c--image',
+]|merge(image_uc ?: []) %}
+
+{#- Render component -#}
+<img src="{{ image_src|default('') }}" alt="{{ image_alt|default('') }}"{{ image_att.addClass(image_classes) }}>

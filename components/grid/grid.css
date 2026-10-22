@@ -1,16 +1,15 @@
 .c--grid {
-  --grid--layout-gap: var(--grid_l-gap, 24px);
-  --grid--column-count: var(--grid_col-count, 4);
-  --grid--cell-min-width: var(--grid_cell-min-width, 240px);
-
-  /** Calculated values.  */
-  --grid--gap-count: calc(var(--grid--column-count) - 1);
-  --grid--total-gap-width: calc(var(--grid--gap-count) * var(--grid--layout-gap));
-  --grid-item--max-width: calc((100% - var(--grid--total-gap-width)) / var(--grid--column-count));
+  --_grid_gap: var(--grid_gap, var(--spacing-24));
+  --_grid_col: var(--grid_col, 4);
+  --_grid_m-w: var(--grid_m-w, 240px);
+  --_grid_p-b: var(--grid_p-b, 34px);
+  --_grid_p-i: var(--grid_p-i, var(--spacing-0));
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(max(var(--grid--cell-min-width), var(--grid-item--max-width)), 100%), 1fr));
-  gap: var(--grid--layout-gap);
-  padding-block: var(--grid_p-b, 34px);
-  padding-inline: var(--grid_p-i, 0px);
+
+  /* Lățimea unei celule la numărul maxim de coloane: (100% - golurile) / coloane. */
+  grid-template-columns: repeat(auto-fill, minmax(min(max(var(--_grid_m-w), calc((100% - (var(--_grid_col) - 1) * var(--_grid_gap)) / var(--_grid_col))), 100%), 1fr));
+  gap: var(--_grid_gap);
+  padding-block: var(--_grid_p-b);
+  padding-inline: var(--_grid_p-i);
 }

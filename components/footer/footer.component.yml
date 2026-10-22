@@ -2,7 +2,7 @@
 name: Footer
 status: stable
 
-version: 1.0.0
+version: 1.1.0
 group: Layout
 description: 'Site footer with navigation grid, logos section, and bottom bar including copyright and social links.'
 

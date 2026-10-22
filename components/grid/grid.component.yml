@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Responsive Grid
 status: stable
 
-version: 1.0.0
+version: 1.1.0
 group: Layout
 description: 'A grid is a flexible layout system that allows you to create complex, responsive designs. It is based on the CSS Grid Layout Module, which provides a powerful and intuitive way to create grid-based layouts. The grid component provides a set of options for configuring the grid, including the number of columns, the minimum width of the grid cells, and the spacing between the grid cells. The grid component also includes support for responsive design, allowing you to create layouts that adapt to different screen sizes.'
 
@@ -15,19 +15,19 @@ props:
       type: number
       title: Maximum number of columns
       default: null
-      description: The maximum number of columns in the grid. The grid will automatically adjust the number of columns based on the available space and the minimum width of the grid cells. Default value from CSS - 2.
+      description: The maximum number of columns in the grid. The grid will automatically adjust the number of columns based on the available space and the minimum width of the grid cells. Default value from CSS - 4.
 
     grid_min_width:
       type: number
       title: Minimum grid cell width
       default: null
-      description: The minimum width of the grid cells. If the grid container becomes narrow, the grid cells will reflow onto the next row as needed. Default value from CSS - 220px.
+      description: The minimum width of the grid cells. If the grid container becomes narrow, the grid cells will reflow onto the next row as needed. Default value from CSS - 240px.
 
     grid_gap:
       type: number
       title: Grid gutter spacing
       default: null
-      description: The spacing between the grid cells. Default value from CSS - 30px.
+      description: The spacing between the grid cells. Default value from CSS - 24px.
 
     # fields values
     grid_content:
@@ -35,6 +35,7 @@ props:
       items:
         type: ['string', 'object']
       title: Grid content
+      default: null
       description: An array of strings representing the content of each grid cell.
 
     # uc -> utility_classes

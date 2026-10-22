@@ -1,57 +1,73 @@
 {#-
 /**
   * @file
-  * Page layout component.
+  * Content layout component: content area with an optional sidebar.
   *
-  * Available properties:
-  * - wsidebar_classes: []
-  * - cls__layout_type: Layout type [col_1, col_1_full, col_2_sidebar]
+  * Available variations:
+  * - content_layout_type: null (col_1), col_1, col_1_full, col_2_sidebar, full
   *
-  * usage example: @see README.md
+  * Available Utility classes -> uc
+  * - content_uc (array)
+  * - content_sidebar_uc (array)
+  * - content_main_uc (array)
+  *
+  * Available attributes -> att
+  * - content_att (Drupal\Core\Template\Attribute)
+  * - content_sidebar_att (Drupal\Core\Template\Attribute)
+  * - content_main_att (Drupal\Core\Template\Attribute)
+  *
+  * Available slots:
+  * - cls_addons: title prefix, title suffix or other extra information
+  * - sidebar: shown only for the col_2* layouts
+  * - content: the main content
+  *
+  * usage example: @see content.md
   */
 -#}
 
 {#- Set default value -#}
-{% set cls__layout_type = cls__layout_type ?: 'col_1' %}
+{% set content_layout_type = content_layout_type ?: 'col_1' %}
 
-{#- Set Attributes -#}
-{% set comp_att = comp_att ?: create_attribute() %}
-{% set slotSidebar_att = slotSidebar_att ?: create_attribute() %}
-{% set slotContent_att = slotContent_att ?: create_attribute() %}
+{#- Create attributes -#}
+{% set content_att = content_att ?: create_attribute() %}
+{% set content_sidebar_att = content_sidebar_att ?: create_attribute() %}
+{% set content_main_att = content_main_att ?: create_attribute() %}
 
-{% set gridContent = cls__layout_type starts with 'col_2' %}
+{% set content_has_sidebar = content_layout_type starts with 'col_2' %}
 
+{#- Component classes -#}
 {%
-  set comp_classes = [
+  set content_classes = [
     'grid-container',
-    gridContent ? 'comp-sidebar',
-    gridContent ? 'cls--layout-type_' ~ cls__layout_type|clean_class,
-  ]|merge(comp_classes ?: [])
+    content_has_sidebar ? 'comp-sidebar',
+    content_has_sidebar ? 'cls--layout-type_' ~ content_layout_type|clean_class,
+  ]|merge(content_uc ?: [])
 %}
 
-{% set slotSidebar_classes = [
+{% set content_sidebar_classes = [
   'slot-sidebar',
-]|merge(slotSidebar_classes ?: []) %}
+]|merge(content_sidebar_uc ?: []) %}
 
-{% set slotContent_classes = [
+{% set content_main_classes = [
   'slot-content',
-]|merge(slotContent_classes ?: []) %}
+]|merge(content_main_uc ?: []) %}
 
-<div{{comp_att.addClass(comp_classes)}}>
+{#- Render component -#}
+<div{{ content_att.addClass(content_classes) }}>
   {% block cls_addons %}{% endblock %}
 
-  {%- if block('sidebar') is defined and cls__layout_type starts with 'col_2' -%}
+  {%- if block('sidebar') is defined and content_has_sidebar -%}
     <button class="js--show-sidebar btn d-lg-none btn-secondary btn-only-icon" aria-expanded="false">
       {{- "Show sidebar"|t -}}
     </button>
 
-    <div{{slotSidebar_att.addClass(slotSidebar_classes)}}>
+    <div{{ content_sidebar_att.addClass(content_sidebar_classes) }}>
       {% block sidebar %}{% endblock %}
     </div>
   {%- endif -%}
 
   {%- if block('content') is defined -%}
-    <div{{slotContent_att.addClass(slotContent_classes)}}>
+    <div{{ content_main_att.addClass(content_main_classes) }}>
       {% block content %}{% endblock %}
     </div>
   {%- endif -%}

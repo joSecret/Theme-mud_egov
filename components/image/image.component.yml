@@ -1,14 +1,38 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: Image
-status: experimental
-description: Simple image component stub for Storybook.
+status: stable
+version: 1.1.0
+group: Content
+description: 'Plain <img> element with the standard component attributes; used where a template has an image URL and alt text but no Drupal image field, for example the cover image of a card.'
+
 props:
   type: object
   properties:
-    src:
+    image_src:
       type: string
       title: Image source URL
-    alt:
+      description: Value of the src attribute.
+      default: ''
+
+    image_alt:
       type: string
       title: Alt text
+      description: Alternative text. Leave empty for decorative images.
       default: ''
+
+    # uc -> utility_classes
+    image_uc:
+      type: array
+      items:
+        type: string
+      title: Image Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
+
+    # att -> attributes
+    image_att:
+      type: Drupal\Core\Template\Attribute
+      title: Image Attributes
+      description: A list of HTML attributes for the img element.
+
+      default: null

@@ -1,0 +1,6 @@
+/* Zero specificity: nu suprascrie niciun stil existent; oferă doar cârligul de override. */
+:where(.c--image) {
+  --_image_b-r: var(--image_b-r, var(--spacing-0));
+
+  border-radius: var(--_image_b-r);
+}

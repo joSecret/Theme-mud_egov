@@ -1,65 +1,82 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Content layout sidebar (cls)
-status: experimental
-description: 'Content layout sidebar description'
+name: Content layout
+status: stable
+version: 1.1.0
+group: Layout
+description: 'Content area on the page grid with an optional sidebar. On large screens the sidebar sits in the left columns; on small screens it becomes an off-canvas panel opened with a button.'
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
 
 props:
   type: object
   properties:
-    comp_att:
-      type: Drupal\Core\template\Attribute
-      title: Component attribute
-      description: Wrapper component attributes
-
-    slotSidebar_att:
-      type: Drupal\Core\template\Attribute
-      title: Component attribute
-      description: Wrapper component attributes
-
-    slotContent_att:
-      type: Drupal\Core\template\Attribute
-      title: Component attribute
-      description: Wrapper component attributes
-
-    cls__layout_type:
-      type: string
+    # component variations
+    content_layout_type:
+      type: ['string', 'null']
       title: Layout type
-      description: Layout type [col_1, col_1_full, col_2_sidebar].
-      default: col_1
+      description: 'Column layout. The sidebar is rendered only for col_2_sidebar. Default (null) is col_1.'
+      default: null
       enum:
+        - null
         - col_1
         - col_1_full
         - col_2_sidebar
         - full
 
-    comp_classes:
+    # uc -> utility_classes
+    content_uc:
       type: array
       items:
         type: string
-      title: Content layout sidebar classes
+      title: Content layout Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
-    slotSidebar_classes:
+    content_sidebar_uc:
       type: array
       items:
         type: string
-      title: Content layout sidebar classes
-      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      title: Sidebar Utility Classes
+      description: An array of utility classes for the sidebar wrapper.
+      default: []
 
-    slotContent_classes:
+    content_main_uc:
       type: array
       items:
         type: string
-      title: Content layout sidebar classes
-      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      title: Content Utility Classes
+      description: An array of utility classes for the content wrapper.
+      default: []
+
+    # att -> attributes
+    content_att:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: A list of HTML attributes for the root element.
+      default: null
+
+    content_sidebar_att:
+      type: Drupal\Core\Template\Attribute
+      title: Sidebar Attributes
+      description: A list of HTML attributes for the sidebar wrapper.
+      default: null
+
+    content_main_att:
+      type: Drupal\Core\Template\Attribute
+      title: Content Attributes
+      description: A list of HTML attributes for the content wrapper.
+      default: null
 
 slots:
   cls_addons:
     title: Addons
-    description: "Addons slot used for (like exemple) title_prefix or title_suffix or some other information."
+    description: 'Addons slot used for title prefix, title suffix or other extra information.'
   sidebar:
-    title: sidebar
-    description: Default content text for the tab.
+    title: Sidebar
+    description: 'Sidebar content, rendered only for the col_2_sidebar layout.'
   content:
     title: Content
-    description: Default content text for the tab.
+    description: 'Main content.'

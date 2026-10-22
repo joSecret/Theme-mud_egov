@@ -3,39 +3,27 @@
  */
 
 .c--footer {
-  --_footer_space: var(--footer_space, 32px);
+  --_footer_c: var(--footer_c, var(--footer-container-color));
   --_footer_f-s: var(--footer_f-s, inherit);
   --_footer_l-h: var(--footer_l-h, inherit);
-  --_footer_c: var(--footer_c, var(--footer-container-color));
-  --_footer_p-b: var(--footer_p-b, var(--size_1600) var(--size_1300));
-  --_footer_p-i: var(--footer_p-i, 0px);
-  --_footer_gap: var(--footer_gap, var(--size_24));
+  --_footer_p-b: var(--footer_p-b, var(--spacing-40));
 
-  --nav_link_c: var(--_footer_c);
-  --nav_link_c_h: var(--c_gray_500);
-
-  --block_p: 0px;
-  --block-label_c: var(--_footer_c);
-
-  --media_img_p-b: 0px;
-
-  padding-block-start: var(--footer_m-b-s, var(--spacing-40));
+  padding-block-start: var(--_footer_p-b);
   color: var(--_footer_c);
   font-size: var(--_footer_f-s);
   line-height: var(--_footer_l-h);
 
   .grid-footer {
-    padding-block-end: var(--_footer_space);
-    display: grid;
-    gap: 48px 24px;
-    grid-template-columns: var(--g-f_g-t-c, 1fr);
+    --_footer_grid_p-b: var(--footer_grid_p-b, var(--spacing-32));
+    --_footer_grid_gap: var(--footer_grid_gap, var(--spacing-48) var(--spacing-24));
 
-    /* @container body (width <= 576px) {
-    } */
+    padding-block-end: var(--_footer_grid_p-b);
+    display: grid;
+    gap: var(--_footer_grid_gap);
+    grid-template-columns: 1fr;
 
     @container body (576px < width <= 1248px) {
-      --g-f_g-t-c: repeat(2, 1fr);
-
+      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto auto;
 
       .region--footer-left {
@@ -52,35 +40,43 @@
     }
 
     @container body (1248px < width) {
-      --g-f_g-t-c: minmax(282px, 1fr) 3fr minmax(282px, 1fr);
+      grid-template-columns: minmax(282px, 1fr) 3fr minmax(282px, 1fr);
     }
-  }
-
-  @container body (576px < width) {
-    --r-footer_g-t-c: repeat(3, 1fr);
   }
 }
 
 .region--footer {
+  --_footer_nav_gap: var(--footer_nav_gap, var(--spacing-48) var(--spacing-24));
+
   &:has(nav:nth-child(2)) {
     display: grid;
-    gap: 48px 24px;
-    grid-template-columns: var(--r-footer_g-t-c, repeat(1, 1fr));
+    gap: var(--_footer_nav_gap);
+    grid-template-columns: repeat(1, 1fr);
+
+    @container body (576px < width) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
 .region--footer-middle {
+  --_footer_middle_b-c: var(--footer_middle_b-c, var(--footer-divider-color));
+  --_footer_middle_gap: var(--footer_middle_gap, var(--spacing-48));
+  --_footer_middle_p-b: var(--footer_middle_p-b, var(--spacing-32));
+
   > .wrapper {
-    border-top: 1px solid var(--footer-divider-color);
+    border-top: 1px solid var(--_footer_middle_b-c);
     display: flex;
-    row-gap: 48px;
-    flex-direction: var(--r-f-m_f-d, column);
+    row-gap: var(--_footer_middle_gap);
+    flex-direction: column;
     justify-content: space-between;
-    padding-block: 32px;
+    padding-block: var(--_footer_middle_p-b);
   }
 
   @container body (576px < width) {
-    --r-f-m_f-d: row;
+    > .wrapper {
+      flex-direction: row;
+    }
 
     .wrapper {
       align-items: center;
@@ -89,19 +85,21 @@
 }
 
 .region--footer-bottom {
-  --footer_f-s: 14px;
-  --c-menu_link_d: underline;
+  --_footer_bottom_gap: var(--footer_bottom_gap, var(--spacing-20));
+  --_footer_bottom_p-b: var(--footer_bottom_p-b, var(--spacing-12));
 
   > .wrapper {
     display: flex;
-    flex-direction: var(--r-f-b_f-d, column);
-    row-gap: 20px;
+    flex-direction: column;
+    row-gap: var(--_footer_bottom_gap);
     justify-content: space-between;
-    padding-block: 12px;
+    padding-block: var(--_footer_bottom_p-b);
   }
 
   @container body (992px < width) {
-    --r-f-b_f-d: row;
+    > .wrapper {
+      flex-direction: row;
+    }
 
     .wrapper {
       align-items: center;
@@ -109,23 +107,34 @@
   }
 }
 
+/* Media din subsol nu are spațiu vertical în jurul imaginii. */
+.c--footer .c--media:not(p + .c--media) img {
+  padding-block: 0;
+}
+
 /* temporar */
 .social-link-field {
+  --_footer_social_gap: var(--footer_social_gap, var(--spacing-24));
+
   display: flex;
-  gap: 24px;
+  gap: var(--_footer_social_gap);
   margin: 0;
   padding: 0;
 }
 
-.paragraph--t--field-image-svg {
-  --paragraph_d: flex;
-  gap: 32px;
+.paragraph.paragraph--t--field-image-svg {
+  --_footer_logos_gap: var(--footer_logos_gap, var(--spacing-32));
+
+  display: flex;
+  gap: var(--_footer_logos_gap);
 }
 
 #block-mud-egov-footercontactblock {
+  --_footer_contact_gap: var(--footer_contact_gap, var(--spacing-12));
+
   height: 100%;
   display: flex;
-  gap: 12px;
+  gap: var(--_footer_contact_gap);
   flex-direction: column;
 
   .paragraph--t--field-image-svg {
@@ -134,16 +143,17 @@
 }
 
 #block-mud-egov-optiunideplata {
+  --_footer_pay_p-b: var(--footer_pay_p-b, var(--spacing-24) var(--spacing-16));
+
   .paragraph--t--filed-text {
-    padding-block: 24px 16px;
+    padding-block: var(--_footer_pay_p-b);
   }
 }
 
 img[alt="Master card logo"],
 img[alt="visa"] {
-  --media_img_p-b: 4px;
-  --media_img_p-i: 4px;
+  --_footer_pay_bg: var(--footer_pay_bg, var(--color-background-base-default));
 
   width: 20px;
-  background: white;
+  background: var(--_footer_pay_bg);
 }

@@ -5,7 +5,7 @@
   *
   * Available variations:
   * - grid_col (numbers) (default: 4)
-  * - grid_min_width (numbers) (default: 220)
+  * - grid_min_width (numbers) (default: 240)
   * - grid_gap (numbers) (default: 24)
   *
   * Available values:
@@ -37,16 +37,18 @@
 ]|merge(grid_uc ?: []) %}
 
 {#- Change attributes -#}
+{%- set grid_style = [] -%}
 {%- if grid_gap -%}
-  {% set grid_att = grid_att.setAttribute('style', '--grid_l-gap: ' ~ grid_gap ~ 'px;') %}
+  {%- set grid_style = grid_style|merge(['--grid_gap: ' ~ grid_gap ~ 'px;']) -%}
 {%- endif -%}
-
 {%- if grid_col -%}
-  {% set grid_att = grid_att.setAttribute('style', '--grid_col-count: ' ~ grid_col ~ ';') %}
+  {%- set grid_style = grid_style|merge(['--grid_col: ' ~ grid_col ~ ';']) -%}
 {%- endif -%}
-
 {%- if grid_min_width -%}
-  {% set grid_att = grid_att.setAttribute('style', '--grid_cell-min-width: ' ~ grid_min_width ~ 'px;') %}
+  {%- set grid_style = grid_style|merge(['--grid_m-w: ' ~ grid_min_width ~ 'px;']) -%}
+{%- endif -%}
+{%- if grid_style -%}
+  {% set grid_att = grid_att.setAttribute('style', grid_style|join(' ')) %}
 {%- endif -%}
 
 {#- Render component -#}

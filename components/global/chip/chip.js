@@ -1,10 +1,7 @@
-(function (Drupal) {
+(function (Drupal, once) {
   Drupal.behaviors.chip = {
     attach(context) {
-      context.querySelectorAll('[data-chip]').forEach(el => {
-        if (el.hasAttribute('data-chip-initialized')) return;
-        el.setAttribute('data-chip-initialized', 'true');
-
+      once('chip', '[data-chip]', context).forEach(el => {
         const control = el.querySelector('.chip__control');
         const removeBtn = el.querySelector('[data-chip-remove]');
 
@@ -47,4 +44,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

@@ -1,3 +1,10 @@
+---
+title: Chip
+group: Globals
+version: 1.1.0
+css_prefix: chip
+---
+
 # Chip
 
 Compact, pill-shaped control for filter selection or token display. Maps to the `mud-chip` web component.
@@ -64,9 +71,9 @@ Two behavioral modes:
 | `--chip_gap` | `--chip-container-gap-md` | Gap between icon and label. |
 | `--chip_f-s` | `--chip-label-font-size-md` | Label font size. |
 | `--chip_bg` | `--chip-filter-background-default` | Background color. |
-| `--chip_bg-hover` | `--chip-filter-background-hover` | Hover background. |
+| `--chip_bg_h` | `--chip-filter-background-hover` | Hover background. |
 | `--chip_c` | `--chip-filter-label-default` | Label color. |
-| `--chip_icon-c` | `--chip-filter-icon-default` | Icon color. |
+| `--chip_icon_c` | `--chip-filter-icon-default` | Icon color. |
 | `--chip_b-r` | `--chip-container-border-radius` | Border radius. |
 
 ## JavaScript Events
@@ -75,3 +82,11 @@ Two behavioral modes:
 |-------|---------|--------|-------------|
 | `chip:select` | yes | `{ selected: boolean, chip: Element }` | Fired on filter chip toggle. |
 | `chip:remove` | yes | `{ chip: Element }` | Fired when remove button is clicked. Chip is hidden by default; call `e.preventDefault()` to cancel. |
+
+Sizes: `--chip_sm_h`, `--chip_sm_f-s`, …; input type: `--chip_input_bg`, …; selected filter: `--chip_filter_bg_s`, …
+
+## Accessibility
+
+- Filter chips toggle `aria-pressed`; the remove button has its own accessible name.
+- Focus: the MUD ring (`--focus-ring`) on the control and on the remove button.
+- Transitions are off under `prefers-reduced-motion: reduce`.

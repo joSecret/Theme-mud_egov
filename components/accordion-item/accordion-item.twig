@@ -4,41 +4,44 @@
  * Accordion Item component.
  *
  * Available properties:
- * - item_title (string)
- * - item_content (string) — pre-rendered body
- * - item_open (boolean) (default: false)
- * - item_uc (array) (default: [])
- * - item_att (Drupal\Core\Template\Attribute)
+ * - accordion_item_title (string)
+ * - accordion_item_icon (render array|string|null)
+ * - accordion_item_description (string)
+ * - accordion_item_name (string|null): details name attribute (exclusive group)
+ * - accordion_item_content (string) — pre-rendered body
+ * - accordion_item_open (boolean) (default: false)
+ * - accordion_item_uc (array) (default: [])
+ * - accordion_item_att (Drupal\Core\Template\Attribute)
  */
 -#}
 
-{% set item_att = item_att ?: create_attribute() %}
+{% set accordion_item_att = accordion_item_att ?: create_attribute() %}
 {%
-  set item_classes = [
+  set accordion_item_classes = [
     'accordion-item',
-  ]|merge(item_uc ?: [])
+  ]|merge(accordion_item_uc ?: [])
 %}
 
-{%- if item_open -%}
-  {% set item_att = item_att.setAttribute('open', true) %}
+{%- if accordion_item_open -%}
+  {% set accordion_item_att = accordion_item_att.setAttribute('open', true) %}
 {%- endif -%}
 
-<details{{ item_att.addClass(item_classes) }}{%- if item_name -%} name="{{ item_name }}"{%- endif -%}>
+<details{{ accordion_item_att.addClass(accordion_item_classes) }}{%- if accordion_item_name -%} name="{{ accordion_item_name }}"{%- endif -%}>
   <summary>
-    {%- if item_icon.0 -%}
+    {%- if accordion_item_icon.0 -%}
       <span class="accordion-item__icon">
-        {{- item_icon -}}
+        {{- accordion_item_icon -}}
       </span>
     {%- endif -%}
 
     <span class="accordion-item__body">
       <h3 class="accordion-item__title">
-        {{- item_title -}}
+        {{- accordion_item_title -}}
       </h3>
 
-      {%- if item_description.0 -%}
+      {%- if accordion_item_description.0 -%}
         <span class="accordion-item__description">
-          {{- item_description -}}
+          {{- accordion_item_description -}}
         </span>
       {%- endif -%}
     </span>
@@ -46,9 +49,9 @@
     {% include 'mud_egov:plus-minus' -%}
   </summary>
 
-  {%- if item_content -%}
+  {%- if accordion_item_content -%}
     <div class="accordion-content">
-      {{- item_content -}}
+      {{- accordion_item_content -}}
     </div>
   {%- endif -%}
 </details>

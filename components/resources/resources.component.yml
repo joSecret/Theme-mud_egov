@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Resources
 status: stable
-version: 1.0.0
+version: 1.1.0
 group: Content
 description: 'Resources section with optional eyebrow label, heading and a list of card-icon items.'
 

@@ -4,21 +4,21 @@
  * Statistics Item component.
  *
  * Props:
- * - item_number (string|null)
- * - item_label (string|null)
- * - item_digital_badge (string|null)
- * - item_is_digital (bool) default: false
+ * - statistics_item_number (string|null)
+ * - statistics_item_label (string|null)
+ * - statistics_item_digital_badge (string|null)
+ * - statistics_item_is_digital (bool) default: false
  */
 -#}
 
-{% set item_att = item_att ?: create_attribute() %}
-{% set item_classes = ['c--statistics-item']
-  |merge(item_is_digital ? ['is-digital'] : [])
-  |merge(item_uc ?: []) %}
+{% set statistics_item_att = statistics_item_att ?: create_attribute() %}
+{% set statistics_item_classes = ['c--statistics-item']
+  |merge(statistics_item_is_digital ? ['is-digital'] : [])
+  |merge(statistics_item_uc ?: []) %}
 
-<div{{ item_att.addClass(item_classes) }}>
+<div{{ statistics_item_att.addClass(statistics_item_classes) }}>
   <div class="item-number-row">
-    {%- if item_is_digital -%}
+    {%- if statistics_item_is_digital -%}
       <span class="item-star" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.68082 17.791C4.68082 16.67 4.92798 15.9046 5.41614 15.4165C5.90431 14.9283 6.66969 14.6811 7.7907 14.6811L7.7907 14.3153C6.66969 14.3153 5.90431 14.0681 5.41614 13.5799C4.92798 13.0918 4.68082 12.3264 4.68082 11.2054L4.31495 11.2054C4.31495 12.3264 4.06779 13.0918 3.57963 13.5799C3.09147 14.0681 2.32608 14.3153 1.20508 14.3153L1.20508 14.6811C2.32608 14.6811 3.09147 14.9283 3.57963 15.4165C4.06779 15.9046 4.31495 16.67 4.31495 17.791L4.68082 17.791Z" fill="#0058D2"/>
@@ -27,22 +27,22 @@
       </span>
     {%- endif -%}
 
-    {%- if item_number -%}
+    {%- if statistics_item_number -%}
       <span class="item-number">
-        {{- item_number -}}
+        {{- statistics_item_number -}}
       </span>
     {%- endif -%}
 
-    {%- if item_digital_badge -%}
+    {%- if statistics_item_digital_badge -%}
       <span class="item-badge">
-        {{- item_digital_badge -}}
+        {{- statistics_item_digital_badge -}}
       </span>
     {%- endif -%}
   </div>
 
-  {%- if item_label -%}
+  {%- if statistics_item_label -%}
     <span class="item-label">
-      {{- item_label -}}
+      {{- statistics_item_label -}}
     </span>
   {%- endif -%}
 </div>

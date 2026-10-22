@@ -7,8 +7,8 @@
 #}
 
 {% include 'mud_egov:statistics-item' with {
-  item_number: paragraph.field_number.value,
-  item_label: paragraph.field_label.value,
-  item_digital_badge: paragraph.field_digital_badge.value,
-  item_is_digital: paragraph.field_special.value ? true : false,
+  statistics_item_number: paragraph.field_number.value,
+  statistics_item_label: paragraph.field_label.value,
+  statistics_item_digital_badge: paragraph.field_digital_badge.value,
+  statistics_item_is_digital: paragraph.field_special.value ? true : false,
 } only %}

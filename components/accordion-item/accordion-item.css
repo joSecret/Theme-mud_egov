@@ -1,40 +1,51 @@
 .accordion-item {
-  --_accordion-item_p-b:var(--accordion-item_p-b, var(--accordion-item-padding-block));
-  --_accordion-item_p-i:var(--accordion-item_p-i, 0px);
-  --_accordion-item_c-g:var(--accordion-item_c-g, var(--accordion-item-gap));
-  --_accordion-item_r-g:var(--accordion-item_r-g, var(--accordion-item-heading-gap));
-  --_accordion-item_br_c:var(--accordion-item_br_c, var(--_accordion_br-c));
-  --_accordion-item_br_w:var(--accordion-item_br_w, var(--_accordion_br-w));
-  --_accordion-item_tt:var(--accordion-item_tt, var(--accordion-item-transition-duration));
-
+  --_accordion-item_bg: var(--accordion-item_bg, transparent);
+  --_accordion-item_bg_h: var(--accordion-item_bg_h, var(--accordion-item-container-background-hover));
+  --_accordion-item_b-c: var(--accordion-item_b-c, var(--accordion_b-c, var(--accordion-item-border-color-default)));
+  --_accordion-item_b-w: var(--accordion-item_b-w, var(--accordion_b-w, var(--accordion-item-border-width)));
+  --_accordion-item_trn: var(--accordion-item_trn, var(--accordion-item-transition-duration) var(--accordion-item-transition-timing-function));
+  --_accordion-item_gap: var(--accordion-item_gap, var(--accordion-item-gap));
+  --_accordion-item_p-b: var(--accordion-item_p-b, var(--accordion-item-padding-block));
+  --_accordion-item_p-i: var(--accordion-item_p-i, 0px);
+  --_accordion-item_p-i_h: var(--accordion-item_p-i_h, var(--accordion-item-heading-padding-hover));
   --_accordion-item_c: var(--accordion-item_c, var(--accordion-item-color-default));
   --_accordion-item_c_a: var(--accordion-item_c_a, var(--accordion-item-color-open));
-  --_accordion-item_c_d: var(--accordion-item_c_d, var(--accordion-item-color-disabled));
 
-  --_accordion-item_icon_w: var(--accordion-item_icon_w, 24px);
+  --_accordion-item_trigger_size: var(--accordion-item_trigger_size, var(--accordion-item-trigger-size));
+  --_accordion-item_icon_size: var(--accordion-item_icon_size, 24px);
 
-  --_accordion-item_panel_p-i: var(--accordion-item_panel_p-i, calc());
+  --_accordion-item_title_c: var(--accordion-item_title_c, currentcolor);
+  --_accordion-item_title_c_a: var(--accordion-item_title_c_a, var(--accordion-item-color-open));
+
+  --_accordion-item_body_gap: var(--accordion-item_body_gap, var(--accordion-item-heading-gap));
+  --_accordion-item_body_p-i: var(--accordion-item_body_p-i, 0px);
 
   --_accordion-item_description_c: var(--accordion-item_description_c, var(--accordion-item-supporting-color-default));
-  --_accordion-item_description_c_d: var(--accordion-item_description_c_d, var(--accordion-item-supporting-color-disabled));
   --_accordion-item_description_f-s: var(--accordion-item_description_f-s, var(--accordion-item-supporting-font-size));
   --_accordion-item_description_l-h: var(--accordion-item_description_l-h, var(--accordion-item-supporting-line-height));
   --_accordion-item_description_f-w: var(--accordion-item_description_f-w, var(--accordion-item-supporting-font-weight));
 
-  border-block: var(--_accordion-item_br_w) solid var(--_accordion-item_br_c);
-  margin-block-end: calc(var(--_accordion-item_br_w) * -1);
+  --_accordion-item_panel_p-b: var(--accordion-item_panel_p-b, var(--accordion-item-padding-block));
+  --_accordion-item_panel_p-i: var(--accordion-item_panel_p-i, 0px);
+
+  --_accordion-item_sm_p-b: var(--accordion-item_sm_p-b, 18px);
+  --_accordion-item_trigger_sm_size: var(--accordion-item_trigger_sm_size, var(--spacing-32));
+  --_accordion-item_title_sm_f-s: var(--accordion-item_title_sm_f-s, var(--font-size-18));
+  --_accordion-item_title_sm_l-h: var(--accordion-item_title_sm_l-h, var(--line-height-26));
+
+  border-block: var(--_accordion-item_b-w) solid var(--_accordion-item_b-c);
+  margin-block-end: calc(var(--_accordion-item_b-w) * -1);
 
   summary {
     cursor: pointer;
     display: flex;
-    row-gap: 8px;
     align-items: center;
     color: var(--_accordion-item_c);
-    column-gap: var(--_accordion-item_c-g);
+    column-gap: var(--_accordion-item_gap);
     padding-block: var(--_accordion-item_p-b);
     padding-inline: var(--_accordion-item_p-i);
-    background: var(--accordion-item_bg, var(--_accordion_bg));
-    transition: background var(--_accordion_tt) var(--_accordion_t-f), padding-inline var(--_accordion_tt) var(--_accordion_t-f);
+    background: var(--_accordion-item_bg);
+    transition: background var(--_accordion-item_trn), padding-inline var(--_accordion-item_trn);
 
     &::marker {
       content: "";
@@ -45,28 +56,27 @@
     }
 
     &:hover {
-      --accordion-item_bg: var(--accordion-item_bg_h, var(--accordion-item-container-background-hover));
-      --_accordion-item_p-i: var(--accordion-item_p-i_h, var(--accordion-item-heading-padding-hover));
-      --accordion-item_body_p-i-e: 0px;
+      background: var(--_accordion-item_bg_h);
+      padding-inline: var(--_accordion-item_p-i_h);
     }
   }
 
   & > div {
-    padding-block-end: var(--accordion-item_div_p-b-e, var(--accordion-item-padding-block));
+    padding-block: 0 var(--_accordion-item_panel_p-b);
     padding-inline: var(--_accordion-item_panel_p-i);
   }
 
   .accordion-item__title {
-    color: var(--accordion-item_title_c, currentColor);
+    color: var(--_accordion-item_title_c);
   }
 
   .accordion-item__body {
     display: grid;
     flex-grow: 1;
-    padding-inline-end: var(--accordion-item_body_p-i-e, calc(var(--_accordion-item_panel_p-i) * 2));
+    padding-inline-end: calc(var(--_accordion-item_body_p-i) * 2);
     color: var(--_accordion-item_c);
-    gap: var(--_accordion-item_r-g);
-    transition: padding-inline-end var(--_accordion_tt) var(--_accordion_t-f);
+    gap: var(--_accordion-item_body_gap);
+    transition: padding-inline-end var(--_accordion-item_trn);
   }
 
   .accordion-item__description {
@@ -77,43 +87,71 @@
   }
 
   .accordion-item__icon {
-    --accordion-item_icon_w: 24px;
-
-    flex: 0 0 var(--accordion-item_icon_w);
+    flex: 0 0 var(--_accordion-item_icon_size);
   }
 
   .plus-minus {
-    --plus-minus_s: var(--accordion-item_trigger_s, var(--accordion-item-trigger-size));
+    width: var(--_accordion-item_trigger_size);
+    height: var(--_accordion-item_trigger_size);
+    flex: 0 0 var(--_accordion-item_trigger_size);
+  }
+}
 
-    flex: 0 0 var(--plus-minus_s);
+/* Small size: set by .accordion.is-small (accordion_size: small). */
+:is(.is-small .accordion-item, .accordion-item.is-small) {
+  summary {
+    padding-block: var(--_accordion-item_sm_p-b);
   }
 
-  &[open] {
-    --_accordion-item_c: var(--_accordion-item_c_a);
-    --accordion-item_bg: var(--_accordion_bg);
-    --accordion-item_bg_h: var(--_accordion_bg);
-    --accordion-item_title_c: var(--accordion-item-color-open);
-    --plus-minus_c: var(--accordion-item-color-open);
+  .plus-minus {
+    width: var(--_accordion-item_trigger_sm_size);
+    height: var(--_accordion-item_trigger_sm_size);
+    flex-basis: var(--_accordion-item_trigger_sm_size);
+  }
 
-    &::details-content {
-      @supports (interpolate-size: allow-keywords) {
-        height: auto;
-      }
+  .accordion-item__title {
+    font-size: var(--_accordion-item_title_sm_f-s);
+    line-height: var(--_accordion-item_title_sm_l-h);
+  }
+}
 
-      @supports not (interpolate-size: allow-keywords) {
-        height: 150px;
-        overflow-y: scroll;
-      }
+.accordion-item[open] {
+  summary,
+  .accordion-item__body {
+    color: var(--_accordion-item_c_a);
+  }
+
+  summary:hover {
+    background: var(--_accordion-item_bg);
+  }
+
+  .accordion-item__title {
+    color: var(--_accordion-item_title_c_a);
+  }
+
+  .plus-minus > span {
+    background: var(--_accordion-item_title_c_a);
+  }
+
+  &::details-content {
+    @supports (interpolate-size: allow-keywords) {
+      height: auto;
+    }
+
+    @supports not (interpolate-size: allow-keywords) {
+      height: 150px;
+      overflow-y: scroll;
     }
   }
 }
 
-.is-small {
-  --accordion-item_trigger_s: 32px;
-  --accordion-item_p-b: 18px;
+.accordion-item summary:hover .accordion-item__body {
+  padding-inline-end: 0;
+}
 
-  .accordion-item__title {
-    --_h-fs: 18px;
-    --h_l-h: 26px;
+@media (prefers-reduced-motion: reduce) {
+  .accordion-item summary,
+  .accordion-item .accordion-item__body {
+    transition: none;
   }
 }

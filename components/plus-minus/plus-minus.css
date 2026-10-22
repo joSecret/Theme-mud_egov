@@ -1,21 +1,21 @@
 .plus-minus {
-  --_plus-minus_s: var(--plus-minus_s, 50px);
-  --_plus-minus_c: var(--plus-minus_c, currentColor);
-  --_plus-minus_tt: var(--plus-minus_tt, 0.2s);
-  --_plus-minus_rotate: var(--plus-minus_rotate, 0deg);
+  --_plus-minus_size: var(--plus-minus_size, 50px);
+  --_plus-minus_c: var(--plus-minus_c, currentcolor);
+  --_plus-minus_trn: var(--plus-minus_trn, 0.2s);
+  --_plus-minus_tr: var(--plus-minus_tr, rotate(0deg));
+  --_plus-minus_tr_h: var(--plus-minus_tr_h, rotate(90deg));
+  --_plus-minus_bar_h: var(--plus-minus_bar_h, 2px);
+  --_plus-minus_bar_w: var(--plus-minus_bar_w, 12px);
   --_plus-minus_horiz_o: var(--plus-minus_horiz_o, 1);
+  --_plus-minus_horiz_o_h: var(--plus-minus_horiz_o_h, 0);
 
-  --_plus-minus_item_bw: var(--plus-minus_item_bw, 2px);
-  --_plus-minus_span_w: var(--plus-minus_span_w, 12px);
-
-  width: var(--_plus-minus_s);
-  height: var(--_plus-minus_s);
+  width: var(--_plus-minus_size);
+  height: var(--_plus-minus_size);
   display: grid;
   grid-template-areas: "stack";
-  align-items: center;
-  justify-items: center;
-  transform: rotate(var(--_plus-minus_rotate));
-  transition: transform var(--_plus-minus_tt) ease-in-out;
+  place-items: center;
+  transform: var(--_plus-minus_tr);
+  transition: transform var(--_plus-minus_trn) ease-in-out;
 
   & > span {
     grid-area: stack;
@@ -25,26 +25,36 @@
   }
 }
 
-
 .plus-minus__horiz {
-  height: var(--_plus-minus_item_bw);
-  width: var(--_plus-minus_span_w);
+  height: var(--_plus-minus_bar_h);
+  width: var(--_plus-minus_bar_w);
   opacity: var(--_plus-minus_horiz_o);
-  transition: opacity var(--_plus-minus_tt) ease-out;
+  transition: opacity var(--_plus-minus_trn) ease-out;
 }
 
 .plus-minus__vert {
-  width: var(--_plus-minus_item_bw);
-  height: var(--_plus-minus_span_w);
-  margin-left: calc(var(--_plus-minus_item_bw) / -2);
-}
-
-.plus-minus:hover,
-[open] .plus-minus {
-  --_plus-minus_rotate: 90deg;
-  --_plus-minus_horiz_o: 0;
+  width: var(--_plus-minus_bar_h);
+  height: var(--_plus-minus_bar_w);
+  margin-left: calc(var(--_plus-minus_bar_h) / -2);
 }
 
 summary .plus-minus {
   pointer-events: none;
+}
+
+.plus-minus:hover,
+[open] .plus-minus {
+  transform: var(--_plus-minus_tr_h);
+}
+
+.plus-minus:hover .plus-minus__horiz,
+[open] .plus-minus .plus-minus__horiz {
+  opacity: var(--_plus-minus_horiz_o_h);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plus-minus,
+  .plus-minus__horiz {
+    transition: none;
+  }
 }

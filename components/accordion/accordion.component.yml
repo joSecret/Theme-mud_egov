@@ -1,58 +1,62 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Accordion
 status: stable
-description: 'Accordion component'
+version: 1.1.0
+group: Content
+description: 'Wrapper for accordion-item elements (native details/summary), with optional outer border and size variants.'
+
 props:
   type: object
   properties:
-    # fields value
+    # fields values
     accordion_id:
       type: ['integer', 'string']
       title: Accordion ID
       description: Unique ID for the accordion component.
       default: 0
 
+    accordion_content:
+      type: string
+      title: Accordion Content
+      description: Pre-rendered accordion items content.
+      default: ''
 
     # component variations
-
-    appearance:
+    accordion_appearance:
       type: string
-      title: 'Appearance'
+      title: Appearance
       enum:
         - 'single'
         - 'multiple'
       default: 'multiple'
 
-    mode:
+    accordion_mode:
       type: boolean
       title: Stay open
       description: A boolean to determine if an accordion item should stay open when another item is opened.
       default: false
 
-    open_item_id:
+    accordion_open_item_id:
       type: integer
       title: Open Item ID
       description: The index of the item that should be opened by default.
       default: 0
 
-    icon_position:
+    accordion_icon_position:
       type: string
-      title: 'Icon position'
-      description: 'Marker/Icon position (none|left|right:default).'
+      title: Icon position
+      description: 'Marker/Icon position (none|left|right).'
       enum:
         - 'none'
         - 'left'
         - 'right'
       default: 'left'
 
-    # uc -> utility_classes
-    accordion_uc:
-      type: array
-      items:
-        type: string
-      title: Accordion Utility Classes
-      default: []
-      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this component.
+    accordion_flush:
+      type: boolean
+      title: Bordered
+      description: 'Draws an outer border around the accordion (adds the is-bordered class).'
+      default: false
 
     accordion_size:
       type: string
@@ -64,19 +68,22 @@ props:
         - 'large'
       default: ''
 
-    accordion_content:
-      type: string
-      title: Accordion Content
-      description: Pre-rendered accordion items content.
-      default: ''
+    # uc -> utility_classes
+    accordion_uc:
+      type: array
+      items:
+        type: string
+      title: Accordion Utility Classes
+      default: []
+      description: An array of utility classes to add to the component.
 
     # att -> attributes
     accordion_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       description: A list of HTML attributes for the accordion.
-
       default: null
+
 slots:
   content:
     title: Content

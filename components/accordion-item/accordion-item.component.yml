@@ -1,54 +1,63 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Accordion Item
 status: stable
-description: 'Single accordion item using native <details>/<summary>'
+version: 1.1.0
+group: Content
+description: 'Single accordion item using native details/summary, with optional icon, description and a plus/minus trigger.'
+
 props:
   type: object
   properties:
-    item_title:
+    # fields values
+    accordion_item_title:
       type: string
       title: Item Title
       description: The summary/trigger text.
       default: ''
 
-    item_icon:
+    accordion_item_icon:
       type: ['object', 'string', 'null']
       title: Item Icon
       description: Pre-rendered icon or illustration (field_illustration_or_icon).
       default: ''
 
-    item_description:
+    accordion_item_description:
       type: string
       title: Item Description
       description: Short description shown in the summary (field_description).
       default: ''
 
-    item_content:
+    accordion_item_content:
       type: string
       title: Item Content
       description: Pre-rendered body content of the accordion item.
       default: ''
 
-    item_name:
+    # component variations
+    accordion_item_name:
       type: ['string', 'null']
       title: Group Name
-      description: 'Sets the name attribute on <details>. Items sharing the same name are exclusive (only one open at a time).'
+      description: 'Sets the name attribute on details. Items sharing the same name are exclusive (only one open at a time).'
       default: null
 
-    item_open:
+    accordion_item_open:
       type: boolean
       title: Open
       description: Whether the item is open by default.
       default: false
 
-    item_uc:
+    # uc -> utility_classes
+    accordion_item_uc:
       type: array
       items:
         type: string
       title: Utility Classes
       default: []
+      description: An array of utility classes to add to the component.
 
-    item_att:
-      type: object
+    # att -> attributes
+    accordion_item_att:
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null
+      description: A list of HTML attributes for the component.

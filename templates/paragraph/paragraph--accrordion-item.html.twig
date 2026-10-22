@@ -6,9 +6,9 @@
 #}
 
 {% include 'mud_egov:accordion-item' with {
-  item_title: paragraph.field_title.value,
-  item_icon: content.field_illustration_or_icon,
-  item_description: content.field_description,
-  item_content: paragraph.field_body.processed,
-  item_name: 'accordion-' ~ paragraph.getParentEntity().id(),
+  accordion_item_title: paragraph.field_title.value,
+  accordion_item_icon: content.field_illustration_or_icon,
+  accordion_item_description: content.field_description,
+  accordion_item_content: paragraph.field_body.processed,
+  accordion_item_name: 'accordion-' ~ paragraph.getParentEntity().id(),
 } only %}

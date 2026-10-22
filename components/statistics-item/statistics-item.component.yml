@@ -1,39 +1,39 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Statistics Item
 status: stable
-version: 1.0.0
+version: 1.1.0
 group: Content
 description: 'Single statistic — a large number, an optional digital badge and a label.'
 
 props:
   type: object
   properties:
-    item_number:
+    statistics_item_number:
       type: ['string', 'null']
       title: Number
       description: 'The statistic value (e.g. 637).'
       default: null
 
-    item_label:
+    statistics_item_label:
       type: ['string', 'null']
       title: Label
       description: 'Descriptive text below the number.'
       default: null
 
-    item_digital_badge:
+    statistics_item_digital_badge:
       type: ['string', 'null']
       title: Digital Badge
       description: 'Short badge text shown next to the number (e.g. "54.9% digitalizate").'
       default: null
 
-    item_is_digital:
+    statistics_item_is_digital:
       type: boolean
       title: Is Digital
       description: 'When true, applies the colored (blue) variant with a star decoration.'
       default: false
 
     # uc -> utility_classes
-    item_uc:
+    statistics_item_uc:
       type: array
       items:
         type: string
@@ -41,7 +41,7 @@ props:
       default: []
 
     # att -> attributes
-    item_att:
+    statistics_item_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null

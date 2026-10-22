@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Plus Minus
 status: stable
-group: Global
-version: 1.0.0
-description: 'Animated plus/minus icon. Rotates 90° and collapses horizontal bar on hover or open state.'
+group: Content
+version: 1.1.0
+description: 'Animated plus/minus icon. Rotates 90° and hides the horizontal bar on hover or when inside an open details element.'
 
 # Props.
 props:
@@ -14,7 +14,7 @@ props:
       type: boolean
       title: Open State
       default: false
-      description: When true, displays the minus state (rotated, horizontal bar hidden).
+      description: Adds the plus-minus--open class (the minus state itself comes from :hover or an [open] ancestor).
 
     # component variations
 

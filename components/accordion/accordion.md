@@ -1,126 +1,70 @@
-## Accordion
+---
+title: Accordion
+group: Content
+version: 1.1.0
+css_prefix: accordion
+---
 
-The accordion component is a simple way to show and hide content.
+# Accordion
 
-### Component Properties
+Wrapper for a group of `accordion-item` elements. Each item is a native `<details>`/`<summary>`; the wrapper adds the shared look (optional outer border, size modifier) and animates the content height.
 
-The Accordion component takes a variety of properties to customize its appearance and content:
+## Props
 
-Available properties:
+| Prop                      | Type             | Default      | Description                                                              |
+|---------------------------|------------------|--------------|--------------------------------------------------------------------------|
+| `accordion_id`            | integer, string  | `0`          | `id` of the wrapper (omitted when falsy).                                |
+| `accordion_content`       | string           | `''`         | Pre-rendered `accordion-item` elements. Nothing renders when empty.      |
+| `accordion_appearance`    | `single`, `multiple` | `multiple` | Declared for the item group behaviour; no visual effect yet.            |
+| `accordion_mode`          | boolean          | `false`      | Stay open; no visual effect yet.                                         |
+| `accordion_open_item_id`  | integer          | `0`          | Item opened by default; no visual effect yet.                            |
+| `accordion_icon_position` | `none`, `left`, `right` | `left` | Icon position; no visual effect yet.                                    |
+| `accordion_flush`         | boolean          | `false`      | Adds `is-bordered`: outer border around the accordion.                   |
+| `accordion_size`          | `''`, `small`, `large` | `''`   | Adds `is-small` / `is-large` (only `is-small` has styles).               |
+| `accordion_uc`            | array            | `[]`         | Extra utility classes on the wrapper.                                    |
+| `accordion_att`           | Attribute        | `null`       | HTML attributes on the wrapper.                                          |
 
-- accordion_id (int) (default: accordion-random(1000))
-- title (string) (default: '')
-- title_tag (string) (default: 'h2')
-- flush (boolean) (default: false)
-- stay_open (boolean) (default: false)
-- open_item_id (int) (default: 0)
-- icon_position (none|left|right) (default: rigth)
-- items (array) (default: []): format: [
-  {
-  title: (string),
-  title_tag: (string),
-  content: (block),
-  },
-  ]
-- accordion_uc (array) (default: '')
-- accordion_item_uc (array) (default: '')
-- accordion_att (Drupal\Core\Template\Attribute)
-- title_att (drupal attrs) (Drupal\Core\Template\Attribute)
-- accordion_item_att (Drupal\Core\Template\Attribute)
+## Public CSS variables (level 3, empty by default)
 
-`title` : The title of the accordion.
-`title_tag` : The HTML tag to use for the title. Default is `h2`.
-`title_link` : A link to wrap the title in.
-`items` (required): An array of items to display in the accordion.
-`accordion_item_utility_classes` : An array of utility classes to apply to each accordion item.
-`accordion_utility_classes` : An array of classes to apply to the accordion.
-`flush` : A boolean to determine if the accordion should have flush borders.
-`open_item_id` : The id of the item to be open by default.
-`id` : The id of the accordion.
-`stay_open` : A boolean to determine if an accordion item should stay open when another item is opened. Default is `false`.
+| Variable             | Default (level 2)                              | Description                  |
+|----------------------|------------------------------------------------|------------------------------|
+| `--accordion_bg`     | `transparent`                                  | Background of the `<details>` |
+| `--accordion_b-r`    | `0px`                                          | Radius of the outer border   |
+| `--accordion_b-c`    | `--accordion-item-border-color-default`        | Outer border color           |
+| `--accordion_b-w`    | `--accordion-item-border-width`                | Outer border width           |
+| `--accordion_trn`    | `--accordion-item-transition-duration`         | Content height transition    |
 
-### Usage
+The look of each item is controlled by the variables listed in `accordion-item.md`.
 
-**Example 1**: Simple Accordion usage
+## Usage
 
 ```twig
-  {%
-    include 'mud_egov_accordion:accordion' with {
-      items: [
-        {
-          title: 'Item 1',
-          title_tag: 'h3',
-          content: 'Content 1',
-          stay_open: true,
-        },
-        {
-          title: 'Item 2',
-          title_tag: 'h3',
-          content: 'Content 2',
-        }
-      ],
-    }
-  %}
+{% set items %}
+  {% include 'mud_egov:accordion-item' with {
+    accordion_item_title: 'Item 1',
+    accordion_item_content: '<p>Content 1</p>',
+    accordion_item_name: 'faq',
+  } only %}
+  {% include 'mud_egov:accordion-item' with {
+    accordion_item_title: 'Item 2',
+    accordion_item_content: '<p>Content 2</p>',
+    accordion_item_name: 'faq',
+  } only %}
+{% endset %}
+
+{% include 'mud_egov:accordion' with {
+  accordion_id: 'faq-accordion',
+  accordion_flush: true,
+  accordion_size: 'small',
+  accordion_content: items,
+} only %}
 ```
 
-```twig
-  {%
-    include 'mud_egov:accordion' with {
-      accordion_id: {{ content.id }}
-      title: 'Yolo!',
-      title_tag: 'h2',
-      flush: true,
-      open_item_id: 2,
-      icon_position: 'left',
-      accordion_uc: ['custom-class'],
-      accordion_item_uc: ['custom-class'],
-      items: [
-        {
-          title: 'Item 1',
-          title_tag: 'h3',
-          content: 'Content 1',
-          stay_open: true,
-        },
-        {
-          title: 'Item 2',
-          title_tag: 'h3',
-          content: 'Content 2',
-        },
-        {
-          title: 'Item 3',
-          title_tag: 'h3',
-          content: 'Content 3',
-        },
-      ],
-    }
-  %}
-```
+In Drupal the paragraph templates `paragraph--accrordion.html.twig` and `paragraph--accrordion-item.html.twig` do this wiring.
 
-**Example 2**: Advanced usage of Accordion usage in `views-view--unformatted`:
+## Accessibility
 
-```twig
-{% embed "mud_egov_accordion:views-view--unformatted" %}
-  {% block views_unformatted_rows %}
-    {% set accordion_items = [] %}
-    {% for row in rows %}
-      {% set node = row.content['#node'] %}
-      {% set node_title = node.getTitle() %}
-      {% set node_body = node.body.processed %}
-      {% set accordion_item = {
-        title_tag: 'h3',
-        title: node_title,
-        content: node_body,
-      } %}
-
-      {% set accordion_items = accordion_items|merge([accordion_item]) %}
-    {% endfor %}
-
-    {%
-      include 'mud_egov_accordion:accordion' with {
-        id: 'faq',
-        items: accordion_items
-      }
-    %}
-  {% endblock %}
-{% endembed %}
-```
+- Built on native `<details>`/`<summary>`: Enter and Space toggle an item from the keyboard and the open state is exposed to assistive technology without extra ARIA.
+- Items sharing the same `accordion_item_name` behave as an exclusive group (only one open), handled by the browser.
+- The content height transition is disabled under `prefers-reduced-motion: reduce`.
+- Keep the item titles meaningful: the title is the only text of the `<summary>` trigger.

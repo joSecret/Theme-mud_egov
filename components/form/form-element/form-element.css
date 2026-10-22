@@ -3,16 +3,15 @@
  * Form Element component styles.
  */
 
-.c--formElement {
+.c--form-element {
   --_form-element_d: var(--form-element_d, block);
-  --_form-element_fl-w: var(--form-element_fl-w, wrap);
-  --_form-element_g: var(--form-element_g, var(--size_300));
+  --_form-element_gap: var(--form-element_gap, normal);
 
   display: var(--_form-element_d);
-  flex-wrap: var(--_form-element_fl-w);
-  gap: var(--_form-element_g);
+  flex-wrap: wrap;
+  gap: var(--_form-element_gap);
 
-  .isLabel--before {
+  .is-label--before {
     flex-direction: column;
   }
 }

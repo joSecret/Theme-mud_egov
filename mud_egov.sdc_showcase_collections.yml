@@ -980,6 +980,20 @@ egov_forms:
           - { value: cahul, label: 'Cahul' }
           - { value: orhei, label: 'Orhei' }
 
+    # ── Select ───────────────────────────────────────────────────────────────
+    - component: 'mud_egov:select'
+      group: select_base
+      group_label: 'Select'
+      props:
+        select_name: 'raion'
+        select_label: 'Raionul'
+        select_placeholder: 'Alegeți raionul...'
+        select_description: 'Raionul de reședință.'
+        select_options:
+          - { value: balti, label: 'Bălți' }
+          - { value: cahul, label: 'Cahul' }
+          - { value: orhei, label: 'Orhei' }
+
     # ── Checkbox ─────────────────────────────────────────────────────────────
     - component: 'mud_egov:checkbox'
       group: checkbox_states
@@ -1114,16 +1128,23 @@ egov_forms:
       group: search_inputs
       group_label: 'Search Input — circular'
       props:
-        search_circular_label: 'Căutare'
-        search_circular_placeholder: 'Caută servicii...'
+        search_input_circular_label: 'Căutare'
+        search_input_circular_placeholder: 'Caută servicii...'
 
     - component: 'mud_egov:search-input-rectangular'
       group: search_inputs
       group_label: 'Search Input — rectangular'
       props:
-        search_rect_label: 'Căutare'
-        search_rect_placeholder: 'Caută în portal...'
-        search_rect_show_button: true
+        search_input_rectangular_label: 'Căutare'
+        search_input_rectangular_placeholder: 'Caută în portal...'
+        search_input_rectangular_show_button: true
+
+    # ── Fieldset ─────────────────────────────────────────────────────────────
+    - component: 'mud_egov:fieldset'
+      group_label: 'Fieldset'
+      props:
+        fieldset_legend: 'Date de contact'
+        fieldset_description: 'Completează cel puțin un câmp.'
 
     # ── Input Chip ───────────────────────────────────────────────────────────
     - component: 'mud_egov:input-chip'

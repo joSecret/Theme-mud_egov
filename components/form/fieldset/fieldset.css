@@ -6,26 +6,27 @@
 
 .c--fieldset {
   /* Variables — fieldset */
-  --_fieldset_p-b: var(--fieldset_p-b, var(--size_400));
-  --_fieldset_p-i: var(--fieldset_p-i, var(--size_400));
+  --_fieldset_p-b: var(--fieldset_p-b, 0);
+  --_fieldset_p-i: var(--fieldset_p-i, 0);
   --_fieldset_m-b: var(--fieldset_m-b, var(--spacer));
-  --_fieldset_b-w: var(--fieldset_b-w, var(--b-w));
-  --_fieldset_b-c: var(--fieldset_b-c, var(--b-c));
-  --_fieldset_b-r: var(--fieldset_b-r, var(--b-r));
+  --_fieldset_b-w: var(--fieldset_b-w, 0);
+  --_fieldset_b-c: var(--fieldset_b-c, currentcolor);
+  --_fieldset_b-r: var(--fieldset_b-r, 0);
   --_fieldset_gap: var(--fieldset_gap, var(--spacer));
 
   /* Variables — legend */
-  --_fieldset-legend_f-s: var(--fieldset-legend_f-s, var(--f-s_base));
-  --_fieldset-legend_f-w: var(--fieldset-legend_f-w, var(--f-w_semibold));
-  --_fieldset-legend_c: var(--fieldset-legend_c, var(--body_c));
-  --_fieldset-legend_m-b: var(--fieldset-legend_m-b, var(--size_300));
-  --_fieldset-legend_p-b: var(--fieldset-legend_p-b, var(--size_200));
-  --_fieldset-legend_b-c: var(--fieldset-legend_b-c, var(--b-c));
+  --_fieldset_legend_f-s: var(--fieldset_legend_f-s, inherit);
+  --_fieldset_legend_f-w: var(--fieldset_legend_f-w, inherit);
+  --_fieldset_legend_c: var(--fieldset_legend_c, inherit);
+  --_fieldset_legend_m-b: var(--fieldset_legend_m-b, 0);
+  --_fieldset_legend_p-b: var(--fieldset_legend_p-b, 0);
+  --_fieldset_legend_b-w: var(--fieldset_legend_b-w, 0);
+  --_fieldset_legend_b-c: var(--fieldset_legend_b-c, currentcolor);
 
   /* Variables — description */
-  --_fieldset-desc_f-s: var(--fieldset-desc_f-s, var(--f-s_sm));
-  --_fieldset-desc_c: var(--fieldset-desc_c, var(--c_muted));
-  --_fieldset-desc_m-b: var(--fieldset-desc_m-b, var(--size_300));
+  --_fieldset_desc_f-s: var(--fieldset_desc_f-s, inherit);
+  --_fieldset_desc_c: var(--fieldset_desc_c, inherit);
+  --_fieldset_desc_m-b: var(--fieldset_desc_m-b, 0);
 
   display: flex;
   flex-direction: column;
@@ -39,12 +40,12 @@
   .fieldset-legend {
     float: left;
     width: 100%;
-    font-size: var(--_fieldset-legend_f-s);
-    font-weight: var(--_fieldset-legend_f-w);
-    color: var(--_fieldset-legend_c);
-    padding-block-end: var(--_fieldset-legend_p-b);
-    border-block-end: var(--_fieldset_b-w) solid var(--_fieldset-legend_b-c);
-    margin-block-end: var(--_fieldset-legend_m-b);
+    font-size: var(--_fieldset_legend_f-s);
+    font-weight: var(--_fieldset_legend_f-w);
+    color: var(--_fieldset_legend_c);
+    padding-block-end: var(--_fieldset_legend_p-b);
+    border-block-end: var(--_fieldset_legend_b-w) solid var(--_fieldset_legend_b-c);
+    margin-block-end: var(--_fieldset_legend_m-b);
 
     & + * {
       clear: left;
@@ -52,8 +53,8 @@
   }
 
   .fieldset-description {
-    font-size: var(--_fieldset-desc_f-s);
-    color: var(--_fieldset-desc_c);
-    margin-block-end: var(--_fieldset-desc_m-b);
+    font-size: var(--_fieldset_desc_f-s);
+    color: var(--_fieldset_desc_c);
+    margin-block-end: var(--_fieldset_desc_m-b);
   }
 }

@@ -4,17 +4,23 @@
  */
 
 .c--description {
-  /* Base description styles */
-  display: block;
-  margin-top: var(--description-margin-top, 0.25rem);
-  font-size: var(--description-font-size, 0.875em);
-  color: var(--description-color, var(--c_fg-muted));
-  line-height: var(--description-line-height, 1.5);
+  --_description_d: var(--description_d, block);
+  --_description_m-b: var(--description_m-b, 0.25rem);
+  --_description_item_m-b: var(--description_item_m-b, 0.25rem);
+  --_description_f-s: var(--description_f-s, 0.875em);
+  --_description_c: var(--description_c, inherit);
+  --_description_l-h: var(--description_l-h, 1.5);
+
+  display: var(--_description_d);
+  margin-block-start: var(--_description_m-b);
+  font-size: var(--_description_f-s);
+  color: var(--_description_c);
+  line-height: var(--_description_l-h);
 }
 
 /* When used with form controls */
 .form-item .c--description {
-  margin-top: var(--description-form-item-margin-top, 0.25rem);
+  margin-block-start: var(--_description_item_m-b);
 }
 
 /* Visually hidden but accessible to screen readers */
@@ -25,7 +31,7 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border-width: 0;
 }

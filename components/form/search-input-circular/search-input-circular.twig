@@ -4,58 +4,58 @@
  * Template for the Search Input Circular component (MUD-aligned).
  *
  * Props:
- * - search_circular_label (string|null) default: null
- * - search_circular_placeholder (string|null) default: null
- * - search_circular_name (string|null) default: null
- * - search_circular_id (string|null) default: null
- * - search_circular_value (string|null) default: null
- * - search_circular_button_label (string) default: 'Caută'
+ * - search_input_circular_label (string|null) default: null
+ * - search_input_circular_placeholder (string|null) default: null
+ * - search_input_circular_name (string|null) default: null
+ * - search_input_circular_id (string|null) default: null
+ * - search_input_circular_value (string|null) default: null
+ * - search_input_circular_button_label (string) default: 'Caută'
  *
  * Variations:
- * - search_circular_size (string|null) default: null — md | lg
- * - search_circular_disabled (boolean) default: false
- * - search_circular_required (boolean) default: false
- * - search_circular_with_button (boolean) default: false
+ * - search_input_circular_size (string|null) default: null — md | lg
+ * - search_input_circular_disabled (boolean) default: false
+ * - search_input_circular_required (boolean) default: false
+ * - search_input_circular_with_button (boolean) default: false
  *
- * Utility classes: search_circular_uc
- * Attributes: search_circular_att
+ * Utility classes: search_input_circular_uc
+ * Attributes: search_input_circular_att
  */
 -#}
 
 {#- Defaults -#}
-{% set search_circular_id = search_circular_id|default(search_circular_name) %}
-{% set search_circular_disabled = search_circular_disabled|default(false) %}
-{% set search_circular_required = search_circular_required|default(false) %}
-{% set search_circular_with_button = search_circular_with_button|default(false) %}
-{% set search_circular_with_clear = search_circular_with_clear|default(false) %}
-{% set search_circular_button_label = search_circular_button_label|default('Caută') %}
+{% set search_input_circular_id = search_input_circular_id|default(search_input_circular_name) %}
+{% set search_input_circular_disabled = search_input_circular_disabled|default(false) %}
+{% set search_input_circular_required = search_input_circular_required|default(false) %}
+{% set search_input_circular_with_button = search_input_circular_with_button|default(false) %}
+{% set search_input_circular_with_clear = search_input_circular_with_clear|default(false) %}
+{% set search_input_circular_button_label = search_input_circular_button_label|default('Caută') %}
 
 {#- IDs for aria wiring -#}
-{% set label_id = search_circular_id ? 'label-' ~ search_circular_id : null %}
+{% set label_id = search_input_circular_id ? 'label-' ~ search_input_circular_id : null %}
 
 {#- Create attributes -#}
-{% set search_circular_att = search_circular_att ?: create_attribute() %}
+{% set search_input_circular_att = search_input_circular_att ?: create_attribute() %}
 
 {#- Component classes -#}
 {%
   set classes = [
     'c--search-input-circular',
-    search_circular_size ? 'c--search-input-circular--' ~ search_circular_size,
-    search_circular_disabled ? 'is-disabled',
-    search_circular_with_button ? 'has-button',
-  ]|merge(search_circular_uc ?: [])
+    search_input_circular_size ? 'c--search-input-circular--' ~ search_input_circular_size,
+    search_input_circular_disabled ? 'is-disabled',
+    search_input_circular_with_button ? 'has-button',
+  ]|merge(search_input_circular_uc ?: [])
 %}
 
 {#- Render -#}
-<div{{ search_circular_att.addClass(classes) }}>
-  {%- if search_circular_label -%}
+<div{{ search_input_circular_att.addClass(classes) }}>
+  {%- if search_input_circular_label -%}
     <label
       class="search-circular-label"
-      {%- if search_circular_id -%} for="{{ search_circular_id }}"{%- endif -%}
+      {%- if search_input_circular_id -%} for="{{ search_input_circular_id }}"{%- endif -%}
       {%- if label_id -%} id="{{ label_id }}"{%- endif -%}
     >
-      {{- search_circular_label -}}
-      {%- if search_circular_required -%}
+      {{- search_input_circular_label -}}
+      {%- if search_input_circular_required -%}
         <span class="search-circular-required" aria-hidden="true">*</span>
       {%- endif -%}
     </label>
@@ -71,22 +71,22 @@
     <input
       class="search-circular-field"
       type="search"
-      {%- if search_circular_id -%} id="{{ search_circular_id }}"{%- endif -%}
-      {%- if search_circular_name -%} name="{{ search_circular_name }}"{%- endif -%}
-      {%- if search_circular_value -%} value="{{ search_circular_value }}"{%- endif -%}
-      {%- if search_circular_placeholder -%} placeholder="{{ search_circular_placeholder }}"{%- endif -%}
-      {%- if search_circular_required -%} required aria-required="true"{%- endif -%}
-      {%- if search_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
+      {%- if search_input_circular_id -%} id="{{ search_input_circular_id }}"{%- endif -%}
+      {%- if search_input_circular_name -%} name="{{ search_input_circular_name }}"{%- endif -%}
+      {%- if search_input_circular_value -%} value="{{ search_input_circular_value }}"{%- endif -%}
+      {%- if search_input_circular_placeholder -%} placeholder="{{ search_input_circular_placeholder }}"{%- endif -%}
+      {%- if search_input_circular_required -%} required aria-required="true"{%- endif -%}
+      {%- if search_input_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
       {%- if label_id -%} aria-labelledby="{{ label_id }}"{%- endif -%}
       autocomplete="off"
     >
 
-    {%- if search_circular_with_clear -%}
+    {%- if search_input_circular_with_clear -%}
       <button
         class="search-circular-clear"
         type="button"
         aria-label="{{ 'Șterge'|t }}"
-        {%- if search_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
+        {%- if search_input_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
@@ -94,17 +94,17 @@
       </button>
     {%- endif -%}
 
-    {%- if search_circular_with_button -%}
+    {%- if search_input_circular_with_button -%}
       <button
         class="search-circular-button"
         type="submit"
-        aria-label="{{ search_circular_button_label }}"
-        {%- if search_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
+        aria-label="{{ search_input_circular_button_label }}"
+        {%- if search_input_circular_disabled -%} disabled aria-disabled="true"{%- endif -%}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <span class="visually-hidden">{{ search_circular_button_label }}</span>
+        <span class="visually-hidden">{{ search_input_circular_button_label }}</span>
       </button>
     {%- endif -%}
   </div>

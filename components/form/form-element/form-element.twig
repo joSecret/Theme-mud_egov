@@ -47,14 +47,14 @@
 
 {#- Component classes -#}
 {% set form_element_classes = [
-  'c--formElement',
+  'c--form-element',
   'js-form-item',
   'form-item',
   form_element_type ? 'js-form-type-' ~ form_element_type|clean_class,
   form_element_type ? 'form-item--type-' ~ form_element_type|clean_class,
   form_element_name ? 'form-item-' ~ form_element_name|clean_class,
   form_element_name ? 'js-form-item-' ~ form_element_name|clean_class,
-  form_element_label_display ? 'isLabel--' ~ form_element_label_display|clean_class,
+  form_element_label_display ? 'is-label--' ~ form_element_label_display|clean_class,
   form_element_disabled ? 'form-disabled',
   form_element_error ? 'form-item--error',
 ]|merge(form_element_uc ?: []) %}

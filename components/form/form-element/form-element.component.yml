@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Form Element
 status: stable
-version: 1.0.0
-group: Form
+version: 1.1.0
+group: Forms
 description: 'A complete form element wrapper component that orchestrates label, input field, description, and error message components.'
 
 # Slots.

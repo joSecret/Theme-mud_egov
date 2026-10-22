@@ -3,15 +3,15 @@
  */
 
 .c--label {
-  --_label_c: var(--label_c, var(--form_c));
+  --_label_c: var(--label_c, inherit);
   --_label_d: var(--label_d, block);
-  --_label_f-s: var(--label_f-s, var(--form_f-s));
-  --_label_f-w: var(--label_f-w, var(--form_f-w));
-  --_label_m-b: var(--label_m-b, var(--size_100));
+  --_label_f-s: var(--label_f-s, inherit);
+  --_label_f-w: var(--label_f-w, inherit);
+  --_label_m-b: var(--label_m-b, 0);
 
   /* Variables — required indicator */
-  --_label-required_c: var(--label-required_c, var(--c_danger));
-  --_label-required_m-i-s: var(--label-required_m-i-s, var(--size_100));
+  --_label_required_c: var(--label_required_c, inherit);
+  --_label_required_m-i: var(--label_required_m-i, 0);
 
   display: var(--_label_d);
   color: var(--_label_c);
@@ -20,7 +20,7 @@
   margin-block-end: var(--_label_m-b);
 
   .label-symbol {
-    color: var(--_label-required_c);
-    margin-inline-start: var(--_label-required_m-i-s);
+    color: var(--_label_required_c);
+    margin-inline-start: var(--_label_required_m-i);
   }
 }

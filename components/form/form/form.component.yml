@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Form
 status: stable
-version: 1.0.0
-group: Form
+version: 1.1.0
+group: Forms
 description: 'Wrapper component for HTML <form> element with configurable method, action, and encoding type.'
 
 # Props.
@@ -23,7 +23,7 @@ props:
     form_max_width:
       type: ['boolean', 'null']
       title: Form Max Width
-      description: The maximum width of the form (e.g., "600px", "50%").
+      description: Rezervat, fără efect în șablon. Pentru lățime limitată adaugă clasa is-limited în form_uc.
       default: true
 
     # fields values

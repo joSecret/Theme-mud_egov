@@ -1,7 +1,7 @@
-((Drupal) => {
+((Drupal, once) => {
   Drupal.behaviors.searchInputCircularClear = {
     attach(context) {
-      context.querySelectorAll('.search-circular-clear').forEach((button) => {
+      once('search-input-circular-clear', '.search-circular-clear', context).forEach((button) => {
         button.addEventListener('click', () => {
           const input = button.closest('.search-circular-control')?.querySelector('.search-circular-field');
           if (input) {
@@ -13,4 +13,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

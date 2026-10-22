@@ -1,72 +1,58 @@
 ---
 title: Search Input Rectangular
 group: Forms
-slug: search-input-rectangular
-description: Rectangular search input aligned with MUD mud-search-input-rectangular. Supports an optional integrated submit button, size variants, and full accessibility wiring.
-version: 1.0.0
+version: 1.1.0
+css_prefix: search-rect
 ---
 
 # Search Input Rectangular
 
-## Overview
+Câmp de căutare cu colțuri rotunjite (dreptunghiular), aliniat la MUD Search Input Rectangular. Conține un `<input type="search">` nativ, pictograma lupei la început și, opțional, un buton de trimitere integrat în câmp.
 
-Rectangular search input wrapping the MUD `mud-search-input-rectangular` token namespace. Renders a native `<input type="search">` with a leading magnifying-glass icon and an optional trailing submit button.
+## Props
 
-## Features
+| Prop | Tip | Implicit | Descriere |
+|---|---|---|---|
+| `search_input_rectangular_label` | string | `null` | Textul etichetei vizibile |
+| `search_input_rectangular_placeholder` | string | `null` | Textul de ajutor din câmpul gol |
+| `search_input_rectangular_name` | string | `null` | Atributul `name` |
+| `search_input_rectangular_id` | string | `null` | Atributul `id` (implicit, valoarea din `name`) |
+| `search_input_rectangular_value` | string | `null` | Valoarea curentă |
+| `search_input_rectangular_button_label` | string | `Caută` | Eticheta accesibilă a butonului de trimitere |
+| `search_input_rectangular_size` | string | `null` | Mărimea: `md` (implicit) sau `lg` |
+| `search_input_rectangular_disabled` | boolean | `false` | Dezactivează câmpul |
+| `search_input_rectangular_required` | boolean | `false` | Marchează câmpul ca obligatoriu |
+| `search_input_rectangular_show_button` | boolean | `false` | Afișează butonul de trimitere |
+| `search_input_rectangular_uc` | array | `[]` | Clase utilitare adăugate pe rădăcină |
+| `search_input_rectangular_att` | Attribute | `null` | Atribute HTML pe rădăcină |
 
-- Rectangular border-radius silhouette
-- Leading search icon
-- Optional trailing rectangular submit button (`search_rect_show_button`)
-- Size variants: `md` (default), `lg`
-- Disabled state
-- Full ARIA wiring (`aria-labelledby`, `aria-required`, `aria-disabled`)
+Componenta nu are sloturi.
 
-## Usage
-
-```twig
-{% include 'mud_egov:search-input-rectangular' with {
-  search_rect_label: 'Search',
-  search_rect_placeholder: 'Enter a keyword...',
-  search_rect_name: 'q',
-  search_rect_id: 'site-search',
-} %}
-```
-
-## With submit button
+## Exemplu
 
 ```twig
 {% include 'mud_egov:search-input-rectangular' with {
-  search_rect_label: 'Search services',
-  search_rect_placeholder: 'Search...',
-  search_rect_name: 'q',
-  search_rect_show_button: true,
-  search_rect_button_label: 'Search',
-} %}
+  search_input_rectangular_label: 'Căutare',
+  search_input_rectangular_placeholder: 'Caută în portal...',
+  search_input_rectangular_name: 'q',
+  search_input_rectangular_size: 'lg',
+  search_input_rectangular_show_button: true,
+} only %}
 ```
 
-## Large size
+## Variabile CSS publice
 
-```twig
-{% include 'mud_egov:search-input-rectangular' with {
-  search_rect_label: 'Find a service',
-  search_rect_size: 'lg',
-  search_rect_show_button: true,
-} %}
-```
+Goale implicit; se setează doar într-un context anume (`--search-rect_control_bg: ...`). Valorile implicite vin din `css/defaults/forms.css` (`--search-input-rectangular-*`).
 
-## Properties
+- Câmp: `--search-rect_control_{h,p-i,gap,b-r,b-w,bg,b-c}` și stările `_h`, `_f`, `_d` (de ex. `--search-rect_control_b-c_h`); mărimea lg: `--search-rect_control_lg_{h,p-i,gap}`, `--search-rect_field_lg_{f-s,l-h}`, `--search-rect_icon_lg_size`.
+- Text: `--search-rect_c`, `--search-rect_f-f`, `--search-rect_field_f-s`, `--search-rect_field_l-h`, `--search-rect_field_ph_c`.
+- Etichetă: `--search-rect_label_{f-f,f-s,f-w,l-h,gap,c}`, `--search-rect_req_{c,m-i}`.
+- Buton: `--search-rect_submit_{bg,c,b-r,p-i,f-w}` (cu stările `_h`, `_d` pentru fundal și culoare).
+- Inel de focus și tranziție: `--search-rect_ring_{w,c,ol-o}`, `--search-rect_trn`.
 
-| Property                    | Type      | Default   | Description                               |
-| --------------------------- | --------- | --------- | ----------------------------------------- |
-| `search_rect_label`         | string    | null      | Visible label text                        |
-| `search_rect_placeholder`   | string    | null      | Placeholder text                          |
-| `search_rect_name`          | string    | null      | Form control name                         |
-| `search_rect_id`            | string    | null      | HTML id (falls back to name)              |
-| `search_rect_value`         | string    | null      | Current value                             |
-| `search_rect_button_label`  | string    | 'Caută'   | Accessible label for the submit button    |
-| `search_rect_size`          | string    | null      | Size rung: `md` or `lg`                  |
-| `search_rect_disabled`      | boolean   | false     | Disables the control                      |
-| `search_rect_required`      | boolean   | false     | Marks the field as required               |
-| `search_rect_show_button`   | boolean   | false     | Renders the trailing submit button        |
-| `search_rect_uc`            | array     | []        | Extra utility classes                     |
-| `search_rect_att`           | Attribute | null      | Extra HTML attributes on the wrapper      |
+## Accessibility
+
+- Câmpul are etichetă asociată (`for`/`id`) și `aria-labelledby`; `required` și `disabled` se transmit și prin `aria-required`, respectiv `aria-disabled`.
+- Butonul de trimitere are `aria-label` și text ascuns vizual pentru cititoarele de ecran; pictogramele sunt `aria-hidden`.
+- Focusul din câmp este afișat prin inelul de pe container (`:focus-within`), iar butonul de trimitere are contur propriu pe `:focus-visible`.
+- Tranzițiile sunt dezactivate la `prefers-reduced-motion: reduce`.

@@ -171,10 +171,10 @@ function mud_egov_form_search_block_form_alter(array &$form, $form_state, string
     '#type' => 'component',
     '#component' => 'mud_egov:search-input-circular',
     '#props' => [
-      'search_circular_name' => 'keys',
-      'search_circular_id' => 'edit-keys',
-      'search_circular_placeholder' => t('Caută'),
-      'search_circular_value' => '',
+      'search_input_circular_name' => 'keys',
+      'search_input_circular_id' => 'edit-keys',
+      'search_input_circular_placeholder' => t('Caută'),
+      'search_input_circular_value' => '',
     ],
   ];
 }
@@ -194,12 +194,12 @@ function mud_egov_form_search_form_alter(array &$form, $form_state, string $form
     '#type' => 'component',
     '#component' => 'mud_egov:search-input-circular',
     '#props' => [
-      'search_circular_name' => 'keys',
-      'search_circular_id' => 'edit-keys-ui',
-      'search_circular_placeholder' => t('Caută'),
-      'search_circular_value' => \Drupal::request()->query->get('keys', ''),
-      'search_circular_with_button' => TRUE,
-      'search_circular_with_clear' => TRUE,
+      'search_input_circular_name' => 'keys',
+      'search_input_circular_id' => 'edit-keys-ui',
+      'search_input_circular_placeholder' => t('Caută'),
+      'search_input_circular_value' => \Drupal::request()->query->get('keys', ''),
+      'search_input_circular_with_button' => TRUE,
+      'search_input_circular_with_clear' => TRUE,
     ],
   ];
 }

@@ -4,21 +4,34 @@
  */
 
 .c--error {
-  --_error-c: var(--error_color, var(--color-danger_500));
-  --_error_m-b-s: var(--error_m-b-s, 0.25rem);
+  --_error_c: var(--error_c, inherit);
+  --_error_m-b: var(--error_m-b, 0.25rem);
+  --_error_item_m-b: var(--error_item_m-b, 0.25rem);
   --_error_f-s: var(--error_f-s, 0.875em);
   --_error_l-h: var(--error_l-h, 1.5);
+  --_error_anim: var(--error_anim, error-fade-in 0.2s ease-in-out);
 
-  color: var(--_error-c);
-  margin-block-start: var(--_error_m-b-s);
+  /* Variante de tip */
+  --_error_critical_c: var(--error_critical_c, inherit);
+  --_error_critical_f-w: var(--error_critical_f-w, var(--font-weight-semibold));
+  --_error_warning_c: var(--error_warning_c, inherit);
+
+  /* Clasa .invalid-feedback a descendenților */
+  --_error_invalid_c: var(--error_invalid_c, var(--_error_c));
+  --_error_invalid_f-s: var(--error_invalid_f-s, var(--_error_f-s));
+  --_error_invalid_m-b: var(--error_invalid_m-b, var(--_error_m-b));
+
+  color: var(--_error_c);
+  margin-block-start: var(--_error_m-b);
   font-size: var(--_error_f-s);
   line-height: var(--_error_l-h);
   display: block;
+  animation: var(--_error_anim);
 
   .invalid-feedback {
-    color: var(--error_invalid_c, var(--_error-c));
-    font-size: var(--error_invalid_f-s, var(--_error_f-s));
-    margin-block-start: var(--error_invalid_m-b-s, var(--_error_m-b-s));
+    color: var(--_error_invalid_c);
+    font-size: var(--_error_invalid_f-s);
+    margin-block-start: var(--_error_invalid_m-b);
     display: block;
     width: 100%;
   }
@@ -26,38 +39,41 @@
 
 /* When used with form controls */
 .form-item .c--error {
-  margin-top: var(--error-form-item-margin-top, 0.25rem);
+  margin-block-start: var(--_error_item_m-b);
 }
 
 /* Icon support (optional) */
 .c--error::before {
-  content: var(--error-icon, "⚠");
+  content: "⚠";
   margin-right: 0.25rem;
   font-weight: bold;
 }
 
 /* Error type variants */
 .c--error.has-type_critical {
-  color: var(--error-critical-color, var(--c_danger_fg));
-  font-weight: var(--error-critical-font-weight, 600);
+  color: var(--_error_critical_c);
+  font-weight: var(--_error_critical_f-w);
 }
 
 .c--error.has-type_warning {
-  color: var(--error-warning_color, var(--c_warning_fg));
+  color: var(--_error_warning_c);
 }
 
 /* Animation */
-@keyframes errorFadeIn {
+@keyframes error-fade-in {
   from {
     opacity: 0;
     transform: translateY(-0.25rem);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.c--error {
-  animation: errorFadeIn 0.2s ease-in-out;
+@media (prefers-reduced-motion: reduce) {
+  .c--error {
+    animation: none;
+  }
 }

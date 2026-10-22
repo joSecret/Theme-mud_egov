@@ -50,8 +50,8 @@
   --table-empty-font-size: var(--font-size-14); /* nefolosit */
 
   --receipt-container-background: var(--color-background-base-default);
-  --receipt-container-border: var(--color-border-base-tertiary);
-  --receipt-container-border-width: var(--border-width-1);
+  --receipt-container-border: var(--color-border-base-tertiary); /* nefolosit */
+  --receipt-container-border-width: var(--border-width-1); /* nefolosit */
   --receipt-container-border-radius: var(--border-radius-12);
   --receipt-container-shadow: var(--drop-shadow-100);
   --receipt-container-padding: var(--spacing-32);
@@ -84,7 +84,7 @@
   --receipt-amount-currency-font-size: var(--font-size-18); /* nefolosit */
   --receipt-amount-currency-font-weight: var(--font-weight-medium); /* nefolosit */
   --receipt-amount-currency-color: var(--color-text-base-secondary); /* nefolosit */
-  --receipt-row-gap: var(--spacing-16);
+  --receipt-row-gap: var(--spacing-16); /* nefolosit */
   --receipt-row-padding-block: var(--spacing-8);
   --receipt-row-label-font-family: var(--font-family-primary);
   --receipt-row-label-font-size: var(--font-size-14);

@@ -1138,8 +1138,8 @@
   --segmented-control-container-gap: var(--spacing-6); /* nefolosit */
   --segmented-control-container-transition-duration: 150ms; /* nefolosit */
   --segmented-control-container-transition-timing-function: ease-out; /* nefolosit */
-  --segmented-control-segment-height-md: 40px; /* nefolosit */
-  --segmented-control-segment-height-sm: 32px; /* nefolosit */
+  --segmented-control-segment-height-md: 40px;
+  --segmented-control-segment-height-sm: 32px;
   --segmented-control-segment-min-width: 68px; /* nefolosit */
   --segmented-control-segment-padding-inline-md: var(--spacing-16); /* nefolosit */
   --segmented-control-segment-padding-inline-sm: var(--spacing-12); /* nefolosit */

@@ -195,25 +195,25 @@
   --service-button-container-min-width: 72px;
   --service-button-container-padding-inline-start: var(--spacing-16);
   --service-button-container-padding-inline-end: var(--spacing-20);
-  --service-button-container-gap: var(--spacing-6);
+  --service-button-container-gap: var(--spacing-6); /* nefolosit */
   --service-button-container-border-radius: var(--border-radius-8);
   --service-button-container-transition-duration: 150ms;
   --service-button-container-transition-timing-function: ease-out;
   --service-button-label-font-family: var(--font-family-primary);
-  --service-button-label-font-size: var(--font-size-16);
-  --service-button-label-line-height: var(--line-height-24);
+  --service-button-label-font-size: var(--font-size-16); /* nefolosit */
+  --service-button-label-line-height: var(--line-height-24); /* nefolosit */
   --service-button-label-font-weight: var(--font-weight-medium);
   --service-button-badge-size: 24px;
   --service-button-primary-background-default: var(--color-background-brand-default);
-  --service-button-primary-background-hover: var(--color-background-brand-default-hover);
-  --service-button-primary-background-active: var(--color-background-brand-default-active);
-  --service-button-primary-label: var(--color-text-brand-inverse);
+  --service-button-primary-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
+  --service-button-primary-background-active: var(--color-background-brand-default-active); /* nefolosit */
+  --service-button-primary-label: var(--color-text-brand-inverse); /* nefolosit */
   --service-button-neutral-background-default: var(--color-background-base-secondary);
-  --service-button-neutral-background-hover: var(--color-background-base-tertiary-hover);
-  --service-button-neutral-background-active: var(--color-background-base-tertiary-active);
+  --service-button-neutral-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --service-button-neutral-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
   --service-button-neutral-label: var(--color-text-base-default);
   --service-button-disabled-background: var(--color-background-disabled-default);
-  --service-button-disabled-label: var(--color-text-disabled-on-disabled);
+  --service-button-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
   --service-button-disabled-badge-opacity: 0.3;
 
   /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */

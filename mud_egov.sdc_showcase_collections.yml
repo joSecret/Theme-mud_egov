@@ -616,6 +616,14 @@ egov_global_elements:
         button_group_label: 'Acțiuni'
         button_group_orientation: horizontal
 
+    # ── Header ──────────────────────────────────────────────────────────────
+    - component: 'mud_egov:header'
+      group_label: 'Header'
+      props:
+        header_government_label: 'Guvernul Republicii Moldova'
+        header_nav_label: 'Navigare principală'
+        header_bordered: true
+
 egov_feedback:
   label: 'Feedback & Alerte'
   description: 'Alerte, banner-uri, notificări și mesaje inline.'

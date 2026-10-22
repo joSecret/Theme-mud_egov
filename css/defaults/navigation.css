@@ -392,17 +392,17 @@
   --pagination-nav-padding-inline-start-sm: var(--spacing-0); /* nefolosit */
   --pagination-nav-padding-inline-md: var(--spacing-12);
   --pagination-nav-gap: var(--spacing-6); /* nefolosit */
-  --pagination-nav-border-radius: var(--border-radius-6);
+  --pagination-nav-border-radius: var(--border-radius-6); /* nefolosit */
   --pagination-nav-icon-size-sm: 16px; /* nefolosit */
   --pagination-nav-icon-size-md: 20px; /* nefolosit */
-  --pagination-nav-background-default: transparent;
-  --pagination-nav-background-hover: var(--color-background-base-secondary-hover);
+  --pagination-nav-background-default: transparent; /* nefolosit */
+  --pagination-nav-background-hover: var(--color-background-base-secondary-hover); /* nefolosit */
   --pagination-nav-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
   --pagination-nav-label-default: var(--color-text-base-default); /* nefolosit */
   --pagination-nav-label-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --pagination-nav-icon-default: var(--color-icon-base-default); /* nefolosit */
   --pagination-nav-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --pagination-nav-border-default: transparent;
+  --pagination-nav-border-default: transparent; /* nefolosit */
   --pagination-nav-border-focus: var(--color-border-brand-default); /* nefolosit */
 
   /* Tabs */

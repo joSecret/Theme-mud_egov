@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Header
 status: stable
 group: Globals
-version: 1.0.0
-description: Site header / navigation bar aligned with the MUD mud-header component.
+version: 1.1.0
+description: Site header with an optional government pre-header band, logo, primary navigation, actions and mobile menu slots.
 
 # Props.
 props:
@@ -59,7 +59,7 @@ props:
 slots:
   slot_logo:
     title: Logo
-    description: Main product logo slot (e.g. mud-logo element).
+    description: Main product logo slot (e.g. the mud_egov:logo component).
 
   slot_nav:
     title: Navigation

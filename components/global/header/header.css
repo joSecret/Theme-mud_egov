@@ -1,70 +1,75 @@
 /**
- * Header Component Styles
+ * Header component.
+ *
+ * Override public: --header_<…> (goale implicit), de ex. --header_bg, --header_bar_h.
  */
 
 .c--header {
-  /* Public API */
-  --_header_bg: var(--header_bg, var(--color-background-base-default, #fff));
-  --_header_c: var(--header_c, var(--color-text-base-default, #1a1a1a));
+  --_header_bg: var(--header_bg, var(--color-background-base-default));
+  --_header_c: var(--header_c, var(--color-text-base-default));
   --_header_b-b: var(--header_b-b, none);
+  --_header_bs: var(--header_bs, var(--drop-shadow-100));
   --_header_z: var(--header_z, 100);
-  --_header_p-b: var(--header_p-b, 0px);
-  --_header_p-i: var(--header_p-i, var(--size_600, 24px));
-  --_header_shadow: var(--header_shadow, 0 1px 4px rgba(0 0 0 / 0.08));
+  --_header_p-b: var(--header_p-b, 0);
+  --_header_p-i: var(--header_p-i, var(--spacing-24));
 
   /* Pre-header */
-  --_header_pre-header_bg: var(--header_pre-header_bg, var(--color-background-brand-default, #0057b8));
-  --_header_pre-header_c: var(--header_pre-header_c, var(--color-text-inverse-default, #fff));
-  --_header_pre-header_p-b: var(--header_pre-header_p-b, 8px);
+  --_header_pre-header_bg: var(--header_pre-header_bg, var(--color-background-brand-default));
+  --_header_pre-header_c: var(--header_pre-header_c, var(--color-text-base-inverse-default));
+  --_header_pre-header_p-b: var(--header_pre-header_p-b, var(--spacing-8));
   --_header_pre-header_p-i: var(--header_pre-header_p-i, var(--_header_p-i));
+  --_header_pre-header_f-s: var(--header_pre-header_f-s, var(--font-size-12));
+  --_header_pre-header_l-h: var(--header_pre-header_l-h, var(--line-height-16));
+  --_header_gov-label_f-w: var(--header_gov-label_f-w, var(--font-weight-semibold));
 
   /* Bar */
   --_header_bar_h: var(--header_bar_h, 64px);
-  --_header_bar_gap: var(--header_bar_gap, var(--size_400, 16px));
+  --_header_bar_gap: var(--header_bar_gap, var(--spacing-16));
+  --_header_bar_mx-w: var(--header_bar_mx-w, 100%);
+  --_header_actions_gap: var(--header_actions_gap, var(--spacing-8));
 
-  /* Styles */
-  background: var(--_header_bg);
-  color: var(--_header_c);
-  border-bottom: var(--_header_b-b);
-  box-shadow: var(--_header_shadow);
   position: relative;
   z-index: var(--_header_z);
+  border-block-end: var(--_header_b-b);
+  background: var(--_header_bg);
+  box-shadow: var(--_header_bs);
+  color: var(--_header_c);
 }
 
 .c--header--sticky {
   position: sticky;
-  top: 0;
+  inset-block-start: 0;
 }
 
 .c--header--bordered {
-  --_header_b-b: var(--header_b-b, 1px solid var(--color-border-base-default, #e5e5e5));
-  --_header_shadow: var(--header_shadow, none);
+  --_header_b-b: var(--header_b-b, var(--border-width-1) solid var(--color-border-base-default));
+  --_header_bs: var(--header_bs, none);
 }
 
-/* Pre-header band */
+/* Banda de deasupra */
 .c--header__pre-header {
-  background: var(--_header_pre-header_bg);
-  color: var(--_header_pre-header_c);
   padding-block: var(--_header_pre-header_p-b);
   padding-inline: var(--_header_pre-header_p-i);
-  font-size: var(--header_pre-header_f-s, 12px);
-  line-height: var(--header_pre-header_l-h, 16px);
+  background: var(--_header_pre-header_bg);
+  color: var(--_header_pre-header_c);
+  font-size: var(--_header_pre-header_f-s);
+  line-height: var(--_header_pre-header_l-h);
 }
 
 .c--header__government-label {
-  font-weight: var(--header_gov-label_f-w, 600);
+  font-weight: var(--_header_gov-label_f-w);
 }
 
-/* Main bar */
+/* Bara principală */
 .c--header__bar {
   display: flex;
   align-items: center;
   gap: var(--_header_bar_gap);
-  min-height: var(--_header_bar_h);
+  min-block-size: var(--_header_bar_h);
+  max-inline-size: var(--_header_bar_mx-w);
+  margin-inline: auto;
   padding-block: var(--_header_p-b);
   padding-inline: var(--_header_p-i);
-  max-width: var(--container_m-w, 100%);
-  margin-inline: auto;
 }
 
 .c--header__logo {
@@ -76,16 +81,16 @@
 }
 
 .c--header__actions {
-  flex: 0 0 auto;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: var(--header_actions_gap, var(--size_200, 8px));
+  gap: var(--_header_actions_gap);
 }
 
 .c--header__mobile-menu {
   flex: 0 0 auto;
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     display: none;
   }
 }

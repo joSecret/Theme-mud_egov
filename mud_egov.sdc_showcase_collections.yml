@@ -845,16 +845,16 @@ egov_navigation:
     - component: 'mud_egov:accordion'
       props:
         accordion_id: 'demo-accordion-1'
-        appearance: multiple
-        mode: false
-        icon_position: left
+        accordion_appearance: multiple
+        accordion_mode: false
+        accordion_icon_position: left
 
     - component: 'mud_egov:accordion'
       props:
         accordion_id: 'demo-accordion-2'
-        appearance: single
-        mode: true
-        icon_position: right
+        accordion_appearance: single
+        accordion_mode: true
+        accordion_icon_position: right
 
     # ── Menu ────────────────────────────────────────────────────────────────
     - component: 'mud_egov:menu'
@@ -1334,3 +1334,57 @@ egov_layout:
           - { label: 'Solicitant', value: 'Maria Ionescu' }
         receipt_total_label: 'Total'
         receipt_total_value: '300 MDL'
+
+egov_content:
+  label: 'Conținut'
+  description: 'Carduri, galerii și alte componente de conținut.'
+  components:
+
+    # ── Card teaser ───────────────────────────────────────────────────────────
+    - component: 'mud_egov:card-teaser'
+      group: card_teaser
+      group_label: 'Card teaser'
+      group_layout: row
+      props:
+        card_teaser_title: 'Titlul articolului'
+        card_teaser_description: 'Descrierea scurtă a articolului, afișată sub titlu și ascunsă la trecerea cursorului.'
+        card_teaser_img:
+          '#markup': '<img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23789%22/%3E%3C/svg%3E" alt="">'
+        card_teaser_bundle: 'Articol'
+        card_teaser_date: '09 Nov 2024'
+        card_teaser_link: '#'
+
+    - component: 'mud_egov:card-teaser'
+      group: card_teaser
+      props:
+        card_teaser_title: 'Titlul videoclipului'
+        card_teaser_description: 'Cardul cu videoclip afișează o pictogramă de redare peste imagine.'
+        card_teaser_img:
+          '#markup': '<img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23987%22/%3E%3C/svg%3E" alt="">'
+        card_teaser_link: '#'
+        card_teaser_video_link: '#'
+        card_teaser_has_video: true
+
+    # ── Card ──────────────────────────────────────────────────────────────────
+    - component: 'mud_egov:card'
+      group: card
+      group_label: 'Card'
+      props:
+        card_header: 'Antet'
+        card_title: 'Titlul cardului'
+        card_subtitle: 'Subtitlul cardului'
+        card_body: 'Textul cardului, într-un container flexibil.'
+        card_footer: 'Subsol'
+        card_link_url: '#'
+        card_link_text: 'Citește mai mult'
+
+    # ── Gallery carousel ──────────────────────────────────────────────────────
+    - component: 'mud_egov:gallery-carousel'
+      group: gallery_carousel
+      group_label: 'Gallery carousel'
+      props:
+        gallery_carousel_id: 'showcase'
+        gallery_carousel_slides:
+          - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23789%22/%3E%3C/svg%3E', alt: 'Imaginea 1', caption: 'Prima imagine', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23789%22/%3E%3C/svg%3E' }
+          - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23987%22/%3E%3C/svg%3E', alt: 'Imaginea 2', caption: 'A doua imagine', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23987%22/%3E%3C/svg%3E' }
+          - { src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23879%22/%3E%3C/svg%3E', alt: 'Imaginea 3', thumb_src: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22800%22 height=%22450%22 fill=%22%23879%22/%3E%3C/svg%3E' }

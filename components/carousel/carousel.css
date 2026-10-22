@@ -1,27 +1,31 @@
 .c--carousel {
-  --_carousel_bg: var(--carousel_bg, #E8F0FB);
-  --_carousel_br: var(--carousel_br, 0px);
-  --_carousel-min-h: var(--carousel-min-h, 420px);
-  --_carousel-p-b: var(--carousel-p-b, 0px);
+  --_carousel_bg: var(--carousel_bg, var(--color-background-brand-secondary));
+  --_carousel_b-r: var(--carousel_b-r, var(--border-radius-0));
+  --_carousel_m-h: var(--carousel_m-h, 420px);
+  --_carousel_p-b: var(--carousel_p-b, var(--spacing-0));
 
-  --_carousel-btn-s: var(--carousel-btn-s, 48px);
-  --_carousel-btn-bg: var(--carousel-btn-bg, #fff);
-  --_carousel-btn-c: var(--carousel-btn-c, var(--c_primary, #1a3a6b));
-  --_carousel-btn-shadow: var(--carousel-btn-shadow, 0 2px 8px rgba(0, 0, 0, 0.12));
-  --_carousel-btn-offset: var(--carousel-btn-offset, 16px);
+  --_carousel_btns_d: var(--carousel_btns_d, none);
+  --_carousel_btns_p-i: var(--carousel_btns_p-i, var(--spacing-40));
 
-  --_carousel-dot_bg: var(--carousel-dot_bg, #fff);
-  --_carousel-dot_w: var(--carousel-dot_w, 32px);
-  --_carousel-dot_h: var(--carousel-dot_h, 6px);
-  --_carousel-dot_gap: var(--carousel-dot_gap, 8px);
-  --_carousel-dot_p-b: var(--carousel-dot_p-b, 24px);
+  --_carousel_btn_w: var(--carousel_btn_w, var(--spacing-48));
+  --_carousel_btn_bg: var(--carousel_btn_bg, color-mix(in srgb, var(--color-background-base-default) 40%, transparent));
+  --_carousel_btn_bg_h: var(--carousel_btn_bg_h, var(--color-background-base-default));
+  --_carousel_btn_c: var(--carousel_btn_c, var(--color-background-brand-tertiary));
+  --_carousel_btn_bs: var(--carousel_btn_bs, var(--drop-shadow-100));
+
+  --_carousel_dot_bg: var(--carousel_dot_bg, var(--color-background-base-default));
+  --_carousel_dot_w: var(--carousel_dot_w, var(--spacing-32));
+  --_carousel_dot_h: var(--carousel_dot_h, var(--spacing-6));
+  --_carousel_dot_b-r: var(--carousel_dot_b-r, var(--border-radius-full));
+  --_carousel_dot_gap: var(--carousel_dot_gap, var(--spacing-8));
+  --_carousel_dots_p-b: var(--carousel_dots_p-b, var(--spacing-24));
 
   isolation: isolate;
   display: grid;
   grid-template-areas: "stack";
   grid-template-columns: 1fr;
   background: var(--_carousel_bg);
-  border-radius: var(--_carousel_br);
+  border-radius: var(--_carousel_b-r);
   container-type: inline-size;
 
   & > * {
@@ -39,7 +43,6 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
-
     pointer-events: auto;
     display: flex;
 
@@ -58,17 +61,16 @@
     min-width: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    padding-block: var(--_carousel-p-b);
-    min-height: var(--_carousel-min-h);
+    padding-block: var(--_carousel_p-b);
+    min-height: var(--_carousel_m-h);
   }
-
 
   /* ── Arrow buttons ── */
   .carousel-btns {
-    display: var(--carousel_btns, none);
+    display: var(--_carousel_btns_d);
     justify-content: space-between;
     align-items: center;
-    padding-inline: 40px;
+    padding-inline: var(--_carousel_btns_p-i);
   }
 
   .carousel-btn {
@@ -81,11 +83,10 @@
     justify-content: center;
     cursor: pointer;
     transition: background 0.35s ease;
-
-    color: var(--_carousel-btn-c);
-    width: var(--_carousel-btn-s);
-    background: rgba(from var(--_carousel-btn-bg) r g b / var(--carousel-btn_bg-o, 0.4));
-    box-shadow: var(--_carousel-btn-shadow);
+    color: var(--_carousel_btn_c);
+    width: var(--_carousel_btn_w);
+    background: var(--_carousel_btn_bg);
+    box-shadow: var(--_carousel_btn_bs);
 
     svg {
       width: 20px;
@@ -94,7 +95,7 @@
     }
 
     &:hover:not(:disabled) {
-      --carousel-btn_bg-o: 1;
+      background: var(--_carousel_btn_bg_h);
     }
 
     &:disabled {
@@ -108,17 +109,17 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: var(--_carousel-dot_gap);
-    padding-block-end: var(--_carousel-dot_p-b);
+    gap: var(--_carousel_dot_gap);
+    padding-block-end: var(--_carousel_dots_p-b);
   }
 
   .carousel-dot {
     z-index: 1;
     display: block;
-    width: var(--_carousel-dot_w);
-    height: var(--_carousel-dot_h);
-    border-radius: 5rem;
-    background: var(--_carousel-dot_bg);
+    width: var(--_carousel_dot_w);
+    height: var(--_carousel_dot_h);
+    border-radius: var(--_carousel_dot_b-r);
+    background: var(--_carousel_dot_bg);
     opacity: 0.4;
     transition: opacity 0.35s linear;
 
@@ -126,24 +127,24 @@
       opacity: 0.7;
     }
 
+    /* Setată din JS (IntersectionObserver) */
     &.is-active {
       opacity: 1;
     }
   }
 
-  @container (768px <= width) {
-    --carousel-slide_m-w: auto;
-  }
-
   @container (768px < width) {
-    --carousel_btns: flex;
+    --_carousel_btns_d: var(--carousel_btns_d, flex);
   }
 
-  /* ── Active dot (set via JS IntersectionObserver) ── */
   @media (prefers-reduced-motion: reduce) {
     .carousel-viewport {
       scroll-behavior: auto;
     }
+
+    .carousel-btn,
+    .carousel-dot {
+      transition: none;
+    }
   }
 }
-

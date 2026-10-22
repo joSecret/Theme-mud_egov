@@ -1,6 +1,9 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Card teaser
 status: stable
+version: 1.1.0
+group: Content
+description: 'Teaser card with image, bundle and date. On hover the image expands over the whole card; video cards show a play icon over the image.'
 props:
   type: object
   properties:
@@ -22,34 +25,37 @@ props:
       type: ['string', 'null']
       title: Title
       description: The title of the card.
+      default: null
 
     card_teaser_description:
       type: ['string', 'null']
       title: Description
       description: The description text for the card.
+      default: null
 
     card_teaser_img:
       type: ['string', 'array', 'null']
       title: Image
-      description: Image source URL for the card.
-      default: 'null'
+      description: Image markup (for example a rendered image) shown at the top of the card.
+      default: null
 
     card_teaser_bundle:
       type: ['string', 'null']
       title: Bundle
       description: The bundle/category label.
-      default: 'News'
+      default: null
 
     card_teaser_date:
       type: ['string', 'null']
       title: Date
       description: Date to display on the card.
-      default: '09 Nov 2024'
+      default: null
 
     card_teaser_link:
       type: ['string', 'null']
       title: Link
       description: URL for the card link.
+      default: null
 
     card_teaser_link_text:
       type: ['string', 'null']
@@ -60,15 +66,16 @@ props:
     card_teaser_link_icon:
       type: ['string', 'null']
       title: Link Icon
-      description: Icon for the card link.
+      description: Icon markup for the card link. Defaults to an arrow icon.
+      default: null
 
     card_teaser_video_link:
       type: ['string', 'null']
       title: Video Link
       description: URL for the video if the card contains a video.
-      default: 'null'
+      default: null
 
-    has_video:
+    card_teaser_has_video:
       type: 'boolean'
       title: Has Video
       description: Whether the card contains a video instead of an image.

@@ -4,43 +4,43 @@
  * Gallery Carousel component.
  *
  * Available props:
- * - gallery_id (string|int|null)
- * - gallery_slides (array) items: { src, srcset, alt, caption, thumb_src, thumb_srcset }
- * - gallery_lightbox (bool) default: true
- * - gallery_arrows (bool) default: true
- * - gallery_counter (bool) default: true
+ * - gallery_carousel_id (string|int|null)
+ * - gallery_carousel_slides (array) items: { src, srcset, alt, caption, thumb_src, thumb_srcset }
+ * - gallery_carousel_lightbox (bool) default: true
+ * - gallery_carousel_arrows (bool) default: true
+ * - gallery_carousel_counter (bool) default: true
  *
  * Available utility classes -> uc
- * - gallery_uc (array) (default: [])
+ * - gallery_carousel_uc (array) (default: [])
  *
  * Available attributes -> att
- * - gallery_att (Drupal\Core\Template\Attribute)
+ * - gallery_carousel_att (Drupal\Core\Template\Attribute)
  */
 -#}
 
 {#- Defaults -#}
-{% set gallery_slides = gallery_slides|default([]) %}
-{% set gallery_id = 'gal-' ~ (gallery_id|default(random(99999))) %}
-{% set gallery_lightbox = gallery_lightbox ?? true %}
-{% set gallery_arrows = gallery_arrows ?? true %}
-{% set gallery_counter = gallery_counter ?? true %}
-{% set total = gallery_slides|length %}
+{% set gallery_carousel_slides = gallery_carousel_slides|default([]) %}
+{% set gallery_carousel_id = 'gal-' ~ (gallery_carousel_id|default(random(99999))) %}
+{% set gallery_carousel_lightbox = gallery_carousel_lightbox ?? true %}
+{% set gallery_carousel_arrows = gallery_carousel_arrows ?? true %}
+{% set gallery_carousel_counter = gallery_carousel_counter ?? true %}
+{% set total = gallery_carousel_slides|length %}
 
 {#- Attributes -#}
-{% set gallery_att = gallery_att ?: create_attribute() %}
-{% set gallery_att = gallery_att
+{% set gallery_carousel_att = gallery_carousel_att ?: create_attribute() %}
+{% set gallery_carousel_att = gallery_carousel_att
   .setAttribute('data-gallery', '')
-  .setAttribute('data-lightbox', gallery_lightbox ? 'true' : 'false')
+  .setAttribute('data-lightbox', gallery_carousel_lightbox ? 'true' : 'false')
 %}
 
 {#- Classes -#}
-{% set gallery_classes = [
+{% set gallery_carousel_classes = [
   'c--gallery-carousel',
   'w-content_full'
-]|merge(gallery_uc ?: []) %}
+]|merge(gallery_carousel_uc ?: []) %}
 
-{%- if gallery_slides is not empty -%}
-  <div{{ gallery_att.addClass(gallery_classes) }}>
+{%- if gallery_carousel_slides is not empty -%}
+  <div{{ gallery_carousel_att.addClass(gallery_carousel_classes) }}>
 
     <div class="gallery-main">
       <div
@@ -48,8 +48,8 @@
         tabindex="0"
         aria-label="{{ 'Image gallery'|t }}"
       >
-        {% for slide in gallery_slides %}
-          {% set slide_id = gallery_id ~ '-' ~ loop.index %}
+        {% for slide in gallery_carousel_slides %}
+          {% set slide_id = gallery_carousel_id ~ '-' ~ loop.index %}
           <figure
             id="{{ slide_id }}"
             class="gallery-slide"
@@ -71,7 +71,7 @@
         {% endfor %}
       </div>
 
-      {%- if gallery_arrows and total > 1 -%}
+      {%- if gallery_carousel_arrows and total > 1 -%}
         <div class="gallery-btns">
           <button
             class="gallery-btn gallery-btn--prev"
@@ -94,7 +94,7 @@
         </div>
       {%- endif -%}
 
-      {%- if gallery_counter and total > 1 -%}
+      {%- if gallery_carousel_counter and total > 1 -%}
         <div class="gallery-counter" aria-live="polite">
           <span class="gallery-counter__current">1</span>
           <span class="gallery-counter__sep">/</span>
@@ -109,12 +109,12 @@
         role="tablist"
         aria-label="{{ 'Gallery thumbnails'|t }}"
       >
-        {% for slide in gallery_slides %}
+        {% for slide in gallery_carousel_slides %}
           <button
             type="button"
             class="gallery-thumb"
             role="tab"
-            aria-controls="{{ gallery_id ~ '-' ~ loop.index }}"
+            aria-controls="{{ gallery_carousel_id ~ '-' ~ loop.index }}"
             aria-selected="{{ loop.first ? 'true' : 'false' }}"
             data-index="{{ loop.index0 }}"
           >
@@ -130,7 +130,7 @@
       </div>
     {%- endif -%}
 
-    {%- if gallery_lightbox -%}
+    {%- if gallery_carousel_lightbox -%}
       <dialog class="gallery-lightbox" aria-label="{{ 'Image viewer'|t }}">
         <div class="lightbox-inner">
           <button

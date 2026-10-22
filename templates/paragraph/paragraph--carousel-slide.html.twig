@@ -9,8 +9,8 @@
 {% set media = paragraph.field_media.entity %}
 
 {% include 'mud_egov:carousel-slide' with {
-  slide_heading: paragraph.field_title.value,
-  slide_description: paragraph.field_body.processed,
-  slide_image: content.field_media,
-  slide_cta: content.field_cta_primary.0,
+  carousel_slide_heading: paragraph.field_title.value,
+  carousel_slide_description: paragraph.field_body.processed,
+  carousel_slide_image: content.field_media,
+  carousel_slide_cta: content.field_cta_primary.0,
 } only %}

@@ -8,13 +8,13 @@
   * - card_teaser_title (string)
   * - card_teaser_description (string)
   * - card_teaser_img (string)
-  * - card_teaser_imgAlt (string)
+  * - card_teaser_video_link (string)
   * - card_teaser_bundle (string)
   * - card_teaser_date (string)
   * - card_teaser_link (string)
   * - card_teaser_link_text (string)
   * - card_teaser_link_icon (string)
-  * - has_video (bool)
+  * - card_teaser_has_video (bool)
   * - card_teaser_uc (array) - Additional classes for the card teaser.
   *
   * Slots (blocks):
@@ -37,7 +37,7 @@
 {% set card_teaser_link_text = card_teaser_link_text|default('Read more') %}
 {% set card_teaser_link_icon = card_teaser_link_icon|default('<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2.875L10.125 5.99999L7 9.125M9.75 5.99999H1.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>') %}
 {% set card_teaser_video_link = card_teaser_video_link|default(null) %}
-{% set has_video = has_video|default(false) %}
+{% set card_teaser_has_video = card_teaser_has_video|default(false) %}
 
 {#- Create attributes -#}
 {% set card_teaser_att = card_teaser_att ?: create_attribute() %}
@@ -45,28 +45,28 @@
 
 {#- Component classes -#}
 {% set card_teaser_classes = [
-  'c--cardTeaser'
+  'c--card-teaser'
 ]|merge(card_teaser_uc ?: []) %}
 
 {% set card_teaser_ew_img_classes = [
-  'cardTeaser-ewImg',
+  'card-teaser-ew-img',
 ] %}
 
 {#- Change attributes -#}
-{% set ew_img_tag = has_video ? 'a' : 'div' %}
-{%- if has_video -%}
+{% set ew_img_tag = card_teaser_has_video ? 'a' : 'div' %}
+{%- if card_teaser_has_video -%}
   {% set card_teaser_ew_img_att = card_teaser_ew_img_att.setAttribute('href', card_teaser_video_link) %}
 {%- endif -%}
 
 {#- Render component -#}
 <article {{ card_teaser_att.addClass(card_teaser_classes) }}>
   {% block slot_card_image_top -%}
-    <div class="cardTeaser-imgWrapper">
+    <div class="card-teaser-img-wrapper">
       <{{ ew_img_tag }} {{ card_teaser_ew_img_att.addClass(card_teaser_ew_img_classes) }}>
         {{- card_teaser_img -}}
 
-        {%- if has_video -%}
-          <span class="cardTeaser-videoIcon">
+        {%- if card_teaser_has_video -%}
+          <span class="card-teaser-video-icon">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle opacity="0.8" cx="24" cy="24" r="24" fill="currentColor"/>
               <path d="M34.3772 23.8139L16.9281 13.6029V34.0248L34.3772 23.8139Z" fill="white"/>
@@ -77,15 +77,15 @@
     </div>
   {% endblock -%}
 
-  {%- if not has_video -%}
-    <div class="cardTeaser-info">
+  {%- if not card_teaser_has_video -%}
+    <div class="card-teaser-info">
       {% block slot_details %}
-        <div class="cardTeaser-bundle">
+        <div class="card-teaser-bundle">
           {{- card_teaser_bundle -}}
         </div>
 
         {%- if card_teaser_date -%}
-          <div class="cardTeaser-date">
+          <div class="card-teaser-date">
             {{- card_teaser_date -}}
           </div>
         {%- endif -%}
@@ -94,16 +94,16 @@
   {%- endif -%}
 
   {% block slot_content -%}
-    <div class="cardTeaser-content">
+    <div class="card-teaser-content">
       {% block slot_title %}
-        <{{ card_teaser_title_heading }} class="cardTeaser-title">
+        <{{ card_teaser_title_heading }} class="card-teaser-title">
           {{- card_teaser_title -}}
         </{{ card_teaser_title_heading }}>
       {% endblock %}
 
       {% block slot_description %}
         {%- if card_teaser_description -%}
-          <div class="cardTeaser-description">
+          <div class="card-teaser-description">
             {{- card_teaser_description -}}
           </div>
         {%- endif -%}
@@ -112,17 +112,17 @@
   {% endblock %}
 
   {% block slot_link %}
-    <a class="cardTeaser-link stretched-link" href="{{ card_teaser_link }}">
+    <a class="card-teaser-link stretched-link" href="{{ card_teaser_link }}">
       {{- card_teaser_link_text -}}
       {{- card_teaser_link_icon|raw -}}
     </a>
   {% endblock %}
 
-  <{{ card_teaser_title_heading }} class="cardTeaser-hiddenTitle">
+  <{{ card_teaser_title_heading }} class="card-teaser-hidden-title">
     {{ card_teaser_title }}
   </{{ card_teaser_title_heading }}>
 
-  <div class="cardTeaser-hiddenDescription">
+  <div class="card-teaser-hidden-description">
     {{ card_teaser_description }}
   </div>
 </article>

@@ -4,19 +4,19 @@
   --breadcrumb-gap-item: var(--spacing-4); /* nefolosit */
   --breadcrumb-gap-menu: var(--spacing-4); /* nefolosit */
   --breadcrumb-font-family: var(--font-family-primary); /* nefolosit */
-  --breadcrumb-font-size: var(--font-size-14); /* nefolosit */
+  --breadcrumb-font-size: var(--font-size-14);
   --breadcrumb-line-height: var(--line-height-20); /* nefolosit */
   --breadcrumb-font-weight-default: var(--font-weight-regular); /* nefolosit */
   --breadcrumb-font-weight-active: var(--font-weight-medium); /* nefolosit */
-  --breadcrumb-item-text-default: var(--color-text-base-tertiary); /* nefolosit */
+  --breadcrumb-item-text-default: var(--color-text-base-tertiary);
   --breadcrumb-item-text-hover: var(--color-text-base-secondary); /* nefolosit */
-  --breadcrumb-item-text-active: var(--color-text-base-default); /* nefolosit */
+  --breadcrumb-item-text-active: var(--color-text-base-default);
   --breadcrumb-item-text-visited: var(--color-text-brand-visited); /* nefolosit */
   --breadcrumb-item-text-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --breadcrumb-item-border-radius: var(--border-radius-4); /* nefolosit */
   --breadcrumb-item-padding-inline: var(--spacing-2); /* nefolosit */
   --breadcrumb-item-padding-block: var(--spacing-0); /* nefolosit */
-  --breadcrumb-separator-color: var(--color-icon-base-tertiary); /* nefolosit */
+  --breadcrumb-separator-color: var(--color-icon-base-tertiary);
   --breadcrumb-separator-size: 16px; /* nefolosit */
   --breadcrumb-icon-color: var(--color-icon-base-tertiary); /* nefolosit */
   --breadcrumb-icon-color-active: var(--color-icon-base-default); /* nefolosit */

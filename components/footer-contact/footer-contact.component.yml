@@ -1,29 +1,47 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/modules/sdc/src/schemas/v1/metadata.schema.json'
 name: 'Footer Contact'
-description: 'Footer contact block with logo, phone, email, address and a menu slot.'
 status: stable
+version: 1.1.0
+group: Layout
+description: 'Footer contact block with logo, phone, email, address and a menu slot.'
+
 props:
   type: object
   properties:
-    logo_src:
+    footer_contact_logo_src:
       type: ['string', 'null']
       title: 'Logo image URL'
-    logo_alt:
+      default: null
+    footer_contact_logo_alt:
       type: ['string', 'null']
       title: 'Logo alt text'
-    logo_url:
+      default: null
+    footer_contact_logo_url:
       type: ['string', 'null']
       title: 'Logo link URL'
       default: '/'
-    phone:
+    footer_contact_phone:
       type: ['string', 'null']
       title: 'Phone'
-    email:
+      default: null
+    footer_contact_email:
       type: ['string', 'null']
       title: 'Email'
-    address:
+      default: null
+    footer_contact_address:
       type: ['string', 'null']
       title: 'Address'
+      default: null
+    footer_contact_uc:
+      type: array
+      title: 'Footer Contact Utility Classes'
+      description: 'Extra classes merged onto the wrapper.'
+      default: []
+    footer_contact_att:
+      type: Drupal\Core\Template\Attribute
+      title: 'Footer Contact Attributes'
+      description: 'HTML attributes for the component wrapper.'
+      default: null
 slots:
   menu:
     title: 'Menu'

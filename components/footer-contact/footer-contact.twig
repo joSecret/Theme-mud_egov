@@ -2,30 +2,39 @@
 /**
  * @file
  * Footer Contact component.
+ *
+ * Props: footer_contact_logo_src, footer_contact_logo_alt,
+ * footer_contact_logo_url, footer_contact_phone, footer_contact_email,
+ * footer_contact_address.
+ * Utility classes: footer_contact_uc
+ * Attributes: footer_contact_att
+ * Slots: menu
  */
 -#}
-<div class="c--footer-contact">
-  {%- if logo_src -%}
-    <a href="{{ logo_url ?: '/' }}" class="c--footer-contact__logo" rel="home">
-      <img src="{{ logo_src }}" alt="{{ logo_alt ?: '' }}"{% if not logo_alt %} aria-hidden="true"{% endif %}>
+{%- set footer_contact_att = footer_contact_att ?: create_attribute() -%}
+{%- set footer_contact_classes = ['c--footer-contact']|merge(footer_contact_uc ?: []) -%}
+<div{{ footer_contact_att.addClass(footer_contact_classes) }}>
+  {%- if footer_contact_logo_src -%}
+    <a href="{{ footer_contact_logo_url ?: '/' }}" class="c--footer-contact__logo" rel="home">
+      <img src="{{ footer_contact_logo_src }}" alt="{{ footer_contact_logo_alt ?: '' }}"{% if not footer_contact_logo_alt %} aria-hidden="true"{% endif %}>
     </a>
   {%- endif -%}
 
-  {%- if phone -%}
+  {%- if footer_contact_phone -%}
     {%- include 'mud_egov:field-phone' with {
-      fieldPhone_value: phone
+      fieldPhone_value: footer_contact_phone
     } -%}
   {%- endif -%}
 
-  {%- if email -%}
+  {%- if footer_contact_email -%}
     {%- include 'mud_egov:field-mail' with {
-      fieldMail_value:email
+      fieldMail_value:footer_contact_email
     } -%}
   {%- endif -%}
 
-  {%- if address -%}
+  {%- if footer_contact_address -%}
     <p class="c--footer-contact__address">
-      {{- address|nl2br -}}
+      {{- footer_contact_address|nl2br -}}
     </p>
   {%- endif -%}
 

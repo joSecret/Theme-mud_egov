@@ -1,11 +1,15 @@
 .gov-branding {
+  --_gov-branding_gap: var(--gov-branding_gap, var(--spacing-8));
+  --_gov-branding_f-s: var(--gov-branding_f-s, var(--font-size-14));
+  --_gov-branding_icon_c: var(--gov-branding_icon_c, var(--color-icon-brand-default));
+
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--_gov-branding_gap);
   text-decoration: none;
-  font-size: var(--font-size-14);
+  font-size: var(--_gov-branding_f-s);
 
   svg {
-    color: var(--color-icon-brand-default);
+    color: var(--_gov-branding_icon_c);
   }
 }

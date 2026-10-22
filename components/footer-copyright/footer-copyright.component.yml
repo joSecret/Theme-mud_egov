@@ -1,13 +1,28 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/modules/sdc/src/schemas/v1/metadata.schema.json'
 name: 'Footer Copyright'
-description: 'Footer copyright notice.'
 status: stable
+version: 1.1.0
+group: Layout
+description: 'Footer copyright notice: copyright sign, year and text.'
+
 props:
   type: object
   properties:
-    year:
-      type: integer
+    footer_copyright_year:
+      type: ['integer', 'null']
       title: Year
-    text:
-      type: string
-      title: Copyright text
+      default: null
+    footer_copyright_text:
+      type: ['string', 'null']
+      title: 'Copyright text'
+      default: null
+    footer_copyright_uc:
+      type: array
+      title: 'Footer Copyright Utility Classes'
+      description: 'Extra classes merged onto the wrapper.'
+      default: []
+    footer_copyright_att:
+      type: Drupal\Core\Template\Attribute
+      title: 'Footer Copyright Attributes'
+      description: 'HTML attributes for the component wrapper.'
+      default: null

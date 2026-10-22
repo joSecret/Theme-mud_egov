@@ -1,4 +1,7 @@
 .footer-copyright {
-  font-size: var(--font-size-14);
-  color: var(--color-text-secondary);
+  --_footer-copyright_f-s: var(--footer-copyright_f-s, var(--font-size-14));
+  --_footer-copyright_c: var(--footer-copyright_c, inherit);
+
+  font-size: var(--_footer-copyright_f-s);
+  color: var(--_footer-copyright_c);
 }

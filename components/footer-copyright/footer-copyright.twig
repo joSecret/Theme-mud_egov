@@ -1,1 +1,13 @@
-<p class="footer-copyright">&copy; {{ year }} {{ text }}</p>
+{#-
+/**
+ * @file
+ * Footer Copyright component.
+ *
+ * Props: footer_copyright_year (integer), footer_copyright_text (string).
+ * Utility classes: footer_copyright_uc
+ * Attributes: footer_copyright_att
+ */
+-#}
+{%- set footer_copyright_att = footer_copyright_att ?: create_attribute() -%}
+{%- set footer_copyright_classes = ['footer-copyright']|merge(footer_copyright_uc ?: []) -%}
+<p{{ footer_copyright_att.addClass(footer_copyright_classes) }}>&copy; {{ footer_copyright_year }} {{ footer_copyright_text }}</p>

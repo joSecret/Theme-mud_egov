@@ -1,7 +1,20 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/modules/sdc/src/schemas/v1/metadata.schema.json'
 name: 'Government Branding'
-description: 'Government seal and name block.'
 status: stable
+version: 1.1.0
+group: Layout
+description: 'Government seal and name, linking to gov.md.'
+
 props:
   type: object
-  properties: {}
+  properties:
+    gov_branding_uc:
+      type: array
+      title: 'Government Branding Utility Classes'
+      description: 'Extra classes merged onto the wrapper link.'
+      default: []
+    gov_branding_att:
+      type: Drupal\Core\Template\Attribute
+      title: 'Government Branding Attributes'
+      description: 'HTML attributes for the component wrapper link.'
+      default: null

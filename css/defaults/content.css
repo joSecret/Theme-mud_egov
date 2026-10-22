@@ -7,7 +7,7 @@
   --accordion-item-gap: var(--spacing-12);
   --accordion-item-color-default: var(--color-text-base-default);
   --accordion-item-color-open: var(--color-text-brand-default);
-  --accordion-item-color-disabled: var(--color-text-disabled-on-disabled);
+  --accordion-item-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
 
   --accordion-item-transition-duration: 150ms;
   --accordion-item-transition-timing-function: ease-out;
@@ -23,7 +23,7 @@
   --accordion-item-supporting-line-height: var(--line-height-24);
   --accordion-item-supporting-font-weight: var(--font-weight-regular);
   --accordion-item-supporting-color-default: var(--color-text-base-tertiary);
-  --accordion-item-supporting-color-disabled: var(--color-text-disabled-on-disabled);
+  --accordion-item-supporting-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
 
   --accordion-item-trigger-size: 48px;
   --accordion-item-trigger-icon-size: 20px; /* nefolosit */

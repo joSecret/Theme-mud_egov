@@ -51,7 +51,7 @@
     {% set is_selected = segmented_control_value == option.value -%}
     {% set is_disabled = segmented_control_disabled or option.disabled|default(false) %}
     <button
-      class="segmented-control-segment{%- if is_selected -%} is-selected{%- endif -%}{%- if is_disabled -%} is-disabled{%- endif -%}"
+      class="segmented-control-segment{{ is_selected ? ' is-selected' }}{{ is_disabled ? ' is-disabled' }}"
       role="radio"
       aria-checked="{{ is_selected ? 'true' : 'false' }}"
       data-value="{{ option.value }}"

@@ -1,14 +1,11 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.segmentedControl = {
     attach(context) {
-      context.querySelectorAll('[data-segmented-control]').forEach(el => {
-        if (el.hasAttribute('data-segmented-control-initialized')) return;
-        el.setAttribute('data-segmented-control-initialized', 'true');
-
+      once('segmented-control', '[data-segmented-control]', context).forEach((el) => {
         const segments = () => [...el.querySelectorAll('.segmented-control-segment:not(.is-disabled)')];
 
         function select(btn) {
-          el.querySelectorAll('.segmented-control-segment').forEach(s => {
+          el.querySelectorAll('.segmented-control-segment').forEach((s) => {
             s.classList.remove('is-selected');
             s.setAttribute('aria-checked', 'false');
             s.setAttribute('tabindex', '-1');
@@ -23,11 +20,11 @@
           }));
         }
 
-        el.querySelectorAll('.segmented-control-segment').forEach(btn => {
+        el.querySelectorAll('.segmented-control-segment').forEach((btn) => {
           btn.addEventListener('click', () => select(btn));
         });
 
-        el.addEventListener('keydown', e => {
+        el.addEventListener('keydown', (e) => {
           const enabled = segments();
           const idx = enabled.indexOf(document.activeElement);
           if (idx === -1) return;
@@ -47,4 +44,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

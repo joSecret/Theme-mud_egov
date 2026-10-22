@@ -1,23 +1,43 @@
+/**
+ * Sidebar: panou lateral glisant (drawer) cu overlay, pe variabilele --sidebar-*.
+ */
 .c--sidebar__wrapper {
-  /* External tokens */
-  --sidebar_bg: var(--sidebar-container-background, var(--palette-white-1000, #fff));
-  --sidebar_border-color: var(--sidebar-container-border-color, var(--color-border-neutral-default, #e0e0e0));
-  --sidebar_border-width: var(--sidebar-container-border-width, 1px);
-  --sidebar_border-radius: var(--sidebar-container-border-radius, 0px);
-  --sidebar_width: var(--sidebar-container-inline-size, 320px);
-  --sidebar_width-sm: var(--sidebar_width-sm, 240px);
-  --sidebar_width-md: var(--sidebar_width-md, 320px);
-  --sidebar_width-lg: var(--sidebar_width-lg, 480px);
-  --sidebar_overlay-bg: var(--sidebar_overlay-background, rgb(0 0 0 / 0.5));
-  --sidebar_transition-duration: var(--sidebar_transition, 250ms);
-  --sidebar_z-index: var(--sidebar_z, 200);
+  --_sidebar_bg: var(--sidebar_bg, var(--sidebar-container-background));
+  --_sidebar_b-c: var(--sidebar_b-c, var(--sidebar-container-border-color));
+  --_sidebar_b-w: var(--sidebar_b-w, var(--sidebar-container-border-width));
+  --_sidebar_b-r: var(--sidebar_b-r, var(--sidebar-container-border-radius));
+  --_sidebar_w: var(--sidebar_w, var(--sidebar-container-inline-size));
+  --_sidebar_sm_w: var(--sidebar_sm_w, 240px);
+  --_sidebar_lg_w: var(--sidebar_lg_w, 480px);
+  --_sidebar_collapsed_w: var(--sidebar_collapsed_w, var(--sidebar-container-collapsed-inline-size));
+  --_sidebar_overlay_bg: var(--sidebar_overlay_bg, var(--color-background-alpha-overlay-dark));
+  --_sidebar_trn: var(--sidebar_trn, 250ms ease);
+  --_sidebar_z: var(--sidebar_z, 200);
 
-  /* Internal */
-  --_sidebar_width: var(--sidebar_width-md);
+  /* header */
+  --_sidebar_header_gap: var(--sidebar_header_gap, var(--spacing-12));
+  --_sidebar_header_p-b: var(--sidebar_header_p-b, var(--spacing-16));
+  --_sidebar_header_p-i: var(--sidebar_header_p-i, var(--spacing-20));
+  --_sidebar_title_f-s: var(--sidebar_title_f-s, var(--font-size-16));
+  --_sidebar_title_f-w: var(--sidebar_title_f-w, var(--font-weight-semibold));
+
+  /* close */
+  --_sidebar_close_size: var(--sidebar_close_size, 40px);
+  --_sidebar_close_p: var(--sidebar_close_p, var(--spacing-8));
+  --_sidebar_close_b-r: var(--sidebar_close_b-r, var(--border-radius-8));
+  --_sidebar_close_bg_h: var(--sidebar_close_bg_h, var(--color-background-base-default-hover));
+  --_sidebar_close_trn: var(--sidebar_close_trn, 150ms ease);
+
+  /* body + footer */
+  --_sidebar_body_p-b: var(--sidebar_body_p-b, var(--spacing-20));
+  --_sidebar_body_p-i: var(--sidebar_body_p-i, var(--spacing-20));
+  --_sidebar_footer_gap: var(--sidebar_footer_gap, var(--spacing-12));
+  --_sidebar_footer_p-b: var(--sidebar_footer_p-b, var(--spacing-16));
+  --_sidebar_footer_p-i: var(--sidebar_footer_p-i, var(--spacing-20));
 
   position: fixed;
   inset: 0;
-  z-index: var(--sidebar_z-index);
+  z-index: var(--_sidebar_z);
   pointer-events: none;
 
   &.is-open {
@@ -28,9 +48,9 @@
 .c--sidebar__overlay {
   position: absolute;
   inset: 0;
-  background-color: var(--sidebar_overlay-bg);
+  background-color: var(--_sidebar_overlay_bg);
   opacity: 0;
-  transition: opacity var(--sidebar_transition-duration) ease;
+  transition: opacity var(--_sidebar_trn);
 }
 
 .c--sidebar__wrapper.is-open .c--sidebar__overlay {
@@ -39,34 +59,31 @@
 
 /* Panel */
 .c--sidebar {
+  --_sidebar_active_w: var(--_sidebar_w);
+
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
-  inline-size: var(--_sidebar_width);
+  inline-size: var(--_sidebar_active_w);
   max-inline-size: 100vw;
   display: flex;
   flex-direction: column;
   transform: translateX(-100%);
-  transition: transform var(--sidebar_transition-duration) ease;
+  transition: transform var(--_sidebar_trn);
   z-index: 1;
 
-  /* Sizes */
+  /* Sizes (md is the default) */
   &.has-size_sm {
-    --_sidebar_width: var(--sidebar_width-sm);
-  }
-
-  &.has-size_md {
-    --_sidebar_width: var(--sidebar_width-md);
+    --_sidebar_active_w: var(--_sidebar_sm_w);
   }
 
   &.has-size_lg {
-    --_sidebar_width: var(--sidebar_width-lg);
+    --_sidebar_active_w: var(--_sidebar_lg_w);
   }
 
   /* Position end (right) */
   &.has-position_end {
-    inset-inline-start: auto;
-    inset-inline-end: 0;
+    inset-inline: auto 0;
     transform: translateX(100%);
   }
 
@@ -77,7 +94,7 @@
 
   /* Collapsed (icon rail) */
   &.is-collapsed {
-    inline-size: var(--sidebar-container-collapsed-inline-size, 64px);
+    inline-size: var(--_sidebar_collapsed_w);
   }
 }
 
@@ -86,14 +103,14 @@
   flex-direction: column;
   block-size: 100%;
   overflow: hidden;
-  background-color: var(--sidebar_bg);
-  border-inline-end: var(--sidebar_border-width) solid var(--sidebar_border-color);
-  border-radius: var(--sidebar_border-radius);
+  background-color: var(--_sidebar_bg);
+  border-inline-end: var(--_sidebar_b-w) solid var(--_sidebar_b-c);
+  border-radius: var(--_sidebar_b-r);
 }
 
 .c--sidebar.has-position_end .c--sidebar__surface {
   border-inline-end: none;
-  border-inline-start: var(--sidebar_border-width) solid var(--sidebar_border-color);
+  border-inline-start: var(--_sidebar_b-w) solid var(--_sidebar_b-c);
 }
 
 .c--sidebar__header {
@@ -101,17 +118,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-block: var(--sidebar_header-padding-block, 16px);
-  padding-inline: var(--sidebar_header-padding-inline, 20px);
-  border-block-end: var(--sidebar_border-width) solid var(--sidebar_border-color);
+  gap: var(--_sidebar_header_gap);
+  padding-block: var(--_sidebar_header_p-b);
+  padding-inline: var(--_sidebar_header_p-i);
+  border-block-end: var(--_sidebar_b-w) solid var(--_sidebar_b-c);
 }
 
 .c--sidebar__title {
   flex: 1 1 auto;
   margin: 0;
-  font-size: var(--sidebar_title-font-size, 1rem);
-  font-weight: var(--sidebar_title-font-weight, 600);
+  font-size: var(--_sidebar_title_f-s);
+  font-weight: var(--_sidebar_title_f-w);
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -123,27 +140,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: var(--sidebar_close-size, 40px);
-  block-size: var(--sidebar_close-size, 40px);
-  padding: 8px;
+  inline-size: var(--_sidebar_close_size);
+  block-size: var(--_sidebar_close_size);
+  padding: var(--_sidebar_close_p);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--_sidebar_close_b-r);
   background: transparent;
   color: currentColor;
   cursor: pointer;
   appearance: none;
-  -webkit-appearance: none;
-  transition: background-color 150ms ease;
+  transition: background-color var(--_sidebar_close_trn);
 
   &:hover {
-    background-color: var(--color-background-neutral-hover, #f5f5f5);
+    background-color: var(--_sidebar_close_bg_h);
   }
 
   &:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 var(--focus-ring-width-inner, 2px) var(--focus-ring-color-inner, #fff),
-      0 0 0 calc(var(--focus-ring-width-inner, 2px) + var(--focus-ring-width-outer, 2px)) var(--focus-ring-color-outer, #1976d2);
+    outline-color: transparent;
+    box-shadow: var(--focus-ring);
   }
 }
 
@@ -166,8 +180,8 @@
   flex: 1 1 auto;
   min-block-size: 0;
   overflow-y: auto;
-  padding-block: var(--sidebar_body-padding-block, 20px);
-  padding-inline: var(--sidebar_body-padding-inline, 20px);
+  padding-block: var(--_sidebar_body_p-b);
+  padding-inline: var(--_sidebar_body_p-i);
 }
 
 .c--sidebar__footer {
@@ -176,15 +190,16 @@
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 12px;
-  padding-block: var(--sidebar_footer-padding-block, 16px);
-  padding-inline: var(--sidebar_footer-padding-inline, 20px);
-  border-block-start: var(--sidebar_border-width) solid var(--sidebar_border-color);
+  gap: var(--_sidebar_footer_gap);
+  padding-block: var(--_sidebar_footer_p-b);
+  padding-inline: var(--_sidebar_footer_p-i);
+  border-block-start: var(--_sidebar_b-w) solid var(--_sidebar_b-c);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .c--sidebar,
-  .c--sidebar__overlay {
+  .c--sidebar__overlay,
+  .c--sidebar__close {
     transition: none;
   }
 }

@@ -1,10 +1,7 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.tooltip = {
     attach(context) {
-      context.querySelectorAll('[data-tooltip]').forEach(el => {
-        if (el.hasAttribute('data-tooltip-initialized')) return;
-        el.setAttribute('data-tooltip-initialized', 'true');
-
+      once('tooltip', '[data-tooltip]', context).forEach((el) => {
         const trigger = el.querySelector('.c--tooltip__trigger');
         const bubble = el.querySelector('.c--tooltip__bubble');
         const triggerEvent = el.dataset.tooltipTrigger || 'hover';
@@ -61,7 +58,7 @@
           });
 
           // Close on outside click.
-          document.addEventListener('click', e => {
+          document.addEventListener('click', (e) => {
             if (!el.contains(e.target)) hide();
           });
         }
@@ -72,12 +69,12 @@
         }
 
         // Always close on Escape.
-        document.addEventListener('keydown', e => {
+        document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && el.classList.contains('is-open')) {
             hide();
           }
         });
       });
-    }
+    },
   };
-})(Drupal);
+})(Drupal, once);

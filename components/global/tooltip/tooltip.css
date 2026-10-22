@@ -1,36 +1,27 @@
 /**
- * @file
- * Tooltip component styles — global/tooltip.
- *
- * External tokens (consumers can override):
- *   --tooltip_bg          bubble background colour
- *   --tooltip_c           bubble text colour
- *   --tooltip_border_r    bubble border radius
- *   --tooltip_p_b         bubble block padding
- *   --tooltip_p_i         bubble inline padding
- *   --tooltip_max_w       bubble maximum width
- *   --tooltip_z           z-index
- *   --tooltip_shadow      bubble box-shadow
- *   --tooltip_offset      gap between trigger and bubble
- *   --tooltip_arrow_size  arrow triangle size
- *
- * Internal tokens (single underscore prefix):
- *   --_tooltip_bg, --_tooltip_c, etc.
+ * Tooltip: bula cu săgeată lângă declanșator, pe variabilele --tooltip-*.
  */
-
 .c--tooltip {
-  --_tooltip_bg: var(--tooltip_bg, var(--tooltip-container-background-default, #1d2939));
-  --_tooltip_c: var(--tooltip_c, var(--color-text-base-inverse-default, #fff));
-  --_tooltip_border_r: var(--tooltip_border_r, var(--tooltip-container-border-radius-sm, 4px));
-  --_tooltip_p_b: var(--tooltip_p_b, var(--tooltip-container-padding-block-sm, 6px));
-  --_tooltip_p_i: var(--tooltip_p_i, var(--tooltip-container-padding-inline-sm, 10px));
-  --_tooltip_max_w: var(--tooltip_max_w, var(--tooltip-container-max-width, 280px));
-  --_tooltip_z: var(--tooltip_z, var(--tooltip-container-z-index, 1000));
-  --_tooltip_shadow: var(--tooltip_shadow, var(--tooltip-container-shadow, 0 4px 12px rgba(0, 0, 0, 0.15)));
-  --_tooltip_offset: var(--tooltip_offset, 8px);
-  --_tooltip_arrow_size: var(--tooltip_arrow_size, var(--tooltip-arrow-size-sm, 6px));
-  --_tooltip_transition_d: var(--tooltip-container-transition-duration, 150ms);
-  --_tooltip_transition_tf: var(--tooltip-container-transition-timing-function, ease-out);
+  --_tooltip_bg: var(--tooltip_bg, var(--tooltip-container-background-default));
+  --_tooltip_c: var(--tooltip_c, var(--color-text-base-inverse-default));
+  --_tooltip_b-r: var(--tooltip_b-r, var(--tooltip-container-border-radius-sm));
+  --_tooltip_p-b: var(--tooltip_p-b, var(--tooltip-container-padding-block-sm));
+  --_tooltip_p-i: var(--tooltip_p-i, var(--tooltip-container-padding-inline-sm));
+  --_tooltip_mx-w: var(--tooltip_mx-w, var(--tooltip-container-max-width));
+  --_tooltip_z: var(--tooltip_z, var(--tooltip-container-z-index));
+  --_tooltip_bs: var(--tooltip_bs, var(--tooltip-container-shadow));
+  --_tooltip_gap: var(--tooltip_gap, var(--spacing-8));
+  --_tooltip_arrow_size: var(--tooltip_arrow_size, var(--tooltip-arrow-size-sm));
+  --_tooltip_f-s: var(--tooltip_f-s, var(--tooltip-hint-font-size));
+  --_tooltip_f-w: var(--tooltip_f-w, var(--tooltip-hint-font-weight));
+  --_tooltip_l-h: var(--tooltip_l-h, var(--tooltip-hint-line-height));
+  --_tooltip_trn: var(--tooltip_trn, var(--tooltip-container-transition-duration) var(--tooltip-container-transition-timing-function));
+
+  /* lg */
+  --_tooltip_lg_b-r: var(--tooltip_lg_b-r, var(--tooltip-container-border-radius-lg));
+  --_tooltip_lg_p-b: var(--tooltip_lg_p-b, var(--tooltip-container-padding-block-lg));
+  --_tooltip_lg_p-i: var(--tooltip_lg_p-i, var(--tooltip-container-padding-inline-lg));
+  --_tooltip_arrow_lg_size: var(--tooltip_arrow_lg_size, var(--tooltip-arrow-size-lg));
 
   display: inline-flex;
   position: relative;
@@ -39,10 +30,10 @@
 
 /* Size: lg */
 .c--tooltip.has-size_lg {
-  --_tooltip_border_r: var(--tooltip-container-border-radius-lg, 6px);
-  --_tooltip_p_b: var(--tooltip-container-padding-block-lg, 10px);
-  --_tooltip_p_i: var(--tooltip-container-padding-inline-lg, 14px);
-  --_tooltip_arrow_size: var(--tooltip-arrow-size-lg, 8px);
+  --_tooltip_b-r: var(--_tooltip_lg_b-r);
+  --_tooltip_p-b: var(--_tooltip_lg_p-b);
+  --_tooltip_p-i: var(--_tooltip_lg_p-i);
+  --_tooltip_arrow_size: var(--_tooltip_arrow_lg_size);
 }
 
 /* Trigger wrapper */
@@ -71,28 +62,44 @@
   z-index: var(--_tooltip_z);
   display: inline-flex;
   flex-direction: column;
-  max-width: var(--_tooltip_max_w);
-  padding-block: var(--_tooltip_p_b);
-  padding-inline: var(--_tooltip_p_i);
+  max-width: var(--_tooltip_mx-w);
+  padding-block: var(--_tooltip_p-b);
+  padding-inline: var(--_tooltip_p-i);
   background: var(--_tooltip_bg);
   color: var(--_tooltip_c);
-  border-radius: var(--_tooltip_border_r);
-  box-shadow: var(--_tooltip_shadow);
-  font-size: var(--tooltip-hint-font-size, 0.75rem);
-  font-weight: var(--tooltip-hint-font-weight, 400);
-  line-height: var(--tooltip-hint-line-height, 1.5);
+  border-radius: var(--_tooltip_b-r);
+  box-shadow: var(--_tooltip_bs);
+  font-size: var(--_tooltip_f-s);
+  font-weight: var(--_tooltip_f-w);
+  line-height: var(--_tooltip_l-h);
   white-space: normal;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity var(--_tooltip_transition_d) var(--_tooltip_transition_tf),
-    visibility var(--_tooltip_transition_d) var(--_tooltip_transition_tf);
+    opacity var(--_tooltip_trn),
+    visibility var(--_tooltip_trn);
 
   /* Default: top placement */
-  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   left: 50%;
   transform: translateX(-50%);
+
+  /* Arrow: top (bubble above trigger) */
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    /* Default: top position → arrow points down */
+    bottom: calc(-1 * var(--_tooltip_arrow_size));
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: var(--_tooltip_arrow_size) var(--_tooltip_arrow_size) 0;
+    border-color: var(--_tooltip_bg) transparent transparent;
+  }
 }
 
 /* Arrow */
@@ -101,23 +108,6 @@
   width: 0;
   height: 0;
   pointer-events: none;
-}
-
-/* Arrow: top (bubble above trigger) */
-.c--tooltip__bubble {
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    /* Default: top position → arrow points down */
-    bottom: calc(-1 * var(--_tooltip_arrow_size));
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: var(--_tooltip_arrow_size) var(--_tooltip_arrow_size) 0;
-    border-color: var(--_tooltip_bg) transparent transparent;
-  }
 }
 
 /* Open state — toggled by JS */
@@ -129,7 +119,7 @@
 
 /* Position: bottom */
 .c--tooltip.has-position_bottom .c--tooltip__bubble {
-  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  top: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   bottom: auto;
 
   &::after {
@@ -142,10 +132,7 @@
 
 /* Position: left */
 .c--tooltip.has-position_left .c--tooltip__bubble {
-  right: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
-  left: auto;
-  bottom: auto;
-  top: 50%;
+  inset: 50% calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size)) auto auto;
   transform: translateY(-50%);
 
   &::after {
@@ -160,10 +147,7 @@
 
 /* Position: right */
 .c--tooltip.has-position_right .c--tooltip__bubble {
-  left: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
-  right: auto;
-  bottom: auto;
-  top: 50%;
+  inset: 50% auto auto calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   transform: translateY(-50%);
 
   &::after {
@@ -178,7 +162,7 @@
 
 /* Position: top-left */
 .c--tooltip.has-position_top-left .c--tooltip__bubble {
-  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   left: 0;
   transform: none;
 
@@ -190,7 +174,7 @@
 
 /* Position: top-right */
 .c--tooltip.has-position_top-right .c--tooltip__bubble {
-  bottom: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  bottom: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   left: auto;
   right: 0;
   transform: none;
@@ -204,7 +188,7 @@
 
 /* Position: bottom-left */
 .c--tooltip.has-position_bottom-left .c--tooltip__bubble {
-  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
+  top: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size));
   bottom: auto;
   left: 0;
   transform: none;
@@ -221,17 +205,11 @@
 
 /* Position: bottom-right */
 .c--tooltip.has-position_bottom-right .c--tooltip__bubble {
-  top: calc(100% + var(--_tooltip_offset) + var(--_tooltip_arrow_size));
-  bottom: auto;
-  left: auto;
-  right: 0;
+  inset: calc(100% + var(--_tooltip_gap) + var(--_tooltip_arrow_size)) 0 auto auto;
   transform: none;
 
   &::after {
-    bottom: auto;
-    top: calc(-1 * var(--_tooltip_arrow_size));
-    left: auto;
-    right: var(--_tooltip_arrow_size);
+    inset: calc(-1 * var(--_tooltip_arrow_size)) var(--_tooltip_arrow_size) auto auto;
     transform: none;
     border-width: 0 var(--_tooltip_arrow_size) var(--_tooltip_arrow_size);
     border-color: transparent transparent var(--_tooltip_bg);

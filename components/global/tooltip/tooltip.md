@@ -1,3 +1,10 @@
+---
+title: Tooltip
+group: Globals
+version: 1.1.0
+css_prefix: tooltip
+---
+
 # Tooltip
 
 Accessible tooltip that appears on hover/focus (or click). Renders an inline trigger wrapper with a visually hidden `role="tooltip"` bubble. The trigger element is linked to the bubble via `aria-describedby`. JavaScript manages show/hide with configurable delays, keyboard dismissal (Esc), and outside-click handling.
@@ -7,31 +14,31 @@ Accessible tooltip that appears on hover/focus (or click). Renders an inline tri
 Simple tooltip with default info-icon trigger:
 
 ```twig
-{% include 'egov:tooltip' with {
+{% include 'mud_egov:tooltip' with {
   tooltip_text: 'This field is required.',
   tooltip_position: 'top',
-} %}
+} only %}
 ```
 
 Custom trigger element:
 
 ```twig
-{% include 'egov:tooltip' with {
+{% include 'mud_egov:tooltip' with {
   tooltip_text: 'Download the document',
   tooltip_trigger: '<button type="button" aria-label="Download">⬇</button>',
   tooltip_position: 'bottom',
   tooltip_size: 'lg',
-} %}
+} only %}
 ```
 
 Click-triggered tooltip:
 
 ```twig
-{% include 'egov:tooltip' with {
+{% include 'mud_egov:tooltip' with {
   tooltip_text: 'More information about this option.',
   tooltip_trigger_event: 'click',
   tooltip_position: 'right',
-} %}
+} only %}
 ```
 
 ## Props
@@ -47,17 +54,29 @@ Click-triggered tooltip:
 | `tooltip_uc` | `string[]` | `[]` | Extra utility classes on the root wrapper. |
 | `tooltip_att` | `Attribute` | `null` | Additional HTML attributes on the root wrapper. |
 
-## CSS custom properties
+## CSS Variables
 
-| Property | Description |
-|---|---|
-| `--tooltip_bg` | Bubble background colour. |
-| `--tooltip_c` | Bubble text colour. |
-| `--tooltip_border_r` | Bubble border radius. |
-| `--tooltip_p_b` | Bubble block (top/bottom) padding. |
-| `--tooltip_p_i` | Bubble inline (left/right) padding. |
-| `--tooltip_max_w` | Bubble maximum width. |
-| `--tooltip_z` | z-index of the bubble. |
-| `--tooltip_shadow` | Bubble box-shadow. |
-| `--tooltip_offset` | Gap between trigger and bubble. |
-| `--tooltip_arrow_size` | Arrow triangle size. |
+Public overrides are empty by default; set them in a specific context. Defaults come from the `--tooltip-*` variables in `css/defaults/feedback.css`.
+
+| Variable | Default | Description |
+|---|---|---|
+| `--tooltip_bg` | `--tooltip-container-background-default` | Bubble background. |
+| `--tooltip_c` | `--color-text-base-inverse-default` | Bubble text color. |
+| `--tooltip_b-r` | `--tooltip-container-border-radius-sm` | Bubble border radius. |
+| `--tooltip_p-b` | `--tooltip-container-padding-block-sm` | Bubble block padding. |
+| `--tooltip_p-i` | `--tooltip-container-padding-inline-sm` | Bubble inline padding. |
+| `--tooltip_mx-w` | `--tooltip-container-max-width` | Bubble maximum width. |
+| `--tooltip_z` | `--tooltip-container-z-index` | z-index of the bubble. |
+| `--tooltip_bs` | `--tooltip-container-shadow` | Bubble box-shadow. |
+| `--tooltip_gap` | `--spacing-8` | Gap between trigger and bubble. |
+| `--tooltip_arrow_size` | `--tooltip-arrow-size-sm` | Arrow triangle size. |
+| `--tooltip_f-s`, `--tooltip_f-w`, `--tooltip_l-h` | `--tooltip-hint-*` | Text typography. |
+
+Size `lg`: `--tooltip_lg_b-r`, `--tooltip_lg_p-b`, `--tooltip_lg_p-i`, `--tooltip_arrow_lg_size`.
+
+## Accessibility
+
+- The bubble has `role="tooltip"` and the trigger points to it with `aria-describedby`; `aria-hidden` follows the visible state.
+- It opens on hover and on keyboard focus (`hover` mode), on click (`click` mode) or on focus only (`focus` mode); Escape always closes it.
+- The default trigger is a real `<button>` with an accessible name taken from the tooltip text.
+- The fade transition is off under `prefers-reduced-motion: reduce`.

@@ -1,77 +1,39 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.modal = {
     attach(context) {
-      context.querySelectorAll('[data-modal]').forEach(dialog => {
-        if (dialog.hasAttribute('data-modal-initialized')) return;
-        dialog.setAttribute('data-modal-initialized', 'true');
+      const openModal = (dialog) => {
+        if (typeof dialog.showModal === 'function' && !dialog.open) dialog.showModal();
+      };
 
-        const id = dialog.id;
+      once('modal', '[data-modal]', context).forEach((dialog) => {
         const closeOnBackdrop = dialog.hasAttribute('data-modal-close-on-backdrop');
         const closeOnEscape = !dialog.hasAttribute('data-modal-no-escape');
 
-        // --- Open ---
-        function openModal() {
-          dialog.showModal();
-        }
-
-        // --- Close ---
-        function closeModal() {
-          dialog.close();
-        }
-
-        // Trigger buttons (outside the dialog, keyed by data-modal-trigger="<id>")
-        if (id) {
-          const root = context === document ? document : context.getRootNode?.() ?? document;
-          (root === document ? document : context).querySelectorAll(
-            `[data-modal-trigger="${CSS.escape(id)}"]`
-          ).forEach(trigger => {
-            trigger.addEventListener('click', openModal);
-          });
-        }
-
-        // Close buttons inside the dialog
-        dialog.querySelectorAll('[data-modal-close]').forEach(btn => {
-          btn.addEventListener('click', closeModal);
+        // Close buttons inside the dialog.
+        dialog.querySelectorAll('[data-modal-close]').forEach((btn) => {
+          btn.addEventListener('click', () => dialog.close());
         });
 
-        // Backdrop click
+        // Backdrop click: a click directly on <dialog> hits the backdrop.
         if (closeOnBackdrop) {
-          dialog.addEventListener('click', function (e) {
-            // dialog covers the viewport; click directly on <dialog> = backdrop
-            if (e.target === dialog) {
-              closeModal();
-            }
+          dialog.addEventListener('click', (e) => {
+            if (e.target === dialog) dialog.close();
           });
         }
 
-        // Escape key — native <dialog> fires 'cancel' on Escape
+        // Escape key: native <dialog> fires 'cancel'.
         if (!closeOnEscape) {
-          dialog.addEventListener('cancel', function (e) {
-            e.preventDefault();
-          });
-        }
-
-        // Re-attach trigger buttons that may not be in context yet (global scope)
-        if (id && context === document) {
-          document.querySelectorAll(`[data-modal-trigger="${CSS.escape(id)}"]`).forEach(trigger => {
-            if (!trigger.hasAttribute('data-modal-trigger-initialized')) {
-              trigger.setAttribute('data-modal-trigger-initialized', 'true');
-              trigger.addEventListener('click', openModal);
-            }
-          });
+          dialog.addEventListener('cancel', (e) => e.preventDefault());
         }
       });
 
-      // Attach triggers that live outside the dialog (e.g. rendered before dialog)
-      context.querySelectorAll('[data-modal-trigger]:not([data-modal-trigger-initialized])').forEach(trigger => {
-        const targetId = trigger.getAttribute('data-modal-trigger');
-        const dialog = document.getElementById(targetId);
-        if (!dialog) return;
-        trigger.setAttribute('data-modal-trigger-initialized', 'true');
-        trigger.addEventListener('click', function () {
-          if (typeof dialog.showModal === 'function') dialog.showModal();
+      // Triggers (outside the dialog), keyed by data-modal-trigger="<id>".
+      once('modal-trigger', '[data-modal-trigger]', context).forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const dialog = document.getElementById(trigger.getAttribute('data-modal-trigger'));
+          if (dialog) openModal(dialog);
         });
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

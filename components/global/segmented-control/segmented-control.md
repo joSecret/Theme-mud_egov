@@ -1,6 +1,13 @@
+---
+title: Segmented Control
+group: Globals
+version: 1.1.0
+css_prefix: segmented-control
+---
+
 # Segmented Control
 
-Single-select horizontal switcher aligned with `mud-segmented-control`. Uses `role="radiogroup"` + `role="radio"` semantics with roving tabindex keyboard navigation (arrow keys, Home, End).
+Single-select horizontal switcher. Uses `role="radiogroup"` + `role="radio"` semantics with roving tabindex keyboard navigation (arrow keys, Home, End).
 
 ## Usage
 
@@ -13,7 +20,7 @@ Single-select horizontal switcher aligned with `mud-segmented-control`. Uses `ro
   ],
   segmented_control_value: 'week',
   segmented_control_size: 'md',
-} %}
+} only %}
 ```
 
 ## Props
@@ -36,12 +43,28 @@ Single-select horizontal switcher aligned with `mud-segmented-control`. Uses `ro
 |-------|--------|-------------|
 | `segmented-control:change` | `{ value }` | Emitted when a segment is selected |
 
-## CSS variables
+## CSS Variables
+
+Public overrides are empty by default; set them in a specific context.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--segmented-control_bg` | tertiary bg | Track background |
-| `--segmented-control_seg_selected_bg` | white | Selected segment background |
-| `--segmented-control_seg_selected_c` | base text | Selected segment text color |
-| `--segmented-control_h` | 40px | Control height (md) |
-| `--segmented-control_sm_h` | 32px | Control height (sm) |
+| `--segmented-control_bg` | `--color-background-base-tertiary` | Track background. |
+| `--segmented-control_b-r` | `--border-radius-8` | Track border radius. |
+| `--segmented-control_p`, `--segmented-control_gap` | `--spacing-4` | Track padding and gap between segments. |
+| `--segmented-control_h` | `--segmented-control-segment-height-md` | Segment height (md, 40px). |
+| `--segmented-control_sm_h` | `--segmented-control-segment-height-sm` | Segment height (sm, 32px). |
+| `--segmented-control_seg_c` | `--color-text-base-secondary` | Segment text color. |
+| `--segmented-control_seg_bg_s` | `--color-background-base-default` | Selected segment background. |
+| `--segmented-control_seg_c_s` | `--color-text-base-default` | Selected segment text color. |
+| `--segmented-control_seg_bs_s` | `--drop-shadow-segment` | Selected segment shadow. |
+| `--segmented-control_seg_c_d` | `--color-text-base-disabled` | Disabled segment text color. |
+
+Also available: `--segmented-control_seg_bg`, `--segmented-control_seg_f-s`, `--segmented-control_seg_f-w`, `--segmented-control_seg_b-r`, `--segmented-control_seg_p-i`, `--segmented-control_seg_ol-c` (focus outline color), `--segmented-control_seg_trn`.
+
+## Accessibility
+
+- `role="radiogroup"` with `role="radio"` segments and `aria-checked`; label the group with `segmented_control_label`.
+- Roving tabindex: only the selected segment is in the tab order; arrow keys, Home and End move and select.
+- Keyboard focus shows a 2px inset outline (`:focus-visible`).
+- Color changes are not the only selected cue (the selected segment also gets a raised background and shadow); transitions are off under `prefers-reduced-motion: reduce`.

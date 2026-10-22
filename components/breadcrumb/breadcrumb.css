@@ -4,22 +4,32 @@
  */
 
 .c--breadcrumb {
-  --_breadcrumb_c: var(--color-text-base-tertiary);
-  --_breadcrumb_fs: var(--font-size-14);
-  --_breadcrumb_m-b-e: 12px;
+  --_breadcrumb_c: var(--breadcrumb_c, var(--breadcrumb-item-text-default));
+  --_breadcrumb_f-s: var(--breadcrumb_f-s, var(--breadcrumb-font-size));
+  --_breadcrumb_m-b: var(--breadcrumb_m-b, var(--spacing-12));
 
-  --_breadcrumb_ol_gap: 8px;
-  --_breadcrumb_ol_m: 0px 0px 12px;
-  --_breadcrumb_ol_p: 0px;
+  --_breadcrumb_ol_gap: var(--breadcrumb_ol_gap, var(--spacing-8));
+  --_breadcrumb_ol_m: var(--breadcrumb_ol_m, var(--spacing-0) var(--spacing-0) var(--spacing-12));
+  --_breadcrumb_ol_p: var(--breadcrumb_ol_p, var(--spacing-0));
 
-  --_breadcrumb_li_last_c: var(--color-text-base-default);
-  --_breadcrumb_li_after_c: var(--breadcrumb_li_after_c, var(--c_fg-muted));
+  --_breadcrumb_li_m-i: var(--breadcrumb_li_m-i, var(--spacing-8));
+  --_breadcrumb_li_mx-w: var(--breadcrumb_li_mx-w, 250px);
+
+  /* Linkurile: culoarea textului, fără subliniere. */
+  --_breadcrumb_link_c: var(--breadcrumb_link_c, currentcolor);
+  --_breadcrumb_link_t-d: var(--breadcrumb_link_t-d, none);
+
+  /* Separatorul dintre elemente. */
+  --_breadcrumb_sep_c: var(--breadcrumb_sep_c, var(--breadcrumb-separator-color));
+
+  /* Ultimul element (pagina curentă). */
+  --_breadcrumb_last_c: var(--breadcrumb_last_c, var(--breadcrumb-item-text-active));
 
   display: flex;
   align-items: center;
-  font-size: var(--_breadcrumb_fs);
+  font-size: var(--_breadcrumb_f-s);
   color: var(--_breadcrumb_c);
-  margin-block-end: var(--_breadcrumb_m-b-e);
+  margin-block-end: var(--_breadcrumb_m-b);
   gap: var(--_breadcrumb_ol_gap);
 
   ol {
@@ -37,22 +47,21 @@
   }
 
   a {
-    --_link_c: var(--_breadcrumb_link_c, 'currentColor');
-    --_link_d: none;
-    --_link_d_h: none;
+    color: var(--_breadcrumb_link_c);
+    text-decoration: var(--_breadcrumb_link_t-d);
   }
 
-  &:not(.is-hideIcons) {
+  &:not(.is-hide-icons) {
     li {
       &:not(:last-child)::after {
         content: '›';
-        margin-left: var(--_breadcrumb_li_m-i-s, var(--_breadcrumb_ol_gap));
-        color: var(--_breadcrumb_li_after_c);
+        margin-inline-start: var(--_breadcrumb_li_m-i);
+        color: var(--_breadcrumb_sep_c);
       }
 
       span {
-        color: var(--_breadcrumb_li_last_c);
-        max-width: 250px;
+        color: var(--_breadcrumb_last_c);
+        max-width: var(--_breadcrumb_li_mx-w);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -61,4 +70,3 @@
     }
   }
 }
-

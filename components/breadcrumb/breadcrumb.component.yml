@@ -2,9 +2,9 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Breadcrumb
 status: stable
 
-version: 1.0.0
+version: 1.1.0
 group: Navigation
-description: 'Breadcrumb navigation component.'
+description: 'Breadcrumb: traseul paginii curente în ierarhia site-ului, ca listă ordonată într-un element de navigare, cu separator între elemente și ultimul element evidențiat.'
 
 # Props.
 props:
@@ -48,6 +48,44 @@ props:
             type: ['string', 'null']
             title: 'Item URL'
       default: []
+
+    # uc -> utility_classes
+    breadcrumb_uc:
+      type: array
+      items:
+        type: string
+      title: 'Utility Classes'
+      description: 'Clase utilitare adăugate elementului rădăcină.'
+      default: []
+
+    breadcrumb_list_uc:
+      type: array
+      items:
+        type: string
+      title: 'List Utility Classes'
+      description: 'Clase utilitare adăugate listei <ol>.'
+      default: []
+
+    breadcrumb_item_uc:
+      type: array
+      items:
+        type: string
+      title: 'Item Utility Classes'
+      description: 'Clase utilitare adăugate fiecărui <li>.'
+      default: []
+
+    # att -> attributes
+    breadcrumb_att:
+      type: Drupal\Core\Template\Attribute
+      title: 'Attributes'
+      description: 'Atribute HTML pentru elementul rădăcină.'
+      default: null
+
+    breadcrumb_list_att:
+      type: Drupal\Core\Template\Attribute
+      title: 'List Attributes'
+      description: 'Atribute HTML pentru lista <ol>.'
+      default: null
 
 slots:
   breadcrumb_content:

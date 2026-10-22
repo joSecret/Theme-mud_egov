@@ -1,107 +1,108 @@
-.c--navScroll {
-  --_nav-scroll_track_gap: 0px;
-  --_nav-scroll_track_p-i: var(--_nav-scroll_btns_w, 0px);
-  --_nav-scroll_track_b-b: 1px solid var(--c_border);
+/**
+ * @file
+ * Nav Scroll component styles.
+ */
 
-  --nav-scroll_btns_d: flex;
-  --nav-scroll_btns_i-b-s: 0px;
+.c--nav-scroll {
+  --_nav-scroll_btns_w: var(--nav-scroll_btns_w, var(--spacing-40));
+  --_nav-scroll_btns_d: var(--nav-scroll_btns_d, flex);
+  --_nav-scroll_btns_inset: var(--nav-scroll_btns_inset, var(--spacing-0));
+  --_nav-scroll_btns_b-r: var(--nav-scroll_btns_b-r, var(--border-radius-0));
 
-  --_nav-scroll_btns_w: 2.5rem;
-  --_nav-scroll_btns_b-r: 0px;
+  --_nav-scroll_track_gap: var(--nav-scroll_track_gap, var(--spacing-0));
+  --_nav-scroll_track_p-i: var(--nav-scroll_track_p-i, var(--_nav-scroll_btns_w));
+  --_nav-scroll_track_b-b: var(--nav-scroll_track_b-b, var(--border-width-1) solid var(--color-border-base-default));
 
-  --_nav-scroll_item_p: 0.5rem 1rem;
-  --_nav-scroll_item_bg: var(--c_white);
-  --_nav-scroll_item_c: var(--body_c);
-  --_nav-scroll_item_f-s: 1rem;
-  --_nav-scroll_item_f-w: 500;
-  --_nav-scroll_item_transition: all 0.2s ease;
-  --_nav-scroll_item_b-r: 0px;
-  --_nav-scroll_item_b: none;
+  --_nav-scroll_item_p: var(--nav-scroll_item_p, var(--spacing-8) var(--spacing-16));
+  --_nav-scroll_item_bg: var(--nav-scroll_item_bg, var(--color-background-base-default));
+  --_nav-scroll_item_c: var(--nav-scroll_item_c, var(--color-text-base-default));
+  --_nav-scroll_item_f-s: var(--nav-scroll_item_f-s, var(--font-size-16));
+  --_nav-scroll_item_f-w: var(--nav-scroll_item_f-w, var(--font-weight-medium));
+  --_nav-scroll_item_trn: var(--nav-scroll_item_trn, all 0.2s ease);
+  --_nav-scroll_item_b-r: var(--nav-scroll_item_b-r, var(--border-radius-0));
+  --_nav-scroll_item_b: var(--nav-scroll_item_b, none);
 
-  --_nav-scroll_item_bg_a: var(--c_primary_500);
-  --_nav-scroll_item_c_a: var(--c_white);
+  /* element activ (clasa .active sau radio bifat) */
+  --_nav-scroll_item_bg_s: var(--nav-scroll_item_bg_s, var(--color-background-brand-default));
+  --_nav-scroll_item_c_s: var(--nav-scroll_item_c_s, var(--color-text-brand-inverse));
 
-  --_nav-scroll_btn_bg: var(--c_white);
-  --_nav-scroll_btn_b: none;
-  --_nav-scroll_btn_disabled-opacity: 0.5;
+  --_nav-scroll_btn_bg: var(--nav-scroll_btn_bg, var(--color-background-base-default));
+  --_nav-scroll_btn_b: var(--nav-scroll_btn_b, none);
+  --_nav-scroll_btn_o_d: var(--nav-scroll_btn_o_d, 0.5);
+
+  /* fără butoane: lista nu mai lasă loc pentru ele */
+  --_nav-scroll_nobtns_d: var(--nav-scroll_nobtns_d, none);
+  --_nav-scroll_nobtns_p-i: var(--nav-scroll_nobtns_p-i, var(--spacing-0));
 
   isolation: isolate;
   position: relative;
-}
 
-  .c--navScroll.is-noButtons {
-    --_nav-scroll_track_p-i: 0px;
-    --nav-scroll_btns_d: none;
+  &.is-no-buttons {
+    --_nav-scroll_track_p-i: var(--_nav-scroll_nobtns_p-i);
+    --_nav-scroll_btns_d: var(--_nav-scroll_nobtns_d);
   }
 
   @media (pointer: coarse) {
-
-  .c--navScroll {
-    --_nav-scroll_track_p-i: 0px;
-    --nav-scroll_btns_d: none
-}
+    --_nav-scroll_track_p-i: var(--_nav-scroll_nobtns_p-i);
+    --_nav-scroll_btns_d: var(--_nav-scroll_nobtns_d);
   }
 
-  .c--navScroll > [data-navScroll-track] {
+  > [data-navscroll-track] {
     padding-inline: var(--_nav-scroll_track_p-i);
     scroll-padding-inline-start: var(--_nav-scroll_track_p-i);
     gap: var(--_nav-scroll_track_gap);
     border-bottom: var(--_nav-scroll_track_b-b);
-
     scroll-snap-type: x mandatory;
     display: flex;
     list-style: none;
     overflow-x: scroll;
     white-space: nowrap;
-    scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
-  }
 
-  .c--navScroll > [data-navScroll-track]::-webkit-scrollbar {
+    &::-webkit-scrollbar {
       display: none; /* Chrome, Safari, Opera */
     }
 
-  .c--navScroll > [data-navScroll-track] > * {
+    > * {
       scroll-snap-align: start;
       cursor: pointer;
-
       padding: var(--_nav-scroll_item_p);
       background-color: var(--_nav-scroll_item_bg);
-      border:var(--_nav-scroll_item_b);
+      border: var(--_nav-scroll_item_b);
       border-radius: var(--_nav-scroll_item_b-r);
-      transition: var(--_nav-scroll_item_transition);
+      transition: var(--_nav-scroll_item_trn);
       font-weight: var(--_nav-scroll_item_f-w);
       font-size: var(--_nav-scroll_item_f-s);
       color: var(--_nav-scroll_item_c);
-    }
 
-  .c--navScroll > [data-navScroll-track] > *.active,
-      .c--navScroll > [data-navScroll-track] > *:has(input:checked) {
-        --_nav-scroll_item_c: var(--_nav-scroll_item_c_a);
-        --_nav-scroll_item_bg: var(--_nav-scroll_item_bg_a);
+      &.active,
+      &:has(input:checked) {
+        --_nav-scroll_item_c: var(--_nav-scroll_item_c_s);
+        --_nav-scroll_item_bg: var(--_nav-scroll_item_bg_s);
       }
 
-  .c--navScroll > [data-navScroll-track] > *.form-item input {
-          display: none;
-        }
+      &.form-item input {
+        display: none;
+      }
 
-  .c--navScroll > [data-navScroll-track] > *.form-item label {
-          display: inline-block;
-          color: var(--_nav-scroll_item_c);
-        }
-
-.c--navScroll-buttons {
-  display: var(--nav-scroll_btns_d);
-  position: absolute;
-  inset-block-start: var(--nav-scroll_btns_i-b-s);
-  width: 100%;
-
-  justify-content: space-between;
-  pointer-events: none;
+      &.form-item label {
+        display: inline-block;
+        color: var(--_nav-scroll_item_c);
+      }
+    }
+  }
 }
 
-.c--navScroll-buttons button {
+.c--nav-scroll-buttons {
+  display: var(--_nav-scroll_btns_d);
+  position: absolute;
+  inset-block-start: var(--_nav-scroll_btns_inset);
+  width: 100%;
+  justify-content: space-between;
+  pointer-events: none;
+
+  button {
     width: var(--_nav-scroll_btns_w);
     background-color: var(--_nav-scroll_btn_bg);
     border-radius: var(--_nav-scroll_btns_b-r);
@@ -109,14 +110,20 @@
     pointer-events: all;
     border: var(--_nav-scroll_btn_b);
     cursor: pointer;
-    padding: 0px;
-
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
-.c--navScroll-buttons button:disabled {
-      opacity: var(--_nav-scroll_btn_disabled-opacity);
+    &:disabled {
+      opacity: var(--_nav-scroll_btn_o_d);
       cursor: default;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--nav-scroll > [data-navscroll-track] > * {
+    transition: none;
+  }
+}

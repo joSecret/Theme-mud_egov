@@ -1,4 +1,8 @@
 name: Tabs
+status: stable
+version: 1.1.0
+group: Navigation
+description: 'Tabs accesibile (ARIA tablist) cu panouri, orientare orizontală sau verticală, navigare din tastatură și derulare orizontală cu butoane când taburile nu încap.'
 libraryOverrides:
   dependencies:
     - core/drupal
@@ -11,13 +15,12 @@ props:
     tabs_direction:
       title: Tabs Direction
       type: ['string', 'null']
-      description: An array of tab directions. Use to define different styles or behaviors for the tabs.
+      description: Orientarea taburilor.
       default: 'horizontal'
       enum:
+        - null
         - 'horizontal'
         - 'vertical'
-      items:
-        type: string
 
     tabs_scrollable:
       title: Scrollable Tabs
@@ -30,19 +33,22 @@ props:
       title: Tabs ID
       type: ['string', 'null']
       description: An optional ID for the Tabs component.
+      default: null
 
     tabs_tabs:
       type: ['array', 'string', 'null']
       title: Tabs
       description: An array of tab items. Each item should contain a title and content.
+      default: null
 
     # uc -> utility_classes
     tabs_uc:
       type: array
       items:
         type: string
-      title: Horizontal Tabs Utility Classes
+      title: Tabs Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
     tabs_list_uc:
       type: array
@@ -50,6 +56,7 @@ props:
         type: string
       title: Tab List Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to the tab list element.
+      default: []
 
     tabs_button_uc:
       type: array
@@ -57,33 +64,42 @@ props:
         type: string
       title: Tab Button Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to the tab button element.
+      default: []
 
     tabs_panel_uc:
       type: array
       items:
         type: string
       title: Tab Panel Utility Classes
-      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to the tab panel elements.
+      default: []
 
     # att -> attributes
     tabs_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
-      description: A list of HTML attributes for the Horizontal Tabs.
-
+      description: A list of HTML attributes for the Tabs.
       default: null
     tabs_list_att:
       type: Drupal\Core\Template\Attribute
       title: Tab List Attributes
       description: A list of HTML attributes for the tab list element.
-
       default: null
+
+    tabs_button_att:
+      type: Drupal\Core\Template\Attribute
+      title: Tab Button Attributes
+      description: A list of HTML attributes for the tab button elements.
+      default: null
+
+    tabs_panel_att:
+      type: Drupal\Core\Template\Attribute
+      title: Tab Panel Attributes
+      description: A list of HTML attributes for the tab panel elements.
+      default: null
+
 # Slots.
 slots:
-  slot_content:
-    title: Content
-    description: Default content text for the Tabs component.
-
   slot_btn_prev:
     title: Previous Button
     description: Content for the previous button in the scrollable tabs.

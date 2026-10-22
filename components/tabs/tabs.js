@@ -1,9 +1,9 @@
 ((Drupal, once) => {
-  Drupal.behaviors.horizontalTabs = {
+  Drupal.behaviors.tabs = {
     attach(context) {
-      once("componentTabs", ".comp--tabs", context).forEach((tabs) => {
-        const tabButtons = tabs.querySelectorAll(':scope .tabs__nav .tabs__button');
-        const tabPanels = tabs.querySelectorAll(':scope > .tabs__panels .tabs__panel');
+      once("tabs", ".c--tabs", context).forEach((tabs) => {
+        const tabButtons = tabs.querySelectorAll(':scope .tabs-nav .tabs-button');
+        const tabPanels = tabs.querySelectorAll(':scope > .tabs-panels .tabs-panel');
         const direction = tabs.dataset.direction || 'horizontal';
 
         tabButtons.forEach((button, index) => {
@@ -60,18 +60,12 @@
         });
       });
 
-      context.querySelectorAll('[data-navScroll]').forEach((nav) => {
-        // Skip if already initialized
-        if (nav.dataset.navScrollInitialized) {
-          return;
-        }
-
-        nav.dataset.navScrollInitialized = 'true';
-
+      // Aceeași cheie ca în nav-scroll.js: o listă derulabilă se inițializează o singură dată.
+      once('navScroll', '[data-navScroll]', context).forEach((nav) => {
         const track = nav.querySelector('[data-navScroll-track]');
         const prev = nav.querySelector('[data-navScroll-prev]');
         const next = nav.querySelector('[data-navScroll-next]');
-        const buttons = nav.querySelector('.c--navScroll-buttons');
+        const buttons = nav.querySelector('.c--nav-scroll-buttons');
 
         // Observe changes to track items (for dynamic active class changes)
         if (track) {
@@ -94,7 +88,7 @@
           return totalWidth / items.length;
         };
 
-        if (track) {
+        if (track && prev && next) {
           prev.addEventListener('click', () => {
             next.removeAttribute('disabled');
 
@@ -137,9 +131,9 @@
             const navWidth = nav.clientWidth;
 
             if (trackScrollWidth > navWidth) {
-              nav.classList.remove('is-noButtons');
+              nav.classList.remove('is-no-buttons');
             } else {
-              nav.classList.add('is-noButtons');
+              nav.classList.add('is-no-buttons');
             }
           }
         };

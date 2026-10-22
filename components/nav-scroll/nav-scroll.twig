@@ -17,7 +17,7 @@
   * - slot_btn_prev: Previous button (customizable)
   * - slot_btn_next: Next button (customizable)
   *
-  * usage example: @see README.md
+  * usage example: @see nav-scroll.md
   *
   */
 -#}
@@ -30,12 +30,9 @@
 
 {#- Component classes -#}
 {% set nav_scroll_classes = [
-  'c--navScroll',
-  nav_scroll_navigation ? '' : 'is-noButtons',
+  'c--nav-scroll',
+  nav_scroll_navigation ? '' : 'is-no-buttons',
 ]|merge(nav_scroll_uc ?: []) %}
-
-{#- Change attributes -#}
-{% set nav_scroll_att = nav_scroll_att.setAttribute('', 'data-navScroll') %}
 
 {#- Render component -#}
 <div{{ nav_scroll_att.addClass(nav_scroll_classes) }} data-navScroll>
@@ -45,7 +42,7 @@
   </div>
 
   {%- if nav_scroll_navigation -%}
-    <div class='c--navScroll-buttons'>
+    <div class='c--nav-scroll-buttons'>
       {% block slot_btn_prev %}
         <button type="button" data-navScroll-prev disabled>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">

@@ -9,18 +9,21 @@
   * - tabs_scrollable: (boolean) default: true
   *
   * Available properties:
-  * - tabs (array)
+  * - tabs_tabs (array): [{title, content}]
   * - tabs_id: (string|null)
   *   default: generated id
   *
   * Available Utility classes -> uc
-  * - tabs_uc (array) (default: [''])
+  * - tabs_uc, tabs_list_uc, tabs_button_uc, tabs_panel_uc (array) (default: [''])
   *
   * Available attributes -> att
-  * - tabs_att (Drupal\Core\Template\Attribute)
+  * - tabs_att, tabs_list_att, tabs_button_att, tabs_panel_att
+  *   (Drupal\Core\Template\Attribute)
   *
+  * Available slots
+  * - slot_btn_prev, slot_btn_next: scroll buttons
   *
-  * Coming soon: @see tabs.md
+  * @see tabs.md
   *
   */
 -#}
@@ -90,7 +93,7 @@
     </ul>
 
   {%- if tabs_scrollable -%}
-    <div class='c--navScroll-buttons'>
+    <div class='c--nav-scroll-buttons'>
       {% block slot_btn_prev %}
         <button type="button" data-navScroll-prev disabled>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">

@@ -2,9 +2,14 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Scroll Navigation
 status: stable
 
-version: 1.0.0
+version: 1.1.0
 group: Navigation
-description: 'Scroll Navigation component with marker/icon position control.'
+description: 'Listă de navigare cu derulare orizontală, butoane înainte/înapoi, snap la elemente și centrarea automată a elementului activ (clasa .active sau radio bifat).'
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
 
 # Props.
 props:
@@ -14,8 +19,8 @@ props:
     # fields values
     nav_scroll_navigation:
       type: boolean
-      title: 'Disable Navigation'
-      description: 'Select the navigation menu to be used in the Scroll Navigation component.'
+      title: 'Show Navigation Buttons'
+      description: 'Afișează butoanele înainte/înapoi pentru derulare.'
       default: true
 
     # uc -> utility_classes
@@ -38,4 +43,12 @@ props:
 slots:
   slot_content:
     title: Content
-    description: Default content text for the Scroll Navigation component.
+    description: Elementele din lista derulabilă (linkuri, butoane sau .form-item cu radio).
+
+  slot_btn_prev:
+    title: Previous Button
+    description: Butonul de derulare spre stânga.
+
+  slot_btn_next:
+    title: Next Button
+    description: Butonul de derulare spre dreapta.

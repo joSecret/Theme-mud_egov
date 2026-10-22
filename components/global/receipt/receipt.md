@@ -1,9 +1,8 @@
 ---
 title: Receipt
 group: Globals
-slug: receipt
-description: Transaction receipt card for e-Gov Moldova services (MPay, MPass, MSign, MDelivery).
-version: 1.0.0
+version: 1.1.0
+css_prefix: receipt
 ---
 
 # Receipt Component
@@ -57,23 +56,26 @@ A structured card that presents the summary of a finished e-Gov Moldova transact
 } %}
 ```
 
-## CSS Custom Properties
+## CSS variables
 
-| Property | Description |
-| --- | --- |
-| `--receipt-container-max-width` | Maximum card width (default: 480px) |
-| `--receipt-container-background` | Card background color |
-| `--receipt-container-border-radius` | Card border radius |
-| `--receipt-container-shadow` | Card box shadow |
-| `--receipt-container-padding` | Card padding |
-| `--receipt-title-color` | Title text color |
-| `--receipt-title-font-size` | Title font size |
-| `--receipt-title-font-weight` | Title font weight |
-| `--receipt-amount-value-font-size` | Total amount font size |
-| `--receipt-amount-value-color` | Total amount color |
-| `--receipt-row-label-color` | Row label color |
-| `--receipt-row-value-color` | Row value color |
-| `--receipt-divider-color` | Row divider color |
+Public overrides (empty by default). Defaults come from the `--receipt-*` variables in `css/defaults/data.css` and from tokens.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `--receipt_mx-w` | `--receipt-container-max-width` | Maximum card width. |
+| `--receipt_bg` | `--receipt-container-background` | Card background. |
+| `--receipt_b-r` | `--receipt-container-border-radius` | Card border radius. |
+| `--receipt_bs` | `--receipt-container-shadow` | Card shadow. |
+| `--receipt_p` | `--receipt-container-padding` (`-mobile` up to 480px) | Card padding. |
+| `--receipt_gap` | `--receipt-container-gap` | Gap between header, body and footer. |
+| `--receipt_title_c`, `--receipt_title_f-s`, `--receipt_title_f-w` | `--receipt-title-*` | Title color, size and weight. |
+| `--receipt_amount_value_c`, `--receipt_amount_value_f-s` | `--receipt-amount-value-*` | Total amount color and size. |
+| `--receipt_row_label_c`, `--receipt_row_value_c` | `--receipt-row-*-color` | Row label and value colors. |
+| `--receipt_divider_bg`, `--receipt_divider_b-c` | `--receipt-divider-color` | Divider and row border colors. |
+| `--receipt_badge_bg`, `--receipt_badge_c` | `--color-background-brand-secondary`, `--color-text-brand-default` | Service badge colors. |
+| `--receipt_paid_bg` / `_c`, `--receipt_confirmed_bg` / `_c`, `--receipt_pending_bg` / `_c`, `--receipt_failed_bg` / `_c` | `--color-*` status tokens | Status tag colors. |
+
+Renamed from the previous API: the `--receipt-*` MUD variables are no longer read directly by the component; use the `--receipt_*` overrides above (or change the defaults in `css/defaults/data.css`).
 
 ## Accessibility
 
@@ -81,4 +83,5 @@ A structured card that presents the summary of a finished e-Gov Moldova transact
 - Title rendered as `<h2>` for screen reader navigation
 - Status badge uses semantic text (not color alone)
 - `role="separator"` on dividers
-- Print styles remove decorative shadows
+- Print styles remove decorative shadows and add a plain border
+- The component has no interactive elements, so there is no focus or motion handling

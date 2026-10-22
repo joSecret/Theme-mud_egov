@@ -1,3 +1,10 @@
+---
+title: Link
+group: Globals
+version: 1.1.0
+css_prefix: link
+---
+
 # Link
 
 Interactive navigational link atom rendered as an anchor tag with size, variant and underline options.
@@ -94,15 +101,35 @@ Interactive navigational link atom rendered as an anchor tag with size, variant 
 
 ## CSS variables
 
+Public overrides (empty by default; set them in a specific context). Defaults come from the `--link-*` variables in `css/defaults/links.css`.
+
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--link_f-s` | `16px` | Font size (overrides size modifier). |
-| `--link_l-h` | `24px` | Line height. |
-| `--link_gap` | `4px` | Gap between icon and label. |
-| `--link_icon-size` | `20px` | Icon slot size. |
-| `--link_c` | `#0058d2` | Link color at rest. |
-| `--link_c-hover` | `#0058d2` | Link color on hover. |
-| `--link_c-active` | `#00357e` | Link color on active. |
-| `--link_c-visited` | `#aa18ce` | Link color when visited. |
-| `--link_u-default` | `underline` | Underline at rest. |
-| `--link_u-hover` | `underline` | Underline on hover/focus. |
+| `--link_f-s` | `--link-label-font-size-md` | Font size (follows the size modifier). |
+| `--link_l-h` | `--link-label-line-height-md` | Line height. |
+| `--link_gap` | `--link-container-gap-md` | Gap between icon and label. |
+| `--link_icon_size` | `--link-icon-size-md` | Icon slot size. |
+| `--link_c` | `--link-primary-label-default` | Color at rest. |
+| `--link_c_h` | `--link-primary-label-hover` | Color on hover. |
+| `--link_c_a` | `--link-primary-label-active` | Color on active. |
+| `--link_visited_c` | `--link-primary-label-visited` | Color when visited. |
+| `--link_c_d` | `--link-disabled-label` | Color when disabled. |
+| `--link_t-d` | `underline` | Text decoration at rest. |
+| `--link_t-d_h` | `underline` | Text decoration on hover. |
+| `--link_underline_gap` | `--link-label-underline-offset` | Underline offset. |
+| `--link_underline_b-w` | `--link-label-underline-thickness` | Underline thickness. |
+| `--link_underline_b-w_h` | `--link-label-underline-thickness-hover` | Underline thickness on hover. |
+| `--link_f-f`, `--link_f-w` | `--link-label-font-family`, `--link-label-font-weight` | Font family and weight. |
+| `--link_p-i`, `--link_p-b`, `--link_b-r` | `--link-container-*` | Padding and radius. |
+| `--link_trn` | `--link-container-transition-*` | Transition. |
+| `--link_focus_ol-o`, `--link_focus_bg`, `--link_focus_b-w`, `--link_focus_b-c` | `--link-focus-ring-*` | Focus ring geometry and colors. |
+| `--link_standalone_m-h`, `--link_standalone_p-b` | `--link-container-min-height-*`, `--spacing-4` | Standalone target size. |
+
+Renamed from the previous API: `--link_c-hover` is now `--link_c_h`, `--link_c-active` is `--link_c_a`, `--link_c-visited` is `--link_visited_c`, `--link_u-default` / `--link_u-hover` are `--link_t-d` / `--link_t-d_h`, `--link_icon-size` is `--link_icon_size`.
+
+## Accessibility
+
+- Rendered as a native `<a>`; the label is real text, and icon-only links need `link_aria_label`.
+- Focus: visible ring (two-color `box-shadow`) on `:focus-visible`; the outline is only made transparent because the ring replaces it.
+- Disabled links set `aria-disabled="true"` and `tabindex="-1"`; the disabled color is for state indication, not for text that must be read.
+- The external indicator icon is `aria-hidden`; `rel="noopener noreferrer"` is added for `target="_blank"`. Transitions are off under `prefers-reduced-motion: reduce`.

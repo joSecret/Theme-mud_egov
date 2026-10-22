@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Table
 status: stable
 group: Globals
-version: 1.0.0
-description: Data table with optional sorting, selection, and zebra/divided/borderless row styles. Aligned with mud-table.
+version: 1.1.0
+description: Data table with sortable-column indicators, header styles (default, inverted, white) and zebra, divided or borderless rows.
 
 # Props.
 props:

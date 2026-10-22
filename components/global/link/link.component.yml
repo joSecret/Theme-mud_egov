@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Link
 status: stable
 group: Globals
-version: 1.0.0
+version: 1.1.0
 description: Interactive navigational link atom rendered as an anchor tag with size, variant and underline options.
 
 # Props.
@@ -120,7 +120,7 @@ props:
 slots:
   slot_icon_start:
     title: Icon Start
-    description: Optional leading icon (mud-icon or inline SVG).
+    description: Optional leading icon (inline SVG).
 
   slot_icon_end:
     title: Icon End

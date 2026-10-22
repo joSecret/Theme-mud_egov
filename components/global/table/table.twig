@@ -59,7 +59,7 @@
           <th
             class="table-th{%- if col.align -%} table-align-{{ col.align }}{%- endif -%}{%- if is_sorted -%} is-sorted{%- endif -%}"
             scope="col"
-            {%- if col.width -%} style="--col-width: {{ col.width }}"{%- endif -%}
+            {%- if col.width -%} style="--table_th_w: {{ col.width }}"{%- endif -%}
             {%- if col.sortable -%}
               role="columnheader"
               aria-sort="{{ sort_dir == 'asc' ? 'ascending' : (sort_dir == 'desc' ? 'descending' : 'none') }}"

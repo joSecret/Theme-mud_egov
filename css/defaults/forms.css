@@ -167,9 +167,9 @@
 
   --textarea-container-min-height-md: 120px; /* nefolosit */
   --textarea-container-min-height-lg: 150px; /* nefolosit */
-  --textarea-container-padding-block-md: var(--spacing-8); /* nefolosit */
-  --textarea-container-padding-block-lg: var(--spacing-12); /* nefolosit */
-  --textarea-label-font-weight: var(--font-weight-regular); /* nefolosit */
+  --textarea-container-padding-block-md: var(--spacing-8);
+  --textarea-container-padding-block-lg: var(--spacing-12);
+  --textarea-label-font-weight: var(--font-weight-regular);
   --textarea-resize-size: 24px; /* nefolosit */
   --textarea-resize-offset: var(--spacing-4); /* nefolosit */
   --textarea-resize-color-default: var(--color-text-base-tertiary); /* nefolosit */
@@ -184,67 +184,67 @@
   --textarea-counter-color-error: var(--color-icon-danger-default); /* nefolosit */
   --textarea-counter-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
 
-  --select-input-field-gap: var(--spacing-8); /* nefolosit */
-  --select-input-container-height-md: 40px; /* nefolosit */
-  --select-input-container-height-lg: 48px; /* nefolosit */
-  --select-input-container-padding-inline-md: var(--spacing-12); /* nefolosit */
-  --select-input-container-padding-inline-lg: var(--spacing-16); /* nefolosit */
-  --select-input-container-gap-md: var(--spacing-8); /* nefolosit */
-  --select-input-container-gap-lg: var(--spacing-8); /* nefolosit */
-  --select-input-container-border-radius: var(--border-radius-8); /* nefolosit */
-  --select-input-container-border-width-default: var(--border-width-1); /* nefolosit */
+  --select-input-field-gap: var(--spacing-8);
+  --select-input-container-height-md: 40px;
+  --select-input-container-height-lg: 48px;
+  --select-input-container-padding-inline-md: var(--spacing-12);
+  --select-input-container-padding-inline-lg: var(--spacing-16);
+  --select-input-container-gap-md: var(--spacing-8);
+  --select-input-container-gap-lg: var(--spacing-8);
+  --select-input-container-border-radius: var(--border-radius-8);
+  --select-input-container-border-width-default: var(--border-width-1);
   --select-input-container-border-width-emphasized: var(--border-width-2); /* nefolosit */
-  --select-input-container-focus-ring-width: 2px; /* nefolosit */
-  --select-input-container-transition-duration: 150ms; /* nefolosit */
-  --select-input-container-transition-timing-function: ease-out; /* nefolosit */
-  --select-input-control-font-family: var(--font-family-primary); /* nefolosit */
-  --select-input-control-font-weight: var(--font-weight-regular); /* nefolosit */
-  --select-input-control-font-size-md: var(--font-size-14); /* nefolosit */
-  --select-input-control-font-size-lg: var(--font-size-16); /* nefolosit */
-  --select-input-control-line-height-md: var(--line-height-20); /* nefolosit */
-  --select-input-control-line-height-lg: var(--line-height-24); /* nefolosit */
-  --select-input-label-font-family: var(--font-family-primary); /* nefolosit */
-  --select-input-label-font-size: var(--font-size-14); /* nefolosit */
-  --select-input-label-line-height: var(--line-height-20); /* nefolosit */
-  --select-input-label-font-weight: var(--font-weight-regular); /* nefolosit */
-  --select-input-label-gap: var(--spacing-4); /* nefolosit */
-  --select-input-label-color-default: var(--color-text-base-secondary); /* nefolosit */
-  --select-input-label-color-disabled: var(--color-text-base-secondary); /* nefolosit */
-  --select-input-label-required-mark-size: 12px; /* nefolosit */
-  --select-input-label-required-mark-color: var(--color-icon-danger-default); /* nefolosit */
-  --select-input-assistive-font-family: var(--font-family-primary); /* nefolosit */
-  --select-input-assistive-font-size: var(--font-size-14); /* nefolosit */
-  --select-input-assistive-line-height: var(--line-height-20); /* nefolosit */
-  --select-input-assistive-font-weight: var(--font-weight-regular); /* nefolosit */
+  --select-input-container-focus-ring-width: 2px;
+  --select-input-container-transition-duration: 150ms;
+  --select-input-container-transition-timing-function: ease-out;
+  --select-input-control-font-family: var(--font-family-primary);
+  --select-input-control-font-weight: var(--font-weight-regular);
+  --select-input-control-font-size-md: var(--font-size-14);
+  --select-input-control-font-size-lg: var(--font-size-16);
+  --select-input-control-line-height-md: var(--line-height-20);
+  --select-input-control-line-height-lg: var(--line-height-24);
+  --select-input-label-font-family: var(--font-family-primary);
+  --select-input-label-font-size: var(--font-size-14);
+  --select-input-label-line-height: var(--line-height-20);
+  --select-input-label-font-weight: var(--font-weight-regular);
+  --select-input-label-gap: var(--spacing-4);
+  --select-input-label-color-default: var(--color-text-base-secondary);
+  --select-input-label-color-disabled: var(--color-text-base-secondary);
+  --select-input-label-required-mark-size: 12px;
+  --select-input-label-required-mark-color: var(--color-icon-danger-default);
+  --select-input-assistive-font-family: var(--font-family-primary);
+  --select-input-assistive-font-size: var(--font-size-14);
+  --select-input-assistive-line-height: var(--line-height-20);
+  --select-input-assistive-font-weight: var(--font-weight-regular);
   --select-input-assistive-gap-default: var(--spacing-6); /* nefolosit */
   --select-input-assistive-gap-error: var(--spacing-4); /* nefolosit */
   --select-input-assistive-icon-size: 20px; /* nefolosit */
-  --select-input-assistive-color-default: var(--color-text-base-secondary); /* nefolosit */
-  --select-input-assistive-color-error: var(--color-icon-danger-default); /* nefolosit */
+  --select-input-assistive-color-default: var(--color-text-base-secondary);
+  --select-input-assistive-color-error: var(--color-icon-danger-default);
   --select-input-icon-size-md: 20px; /* nefolosit */
   --select-input-icon-size-lg: 24px; /* nefolosit */
   --select-input-icon-color-default: var(--color-icon-base-secondary); /* nefolosit */
   --select-input-icon-color-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --select-input-chevron-size-md: 20px; /* nefolosit */
-  --select-input-chevron-size-lg: 24px; /* nefolosit */
-  --select-input-chevron-color-default: var(--color-icon-base-secondary); /* nefolosit */
-  --select-input-chevron-color-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
+  --select-input-chevron-size-md: 20px;
+  --select-input-chevron-size-lg: 24px;
+  --select-input-chevron-color-default: var(--color-icon-base-secondary);
+  --select-input-chevron-color-disabled: var(--color-icon-disabled-on-disabled);
   --select-input-chevron-transition-duration: 150ms; /* nefolosit */
   --select-input-chevron-transition-timing-function: ease-out; /* nefolosit */
-  --select-input-default-background-default: var(--color-background-base-default); /* nefolosit */
-  --select-input-default-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --select-input-default-border-default: var(--color-border-base-default); /* nefolosit */
-  --select-input-default-border-hover: var(--color-border-base-tertiary); /* nefolosit */
-  --select-input-default-border-focus: var(--color-border-brand-default); /* nefolosit */
-  --select-input-default-border-disabled: var(--color-border-disabled-default); /* nefolosit */
-  --select-input-default-text-default: var(--color-text-base-default); /* nefolosit */
+  --select-input-default-background-default: var(--color-background-base-default);
+  --select-input-default-background-disabled: var(--color-background-disabled-default);
+  --select-input-default-border-default: var(--color-border-base-default);
+  --select-input-default-border-hover: var(--color-border-base-tertiary);
+  --select-input-default-border-focus: var(--color-border-brand-default);
+  --select-input-default-border-disabled: var(--color-border-disabled-default);
+  --select-input-default-text-default: var(--color-text-base-default);
   --select-input-default-text-placeholder: var(--color-text-base-tertiary); /* nefolosit */
-  --select-input-default-text-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
-  --select-input-default-focus-ring: var(--color-background-brand-secondary-hover); /* nefolosit */
-  --select-input-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
-  --select-input-destructive-border-hover: var(--color-border-danger-default); /* nefolosit */
-  --select-input-destructive-border-focus: var(--color-border-danger-default); /* nefolosit */
-  --select-input-destructive-focus-ring: var(--color-background-danger-secondary-hover); /* nefolosit */
+  --select-input-default-text-disabled: var(--color-text-disabled-on-disabled);
+  --select-input-default-focus-ring: var(--color-background-brand-secondary-hover);
+  --select-input-destructive-border-default: var(--color-border-danger-default);
+  --select-input-destructive-border-hover: var(--color-border-danger-default);
+  --select-input-destructive-border-focus: var(--color-border-danger-default);
+  --select-input-destructive-focus-ring: var(--color-background-danger-secondary-hover);
   --select-input-listbox-background: var(--color-background-base-default); /* nefolosit */
   --select-input-listbox-border-radius: var(--border-radius-16); /* nefolosit */
   --select-input-listbox-border-width: 0px; /* nefolosit */
@@ -507,9 +507,9 @@
   --date-input-icon-size-lg: 24px; /* nefolosit */
   --date-input-icon-color-default: var(--color-icon-base-secondary); /* nefolosit */
   --date-input-icon-color-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --date-input-default-background-default: var(--color-background-base-default); /* nefolosit */
+  --date-input-default-background-default: var(--color-background-base-default);
   --date-input-default-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --date-input-default-border-default: var(--color-border-base-default); /* nefolosit */
+  --date-input-default-border-default: var(--color-border-base-default);
   --date-input-default-border-hover: var(--color-border-base-tertiary); /* nefolosit */
   --date-input-default-border-focus: var(--color-border-brand-default); /* nefolosit */
   --date-input-default-border-disabled: var(--color-border-disabled-default); /* nefolosit */
@@ -517,7 +517,7 @@
   --date-input-default-text-placeholder: var(--color-text-base-tertiary); /* nefolosit */
   --date-input-default-text-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --date-input-default-focus-ring: var(--color-background-brand-secondary-hover); /* nefolosit */
-  --date-input-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
+  --date-input-destructive-border-default: var(--color-border-danger-default);
   --date-input-destructive-border-hover: var(--color-border-danger-default); /* nefolosit */
   --date-input-destructive-border-focus: var(--color-border-danger-default); /* nefolosit */
   --date-input-destructive-focus-ring: var(--color-background-danger-secondary-hover); /* nefolosit */
@@ -782,10 +782,10 @@
   --numeric-input-stepper-width-lg: 32px; /* nefolosit */
   --numeric-input-stepper-gap: var(--spacing-4); /* nefolosit */
   --numeric-input-stepper-border-radius: var(--border-radius-4); /* nefolosit */
-  --numeric-input-stepper-border-width: var(--border-width-1); /* nefolosit */
-  --numeric-input-stepper-border-color: var(--color-border-base-default); /* nefolosit */
+  --numeric-input-stepper-border-width: var(--border-width-1);
+  --numeric-input-stepper-border-color: var(--color-border-base-default);
   --numeric-input-stepper-background-default: var(--color-background-base-default); /* nefolosit */
-  --numeric-input-stepper-background-hover: var(--color-background-base-default-hover); /* nefolosit */
+  --numeric-input-stepper-background-hover: var(--color-background-base-default-hover);
   --numeric-input-stepper-background-active: var(--color-background-base-tertiary); /* nefolosit */
   --numeric-input-stepper-background-disabled: var(--color-background-disabled-default); /* nefolosit */
   --numeric-input-stepper-icon-size-md: 16px; /* nefolosit */
@@ -799,12 +799,12 @@
   --numeric-input-stepper-transition-timing-function: ease-out; /* nefolosit */
   --numeric-input-loading-spinner-size-md: 16px; /* nefolosit */
   --numeric-input-loading-spinner-size-lg: 20px; /* nefolosit */
-  --numeric-input-default-background-default: var(--color-background-base-default); /* nefolosit */
+  --numeric-input-default-background-default: var(--color-background-base-default);
   --numeric-input-default-background-read-only: var(--color-background-base-secondary); /* nefolosit */
   --numeric-input-default-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --numeric-input-default-border-default: var(--color-border-base-default); /* nefolosit */
+  --numeric-input-default-border-default: var(--color-border-base-default);
   --numeric-input-default-border-hover: var(--color-border-base-tertiary); /* nefolosit */
-  --numeric-input-default-border-focus: var(--color-border-brand-default); /* nefolosit */
+  --numeric-input-default-border-focus: var(--color-border-brand-default);
   --numeric-input-default-border-read-only: var(--color-border-base-default); /* nefolosit */
   --numeric-input-default-border-disabled: var(--color-border-disabled-default); /* nefolosit */
   --numeric-input-default-text-default: var(--color-text-base-default); /* nefolosit */
@@ -814,7 +814,7 @@
   --numeric-input-default-focus-ring: var(--color-background-brand-secondary-hover); /* nefolosit */
   --numeric-input-destructive-background-default: var(--color-background-base-default); /* nefolosit */
   --numeric-input-destructive-background-filled: var(--color-background-danger-secondary); /* nefolosit */
-  --numeric-input-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
+  --numeric-input-destructive-border-default: var(--color-border-danger-default);
   --numeric-input-destructive-border-hover: var(--color-border-danger-default); /* nefolosit */
   --numeric-input-destructive-border-focus: var(--color-border-danger-default); /* nefolosit */
   --numeric-input-destructive-focus-ring: var(--color-background-danger-secondary-hover); /* nefolosit */
@@ -875,9 +875,9 @@
   --phone-input-default-background-default: var(--color-background-base-default);
   --phone-input-default-background-read-only: var(--color-background-base-secondary); /* nefolosit */
   --phone-input-default-background-disabled: var(--color-background-disabled-default);
-  --phone-input-default-border-default: var(--color-border-base-default); /* nefolosit */
+  --phone-input-default-border-default: var(--color-border-base-default);
   --phone-input-default-border-hover: var(--color-border-base-tertiary); /* nefolosit */
-  --phone-input-default-border-focus: var(--color-border-brand-default); /* nefolosit */
+  --phone-input-default-border-focus: var(--color-border-brand-default);
   --phone-input-default-border-read-only: var(--color-border-base-default); /* nefolosit */
   --phone-input-default-border-disabled: var(--color-border-disabled-default); /* nefolosit */
   --phone-input-default-text-default: var(--color-text-base-default); /* nefolosit */
@@ -891,7 +891,7 @@
   --phone-input-warning-border-focus: var(--color-border-warning-default); /* nefolosit */
   --phone-input-warning-focus-ring: var(--color-background-warning-secondary-active); /* nefolosit */
   --phone-input-destructive-background-default: var(--color-background-base-default); /* nefolosit */
-  --phone-input-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
+  --phone-input-destructive-border-default: var(--color-border-danger-default);
   --phone-input-destructive-border-hover: var(--color-border-danger-default); /* nefolosit */
   --phone-input-destructive-border-focus: var(--color-border-danger-default); /* nefolosit */
   --phone-input-destructive-focus-ring: var(--color-background-danger-secondary-hover); /* nefolosit */
@@ -1010,13 +1010,13 @@
   --search-input-circular-icon-end-clear-size-md: 20px; /* nefolosit */
   --search-input-circular-icon-end-clear-size-lg: 24px; /* nefolosit */
   --search-input-circular-icon-end-clear-padding: var(--spacing-4); /* nefolosit */
-  --search-input-circular-icon-end-clear-border-radius: var(--border-radius-full); /* nefolosit */
-  --search-input-circular-icon-end-clear-color-default: var(--color-icon-base-secondary); /* nefolosit */
-  --search-input-circular-icon-end-clear-color-hover: var(--color-icon-base-default); /* nefolosit */
+  --search-input-circular-icon-end-clear-border-radius: var(--border-radius-full);
+  --search-input-circular-icon-end-clear-color-default: var(--color-icon-base-secondary);
+  --search-input-circular-icon-end-clear-color-hover: var(--color-icon-base-default);
   --search-input-circular-icon-end-clear-color-active: var(--color-icon-base-default); /* nefolosit */
   --search-input-circular-icon-end-clear-color-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --search-input-circular-icon-end-clear-background-default: var(--color-background-base-tertiary); /* nefolosit */
-  --search-input-circular-icon-end-clear-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --search-input-circular-icon-end-clear-background-default: var(--color-background-base-tertiary);
+  --search-input-circular-icon-end-clear-background-hover: var(--color-background-base-tertiary-hover);
   --search-input-circular-icon-end-clear-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
   --search-input-circular-default-background-default: var(--color-background-base-default);
   --search-input-circular-default-background-disabled: var(--color-background-disabled-default); /* nefolosit */
@@ -1036,14 +1036,14 @@
   --search-input-circular-submit-button-size-lg: 40px; /* nefolosit */
   --search-input-circular-submit-button-icon-size-md: 16px; /* nefolosit */
   --search-input-circular-submit-button-icon-size-lg: 20px; /* nefolosit */
-  --search-input-circular-submit-button-border-radius: var(--border-radius-full); /* nefolosit */
-  --search-input-circular-submit-button-background-default: var(--color-background-brand-default); /* nefolosit */
+  --search-input-circular-submit-button-border-radius: var(--border-radius-full);
+  --search-input-circular-submit-button-background-default: var(--color-background-brand-default);
   --search-input-circular-submit-button-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
   --search-input-circular-submit-button-background-active: var(--color-background-brand-default-active); /* nefolosit */
-  --search-input-circular-submit-button-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --search-input-circular-submit-button-icon-default: var(--color-icon-base-inverse-default); /* nefolosit */
+  --search-input-circular-submit-button-background-disabled: var(--color-background-disabled-default);
+  --search-input-circular-submit-button-icon-default: var(--color-icon-base-inverse-default);
   --search-input-circular-submit-button-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --search-input-circular-submit-button-focus-ring-offset: var(--spacing-2); /* nefolosit */
+  --search-input-circular-submit-button-focus-ring-offset: var(--spacing-2);
   --search-input-circular-submit-button-container-padding-inline-end: var(--spacing-4); /* nefolosit */
   --search-input-circular-loading-spinner-size-md: 20px; /* nefolosit */
   --search-input-circular-loading-spinner-size-lg: 24px; /* nefolosit */
@@ -1117,14 +1117,14 @@
   --search-input-rectangular-submit-button-size-lg: 40px; /* nefolosit */
   --search-input-rectangular-submit-button-icon-size-md: 16px; /* nefolosit */
   --search-input-rectangular-submit-button-icon-size-lg: 20px; /* nefolosit */
-  --search-input-rectangular-submit-button-border-radius: var(--border-radius-6); /* nefolosit */
-  --search-input-rectangular-submit-button-background-default: var(--color-background-brand-default); /* nefolosit */
+  --search-input-rectangular-submit-button-border-radius: var(--border-radius-6);
+  --search-input-rectangular-submit-button-background-default: var(--color-background-brand-default);
   --search-input-rectangular-submit-button-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
   --search-input-rectangular-submit-button-background-active: var(--color-background-brand-default-active); /* nefolosit */
-  --search-input-rectangular-submit-button-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --search-input-rectangular-submit-button-icon-default: var(--color-icon-base-inverse-default); /* nefolosit */
+  --search-input-rectangular-submit-button-background-disabled: var(--color-background-disabled-default);
+  --search-input-rectangular-submit-button-icon-default: var(--color-icon-base-inverse-default);
   --search-input-rectangular-submit-button-icon-disabled: var(--color-icon-disabled-on-disabled); /* nefolosit */
-  --search-input-rectangular-submit-button-focus-ring-offset: var(--spacing-2); /* nefolosit */
+  --search-input-rectangular-submit-button-focus-ring-offset: var(--spacing-2);
   --search-input-rectangular-submit-button-container-padding-inline-end: var(--spacing-4); /* nefolosit */
   --search-input-rectangular-loading-spinner-size-md: 20px; /* nefolosit */
   --search-input-rectangular-loading-spinner-size-lg: 24px; /* nefolosit */
@@ -1373,25 +1373,25 @@
   --search-input-loading-spinner-size: 20px; /* nefolosit */
   --search-input-loading-spinner-color-default: var(--color-text-brand-default); /* nefolosit */
   --search-input-loading-spinner-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
-  --select-field-gap: var(--spacing-8); /* nefolosit */
-  --select-container-height-medium: 40px; /* nefolosit */
-  --select-container-height-large: 48px; /* nefolosit */
-  --select-container-padding-inline-medium: var(--spacing-12); /* nefolosit */
-  --select-container-padding-inline-large: var(--spacing-16); /* nefolosit */
+  --select-field-gap: var(--spacing-8);
+  --select-container-height-medium: 40px;
+  --select-container-height-large: 48px;
+  --select-container-padding-inline-medium: var(--spacing-12);
+  --select-container-padding-inline-large: var(--spacing-16);
   --select-container-gap-medium: var(--spacing-8); /* nefolosit */
   --select-container-gap-large: var(--spacing-8); /* nefolosit */
-  --select-container-border-radius: var(--border-radius-8); /* nefolosit */
-  --select-container-border-width-default: var(--border-width-1); /* nefolosit */
+  --select-container-border-radius: var(--border-radius-8);
+  --select-container-border-width-default: var(--border-width-1);
   --select-container-border-width-emphasized: var(--border-width-2); /* nefolosit */
-  --select-container-focus-ring-width: 2px; /* nefolosit */
-  --select-container-transition-duration: 150ms; /* nefolosit */
-  --select-container-transition-timing-function: ease-out; /* nefolosit */
-  --select-control-font-family: var(--font-family-primary); /* nefolosit */
-  --select-control-font-weight: var(--font-weight-regular); /* nefolosit */
-  --select-control-font-size-medium: var(--font-size-14); /* nefolosit */
-  --select-control-font-size-large: var(--font-size-16); /* nefolosit */
-  --select-control-line-height-medium: var(--line-height-20); /* nefolosit */
-  --select-control-line-height-large: var(--line-height-24); /* nefolosit */
+  --select-container-focus-ring-width: 2px;
+  --select-container-transition-duration: 150ms;
+  --select-container-transition-timing-function: ease-out;
+  --select-control-font-family: var(--font-family-primary);
+  --select-control-font-weight: var(--font-weight-regular);
+  --select-control-font-size-medium: var(--font-size-14);
+  --select-control-font-size-large: var(--font-size-16);
+  --select-control-line-height-medium: var(--line-height-20);
+  --select-control-line-height-large: var(--line-height-24);
   --select-label-font-family: var(--font-family-primary); /* nefolosit */
   --select-label-font-size: var(--font-size-14); /* nefolosit */
   --select-label-line-height: var(--line-height-20); /* nefolosit */
@@ -1401,14 +1401,14 @@
   --select-label-color-disabled: var(--color-text-base-secondary); /* nefolosit */
   --select-label-required-mark-size: 12px; /* nefolosit */
   --select-label-required-mark-color: var(--color-background-danger-default); /* nefolosit */
-  --select-assistive-font-family: var(--font-family-primary); /* nefolosit */
-  --select-assistive-font-size: var(--font-size-14); /* nefolosit */
-  --select-assistive-line-height: var(--line-height-20); /* nefolosit */
-  --select-assistive-font-weight: var(--font-weight-regular); /* nefolosit */
+  --select-assistive-font-family: var(--font-family-primary);
+  --select-assistive-font-size: var(--font-size-14);
+  --select-assistive-line-height: var(--line-height-20);
+  --select-assistive-font-weight: var(--font-weight-regular);
   --select-assistive-gap-default: var(--spacing-6); /* nefolosit */
   --select-assistive-gap-error: var(--spacing-4); /* nefolosit */
   --select-assistive-icon-size: 20px; /* nefolosit */
-  --select-assistive-color-default: var(--color-text-base-secondary); /* nefolosit */
+  --select-assistive-color-default: var(--color-text-base-secondary);
   --select-assistive-color-error: var(--color-background-danger-default); /* nefolosit */
   --select-icon-size-medium: 20px; /* nefolosit */
   --select-icon-size-large: 24px; /* nefolosit */
@@ -1420,16 +1420,16 @@
   --select-chevron-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
   --select-chevron-transition-duration: 150ms; /* nefolosit */
   --select-chevron-transition-timing-function: ease-out; /* nefolosit */
-  --select-default-background-default: var(--color-background-base-default); /* nefolosit */
-  --select-default-background-disabled: var(--color-background-disabled-default); /* nefolosit */
-  --select-default-border-default: var(--color-border-base-default); /* nefolosit */
-  --select-default-border-hover: var(--color-border-base-tertiary); /* nefolosit */
-  --select-default-border-focus: var(--color-border-brand-default); /* nefolosit */
-  --select-default-border-disabled: var(--color-border-disabled-default); /* nefolosit */
-  --select-default-text-default: var(--color-text-base-default); /* nefolosit */
+  --select-default-background-default: var(--color-background-base-default);
+  --select-default-background-disabled: var(--color-background-disabled-default);
+  --select-default-border-default: var(--color-border-base-default);
+  --select-default-border-hover: var(--color-border-base-tertiary);
+  --select-default-border-focus: var(--color-border-brand-default);
+  --select-default-border-disabled: var(--color-border-disabled-default);
+  --select-default-text-default: var(--color-text-base-default);
   --select-default-text-placeholder: var(--color-text-base-tertiary); /* nefolosit */
-  --select-default-text-disabled: var(--color-text-disabled-default); /* nefolosit */
-  --select-default-focus-ring: var(--color-background-brand-secondary-hover); /* nefolosit */
+  --select-default-text-disabled: var(--color-text-disabled-default);
+  --select-default-focus-ring: var(--color-background-brand-secondary-hover);
   --select-destructive-border-default: var(--color-border-danger-default); /* nefolosit */
   --select-destructive-border-hover: var(--color-border-danger-default); /* nefolosit */
   --select-destructive-border-focus: var(--color-border-danger-default); /* nefolosit */

@@ -3,7 +3,7 @@
  * @file
  * mud_egov override for the file_link theme hook.
  *
- * Delegates to the mud_egov:file_link component. Extra variables prepared by
+ * Delegates to the mud_egov:file-link component. Extra variables prepared by
  * mud_egov_preprocess_file_link():
  * - fileLink_url: Direct URL to the file.
  * - fileLink_title: Human-readable title (filename without extension,
@@ -17,7 +17,7 @@
  * - attributes: HTML attributes for the anchor wrapper.
  */
 #}
-{% include 'mud_egov:file_link' with {
+{% include 'mud_egov:file-link' with {
   fileLink_url: fileLink_url,
   fileLink_title: fileLink_title,
   fileLink_extension: fileLink_extension,

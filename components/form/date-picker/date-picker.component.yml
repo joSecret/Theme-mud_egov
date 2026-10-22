@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Date Picker
 status: stable
 group: Forms
-version: 1.0.0
-description: Calendar-based date picker with single, range, and multi-select modes. Aligned with mud-date-picker.
+version: 1.1.0
+description: Single-date picker with a text input and a calendar popup (or inline calendar), locale-aware month and weekday labels, and min/max limits.
 
 # Props.
 props:
@@ -121,3 +121,8 @@ props:
       title: Attributes
       default: null
       description: A list of HTML attributes for the component.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

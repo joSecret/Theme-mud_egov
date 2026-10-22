@@ -1,6 +1,13 @@
+---
+title: File Item
+group: Forms
+version: 1.1.0
+css_prefix: file-item
+---
+
 # File Item
 
-Single uploaded file row aligned with `mud-file-item`. Displays filename, file size or error message, state icon, and an optional remove button. Used inside `file-input` or any file list.
+Single uploaded file row aligned with the MUD design system. Displays filename, file size or error message, state icon, and an optional remove button. Used inside `file-input` or any file list.
 
 ## Usage
 
@@ -40,9 +47,22 @@ Progress state:
 
 ## CSS variables
 
+Defaults are tokens (`--color-*`, `--spacing-*`, `--border-radius-*`). The public variables below are empty by default and are set only for a specific context.
+
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--file-item_bg` | secondary bg | Row background |
-| `--file-item_b-c` | border | Row border color |
-| `--file-item_error_b-c` | danger border | Error state border |
-| `--file-item_progress_fill_bg` | brand | Progress bar fill |
+| `--file-item_bg` | `--color-background-base-secondary` | Row background |
+| `--file-item_b-c` | `--color-border-base-default` | Row border color |
+| `--file-item_b-r` | `--border-radius-8` | Row radius |
+| `--file-item_err_b-c` | `--color-border-danger-default` | Error state border |
+| `--file-item_err_bg` | `--palette-red-50` | Error state background |
+| `--file-item_success_b-c` | `--palette-green-300` | Success state border |
+| `--file-item_progress_fill_bg` | `--color-background-brand-default` | Progress bar fill |
+| `--file-item_remove_c` | `--color-text-base-secondary` | Remove button color |
+
+## Accessibility
+
+- The remove button is a native `<button>` with `aria-label="Elimină fișierul <name>"`; when disabled it is `disabled` and `aria-disabled`.
+- The progress bar has `role="progressbar"` with `aria-valuenow`, `aria-valuemin` and `aria-valuemax`.
+- Status icons (success, error) have an `aria-label`; decorative file icons are `aria-hidden`.
+- The fill animation stops under `prefers-reduced-motion: reduce`.

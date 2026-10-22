@@ -1,6 +1,13 @@
+---
+title: Switch
+group: Forms
+version: 1.1.0
+css_prefix: switch
+---
+
 # Switch
 
-Binary on/off toggle switch form element. Maps to the `mud-switch` web component. Implements the WAI-ARIA switch pattern (`role="switch"`).
+Binary on/off toggle switch form element. Implements the WAI-ARIA switch pattern (`role="switch"`).
 
 ## Usage
 
@@ -59,18 +66,28 @@ Binary on/off toggle switch form element. Maps to the `mud-switch` web component
 
 ## CSS Variables
 
+Defaults come from `--switch-*` in `css/defaults/forms.css`. The public variables below are empty by default and are set only for a specific context.
+
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--switch_track-w` | `--switch-track-width` | Track width. |
-| `--switch_track-h` | `--switch-track-height` | Track height. |
-| `--switch_track-p` | `--switch-track-padding` | Inner padding (thumb offset). |
-| `--switch_thumb-size` | `--switch-thumb-size` | Thumb diameter. |
-| `--switch_bg-off` | `--switch-background-off` | Track background when off. |
-| `--switch_bg-on` | `--switch-background-on` | Track background when on. |
-| `--switch_thumb-c` | `--switch-thumb-color-default` | Thumb color. |
+| `--switch_track_w` | `--switch-track-width` | Track width. |
+| `--switch_track_h` | `--switch-track-height` | Track height. |
+| `--switch_track_p` | `--switch-track-padding` | Inner padding (thumb offset). |
+| `--switch_thumb_size` | `--switch-thumb-size` | Thumb diameter. |
+| `--switch_track_bg` | `--switch-background-off` | Track background when off. |
+| `--switch_on_track_bg` | `--switch-background-on` | Track background when on. |
+| `--switch_thumb_bg` | `--switch-thumb-color-default` | Thumb color. |
+| `--switch_label_c` | `--switch-label-color-default` | Label color. |
 
 ## JavaScript Events
 
 | Event | Bubbles | Detail | Description |
 |-------|---------|--------|-------------|
 | `switch:change` | yes | `{ checked: boolean, value: string, switch: Element }` | Fired whenever the toggle state changes. |
+
+## Accessibility
+
+- Native `<input type="checkbox" role="switch">` inside a `<label>`, so the whole row is clickable and the label is the accessible name; `switch_aria_label` is used only when there is no visible label.
+- The focus ring is drawn on the track on `:focus-visible`; the invisible input keeps a transparent outline for forced-colors mode.
+- The touch target grows to 40px on coarse pointers.
+- Transitions are removed under `prefers-reduced-motion: reduce`; state is kept in sync through the `is-checked` class and the native `checked` property.

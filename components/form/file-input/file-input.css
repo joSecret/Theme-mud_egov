@@ -1,7 +1,35 @@
 .file-input {
+  --_file-input_gap: var(--file-input_gap, var(--spacing-8));
+  --_file-input_label_f-s: var(--file-input_label_f-s, var(--font-size-14));
+  --_file-input_label_f-w: var(--file-input_label_f-w, var(--font-weight-medium));
+  --_file-input_label_c: var(--file-input_label_c, var(--color-text-base-default));
+  --_file-input_req_c: var(--file-input_req_c, var(--color-text-danger-default));
+  --_file-input_b-c: var(--file-input_b-c, var(--color-border-base-default));
+  --_file-input_bg: var(--file-input_bg, var(--color-background-base-secondary));
+  --_file-input_b-c_h: var(--file-input_b-c_h, var(--color-border-brand-default));
+  --_file-input_bg_h: var(--file-input_bg_h, var(--palette-blue-sky-100));
+  --_file-input_err_b-c: var(--file-input_err_b-c, var(--color-border-danger-default));
+  --_file-input_b-w: var(--file-input_b-w, var(--border-width-2));
+  --_file-input_b-r: var(--file-input_b-r, var(--border-radius-8));
+  --_file-input_m-h: var(--file-input_m-h, 160px);
+  --_file-input_lg_m-h: var(--file-input_lg_m-h, 200px);
+  --_file-input_p: var(--file-input_p, var(--spacing-24));
+  --_file-input_trn: var(--file-input_trn, border-color 0.15s, background 0.15s);
+  --_file-input_icon_c: var(--file-input_icon_c, var(--color-text-brand-default));
+  --_file-input_cta_f-s: var(--file-input_cta_f-s, var(--font-size-14));
+  --_file-input_cta_c: var(--file-input_cta_c, var(--color-text-base-secondary));
+  --_file-input_browse_f-w: var(--file-input_browse_f-w, var(--font-weight-medium));
+  --_file-input_browse_c: var(--file-input_browse_c, var(--color-text-brand-default));
+  --_file-input_meta_f-s: var(--file-input_meta_f-s, var(--font-size-12));
+  --_file-input_meta_c: var(--file-input_meta_c, var(--color-text-base-secondary));
+  --_file-input_helper_f-s: var(--file-input_helper_f-s, var(--font-size-12));
+  --_file-input_helper_c: var(--file-input_helper_c, var(--color-text-base-secondary));
+  --_file-input_err_f-s: var(--file-input_err_f-s, var(--font-size-12));
+  --_file-input_err_c: var(--file-input_err_c, var(--color-text-danger-default));
+
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--_file-input_gap);
 }
 
 .file-input.is-disabled {
@@ -10,61 +38,53 @@
 }
 
 .file-input-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--file-input_label_c, var(--color-text-base-default, #0f172a));
+  font-size: var(--_file-input_label_f-s);
+  font-weight: var(--_file-input_label_f-w);
+  color: var(--_file-input_label_c);
 }
 
 .file-input-required {
-  color: var(--color-text-danger-default, #ef4444);
+  color: var(--_file-input_req_c);
 }
 
 .file-input-dropzone {
-  --_file-input_b-c: var(--file-input_b-c, var(--color-border-base-default, #cbd5e1));
-  --_file-input_bg: var(--file-input_bg, var(--color-background-base-secondary, #f8fafc));
-  --_file-input_min-h: var(--file-input_min-h, 160px);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: var(--_file-input_min-h);
-  padding: 24px;
+  gap: var(--_file-input_gap);
+  min-height: var(--_file-input_m-h);
+  padding: var(--_file-input_p);
   background: var(--_file-input_bg);
-  border: 2px dashed var(--_file-input_b-c);
-  border-radius: var(--file-input_b-r, var(--border-radius-8, 8px));
+  border: var(--_file-input_b-w) dashed var(--_file-input_b-c);
+  border-radius: var(--_file-input_b-r);
   cursor: pointer;
   text-align: center;
-  transition: border-color 0.15s, background 0.15s;
+  transition: var(--_file-input_trn);
 
   &:hover,
-  &:focus-visible {
-    --_file-input_b-c: var(--file-input_hover_b-c, var(--color-border-brand-default, #3b82f6));
-    --_file-input_bg: var(--file-input_hover_bg, var(--color-background-brand-subtle, #eff6ff));
-  }
-
+  &:focus-visible,
   &.is-dragover {
-    --_file-input_b-c: var(--file-input_hover_b-c, var(--color-border-brand-default, #3b82f6));
-    --_file-input_bg: var(--file-input_hover_bg, var(--color-background-brand-subtle, #eff6ff));
+    border-color: var(--_file-input_b-c_h);
+    background: var(--_file-input_bg_h);
   }
-}
-
-.file-input.is-invalid .file-input-dropzone {
-  --_file-input_b-c: var(--file-input_invalid_b-c, var(--color-border-danger-default, #ef4444));
 }
 
 .file-input-lg .file-input-dropzone {
-  --_file-input_min-h: var(--file-input_lg_min-h, 200px);
+  min-height: var(--_file-input_lg_m-h);
+}
+
+.file-input.is-invalid .file-input-dropzone {
+  border-color: var(--_file-input_err_b-c);
 }
 
 .file-input-icon {
-  color: var(--file-input_icon_c, var(--color-text-brand-default, #3b82f6));
+  color: var(--_file-input_icon_c);
 }
 
 .file-input-cta {
-  font-size: 14px;
-  color: var(--color-text-base-secondary, #64748b);
+  font-size: var(--_file-input_cta_f-s);
+  color: var(--_file-input_cta_c);
   margin: 0;
 }
 
@@ -73,15 +93,15 @@
   border: none;
   padding: 0;
   font-size: inherit;
-  color: var(--file-input_browse_c, var(--color-text-brand-default, #3b82f6));
+  color: var(--_file-input_browse_c);
   text-decoration: underline;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: var(--_file-input_browse_f-w);
 }
 
 .file-input-meta {
-  font-size: 12px;
-  color: var(--color-text-base-secondary, #64748b);
+  font-size: var(--_file-input_meta_f-s);
+  color: var(--_file-input_meta_c);
   margin: 0;
 }
 
@@ -91,21 +111,27 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--_file-input_gap);
 }
 
 .file-input-error {
-  font-size: 12px;
-  color: var(--color-text-danger-default, #ef4444);
+  font-size: var(--_file-input_err_f-s);
+  color: var(--_file-input_err_c);
   margin: 0;
 }
 
 .file-input-helper {
-  font-size: 12px;
-  color: var(--color-text-base-secondary, #64748b);
+  font-size: var(--_file-input_helper_f-s);
+  color: var(--_file-input_helper_c);
   margin: 0;
 }
 
 .file-input-browse-btn {
   align-self: flex-start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .file-input-dropzone {
+    transition: none;
+  }
 }

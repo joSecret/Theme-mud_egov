@@ -1,6 +1,13 @@
+---
+title: File Input
+group: Forms
+version: 1.1.0
+css_prefix: file-input
+---
+
 # File Input
 
-Drag-and-drop file upload field aligned with `mud-file-input`. Supports dropzone and button variants, drag-over state, file list display, and validation props.
+Drag-and-drop file upload field aligned with the MUD design system. Supports dropzone and button variants, drag-over state, file list display, and validation props.
 
 ## Usage
 
@@ -12,7 +19,7 @@ Drag-and-drop file upload field aligned with `mud-file-input`. Supports dropzone
   file_input_multiple: true,
   file_input_max_size_label: 'Mărime maximă: 10 MB',
   file_input_variant: 'dropzone',
-} %}
+} only %}
 ```
 
 Button variant:
@@ -24,7 +31,7 @@ Button variant:
   file_input_accept: 'image/*',
   file_input_variant: 'button',
   file_input_browse_label: 'Alege fotografie',
-} %}
+} only %}
 ```
 
 ## Props
@@ -48,3 +55,29 @@ Button variant:
 | `file_input_invalid` | boolean | false | Error state |
 | `file_input_uc` | array | [] | Additional CSS classes |
 | `file_input_att` | Attribute | null | HTML attributes |
+
+## CSS variables
+
+Defaults are tokens (`--color-*`, `--spacing-*`, `--font-size-*`). The public variables below are empty by default and are set only for a specific context.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--file-input_b-c` | `--color-border-base-default` | Drop zone border color |
+| `--file-input_bg` | `--color-background-base-secondary` | Drop zone background |
+| `--file-input_b-c_h` | `--color-border-brand-default` | Border on hover, focus and drag-over |
+| `--file-input_bg_h` | `--palette-blue-sky-100` | Background on hover, focus and drag-over |
+| `--file-input_err_b-c` | `--color-border-danger-default` | Border when invalid |
+| `--file-input_m-h` | `160px` | Drop zone minimum height |
+| `--file-input_lg_m-h` | `200px` | Minimum height for the `lg` size |
+| `--file-input_icon_c` | `--color-text-brand-default` | Upload icon color |
+
+## JavaScript
+
+`Drupal.behaviors.fileInput` (initialised once per element) opens the native picker from the drop zone, the browse link or the button, handles drag and drop, and renders the selected files into the list as `file-item` rows.
+
+## Accessibility
+
+- The drop zone has `role="button"`, `tabindex="0"` (`-1` when disabled), an `aria-label` and `aria-disabled`; Enter and Space open the file picker.
+- The native input is kept for form submission and exposes `required` and `aria-invalid`; the selected-files list is an `aria-live="polite"` region.
+- The error message uses `role="alert"`; hover, focus and drag-over share the same visible border and background change.
+- The border transition stops under `prefers-reduced-motion: reduce`.

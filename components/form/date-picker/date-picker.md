@@ -1,6 +1,13 @@
+---
+title: Date Picker
+group: Forms
+version: 1.1.0
+css_prefix: date-picker
+---
+
 # Date Picker
 
-Calendar-based date picker aligned with `mud-date-picker`. Renders a text input that opens a calendar popup on click/focus. Supports single, range, and multi-select modes; locale-aware weekday and month labels via `Intl.DateTimeFormat`.
+Calendar-based single-date picker aligned with the MUD design system. Renders a read-only text input that opens a calendar popup on click or Enter/Space, or an inline calendar. The selected date is written as ISO `YYYY-MM-DD`; weekday and month labels are locale-aware via `Intl.DateTimeFormat`. The `date_picker_mode` and `date_picker_size` props are accepted (as `data-mode` and a `date-picker-<size>` class) but the current script only implements single-date selection and no size styles.
 
 ## Usage
 
@@ -12,7 +19,7 @@ Calendar-based date picker aligned with `mud-date-picker`. Renders a text input 
   date_picker_min: '1920-01-01',
   date_picker_max: '2010-12-31',
   date_picker_locale: 'ro-RO',
-} %}
+} only %}
 ```
 
 Inline calendar:
@@ -21,7 +28,7 @@ Inline calendar:
 {% include 'mud_egov:date-picker' with {
   date_picker_label: 'Selectează data',
   date_picker_inline: true,
-} %}
+} only %}
 ```
 
 ## Props
@@ -52,3 +59,25 @@ Inline calendar:
 | Event | Detail | Description |
 |-------|--------|-------------|
 | `date-picker:change` | `{ value }` | Emitted when a date is selected |
+
+## CSS variables
+
+Defaults are tokens (`--color-*`, `--spacing-*`, `--font-size-*`). The public variables below are empty by default and are set only for a specific context.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--date-picker_b-c` | `--color-border-base-default` | Input border color |
+| `--date-picker_b-c_f` | `--color-border-brand-default` | Input border color on focus |
+| `--date-picker_err_b-c` | `--color-border-danger-default` | Input border color in error state |
+| `--date-picker_b-r` | `--border-radius-8` | Input radius |
+| `--date-picker_h` | `44px` | Input height |
+| `--date-picker_popup_bg` | `--color-background-base-default` | Popup background |
+| `--date-picker_popup_bs` | `--drop-shadow-300` | Popup shadow |
+| `--date-picker_day_bg_s` | `--color-background-brand-default` | Selected day background |
+
+## Accessibility
+
+- The label is tied to the input with `for`; `date_picker_required` sets `required` and `aria-required`, and `date_picker_error` sets `aria-invalid`; the error message uses `role="alert"`.
+- The input is keyboard-operable: Enter or Space toggles the calendar and Escape closes it; the focus ring is shown on `:focus-visible`.
+- The popup has `role="dialog"` and an `aria-label`; day buttons are native buttons with `aria-pressed` and an ISO `aria-label`, and days outside min/max are `disabled`.
+- Transitions stop under `prefers-reduced-motion: reduce`.

@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: File Input
 status: stable
 group: Forms
-version: 1.0.0
-description: Drag-and-drop file upload field with validation and file list. Aligned with mud-file-input.
+version: 1.1.0
+description: Drag-and-drop file upload field with validation and file list.
 
 # Props.
 props:
@@ -115,3 +115,8 @@ props:
       title: Attributes
       default: null
       description: A list of HTML attributes for the component.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

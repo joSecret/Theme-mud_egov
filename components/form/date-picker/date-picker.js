@@ -1,10 +1,7 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.datePicker = {
     attach(context) {
-      context.querySelectorAll('[data-date-picker]').forEach(el => {
-        if (el.hasAttribute('data-date-picker-initialized')) return;
-        el.setAttribute('data-date-picker-initialized', 'true');
-
+      once('datePicker', '[data-date-picker]', context).forEach((el) => {
         const input = el.querySelector('.date-picker-input');
         const popup = el.querySelector('.date-picker-popup');
         const calendarEl = el.querySelector('[data-date-picker-calendar]');
@@ -117,4 +114,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

@@ -1,10 +1,7 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.switch = {
     attach(context) {
-      context.querySelectorAll('[data-switch]').forEach(el => {
-        if (el.hasAttribute('data-switch-initialized')) return;
-        el.setAttribute('data-switch-initialized', 'true');
-
+      once('switch', '[data-switch]', context).forEach((el) => {
         const input = el.querySelector('[data-switch-input]');
         if (!input) return;
 
@@ -24,4 +21,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

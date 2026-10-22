@@ -1,10 +1,7 @@
-(function (Drupal) {
+((Drupal, once) => {
   Drupal.behaviors.fileInput = {
     attach(context) {
-      context.querySelectorAll('[data-file-input]').forEach(el => {
-        if (el.hasAttribute('data-file-input-initialized')) return;
-        el.setAttribute('data-file-input-initialized', 'true');
-
+      once('fileInput', '[data-file-input]', context).forEach((el) => {
         const native = el.querySelector('.file-input-native');
         const dropzone = el.querySelector('[data-file-input-dropzone]');
         const browseBtn = el.querySelector('[data-file-input-browse]');
@@ -75,4 +72,4 @@
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

@@ -12,8 +12,9 @@ global-styling:
   css:
     base:
       css/foundations.css: { minified: false }
-      css/vars-mud.css: { minified: false }
-      css/vars.css: { minified: false }
+      css/tokens.css: { minified: false }
+      css/defaults.css: { minified: false }
+      css/theme/vars.css: { minified: false }
       css/reboot.css: { minified: false }
       css/type.css: { minified: false }
       css/utils.css: { minified: false }

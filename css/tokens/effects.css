@@ -1,0 +1,26 @@
+/**
+ * Nivel 1, tokenuri: inelul de focus și umbrele.
+ */
+:where(html) {
+  --focus-ring-color-inner: var(--palette-white-1000);
+  --focus-ring-color-outer: var(--palette-blue-sky-500);
+  --focus-ring-width-inner: 2px;
+  --focus-ring-width-outer: 3px;
+
+  /* Inelul complet (interior alb + exterior albastru), pentru box-shadow. */
+  --focus-ring:
+    0 0 0 var(--focus-ring-width-inner) var(--focus-ring-color-inner),
+    0 0 0 calc(var(--focus-ring-width-inner) + var(--focus-ring-width-outer)) var(--focus-ring-color-outer);
+
+  /* Umbre (elevation) */
+  --drop-shadow-100: 0px 2px 8px 0px rgb(19 22 29 / 6%), 0px 4px 8px 1px rgb(19 22 29 / 4%);
+  --drop-shadow-200: 0px 4px 8px 2px rgb(40 46 55 / 6%), 0px 2px 4px 0px rgb(40 46 55 / 4%);
+  --drop-shadow-300: 0px 8px 12px 4px rgb(40 46 55 / 6%), 0px 2px 4px 0px rgb(40 46 55 / 6%);
+  --drop-shadow-400: 0px 12px 16px 6px rgb(40 46 55 / 6%), 0px 4px 6px 0px rgb(40 46 55 / 6%);
+  --drop-shadow-500: 0px 16px 20px 6px rgb(40 46 55 / 6%), 0px 4px 8px 0px rgb(40 46 55 / 6%);
+
+  /* Umbre de control din MUD Storybook, fără echivalent în Foundations */
+  --drop-shadow-thumb: 0 0 0.5px 0 rgb(0 0 0 / 30%), 0 1px 3px 0 rgb(0 0 0 / 16%);
+  --drop-shadow-segment: 0 0 0.25px rgb(0 0 0 / 30%), 0 1px 1.5px rgb(0 0 0 / 16%);
+  --drop-shadow-menu: 0 0 0.5px 0 rgb(0 0 0 / 15%), 0 1px 3px 0 rgb(0 0 0 / 8%), 0 5px 12px 0 rgb(0 0 0 / 8%);
+}

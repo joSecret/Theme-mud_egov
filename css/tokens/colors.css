@@ -1,8 +1,13 @@
+/**
+ * Nivel 1, tokenuri: culori semantice (--color-*), definite din paletă.
+ */
 :where(html) {
   color-scheme: light dark;
 
   /* Semantic colors */
+
   /** Background **/
+
   /*** Base ***/
   --color-background-base-default: var(--palette-white-1000); /* light-dark(var(--palette-white-1000), var(--palette-gray-900)); */
   --color-background-base-default-hover: var(--palette-gray-100);
@@ -62,6 +67,7 @@
   --color-background-danger-secondary-active: var(--palette-red-300);
 
   /** Text **/
+
   /*** Base ***/
   --color-text-base-default: var(--palette-black-1000); /* light-dark(var(--palette-black-1000), var(--palette-white-1000)); */
   --color-text-base-secondary: var(--palette-gray-700);
@@ -90,6 +96,24 @@
   --color-text-danger-on-secondary: var(--palette-red-700);
 
   /** Icon **/
+  --color-icon-base-default: var(--palette-black-1000);
+  --color-icon-base-secondary: var(--palette-gray-600);
+  --color-icon-base-tertiary: var(--palette-gray-400);
+  --color-icon-base-default-on-color: var(--palette-black-1000);
+  --color-icon-base-secondary-on-color: var(--palette-gray-600);
+  --color-icon-brand-default: var(--palette-blue-sky-600);
+  --color-icon-brand-on-secondary: var(--palette-blue-sky-600);
+  --color-icon-brand-visited: var(--palette-magenta-600);
+  --color-icon-disabled-default: var(--palette-gray-300);
+  --color-icon-disabled-on-disabled: var(--palette-gray-300);
+  --color-icon-positive-default: var(--palette-green-600);
+  --color-icon-positive-on-secondary: var(--palette-green-700);
+  --color-icon-warning-default: var(--palette-apricot-600);
+  --color-icon-warning-on-secondary: var(--palette-apricot-700);
+  --color-icon-danger-default: var(--palette-red-600);
+  --color-icon-danger-on-secondary: var(--palette-red-700);
+  --color-icon-base-inverse-default: var(--palette-white-1000);
+  --color-icon-base-inverse-on-color: var(--palette-white-1000);
 
   /** Border **/
   --color-border-base-default: var(--palette-gray-250);

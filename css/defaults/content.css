@@ -3,7 +3,7 @@
   --accordion-item-border-color-default: var(--color-border-base-default, var(--color-border-base-default));
   --accordion-item-border-width: var(--border-width-1);
   --accordion-item-padding-block: clamp(24px, calc(21.091px + 0.909cqi), 32px);
-  --accordion-item-padding-inline-tinted: var(--spacing-20);
+  --accordion-item-padding-inline-tinted: var(--spacing-20); /* nefolosit */
   --accordion-item-gap: var(--spacing-12);
   --accordion-item-color-default: var(--color-text-base-default);
   --accordion-item-color-open: var(--color-text-brand-default);
@@ -12,9 +12,9 @@
   --accordion-item-transition-duration: 150ms;
   --accordion-item-transition-timing-function: ease-out;
 
-  --accordion-item-container-background-default: var(--color-background-base-default);
+  --accordion-item-container-background-default: var(--color-background-base-default); /* nefolosit */
   --accordion-item-container-background-hover: var(--color-background-base-default-hover);
-  --accordion-item-container-background-trail-sites: var(--color-background-brand-secondary);
+  --accordion-item-container-background-trail-sites: var(--color-background-brand-secondary); /* nefolosit */
 
   --accordion-item-heading-gap: var(--spacing-8);
   --accordion-item-heading-padding-hover: var(--spacing-20);
@@ -26,10 +26,10 @@
   --accordion-item-supporting-color-disabled: var(--color-text-disabled-on-disabled);
 
   --accordion-item-trigger-size: 48px;
-  --accordion-item-trigger-icon-size: 20px;
+  --accordion-item-trigger-icon-size: 20px; /* nefolosit */
 
-  --accordion-item-panel-color-default: var(--color-text-base-secondary);
-  --accordion-item-panel-color-trail-sites: var(--color-text-base-default);
+  --accordion-item-panel-color-default: var(--color-text-base-secondary); /* nefolosit */
+  --accordion-item-panel-color-trail-sites: var(--color-text-base-default); /* nefolosit */
 
   /* Avatar */
   --avatar-container-size-xs: 24px;
@@ -39,15 +39,15 @@
   --avatar-container-size-xl: 72px;
   --avatar-container-border-radius: var(--border-radius-full);
   --avatar-container-background: var(--color-background-base-tertiary);
-  --avatar-container-transition-duration: 150ms;
-  --avatar-container-transition-timing-function: ease-out;
-  --avatar-stack-border-width: var(--border-width-2);
-  --avatar-stack-border-color: var(--color-border-base-subtle);
-  --avatar-stack-overlap-xs: -8px;
-  --avatar-stack-overlap-sm: -10px;
-  --avatar-stack-overlap-md: -12px;
-  --avatar-stack-overlap-lg: -14px;
-  --avatar-stack-overlap-xl: -20px;
+  --avatar-container-transition-duration: 150ms; /* nefolosit */
+  --avatar-container-transition-timing-function: ease-out; /* nefolosit */
+  --avatar-stack-border-width: var(--border-width-2); /* nefolosit */
+  --avatar-stack-border-color: var(--color-border-base-subtle); /* nefolosit */
+  --avatar-stack-overlap-xs: -8px; /* nefolosit */
+  --avatar-stack-overlap-sm: -10px; /* nefolosit */
+  --avatar-stack-overlap-md: -12px; /* nefolosit */
+  --avatar-stack-overlap-lg: -14px; /* nefolosit */
+  --avatar-stack-overlap-xl: -20px; /* nefolosit */
   --avatar-initials-font-family: var(--font-family-primary);
   --avatar-initials-font-weight: var(--font-weight-medium);
   --avatar-initials-font-size-xs: var(--font-size-12);
@@ -67,10 +67,10 @@
   --avatar-icon-size-lg: 24px;
   --avatar-icon-size-xl: 32px;
   --avatar-icon-color: var(--color-icon-base-secondary);
-  --avatar-focus-ring-inner-color: var(--color-border-base-subtle);
-  --avatar-focus-ring-outer-color: var(--focus-ring-color-outer);
-  --avatar-focus-ring-inner-width: 2px;
-  --avatar-focus-ring-outer-width: 3px;
+  --avatar-focus-ring-inner-color: var(--color-border-base-subtle); /* nefolosit */
+  --avatar-focus-ring-outer-color: var(--focus-ring-color-outer); /* nefolosit */
+  --avatar-focus-ring-inner-width: 2px; /* nefolosit */
+  --avatar-focus-ring-outer-width: 3px; /* nefolosit */
 
   --badge-size-xs: 8px;
   --badge-size-sm: 12px;
@@ -125,7 +125,7 @@
   --tag-container-padding-inline-icon-md: var(--spacing-6);
   --tag-container-padding-inline-icon-sm: var(--spacing-4);
   --tag-container-gap-md: var(--spacing-4);
-  --tag-container-gap-sm: var(--spacing-4);
+  --tag-container-gap-sm: var(--spacing-4); /* nefolosit */
   --tag-container-border-radius: var(--border-radius-4);
   --tag-container-border-width: var(--border-width-1);
   --tag-container-group-gap: var(--spacing-8);
@@ -134,7 +134,7 @@
   --tag-label-font-size-sm: var(--font-size-12);
   --tag-label-line-height-md: var(--line-height-20);
   --tag-label-line-height-sm: var(--line-height-16);
-  --tag-label-font-weight-status: var(--font-weight-medium);
+  --tag-label-font-weight-status: var(--font-weight-medium); /* nefolosit */
   --tag-label-font-weight-info: var(--font-weight-regular);
   --tag-icon-size-md: 16px;
   --tag-icon-size-sm: 12px;
@@ -162,7 +162,7 @@
   --tag-strong-label-success: var(--color-text-brand-inverse);
   --tag-strong-label-brand: var(--color-text-brand-inverse);
   --tag-strong-label-danger: var(--color-text-brand-inverse);
-  --tag-outlined-background: transparent;
+  --tag-outlined-background: transparent; /* nefolosit */
   --tag-outlined-border-muted: var(--color-border-base-default);
   --tag-outlined-border-neutral: var(--color-border-base-default);
   --tag-outlined-border-accent: var(--color-border-warning-default);
@@ -191,28 +191,28 @@
   --separator-label-padding-inline: var(--spacing-8);
   --separator-inset-spacing: var(--spacing-8);
 
-  --service-button-container-height: 48px;
-  --service-button-container-min-width: 72px;
-  --service-button-container-padding-inline-start: var(--spacing-16);
-  --service-button-container-padding-inline-end: var(--spacing-20);
-  --service-button-container-gap: var(--spacing-6);
-  --service-button-container-border-radius: var(--border-radius-8);
-  --service-button-container-transition-duration: 150ms;
-  --service-button-container-transition-timing-function: ease-out;
-  --service-button-label-font-family: var(--font-family-primary);
-  --service-button-label-font-size: var(--font-size-16);
-  --service-button-label-line-height: var(--line-height-24);
-  --service-button-label-font-weight: var(--font-weight-medium);
-  --service-button-badge-size: 24px;
-  --service-button-primary-background-default: var(--color-background-brand-default);
-  --service-button-primary-background-hover: var(--color-background-brand-default-hover);
-  --service-button-primary-background-active: var(--color-background-brand-default-active);
-  --service-button-primary-label: var(--color-text-brand-inverse);
-  --service-button-neutral-background-default: var(--color-background-base-secondary);
-  --service-button-neutral-background-hover: var(--color-background-base-tertiary-hover);
-  --service-button-neutral-background-active: var(--color-background-base-tertiary-active);
-  --service-button-neutral-label: var(--color-text-base-default);
-  --service-button-disabled-background: var(--color-background-disabled-default);
-  --service-button-disabled-label: var(--color-text-disabled-on-disabled);
-  --service-button-disabled-badge-opacity: 0.3;
+  --service-button-container-height: 48px; /* nefolosit */
+  --service-button-container-min-width: 72px; /* nefolosit */
+  --service-button-container-padding-inline-start: var(--spacing-16); /* nefolosit */
+  --service-button-container-padding-inline-end: var(--spacing-20); /* nefolosit */
+  --service-button-container-gap: var(--spacing-6); /* nefolosit */
+  --service-button-container-border-radius: var(--border-radius-8); /* nefolosit */
+  --service-button-container-transition-duration: 150ms; /* nefolosit */
+  --service-button-container-transition-timing-function: ease-out; /* nefolosit */
+  --service-button-label-font-family: var(--font-family-primary); /* nefolosit */
+  --service-button-label-font-size: var(--font-size-16); /* nefolosit */
+  --service-button-label-line-height: var(--line-height-24); /* nefolosit */
+  --service-button-label-font-weight: var(--font-weight-medium); /* nefolosit */
+  --service-button-badge-size: 24px; /* nefolosit */
+  --service-button-primary-background-default: var(--color-background-brand-default); /* nefolosit */
+  --service-button-primary-background-hover: var(--color-background-brand-default-hover); /* nefolosit */
+  --service-button-primary-background-active: var(--color-background-brand-default-active); /* nefolosit */
+  --service-button-primary-label: var(--color-text-brand-inverse); /* nefolosit */
+  --service-button-neutral-background-default: var(--color-background-base-secondary); /* nefolosit */
+  --service-button-neutral-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --service-button-neutral-background-active: var(--color-background-base-tertiary-active); /* nefolosit */
+  --service-button-neutral-label: var(--color-text-base-default); /* nefolosit */
+  --service-button-disabled-background: var(--color-background-disabled-default); /* nefolosit */
+  --service-button-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --service-button-disabled-badge-opacity: 0.3; /* nefolosit */
 }

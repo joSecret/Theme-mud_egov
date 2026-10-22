@@ -1,5 +1,7 @@
-@import "vars-colors.css";
-
+/**
+ * Variabile proprii ale temei mud_egov (titluri, gutter, spacer).
+ * Nu vin din MUD JS; păstrate separat de tokenuri și default-uri până decidem ce facem cu ele.
+ */
 :where(html) {
   /* Font */
   --font-family_base: var(--font-family-primary);

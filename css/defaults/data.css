@@ -1,0 +1,116 @@
+:root {
+  --table-container-background: var(--color-background-base-default); /* nefolosit */
+  --table-container-border-radius: var(--border-radius-0); /* nefolosit */
+  --table-container-font-family: var(--font-family-primary); /* nefolosit */
+  --table-header-min-height: 48px; /* nefolosit */
+  --table-header-padding-inline-desktop: var(--spacing-24); /* nefolosit */
+  --table-header-padding-inline-mobile: var(--spacing-16); /* nefolosit */
+  --table-header-padding-block: var(--spacing-8); /* nefolosit */
+  --table-header-gap: var(--spacing-6); /* nefolosit */
+  --table-header-font-weight: var(--font-weight-medium); /* nefolosit */
+  --table-header-font-size: var(--font-size-14); /* nefolosit */
+  --table-header-line-height: var(--line-height-20); /* nefolosit */
+  --table-header-default-background: var(--color-background-base-tertiary); /* nefolosit */
+  --table-header-default-color: var(--color-text-base-default); /* nefolosit */
+  --table-header-default-border-bottom: var(--color-border-base-default); /* nefolosit */
+  --table-header-inverted-background: var(--color-background-base-inverse-default); /* nefolosit */
+  --table-header-inverted-color: var(--color-text-brand-inverse); /* nefolosit */
+  --table-header-inverted-border-bottom: var(--color-background-base-inverse-default); /* nefolosit */
+  --table-header-white-background: var(--color-background-base-default); /* nefolosit */
+  --table-header-white-color: var(--color-text-base-default); /* nefolosit */
+  --table-header-white-border-bottom: var(--color-border-base-default); /* nefolosit */
+  --table-cell-min-height: 48px; /* nefolosit */
+  --table-cell-padding-inline-desktop: var(--spacing-24); /* nefolosit */
+  --table-cell-padding-inline-mobile: var(--spacing-16); /* nefolosit */
+  --table-cell-padding-block: var(--spacing-8); /* nefolosit */
+  --table-cell-gap: var(--spacing-6); /* nefolosit */
+  --table-cell-font-weight: var(--font-weight-regular); /* nefolosit */
+  --table-cell-font-size: var(--font-size-14); /* nefolosit */
+  --table-cell-line-height: var(--line-height-20); /* nefolosit */
+  --table-cell-color: var(--color-text-base-secondary); /* nefolosit */
+  --table-cell-border-bottom: var(--color-border-base-default); /* nefolosit */
+  --table-row-background-default: var(--color-background-base-default); /* nefolosit */
+  --table-row-background-zebra: var(--color-background-base-secondary); /* nefolosit */
+  --table-row-background-hover: var(--color-background-base-default-hover); /* nefolosit */
+  --table-row-background-selected: var(--color-background-brand-secondary); /* nefolosit */
+  --table-row-background-selected-hover: var(--color-background-brand-secondary-hover); /* nefolosit */
+  --table-row-transition-duration: 120ms; /* nefolosit */
+  --table-row-transition-timing-function: ease-out; /* nefolosit */
+  --table-sort-icon-size: 16px; /* nefolosit */
+  --table-sort-icon-color-inactive: var(--color-icon-base-tertiary); /* nefolosit */
+  --table-sort-icon-color-active: var(--color-icon-base-default); /* nefolosit */
+  --table-sort-icon-color-inverted: var(--color-icon-base-inverse-default); /* nefolosit */
+  --table-focus-ring-width: 3px; /* nefolosit */
+  --table-focus-ring-offset: 1px; /* nefolosit */
+  --table-focus-ring-color: var(--focus-ring-color-outer); /* nefolosit */
+  --table-selection-column-width: 56px; /* nefolosit */
+  --table-mobile-breakpoint: 640px; /* nefolosit */
+  --table-empty-padding: var(--spacing-48); /* nefolosit */
+  --table-empty-color: var(--color-text-base-tertiary); /* nefolosit */
+  --table-empty-font-size: var(--font-size-14); /* nefolosit */
+
+  --receipt-container-background: var(--color-background-base-default);
+  --receipt-container-border: var(--color-border-base-tertiary);
+  --receipt-container-border-width: var(--border-width-1);
+  --receipt-container-border-radius: var(--border-radius-12);
+  --receipt-container-shadow: var(--drop-shadow-100);
+  --receipt-container-padding: var(--spacing-32);
+  --receipt-container-padding-mobile: var(--spacing-20);
+  --receipt-container-gap: var(--spacing-24);
+  --receipt-container-max-width: 640px;
+  --receipt-divider-color: var(--color-border-base-tertiary);
+  --receipt-divider-width: 1px;
+  --receipt-header-gap: var(--spacing-16);
+  --receipt-header-logo-size: 32px; /* nefolosit */
+  --receipt-title-font-family: var(--font-family-primary);
+  --receipt-title-font-size: var(--font-size-20);
+  --receipt-title-line-height: var(--line-height-28);
+  --receipt-title-font-weight: var(--font-weight-semibold);
+  --receipt-title-color: var(--color-text-base-default);
+  --receipt-amount-background: var(--color-background-base-secondary);
+  --receipt-amount-padding: var(--spacing-20);
+  --receipt-amount-border-radius: var(--border-radius-8);
+  --receipt-amount-gap: var(--spacing-4);
+  --receipt-amount-label-font-family: var(--font-family-primary);
+  --receipt-amount-label-font-size: var(--font-size-14);
+  --receipt-amount-label-line-height: var(--line-height-20);
+  --receipt-amount-label-font-weight: var(--font-weight-medium);
+  --receipt-amount-label-color: var(--color-text-base-secondary);
+  --receipt-amount-value-font-family: var(--font-family-primary);
+  --receipt-amount-value-font-size: var(--font-size-28);
+  --receipt-amount-value-line-height: var(--line-height-36);
+  --receipt-amount-value-font-weight: var(--font-weight-semibold);
+  --receipt-amount-value-color: var(--color-text-base-default);
+  --receipt-amount-currency-font-size: var(--font-size-18); /* nefolosit */
+  --receipt-amount-currency-font-weight: var(--font-weight-medium); /* nefolosit */
+  --receipt-amount-currency-color: var(--color-text-base-secondary); /* nefolosit */
+  --receipt-row-gap: var(--spacing-16);
+  --receipt-row-padding-block: var(--spacing-8);
+  --receipt-row-label-font-family: var(--font-family-primary);
+  --receipt-row-label-font-size: var(--font-size-14);
+  --receipt-row-label-line-height: var(--line-height-20);
+  --receipt-row-label-font-weight: var(--font-weight-regular);
+  --receipt-row-label-color: var(--color-text-base-secondary);
+  --receipt-row-value-font-family: var(--font-family-primary);
+  --receipt-row-value-font-size: var(--font-size-14);
+  --receipt-row-value-line-height: var(--line-height-20);
+  --receipt-row-value-font-weight: var(--font-weight-medium);
+  --receipt-row-value-color: var(--color-text-base-default);
+  --receipt-qr-size: 128px; /* nefolosit */
+  --receipt-qr-background: var(--color-background-base-default); /* nefolosit */
+  --receipt-qr-module-color: var(--color-text-base-default); /* nefolosit */
+  --receipt-qr-padding: var(--spacing-12); /* nefolosit */
+  --receipt-qr-border-color: var(--color-border-base-tertiary); /* nefolosit */
+  --receipt-qr-border-radius: var(--border-radius-8); /* nefolosit */
+  --receipt-qr-caption-font-size: var(--font-size-12); /* nefolosit */
+  --receipt-qr-caption-line-height: var(--line-height-16); /* nefolosit */
+  --receipt-qr-caption-font-weight: var(--font-weight-regular); /* nefolosit */
+  --receipt-qr-caption-color: var(--color-text-base-tertiary); /* nefolosit */
+  --receipt-actions-gap: var(--spacing-8); /* nefolosit */
+  --receipt-actions-padding-top: var(--spacing-20); /* nefolosit */
+  --receipt-transaction-id-font-family: var(--font-family-primary); /* nefolosit */
+  --receipt-transaction-id-font-size: var(--font-size-12); /* nefolosit */
+  --receipt-transaction-id-line-height: var(--line-height-16); /* nefolosit */
+  --receipt-transaction-id-font-weight: var(--font-weight-regular); /* nefolosit */
+  --receipt-transaction-id-color: var(--color-text-base-tertiary); /* nefolosit */
+}

@@ -1,0 +1,358 @@
+:root {
+  --info-box-container-padding-block: var(--spacing-12);
+  --info-box-container-padding-inline: var(--spacing-16);
+  --info-box-container-gap: var(--spacing-12);
+  --info-box-container-stack-gap: var(--spacing-8); /* nefolosit */
+  --info-box-container-heading-gap: var(--spacing-4);
+  --info-box-container-border-radius: var(--border-radius-8);
+  --info-box-container-transition-duration: 150ms; /* nefolosit */
+  --info-box-container-transition-timing-function: ease-out; /* nefolosit */
+  --info-box-icon-size: 20px;
+  --info-box-heading-font-family: var(--font-family-primary);
+  --info-box-heading-font-size: var(--font-size-16);
+  --info-box-heading-line-height: var(--line-height-24);
+  --info-box-heading-font-weight: var(--font-weight-semibold);
+  --info-box-body-font-family: var(--font-family-primary);
+  --info-box-body-font-size: var(--font-size-14);
+  --info-box-body-line-height: var(--line-height-20);
+  --info-box-body-font-weight: var(--font-weight-regular); /* nefolosit */
+  --info-box-close-size-pointer: 32px;
+  --info-box-close-size-touch: 40px; /* nefolosit */
+  --info-box-close-icon-size: 16px;
+  --info-box-close-border-radius: var(--border-radius-4);
+  --info-box-close-background-hover: var(--color-background-base-tertiary-hover);
+  --info-box-strong-info-background: var(--color-background-brand-secondary);
+  --info-box-strong-info-text: var(--color-text-base-default);
+  --info-box-strong-info-icon: var(--color-icon-brand-default);
+  --info-box-strong-info-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-strong-info-moderate-background: var(--color-background-brand-secondary);
+  --info-box-strong-info-moderate-text: var(--color-text-base-default);
+  --info-box-strong-info-moderate-icon: var(--color-icon-brand-default);
+  --info-box-strong-info-moderate-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-strong-warning-background: var(--color-background-warning-secondary);
+  --info-box-strong-warning-text: var(--color-text-base-default);
+  --info-box-strong-warning-icon: var(--color-icon-warning-default);
+  --info-box-strong-warning-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-strong-error-background: var(--color-background-danger-secondary);
+  --info-box-strong-error-text: var(--color-text-base-default);
+  --info-box-strong-error-icon: var(--color-icon-danger-default);
+  --info-box-strong-error-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-subtle-info-background: var(--color-background-base-secondary);
+  --info-box-subtle-info-text: var(--color-text-base-default);
+  --info-box-subtle-info-icon: var(--color-icon-base-default);
+  --info-box-subtle-info-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-subtle-info-moderate-background: var(--color-background-base-secondary);
+  --info-box-subtle-info-moderate-text: var(--color-text-base-default);
+  --info-box-subtle-info-moderate-icon: var(--color-icon-brand-default);
+  --info-box-subtle-info-moderate-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-subtle-warning-background: var(--color-background-base-secondary);
+  --info-box-subtle-warning-text: var(--color-text-base-default);
+  --info-box-subtle-warning-icon: var(--color-icon-warning-default);
+  --info-box-subtle-warning-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --info-box-subtle-error-background: var(--color-background-base-secondary);
+  --info-box-subtle-error-text: var(--color-text-base-default);
+  --info-box-subtle-error-icon: var(--color-icon-danger-default);
+  --info-box-subtle-error-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+
+  --notification-container-width: 100%;
+  --notification-container-padding-top: var(--spacing-12);
+  --notification-container-padding-bottom: var(--spacing-16);
+  --notification-container-padding-inline: var(--spacing-12);
+  --notification-container-gap: var(--spacing-16);
+  --notification-container-content-gap: var(--spacing-8); /* nefolosit */
+  --notification-container-stack-gap: var(--spacing-8); /* nefolosit */
+  --notification-container-heading-gap: var(--spacing-6);
+  --notification-container-border-radius: var(--border-radius-8);
+  --notification-container-transition-duration: 150ms; /* nefolosit */
+  --notification-container-transition-timing-function: ease-out; /* nefolosit */
+  --notification-container-appearance-duration: 250ms; /* nefolosit */
+  --notification-icon-size: 24px;
+  --notification-icon-padding: var(--spacing-2);
+  --notification-title-font-family: var(--font-family-primary); /* nefolosit */
+  --notification-title-font-size: var(--font-size-18);
+  --notification-title-line-height: var(--line-height-26);
+  --notification-title-font-weight: var(--font-weight-semibold);
+  --notification-title-letter-spacing: -0.18px;
+  --notification-body-font-family: var(--font-family-primary); /* nefolosit */
+  --notification-body-font-size: var(--font-size-14);
+  --notification-body-line-height: var(--line-height-20);
+  --notification-body-font-weight: var(--font-weight-regular); /* nefolosit */
+  --notification-close-size-pointer: 32px; /* nefolosit */
+  --notification-close-size-touch: 40px; /* nefolosit */
+  --notification-close-icon-size: 16px;
+  --notification-close-border-radius: var(--border-radius-4); /* nefolosit */
+  --notification-close-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --notification-close-background-hover-on-color: var(--color-background-alpha-overlay-dark); /* nefolosit */
+  --notification-info-background: var(--color-background-brand-default);
+  --notification-info-text: var(--color-text-brand-inverse);
+  --notification-info-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+  --notification-info-close-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+  --notification-warning-background: var(--color-background-warning-accent);
+  --notification-warning-text: var(--color-text-base-default);
+  --notification-warning-icon: var(--color-icon-warning-on-secondary); /* nefolosit */
+  --notification-warning-close-icon: var(--color-icon-base-secondary); /* nefolosit */
+  --notification-success-background: var(--color-background-positive-default-hover);
+  --notification-success-text: var(--color-text-brand-inverse);
+  --notification-success-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+  --notification-success-close-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+  --notification-error-background: var(--color-background-danger-default);
+  --notification-error-text: var(--color-text-brand-inverse);
+  --notification-error-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+  --notification-error-close-icon: var(--color-icon-base-inverse-default); /* nefolosit */
+
+  --modal-backdrop-background: var(--color-background-alpha-overlay-dark);
+  --modal-backdrop-blur: 0px; /* nefolosit */
+  --modal-backdrop-transition-duration: 150ms; /* nefolosit */
+  --modal-backdrop-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* nefolosit */
+  --modal-container-background: var(--color-background-base-default);
+  --modal-container-border-radius: var(--border-radius-16);
+  --modal-container-box-shadow: var(--drop-shadow-500);
+  --modal-container-min-width: 280px; /* nefolosit */
+  --modal-container-max-width-sm: 480px;
+  --modal-container-max-width-md: 588px;
+  --modal-container-max-width-lg: 720px;
+  --modal-container-max-height: calc(100dvh - 64px);
+  --modal-container-max-height-mobile: calc(100dvh - 32px);
+  --modal-container-margin-inline: var(--spacing-16);
+  --modal-container-transition-duration: 200ms;
+  --modal-container-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); /* nefolosit */
+  --modal-header-padding-block-start: var(--spacing-24);
+  --modal-header-padding-inline-start: var(--spacing-32);
+  --modal-header-padding-inline-end: var(--spacing-20);
+  --modal-header-gap: var(--spacing-12); /* nefolosit */
+  --modal-header-image-height: 280px; /* nefolosit */
+  --modal-header-image-height-sm: 180px; /* nefolosit */
+  --modal-title-color: var(--color-text-base-default);
+  --modal-title-font-family: var(--font-family-primary);
+  --modal-title-font-size-md: var(--font-size-24);
+  --modal-title-font-size-sm: var(--font-size-20); /* nefolosit */
+  --modal-title-line-height-md: var(--line-height-32);
+  --modal-title-line-height-sm: var(--line-height-28); /* nefolosit */
+  --modal-title-font-weight: var(--font-weight-semibold);
+  --modal-title-letter-spacing-md: -0.24px; /* nefolosit */
+  --modal-title-letter-spacing-sm: -0.2px; /* nefolosit */
+  --modal-body-color: var(--color-text-base-secondary);
+  --modal-body-font-family: var(--font-family-primary);
+  --modal-body-font-size-md: var(--font-size-16);
+  --modal-body-font-size-sm: var(--font-size-14); /* nefolosit */
+  --modal-body-line-height-md: var(--line-height-24);
+  --modal-body-line-height-sm: var(--line-height-20); /* nefolosit */
+  --modal-body-font-weight: var(--font-weight-regular);
+  --modal-body-padding-block-start-md: var(--spacing-24);
+  --modal-body-padding-block-start-sm: var(--spacing-16); /* nefolosit */
+  --modal-body-padding-block-end-md: var(--spacing-40);
+  --modal-body-padding-block-end-sm: var(--spacing-20); /* nefolosit */
+  --modal-body-padding-inline: var(--spacing-32);
+  --modal-body-gap: var(--spacing-16); /* nefolosit */
+  --modal-icon-size: 48px; /* nefolosit */
+  --modal-icon-color: var(--color-icon-base-default); /* nefolosit */
+  --modal-footer-padding-block-start: var(--spacing-12);
+  --modal-footer-padding-block-end-md: var(--spacing-24);
+  --modal-footer-padding-block-end-sm: var(--spacing-20); /* nefolosit */
+  --modal-footer-padding-inline: var(--spacing-20);
+  --modal-footer-gap: var(--spacing-8);
+  --modal-close-size: 32px;
+  --modal-close-icon-size: 16px;
+  --modal-close-padding: var(--spacing-8);
+  --modal-close-background: var(--color-background-base-tertiary);
+  --modal-close-background-hover: var(--color-background-base-tertiary-hover);
+  --modal-close-background-on-image: var(--color-background-base-tertiary); /* nefolosit */
+  --modal-close-icon-color: var(--color-icon-base-secondary);
+  --modal-close-border-radius: var(--border-radius-full);
+
+  --tooltip-container-border-radius-sm: var(--border-radius-4);
+  --tooltip-container-border-radius-lg: var(--border-radius-6);
+  --tooltip-container-padding-block-sm: var(--spacing-8);
+  --tooltip-container-padding-block-lg: var(--spacing-12);
+  --tooltip-container-padding-inline-sm: var(--spacing-12);
+  --tooltip-container-padding-inline-lg: var(--spacing-16);
+  --tooltip-container-padding-inline-end-lg: var(--spacing-12); /* nefolosit */
+  --tooltip-container-gap-sm: var(--spacing-8); /* nefolosit */
+  --tooltip-container-gap-lg: var(--spacing-12); /* nefolosit */
+  --tooltip-container-max-width: 200px;
+  --tooltip-container-shadow: var(--drop-shadow-100);
+  --tooltip-container-transition-duration: 150ms;
+  --tooltip-container-transition-timing-function: ease-out;
+  --tooltip-container-background-default: var(--color-background-base-inverse-default);
+  --tooltip-container-z-index: 9999;
+  --tooltip-label-font-family: var(--font-family-primary); /* nefolosit */
+  --tooltip-label-font-size: var(--font-size-14); /* nefolosit */
+  --tooltip-label-line-height: var(--line-height-20); /* nefolosit */
+  --tooltip-label-font-weight: var(--font-weight-regular); /* nefolosit */
+  --tooltip-label-color-default: var(--color-text-brand-inverse); /* nefolosit */
+  --tooltip-hint-font-family: var(--font-family-primary); /* nefolosit */
+  --tooltip-hint-font-size: var(--font-size-12);
+  --tooltip-hint-line-height: var(--line-height-16);
+  --tooltip-hint-font-weight: var(--font-weight-regular);
+  --tooltip-hint-color-default: var(--color-text-brand-inverse); /* nefolosit */
+  --tooltip-hint-opacity: 0.72; /* nefolosit */
+  --tooltip-hint-margin-top: var(--spacing-6); /* nefolosit */
+  --tooltip-arrow-size-sm: 8px;
+  --tooltip-arrow-size-lg: 12px;
+  --tooltip-arrow-width-sm: 16px; /* nefolosit */
+  --tooltip-arrow-width-lg: 24px; /* nefolosit */
+  --tooltip-arrow-edge-margin: var(--spacing-12); /* nefolosit */
+  --tooltip-close-size: 16px; /* nefolosit */
+  --tooltip-close-color-default: var(--color-text-brand-inverse); /* nefolosit */
+  --tooltip-close-color-hover: var(--color-text-brand-inverse); /* nefolosit */
+  --tooltip-close-background-default: transparent; /* nefolosit */
+  --tooltip-close-background-hover: var(--color-background-base-inverse-default-hover); /* nefolosit */
+  --tooltip-close-border-radius: var(--border-radius-4); /* nefolosit */
+  --tooltip-close-touch-target: 24px; /* nefolosit */
+  --tooltip-offset-trigger: var(--spacing-4); /* nefolosit */
+
+  --spinner-size-xs: 16px; /* nefolosit */
+  --spinner-size-sm: 20px; /* nefolosit */
+  --spinner-size-md: 32px; /* nefolosit */
+  --spinner-size-lg: 40px; /* nefolosit */
+  --spinner-stroke-width-xs: 2px; /* nefolosit */
+  --spinner-stroke-width-sm: 2px; /* nefolosit */
+  --spinner-stroke-width-md: 3px; /* nefolosit */
+  --spinner-stroke-width-lg: 4px; /* nefolosit */
+  --spinner-arc-color-brand: var(--color-icon-brand-default); /* nefolosit */
+  --spinner-arc-color-dark: var(--color-background-base-inverse-default); /* nefolosit */
+  --spinner-arc-color-light: var(--color-icon-base-inverse-default); /* nefolosit */
+  --spinner-arc-color-light-on-color: var(--color-icon-base-inverse-on-color); /* nefolosit */
+  --spinner-transition-duration: 800ms; /* nefolosit */
+  --spinner-transition-timing-function: linear; /* nefolosit */
+
+  --progress-tracker-font-family: var(--font-family-primary); /* nefolosit */
+  --progress-tracker-font-size: var(--font-size-14); /* nefolosit */
+  --progress-tracker-line-height: var(--line-height-20); /* nefolosit */
+  --progress-tracker-font-weight-label: var(--font-weight-regular); /* nefolosit */
+  --progress-tracker-font-weight-indicator: var(--font-weight-medium); /* nefolosit */
+  --progress-tracker-supporting-text-font-size: var(--font-size-12); /* nefolosit */
+  --progress-tracker-supporting-text-line-height: var(--line-height-20); /* nefolosit */
+  --progress-tracker-supporting-text-color: var(--color-text-base-tertiary); /* nefolosit */
+  --progress-tracker-container-gap-horizontal: var(--spacing-12); /* nefolosit */
+  --progress-tracker-container-gap-vertical: var(--spacing-12); /* nefolosit */
+  --progress-tracker-container-label-gap: var(--spacing-8); /* nefolosit */
+  --progress-tracker-container-max-width: 996px; /* nefolosit */
+  --progress-tracker-container-vertical-step-min-height: 84px; /* nefolosit */
+  --progress-tracker-container-vertical-step-min-height-compact: 56px; /* nefolosit */
+  --progress-tracker-indicator-size: 24px; /* nefolosit */
+  --progress-tracker-indicator-border-width: var(--border-width-1-5); /* nefolosit */
+  --progress-tracker-indicator-border-radius: var(--border-radius-full); /* nefolosit */
+  --progress-tracker-indicator-background: var(--color-background-base-default); /* nefolosit */
+  --progress-tracker-indicator-transition-duration: 150ms; /* nefolosit */
+  --progress-tracker-indicator-transition-timing-function: ease-out; /* nefolosit */
+  --progress-tracker-connector-thickness: 1.5px; /* nefolosit */
+  --progress-tracker-connector-thickness-pending: 1px; /* nefolosit */
+  --progress-tracker-connector-min-length: 16px; /* nefolosit */
+  --progress-tracker-label-color: var(--color-text-base-secondary); /* nefolosit */
+  --progress-tracker-label-color-disabled: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --progress-tracker-pending-indicator-border: var(--color-border-base-secondary); /* nefolosit */
+  --progress-tracker-pending-indicator-text: var(--color-text-base-tertiary); /* contrast AA pe alb */ /* nefolosit */
+  --progress-tracker-pending-indicator-background: var(--color-background-base-default); /* nefolosit */
+  --progress-tracker-pending-connector: var(--color-border-base-secondary); /* nefolosit */
+  --progress-tracker-pending-label: var(--color-text-base-secondary); /* nefolosit */
+  --progress-tracker-current-indicator-border: var(--color-border-brand-default); /* nefolosit */
+  --progress-tracker-current-indicator-text: var(--color-text-brand-default); /* nefolosit */
+  --progress-tracker-current-indicator-background: var(--color-background-base-default); /* nefolosit */
+  --progress-tracker-current-connector: var(--color-border-brand-default); /* nefolosit */
+  --progress-tracker-current-label: var(--color-text-base-secondary); /* nefolosit */
+  --progress-tracker-current-label-font-weight: var(--font-weight-medium); /* nefolosit */
+  --progress-tracker-completed-indicator-border: var(--color-border-brand-default); /* nefolosit */
+  --progress-tracker-completed-indicator-text: var(--color-text-brand-inverse); /* nefolosit */
+  --progress-tracker-completed-indicator-background: var(--color-background-brand-default); /* nefolosit */
+  --progress-tracker-completed-connector: var(--color-border-brand-default); /* nefolosit */
+  --progress-tracker-completed-label: var(--color-text-base-secondary); /* nefolosit */
+  --progress-tracker-completed-label-actionable: var(--color-text-brand-default); /* nefolosit */
+  --progress-tracker-error-indicator-border: var(--color-border-danger-default); /* nefolosit */
+  --progress-tracker-error-indicator-text: var(--color-icon-danger-default); /* nefolosit */
+  --progress-tracker-error-indicator-background: var(--color-background-base-default); /* nefolosit */
+  --progress-tracker-error-connector: var(--color-border-danger-default); /* nefolosit */
+  --progress-tracker-error-label: var(--color-text-base-secondary); /* nefolosit */
+  --progress-tracker-available-indicator-border: var(--color-border-brand-default); /* nefolosit */
+  --progress-tracker-available-indicator-text: var(--color-text-brand-default); /* nefolosit */
+  --progress-tracker-available-indicator-background: var(--color-background-base-default); /* nefolosit */
+  --progress-tracker-available-label: var(--color-text-brand-default); /* nefolosit */
+  --progress-tracker-interactive-padding-inline: var(--spacing-2); /* nefolosit */
+  --progress-tracker-interactive-padding-block: var(--spacing-2); /* nefolosit */
+  --progress-tracker-interactive-border-radius: var(--border-radius-6); /* nefolosit */
+  --progress-tracker-interactive-hover-background: var(--color-background-base-secondary-hover); /* nefolosit */
+  --progress-tracker-interactive-disabled-indicator-border: var(--color-border-disabled-default); /* nefolosit */
+  --progress-tracker-interactive-disabled-indicator-text: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --progress-tracker-interactive-disabled-label: var(--color-text-disabled-on-disabled); /* nefolosit */
+  --progress-tracker-step-indicator-size: 24px; /* nefolosit */
+  --progress-tracker-step-indicator-gap: var(--spacing-12); /* nefolosit */
+  --progress-tracker-step-indicator-label-font-weight: var(--font-weight-medium); /* nefolosit */
+  --progress-tracker-step-indicator-label-color: var(--color-text-base-default); /* nefolosit */
+  --progress-tracker-step-indicator-supporting-text-color: var(--color-text-base-tertiary); /* nefolosit */
+
+  --cookie-banner-container-background: var(--color-background-base-default);
+  --cookie-banner-container-border: var(--color-border-base-default);
+  --cookie-banner-container-border-width: var(--border-width-1-5);
+  --cookie-banner-container-border-radius: var(--border-radius-16);
+  --cookie-banner-container-border-radius-mobile: var(--border-radius-12);
+  --cookie-banner-container-shadow-small: var(--drop-shadow-menu);
+  --cookie-banner-container-min-width: 280px; /* nefolosit */
+  --cookie-banner-container-max-width: 792px;
+  --cookie-banner-container-mobile-width: 359px; /* nefolosit */
+  --cookie-banner-container-padding-inline-desktop: var(--spacing-40);
+  --cookie-banner-container-padding-inline-mobile: var(--spacing-16);
+  --cookie-banner-container-padding-block-desktop: var(--spacing-20); /* nefolosit */
+  --cookie-banner-container-padding-block-mobile: var(--spacing-16); /* nefolosit */
+  --cookie-banner-container-edge-offset: var(--spacing-16); /* nefolosit */
+  --cookie-banner-container-edge-offset-mobile: var(--spacing-8); /* nefolosit */
+  --cookie-banner-container-stack-z-index: 1000;
+  --cookie-banner-header-padding-top: var(--spacing-20);
+  --cookie-banner-header-padding-top-mobile: var(--spacing-24); /* nefolosit */
+  --cookie-banner-header-padding-bottom: var(--spacing-0);
+  --cookie-banner-header-padding-inline-end-mobile: var(--spacing-12); /* nefolosit */
+  --cookie-banner-header-gap: var(--spacing-12); /* nefolosit */
+  --cookie-banner-title-font-family: var(--font-family-primary);
+  --cookie-banner-title-font-size: var(--font-size-20);
+  --cookie-banner-title-font-size-mobile: var(--font-size-22);
+  --cookie-banner-title-line-height: var(--line-height-28);
+  --cookie-banner-title-line-height-mobile: var(--line-height-30); /* nefolosit */
+  --cookie-banner-title-font-weight: var(--font-weight-semibold);
+  --cookie-banner-title-letter-spacing: -0.2px;
+  --cookie-banner-title-letter-spacing-mobile: -0.22px; /* nefolosit */
+  --cookie-banner-title-color: var(--color-text-base-default);
+  --cookie-banner-body-padding-top: var(--spacing-8);
+  --cookie-banner-body-padding-top-mobile: var(--spacing-16); /* nefolosit */
+  --cookie-banner-body-padding-bottom: var(--spacing-16);
+  --cookie-banner-body-gap: var(--spacing-16); /* nefolosit */
+  --cookie-banner-body-gap-expanded: var(--spacing-24); /* nefolosit */
+  --cookie-banner-body-font-family: var(--font-family-primary);
+  --cookie-banner-body-font-size: var(--font-size-14);
+  --cookie-banner-body-font-size-mobile: var(--font-size-16);
+  --cookie-banner-body-line-height: var(--line-height-20);
+  --cookie-banner-body-line-height-mobile: var(--line-height-24); /* nefolosit */
+  --cookie-banner-body-font-weight: var(--font-weight-regular);
+  --cookie-banner-body-color: var(--color-text-base-secondary);
+  --cookie-banner-footer-padding-top: var(--spacing-12);
+  --cookie-banner-footer-padding-bottom: var(--spacing-20);
+  --cookie-banner-footer-padding-bottom-mobile: var(--spacing-24);
+  --cookie-banner-footer-gap: var(--spacing-12);
+  --cookie-banner-close-size: 32px; /* nefolosit */
+  --cookie-banner-close-icon-size: 16px; /* nefolosit */
+  --cookie-banner-close-border-radius: var(--border-radius-full); /* nefolosit */
+  --cookie-banner-close-background: var(--color-background-base-tertiary); /* nefolosit */
+  --cookie-banner-close-background-hover: var(--color-background-base-tertiary-hover); /* nefolosit */
+  --cookie-banner-close-color: var(--color-text-base-secondary-on-color); /* nefolosit */
+  --cookie-banner-categories-background: var(--color-background-base-secondary); /* nefolosit */
+  --cookie-banner-categories-border-radius: var(--border-radius-12); /* nefolosit */
+  --cookie-banner-categories-padding-inline: var(--spacing-20); /* nefolosit */
+  --cookie-banner-categories-padding-top: var(--spacing-8); /* nefolosit */
+  --cookie-banner-categories-padding-bottom: var(--spacing-12); /* nefolosit */
+  --cookie-banner-categories-row-gap: var(--spacing-12); /* nefolosit */
+  --cookie-banner-category-padding-block: var(--spacing-12); /* nefolosit */
+  --cookie-banner-category-gap: var(--spacing-40); /* nefolosit */
+  --cookie-banner-category-gap-mobile: var(--spacing-16); /* nefolosit */
+  --cookie-banner-category-row-gap: var(--spacing-8); /* nefolosit */
+  --cookie-banner-category-header-gap: var(--spacing-16); /* nefolosit */
+  --cookie-banner-category-label-font-family: var(--font-family-primary); /* nefolosit */
+  --cookie-banner-category-label-font-size: var(--font-size-16); /* nefolosit */
+  --cookie-banner-category-label-line-height: var(--line-height-24); /* nefolosit */
+  --cookie-banner-category-label-font-weight: var(--font-weight-medium); /* nefolosit */
+  --cookie-banner-category-label-color: var(--color-text-base-default); /* nefolosit */
+  --cookie-banner-category-description-font-family: var(--font-family-primary); /* nefolosit */
+  --cookie-banner-category-description-font-size: var(--font-size-14); /* nefolosit */
+  --cookie-banner-category-description-line-height: var(--line-height-20); /* nefolosit */
+  --cookie-banner-category-description-font-weight: var(--font-weight-regular); /* nefolosit */
+  --cookie-banner-category-description-color: var(--color-text-base-tertiary); /* nefolosit */
+  --cookie-banner-category-required-icon-color: var(--color-icon-brand-default); /* nefolosit */
+  --cookie-banner-category-required-icon-size: 24px; /* nefolosit */
+}

@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Input
 status: stable
 group: Forms
-version: 1.0.0
+version: 1.1.0
 description: Single-line text input aligned with the MUD design system, supporting label, helper text, error state, icons, and multiple input types.
 
 # Props.

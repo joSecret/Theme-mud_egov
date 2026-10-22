@@ -1,6 +1,13 @@
+---
+title: Phone Input
+group: Forms
+version: 1.1.0
+css_prefix: phone-input
+---
+
 # Phone Input
 
-Phone number input (`type="tel"`) with an optional country code prefix pill. Aligned with `mud-phone-input` from the MUD design system.
+Phone number input (`type="tel"`) with an optional country code prefix pill. Aligned with the MUD Storybook phone input.
 
 No JavaScript — format validation and masking are left to the consumer or server side.
 
@@ -44,3 +51,27 @@ No JavaScript — format validation and masking are left to the consumer or serv
   phone_input_error_message: 'Phone number is invalid.',
 } only %}
 ```
+
+## CSS variables
+
+Defaults come from `--phone-input-*` in `css/defaults/forms.css`. To override in a specific context, set a public variable (empty by default) on the wrapper or an ancestor:
+
+| Variable | Controls |
+|---|---|
+| `--phone-input_h`, `--phone-input_lg_h` | Row height (md / lg) |
+| `--phone-input_p-i`, `--phone-input_lg_p-i` | Inline padding |
+| `--phone-input_f-s`, `--phone-input_lg_f-s` | Font size |
+| `--phone-input_bg` | Row background |
+| `--phone-input_b-c`, `--phone-input_b-c_f` | Border color (normal / focus) |
+| `--phone-input_bs_f` | Focus halo (box-shadow) |
+| `--phone-input_error_b-c`, `--phone-input_error_c` | Error border and message color |
+| `--phone-input_c`, `--phone-input_label_c`, `--phone-input_label_c_d` | Text, label and disabled label color |
+| `--phone-input_o_d` | Opacity when disabled |
+| `--phone-input_code_bg`, `--phone-input_code_b-c` | Country code prefix background and divider |
+
+## Accessibility
+
+- The label is bound to the field with `for`/`id`; the required asterisk is `aria-hidden` and the field gets `required` and `aria-required`.
+- Helper and error text are linked with `aria-describedby`; the error state sets `aria-invalid="true"` and the message has `role="alert"`.
+- Focus is shown on the row (`:focus-within`): thicker border plus the MUD halo, with a transparent outline that stays visible in forced-colors mode.
+- The country code prefix is `aria-hidden`; include the dial code in the label or helper text if it matters to screen reader users. The input uses `type="tel"` and `autocomplete="tel"`.

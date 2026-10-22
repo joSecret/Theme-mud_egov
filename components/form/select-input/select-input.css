@@ -1,161 +1,208 @@
 /**
- * Select Input Component Styles
- *
- * Native select/dropdown aligned with mud-select-input.
- * External tokens: --select-input_*
- * Internal tokens: --_select-input_*
+ * Select Input: <select> nativ cu săgeată proprie, pe variabilele --select-input-* din MUD JS.
+ * Implicit: md. Mărimi: lg. Stări: eroare, dezactivat. Selecția multiplă se afișează ca listă.
  */
-
 .c--select-input {
-  /* Variables — wrapper */
-  --_select-input_gap: var(--select-input_gap, var(--size_100));
-  --_select-input_m-b: var(--select-input_m-b, 0);
+  /* wrapper */
+  --_select-input_gap: var(--select-input_gap, var(--select-input-field-gap));
 
-  /* Variables — label */
-  --_select-input-label_f-s: var(--select-input-label_f-s, var(--f-s_sm));
-  --_select-input-label_f-w: var(--select-input-label_f-w, var(--f-w_semibold));
-  --_select-input-label_c: var(--select-input-label_c, var(--body_c));
+  /* label */
+  --_select-input_label_f-f: var(--select-input_label_f-f, var(--select-input-label-font-family));
+  --_select-input_label_f-s: var(--select-input_label_f-s, var(--select-input-label-font-size));
+  --_select-input_label_l-h: var(--select-input_label_l-h, var(--select-input-label-line-height));
+  --_select-input_label_f-w: var(--select-input_label_f-w, var(--select-input-label-font-weight));
+  --_select-input_label_gap: var(--select-input_label_gap, var(--select-input-label-gap));
+  --_select-input_label_c: var(--select-input_label_c, var(--select-input-label-color-default));
+  --_select-input_label_c_d: var(--select-input_label_c_d, var(--select-input-label-color-disabled));
 
-  /* Variables — required indicator */
-  --_select-input-required_c: var(--select-input-required_c, var(--c_danger));
-  --_select-input-required_m-i-s: var(--select-input-required_m-i-s, var(--size_50));
+  /* semnul obligatoriu */
+  --_select-input_required_f-s: var(--select-input_required_f-s, var(--select-input-label-required-mark-size));
+  --_select-input_required_c: var(--select-input_required_c, var(--select-input-label-required-mark-color));
 
-  /* Variables — control row */
-  --_select-input-control_pos: relative;
+  /* câmp */
+  --_select-input_h: var(--select-input_h, var(--select-input-container-height-md));
+  --_select-input_p-i: var(--select-input_p-i, var(--select-input-container-padding-inline-md));
+  --_select-input_chevron_gap: var(--select-input_chevron_gap, var(--select-input-container-gap-md));
+  --_select-input_b-r: var(--select-input_b-r, var(--select-input-container-border-radius));
+  --_select-input_b-w: var(--select-input_b-w, var(--select-input-container-border-width-default));
+  --_select-input_trn: var(--select-input_trn, var(--select-input-container-transition-duration) var(--select-input-container-transition-timing-function));
+  --_select-input_f-f: var(--select-input_f-f, var(--select-input-control-font-family));
+  --_select-input_f-s: var(--select-input_f-s, var(--select-input-control-font-size-md));
+  --_select-input_l-h: var(--select-input_l-h, var(--select-input-control-line-height-md));
+  --_select-input_f-w: var(--select-input_f-w, var(--select-input-control-font-weight));
+  --_select-input_c: var(--select-input_c, var(--select-input-default-text-default));
+  --_select-input_bg: var(--select-input_bg, var(--select-input-default-background-default));
+  --_select-input_b-c: var(--select-input_b-c, var(--select-input-default-border-default));
+  --_select-input_b-c_h: var(--select-input_b-c_h, var(--select-input-default-border-hover));
+  --_select-input_b-c_f: var(--select-input_b-c_f, var(--select-input-default-border-focus));
+  --_select-input_bs_f: var(--select-input_bs_f, 0 0 0 var(--select-input-container-focus-ring-width) var(--select-input-default-focus-ring));
 
-  /* Variables — field */
-  --_select-input-field_w: var(--select-input-field_w, 100%);
-  --_select-input-field_p-b: var(--select-input-field_p-b, var(--size_200));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s, var(--size_300));
-  --_select-input-field_p-i-e: var(--select-input-field_p-i-e, 2.5rem);
-  --_select-input-field_f-s: var(--select-input-field_f-s, var(--f-s_base));
-  --_select-input-field_l-h: var(--select-input-field_l-h, 1.5);
-  --_select-input-field_c: var(--select-input-field_c, var(--body_c));
-  --_select-input-field_bg: var(--select-input-field_bg, var(--c_white));
-  --_select-input-field_b-w: var(--select-input-field_b-w, var(--b-w, 1px));
-  --_select-input-field_b-c: var(--select-input-field_b-c, var(--c_gray_100, #d1d5db));
-  --_select-input-field_b-r: var(--select-input-field_b-r, 6px);
-  --_select-input-field_t-t: var(--select-input-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
+  /* dezactivat */
+  --_select-input_bg_d: var(--select-input_bg_d, var(--select-input-default-background-disabled));
+  --_select-input_b-c_d: var(--select-input_b-c_d, var(--select-input-default-border-disabled));
+  --_select-input_c_d: var(--select-input_c_d, var(--select-input-default-text-disabled));
 
-  /* Variables — field focus */
-  --_select-input-field_b-c_focus: var(--select-input-field_b-c_focus, var(--c_primary));
+  /* săgeată */
+  --_select-input_chevron_size: var(--select-input_chevron_size, var(--select-input-chevron-size-md));
+  --_select-input_chevron_inset: var(--select-input_chevron_inset, var(--select-input-container-padding-inline-md));
+  --_select-input_chevron_c: var(--select-input_chevron_c, var(--select-input-chevron-color-default));
+  --_select-input_chevron_c_d: var(--select-input_chevron_c_d, var(--select-input-chevron-color-disabled));
 
-  /* Variables — field error */
-  --_select-input-field_b-c_error: var(--select-input-field_b-c_error, var(--c_danger));
+  /* text ajutător */
+  --_select-input_assistive_f-f: var(--select-input_assistive_f-f, var(--select-input-assistive-font-family));
+  --_select-input_assistive_f-s: var(--select-input_assistive_f-s, var(--select-input-assistive-font-size));
+  --_select-input_assistive_l-h: var(--select-input_assistive_l-h, var(--select-input-assistive-line-height));
+  --_select-input_assistive_f-w: var(--select-input_assistive_f-w, var(--select-input-assistive-font-weight));
+  --_select-input_assistive_c: var(--select-input_assistive_c, var(--select-input-assistive-color-default));
 
-  /* Variables — chevron */
-  --_select-input-chevron_size: var(--select-input-chevron_size, 1rem);
-  --_select-input-chevron_c: var(--select-input-chevron_c, var(--c_muted));
-  --_select-input-chevron_p-i-e: var(--select-input-chevron_p-i-e, var(--size_300));
-
-  /* Variables — helper / error text */
-  --_select-input-helper_f-s: var(--select-input-helper_f-s, var(--f-s_sm));
-  --_select-input-helper_c: var(--select-input-helper_c, var(--c_muted));
-  --_select-input-error-msg_c: var(--select-input-error-msg_c, var(--c_danger));
+  /* eroare */
+  --_select-input_error_c: var(--select-input_error_c, var(--select-input-assistive-color-error));
+  --_select-input_error_b-c: var(--select-input_error_b-c, var(--select-input-destructive-border-default));
+  --_select-input_error_b-c_h: var(--select-input_error_b-c_h, var(--select-input-destructive-border-hover));
+  --_select-input_error_b-c_f: var(--select-input_error_b-c_f, var(--select-input-destructive-border-focus));
+  --_select-input_error_bs_f: var(--select-input_error_bs_f, 0 0 0 var(--select-input-container-focus-ring-width) var(--select-input-destructive-focus-ring));
 
   display: flex;
   flex-direction: column;
   gap: var(--_select-input_gap);
-  margin-block-end: var(--_select-input_m-b);
 
   .select-input-label {
-    display: block;
-    font-size: var(--_select-input-label_f-s);
-    font-weight: var(--_select-input-label_f-w);
-    color: var(--_select-input-label_c);
+    display: flex;
+    align-items: center;
+    gap: var(--_select-input_label_gap);
+    font-family: var(--_select-input_label_f-f);
+    font-size: var(--_select-input_label_f-s);
+    line-height: var(--_select-input_label_l-h);
+    font-weight: var(--_select-input_label_f-w);
+    color: var(--_select-input_label_c);
+  }
+
+  &.is-disabled .select-input-label {
+    color: var(--_select-input_label_c_d);
   }
 
   .select-input-required {
-    color: var(--_select-input-required_c);
-    margin-inline-start: var(--_select-input-required_m-i-s);
+    font-size: var(--_select-input_required_f-s);
+    color: var(--_select-input_required_c);
   }
 
   .select-input-control {
-    position: var(--_select-input-control_pos);
+    position: relative;
     display: flex;
     align-items: center;
   }
 
   .select-input-field {
-    width: var(--_select-input-field_w);
-    padding-block: var(--_select-input-field_p-b);
-    padding-inline-start: var(--_select-input-field_p-i-s);
-    padding-inline-end: var(--_select-input-field_p-i-e);
-    font-size: var(--_select-input-field_f-s);
-    line-height: var(--_select-input-field_l-h);
-    color: var(--_select-input-field_c);
-    background-color: var(--_select-input-field_bg);
-    border: var(--_select-input-field_b-w) solid var(--_select-input-field_b-c);
-    border-radius: var(--_select-input-field_b-r);
-    transition: var(--_select-input-field_t-t);
+    width: 100%;
+    height: var(--_select-input_h);
+    padding-inline: var(--_select-input_p-i) calc(var(--_select-input_chevron_inset) + var(--_select-input_chevron_size) + var(--_select-input_chevron_gap));
+    font-family: var(--_select-input_f-f);
+    font-size: var(--_select-input_f-s);
+    line-height: var(--_select-input_l-h);
+    font-weight: var(--_select-input_f-w);
+    color: var(--_select-input_c);
+    background-color: var(--_select-input_bg);
+    border: var(--_select-input_b-w) solid var(--_select-input_b-c);
+    border-radius: var(--_select-input_b-r);
+    transition:
+      border-color var(--_select-input_trn),
+      box-shadow var(--_select-input_trn);
     appearance: none;
     cursor: pointer;
 
-    &:focus {
-      border-color: var(--_select-input-field_b-c_focus);
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+    /* Listă (selecție multiplă): înălțimea o dă conținutul */
+    &[multiple] {
+      height: auto;
+      padding-block: var(--_select-input_chevron_gap);
+    }
+
+    &:hover:not(:disabled, :focus) {
+      border-color: var(--_select-input_b-c_h);
+    }
+
+    &:focus-visible {
+      border-color: var(--_select-input_b-c_f);
+      outline-color: transparent;
+      box-shadow: var(--_select-input_bs_f);
     }
 
     &:disabled {
-      opacity: 0.6;
+      background-color: var(--_select-input_bg_d);
+      border-color: var(--_select-input_b-c_d);
+      color: var(--_select-input_c_d);
       cursor: not-allowed;
     }
   }
 
-  /* Native chevron replacement */
+  /* Săgeată: înlocuiește săgeata nativă */
   .select-input-chevron {
     position: absolute;
-    inset-inline-end: var(--_select-input-chevron_p-i-e);
+    inset-inline-end: var(--_select-input_chevron_inset);
     display: flex;
     align-items: center;
     pointer-events: none;
-    color: var(--_select-input-chevron_c);
+    color: var(--_select-input_chevron_c);
 
     &::after {
       content: '';
       display: block;
-      width: var(--_select-input-chevron_size);
-      height: var(--_select-input-chevron_size);
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+      width: var(--_select-input_chevron_size);
+      height: var(--_select-input_chevron_size);
+      background-color: currentColor;
+      mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / contain no-repeat;
     }
   }
 
+  .select-input-field:disabled + .select-input-chevron {
+    color: var(--_select-input_chevron_c_d);
+  }
+
   .select-input-helper-text {
-    font-size: var(--_select-input-helper_f-s);
-    color: var(--_select-input-helper_c);
     margin: 0;
+    font-family: var(--_select-input_assistive_f-f);
+    font-size: var(--_select-input_assistive_f-s);
+    line-height: var(--_select-input_assistive_l-h);
+    font-weight: var(--_select-input_assistive_f-w);
+    color: var(--_select-input_assistive_c);
   }
 
   .select-input-error-message {
-    font-size: var(--_select-input-helper_f-s);
-    color: var(--_select-input-error-msg_c);
     margin: 0;
+    font-family: var(--_select-input_assistive_f-f);
+    font-size: var(--_select-input_assistive_f-s);
+    line-height: var(--_select-input_assistive_l-h);
+    font-weight: var(--_select-input_assistive_f-w);
+    color: var(--_select-input_error_c);
   }
 }
 
-/* Error state */
+/* === Eroare === */
 .c--select-input.select-input-error .select-input-field {
-  border-color: var(--_select-input-field_b-c_error);
+  border-color: var(--_select-input_error_b-c);
 
-  &:focus {
-    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
+  &:hover:not(:disabled, :focus) {
+    border-color: var(--_select-input_error_b-c_h);
+  }
+
+  &:focus-visible {
+    border-color: var(--_select-input_error_b-c_f);
+    box-shadow: var(--_select-input_error_bs_f);
   }
 }
 
-/* Size — md (explicit, same as default) */
-.c--select-input.c--select-input--md {
-  --_select-input-field_p-b: var(--select-input-field_p-b--md, var(--size_200));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--md, var(--size_300));
-  --_select-input-field_f-s: var(--select-input-field_f-s--md, var(--f-s_base));
+/* === Mărimi === */
+.c--select-input.c--select-input--lg {
+  --_select-input_h: var(--select-input_lg_h, var(--select-input-container-height-lg));
+  --_select-input_p-i: var(--select-input_lg_p-i, var(--select-input-container-padding-inline-lg));
+  --_select-input_chevron_gap: var(--select-input_chevron_lg_gap, var(--select-input-container-gap-lg));
+  --_select-input_f-s: var(--select-input_lg_f-s, var(--select-input-control-font-size-lg));
+  --_select-input_l-h: var(--select-input_lg_l-h, var(--select-input-control-line-height-lg));
+  --_select-input_chevron_size: var(--select-input_chevron_lg_size, var(--select-input-chevron-size-lg));
+  --_select-input_chevron_inset: var(--select-input_chevron_lg_inset, var(--select-input-container-padding-inline-lg));
 }
 
-/* Size — lg */
-.c--select-input.c--select-input--lg {
-  --_select-input-field_p-b: var(--select-input-field_p-b--lg, var(--size_300));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--lg, var(--size_400));
-  --_select-input-field_f-s: var(--select-input-field_f-s--lg, 1.125rem);
+@media (prefers-reduced-motion: reduce) {
+  .c--select-input .select-input-field {
+    transition: none;
+  }
 }

@@ -1,6 +1,13 @@
+---
+title: Numeric Input
+group: Forms
+version: 1.1.0
+css_prefix: numeric-input
+---
+
 # Numeric Input
 
-Numeric entry field with optional increment/decrement stepper controls. Aligned with the `mud-numeric-input` component from the MUD design system.
+Numeric entry field with optional increment/decrement stepper controls. Aligned with the MUD Storybook numeric input.
 
 Uses native `<input type="number">` for broad browser support and accessibility.
 
@@ -50,3 +57,27 @@ Uses native `<input type="number">` for broad browser support and accessibility.
   numeric_input_error_message: 'Please enter a valid amount.',
 } only %}
 ```
+
+## CSS variables
+
+Defaults come from `--numeric-input-*` in `css/defaults/forms.css`. To override in a specific context, set a public variable (empty by default) on the wrapper or an ancestor:
+
+| Variable | Controls |
+|---|---|
+| `--numeric-input_h`, `--numeric-input_lg_h` | Row height (md / lg) |
+| `--numeric-input_p-i`, `--numeric-input_lg_p-i` | Inline padding |
+| `--numeric-input_f-s`, `--numeric-input_lg_f-s` | Font size |
+| `--numeric-input_bg` | Row background |
+| `--numeric-input_b-c`, `--numeric-input_b-c_f` | Border color (normal / focus) |
+| `--numeric-input_bs_f` | Focus halo (box-shadow) |
+| `--numeric-input_error_b-c`, `--numeric-input_error_c` | Error border and message color |
+| `--numeric-input_c`, `--numeric-input_label_c`, `--numeric-input_label_c_d` | Text, label and disabled label color |
+| `--numeric-input_o_d` | Opacity when disabled |
+| `--numeric-input_step_c`, `--numeric-input_step_c_h`, `--numeric-input_step_bg_h` | Stepper icon color and hover colors |
+
+## Accessibility
+
+- The label is bound to the field with `for`/`id`; the required asterisk is `aria-hidden` and the field gets `required` and `aria-required`.
+- Helper and error text are linked with `aria-describedby`; the error state sets `aria-invalid="true"` and the message has `role="alert"`.
+- Focus is shown on the row (`:focus-within`): thicker border plus the MUD halo, with a transparent outline that stays visible in forced-colors mode.
+- Steppers are mouse-only helpers (`aria-hidden`, `tabindex="-1"`); keyboard and assistive technology users change the value with the native number input (arrow keys, typing).

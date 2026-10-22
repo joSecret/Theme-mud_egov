@@ -1,6 +1,13 @@
+---
+title: Textarea
+group: Forms
+version: 1.1.0
+css_prefix: textarea
+---
+
 # Textarea
 
-Multi-line text input aligned with `mud-textarea`. Renders a native `<textarea>` with label, helper text, error state, configurable rows, and resize control.
+Multi-line text input aligned with the MUD Storybook textarea. Renders a native `<textarea>` with label, helper text, error state, configurable rows, and resize control.
 
 ## Usage
 
@@ -56,3 +63,25 @@ Multi-line text input aligned with `mud-textarea`. Renders a native `<textarea>`
 | `textarea_resize` | string\|null | null | vertical \| none \| horizontal \| both |
 | `textarea_uc` | array | [] | Extra CSS classes on the wrapper |
 | `textarea_att` | Attribute\|null | null | Extra HTML attributes on the wrapper |
+
+## CSS variables
+
+Defaults come from `--textarea-*` and `--input-*` in `css/defaults/forms.css`. To override in a specific context, set a public variable (empty by default) on the wrapper or an ancestor:
+
+| Variable | Controls |
+|---|---|
+| `--textarea_p-b`, `--textarea_lg_p-b` | Block padding (md / lg) |
+| `--textarea_p-i`, `--textarea_lg_p-i` | Inline padding |
+| `--textarea_f-s`, `--textarea_lg_f-s` | Font size |
+| `--textarea_bg`, `--textarea_bg_d`, `--textarea_readonly_bg` | Background (normal / disabled / read-only) |
+| `--textarea_b-c`, `--textarea_b-c_h`, `--textarea_b-c_f`, `--textarea_b-c_d` | Border color (normal / hover / focus / disabled) |
+| `--textarea_error_b-c`, `--textarea_error_bs_f`, `--textarea_error_c` | Error border, focus ring and message color |
+| `--textarea_c`, `--textarea_placeholder_c` | Text and placeholder color |
+| `--textarea_label_c`, `--textarea_label_c_d` | Label color (normal / disabled) |
+
+## Accessibility
+
+- The label is bound to the field with `for`/`id`; the required asterisk is `aria-hidden` and the field gets `required` and `aria-required`.
+- Helper and error text are linked with `aria-describedby`; the error state sets `aria-invalid="true"` and the message has `role="alert"`.
+- Keyboard focus shows the MUD focus halo on `:focus-visible`; the outline stays transparent (visible in forced-colors mode).
+- Keep resizing enabled (default `vertical`) unless the layout requires otherwise, so users can enlarge the field.

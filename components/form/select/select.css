@@ -1,102 +1,116 @@
 /**
- * Select Component Styles
- *
- * Dropdown select field with label and help text.
+ * Select: <select> nativ cu etichetă și text ajutător, pe variabilele --select-* din MUD JS.
+ * Implicit: md. Mărimi: sm, lg. Eticheta vine din componenta label.
  */
-
 .c--select {
-  /* Variables — wrapper */
-  --_select_gap: var(--select_gap, var(--size_100));
+  /* wrapper */
+  --_select_gap: var(--select_gap, var(--select-field-gap));
   --_select_m-b: var(--select_m-b, var(--spacer));
 
-  /* Variables — label */
-  --_select-label_f-s: var(--select-label_f-s, var(--f-s_sm));
-  --_select-label_f-w: var(--select-label_f-w, var(--f-w_semibold));
-  --_select-label_c: var(--select-label_c, var(--body_c));
-  --_select-label_m-b: var(--select-label_m-b, var(--size_100));
+  /* câmp */
+  --_select_h: var(--select_h, var(--select-container-height-medium));
+  --_select_p-i: var(--select_p-i, var(--select-container-padding-inline-medium));
+  --_select_list_p-b: var(--select_list_p-b, var(--spacing-8));
+  --_select_b-r: var(--select_b-r, var(--select-container-border-radius));
+  --_select_b-w: var(--select_b-w, var(--select-container-border-width-default));
+  --_select_trn: var(--select_trn, var(--select-container-transition-duration) var(--select-container-transition-timing-function));
+  --_select_f-f: var(--select_f-f, var(--select-control-font-family));
+  --_select_f-s: var(--select_f-s, var(--select-control-font-size-medium));
+  --_select_l-h: var(--select_l-h, var(--select-control-line-height-medium));
+  --_select_f-w: var(--select_f-w, var(--select-control-font-weight));
+  --_select_c: var(--select_c, var(--select-default-text-default));
+  --_select_bg: var(--select_bg, var(--select-default-background-default));
+  --_select_b-c: var(--select_b-c, var(--select-default-border-default));
+  --_select_b-c_h: var(--select_b-c_h, var(--select-default-border-hover));
+  --_select_b-c_f: var(--select_b-c_f, var(--select-default-border-focus));
+  --_select_bs_f: var(--select_bs_f, 0 0 0 var(--select-container-focus-ring-width) var(--select-default-focus-ring));
 
-  /* Variables — field */
-  --_select-field_p-b: var(--select-field_p-b, var(--size_200));
-  --_select-field_p-i: var(--select-field_p-i, var(--size_300));
-  --_select-field_f-s: var(--select-field_f-s, var(--f-s_base));
-  --_select-field_c: var(--select-field_c, var(--body_c));
-  --_select-field_bg: var(--select-field_bg, var(--c_white));
-  --_select-field_b-w: var(--select-field_b-w, var(--b-w));
-  --_select-field_b-c: var(--select-field_b-c, var(--b-c));
-  --_select-field_b-r: var(--select-field_b-r, var(--b-r));
-  --_select-field_t-t: var(--select-field_t-t, var(--t--b));
+  /* dezactivat */
+  --_select_bg_d: var(--select_bg_d, var(--select-default-background-disabled));
+  --_select_b-c_d: var(--select_b-c_d, var(--select-default-border-disabled));
+  --_select_c_d: var(--select_c_d, var(--select-default-text-disabled));
 
-  /* Variables — field focus */
-  --_select-field_b-c_focus: var(--select-field_b-c_focus, var(--c_primary));
-
-  /* Variables — required indicator */
-  --_select-required_c: var(--select-required_c, var(--c_danger));
-  --_select-required_m-i-s: var(--select-required_m-i-s, var(--size_50));
-
-  /* Variables — description */
-  --_select-desc_f-s: var(--select-desc_f-s, var(--f-s_sm));
-  --_select-desc_c: var(--select-desc_c, var(--c_muted));
-  --_select-desc_m-b-s: var(--select-desc_m-b-s, var(--size_100));
+  /* descriere */
+  --_select_desc_f-f: var(--select_desc_f-f, var(--select-assistive-font-family));
+  --_select_desc_f-s: var(--select_desc_f-s, var(--select-assistive-font-size));
+  --_select_desc_l-h: var(--select_desc_l-h, var(--select-assistive-line-height));
+  --_select_desc_f-w: var(--select_desc_f-w, var(--select-assistive-font-weight));
+  --_select_desc_c: var(--select_desc_c, var(--select-assistive-color-default));
 
   display: flex;
   flex-direction: column;
   gap: var(--_select_gap);
   margin-block-end: var(--_select_m-b);
 
-  .select-label {
-    display: block;
-    font-size: var(--_select-label_f-s);
-    font-weight: var(--_select-label_f-w);
-    color: var(--_select-label_c);
-    margin-block-end: var(--_select-label_m-b);
-  }
-
-  .select-required {
-    color: var(--_select-required_c);
-    margin-inline-start: var(--_select-required_m-i-s);
-  }
-
   .select-field {
     display: block;
     width: 100%;
-    padding-block: var(--_select-field_p-b);
-    padding-inline: var(--_select-field_p-i);
-    font-size: var(--_select-field_f-s);
-    color: var(--_select-field_c);
-    background-color: var(--_select-field_bg);
-    border: var(--_select-field_b-w) solid var(--_select-field_b-c);
-    border-radius: var(--_select-field_b-r);
-    transition: var(--_select-field_t-t);
+    height: var(--_select_h);
+    padding-inline: var(--_select_p-i);
+    font-family: var(--_select_f-f);
+    font-size: var(--_select_f-s);
+    line-height: var(--_select_l-h);
+    font-weight: var(--_select_f-w);
+    color: var(--_select_c);
+    background-color: var(--_select_bg);
+    border: var(--_select_b-w) solid var(--_select_b-c);
+    border-radius: var(--_select_b-r);
+    transition:
+      border-color var(--_select_trn),
+      box-shadow var(--_select_trn);
     cursor: pointer;
 
-    &:focus {
-      border-color: var(--_select-field_b-c_focus);
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+    /* Listă (selecție multiplă sau size): înălțimea o dă conținutul */
+    &[multiple],
+    &[size] {
+      height: auto;
+      padding-block: var(--_select_list_p-b);
+    }
+
+    &:hover:not(:disabled, :focus) {
+      border-color: var(--_select_b-c_h);
+    }
+
+    &:focus-visible {
+      border-color: var(--_select_b-c_f);
+      outline-color: transparent;
+      box-shadow: var(--_select_bs_f);
     }
 
     &:disabled {
-      opacity: 0.6;
+      background-color: var(--_select_bg_d);
+      border-color: var(--_select_b-c_d);
+      color: var(--_select_c_d);
       cursor: not-allowed;
     }
   }
 
   .select-description {
-    font-size: var(--_select-desc_f-s);
-    color: var(--_select-desc_c);
-    margin-block-start: var(--_select-desc_m-b-s);
+    font-family: var(--_select_desc_f-f);
+    font-size: var(--_select_desc_f-s);
+    line-height: var(--_select_desc_l-h);
+    font-weight: var(--_select_desc_f-w);
+    color: var(--_select_desc_c);
   }
 }
 
-/* Variations */
+/* === Mărimi === */
 .c--select.has-size_sm {
-  --_select-field_p-b: var(--select-field_p-b--sm, var(--size_100));
-  --_select-field_p-i: var(--select-field_p-i--sm, var(--size_200));
-  --_select-field_f-s: var(--select-field_f-s--sm, var(--f-s_sm));
+  --_select_h: var(--select_sm_h, var(--spacing-32));
+  --_select_p-i: var(--select_sm_p-i, var(--spacing-8));
+  --_select_f-s: var(--select_sm_f-s, var(--font-size-12));
+  --_select_l-h: var(--select_sm_l-h, var(--line-height-16));
 }
 
 .c--select.has-size_lg {
-  --_select-field_p-b: var(--select-field_p-b--lg, var(--size_300));
-  --_select-field_p-i: var(--select-field_p-i--lg, var(--size_400));
-  --_select-field_f-s: var(--select-field_f-s--lg, 1.25rem);
+  --_select_h: var(--select_lg_h, var(--select-container-height-large));
+  --_select_p-i: var(--select_lg_p-i, var(--select-container-padding-inline-large));
+  --_select_f-s: var(--select_lg_f-s, var(--select-control-font-size-large));
+  --_select_l-h: var(--select_lg_l-h, var(--select-control-line-height-large));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--select .select-field {
+    transition: none;
+  }
 }

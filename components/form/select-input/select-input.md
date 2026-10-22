@@ -1,6 +1,13 @@
+---
+title: Select Input
+group: Forms
+version: 1.1.0
+css_prefix: select-input
+---
+
 # Select Input
 
-Native select/dropdown input aligned with `mud-select-input`. Renders a styled native `<select>` with label, helper text, error state, placeholder, and optional multiple selection.
+Native select/dropdown input aligned with the MUD Storybook select input. Renders a styled native `<select>` with label, helper text, error state, placeholder, and optional multiple selection.
 
 ## Usage
 
@@ -67,3 +74,25 @@ Native select/dropdown input aligned with `mud-select-input`. Renders a styled n
 | `select_input_size` | string\|null | null | md \| lg |
 | `select_input_uc` | array | [] | Extra CSS classes on the wrapper |
 | `select_input_att` | Attribute\|null | null | Extra HTML attributes on the wrapper |
+
+## CSS variables
+
+Defaults come from `--select-input-*` in `css/defaults/forms.css`. To override in a specific context, set a public variable (empty by default) on the wrapper or an ancestor:
+
+| Variable | Controls |
+|---|---|
+| `--select-input_h`, `--select-input_lg_h` | Field height (md / lg) |
+| `--select-input_p-i`, `--select-input_lg_p-i` | Inline start padding |
+| `--select-input_f-s`, `--select-input_lg_f-s` | Font size |
+| `--select-input_bg`, `--select-input_bg_d` | Background (normal / disabled) |
+| `--select-input_b-c`, `--select-input_b-c_h`, `--select-input_b-c_f`, `--select-input_b-c_d` | Border color (normal / hover / focus / disabled) |
+| `--select-input_error_b-c`, `--select-input_error_bs_f`, `--select-input_error_c` | Error border, focus ring and message color |
+| `--select-input_chevron_c`, `--select-input_chevron_c_d` | Chevron color (normal / disabled) |
+| `--select-input_label_c`, `--select-input_label_c_d` | Label color (normal / disabled) |
+
+## Accessibility
+
+- The control is a native `<select>`: keyboard, screen reader and mobile pickers work without extra scripting. The chevron is decorative (`aria-hidden`).
+- The label is bound with `for`/`id`; the required asterisk is `aria-hidden` and the field gets `required` and `aria-required`.
+- Helper and error text are linked with `aria-describedby`; the error state sets `aria-invalid="true"` and the message has `role="alert"`.
+- Keyboard focus shows the MUD focus halo on `:focus-visible`; the outline stays transparent (visible in forced-colors mode).

@@ -1,128 +1,178 @@
 /**
- * Textarea Component Styles
- *
- * Multi-line text input aligned with mud-textarea.
- * External tokens: --textarea_*
- * Internal tokens: --_textarea_*
+ * Textarea: câmp text pe mai multe linii, pe variabilele --textarea-* și --input-* din MUD JS
+ * (MUD folosește aceleași tokenuri de câmp ca la input). Implicit: md. Mărimi: lg.
  */
-
 .c--textarea {
-  /* Variables — wrapper */
-  --_textarea_gap: var(--textarea_gap, var(--size_100));
-  --_textarea_m-b: var(--textarea_m-b, 0);
+  /* wrapper */
+  --_textarea_gap: var(--textarea_gap, var(--input-field-gap));
 
-  /* Variables — label */
-  --_textarea-label_f-s: var(--textarea-label_f-s, var(--f-s_sm));
-  --_textarea-label_f-w: var(--textarea-label_f-w, var(--f-w_semibold));
-  --_textarea-label_c: var(--textarea-label_c, var(--body_c));
+  /* label */
+  --_textarea_label_f-f: var(--textarea_label_f-f, var(--input-label-font-family));
+  --_textarea_label_f-s: var(--textarea_label_f-s, var(--input-label-font-size));
+  --_textarea_label_l-h: var(--textarea_label_l-h, var(--input-label-line-height));
+  --_textarea_label_f-w: var(--textarea_label_f-w, var(--textarea-label-font-weight));
+  --_textarea_label_gap: var(--textarea_label_gap, var(--input-label-gap));
+  --_textarea_label_c: var(--textarea_label_c, var(--input-label-color-default));
+  --_textarea_label_c_d: var(--textarea_label_c_d, var(--input-label-color-disabled));
 
-  /* Variables — required indicator */
-  --_textarea-required_c: var(--textarea-required_c, var(--c_danger));
-  --_textarea-required_m-i-s: var(--textarea-required_m-i-s, var(--size_50));
+  /* semnul obligatoriu */
+  --_textarea_required_f-s: var(--textarea_required_f-s, var(--input-label-required-mark-size));
+  --_textarea_required_c: var(--textarea_required_c, var(--input-label-required-mark-color));
 
-  /* Variables — field */
-  --_textarea-field_w: var(--textarea-field_w, 100%);
-  --_textarea-field_p-b: var(--textarea-field_p-b, var(--size_200));
-  --_textarea-field_p-i: var(--textarea-field_p-i, var(--size_300));
-  --_textarea-field_f-s: var(--textarea-field_f-s, var(--f-s_base));
-  --_textarea-field_l-h: var(--textarea-field_l-h, 1.5);
-  --_textarea-field_c: var(--textarea-field_c, var(--body_c));
-  --_textarea-field_bg: var(--textarea-field_bg, var(--c_white));
-  --_textarea-field_b-w: var(--textarea-field_b-w, var(--b-w, 1px));
-  --_textarea-field_b-c: var(--textarea-field_b-c, var(--c_gray_100, #d1d5db));
-  --_textarea-field_b-r: var(--textarea-field_b-r, 6px);
-  --_textarea-field_t-t: var(--textarea-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
+  /* câmp */
+  --_textarea_p-b: var(--textarea_p-b, var(--textarea-container-padding-block-md));
+  --_textarea_p-i: var(--textarea_p-i, var(--input-container-padding-inline-md));
+  --_textarea_b-r: var(--textarea_b-r, var(--input-container-border-radius));
+  --_textarea_b-w: var(--textarea_b-w, var(--input-container-border-width-default));
+  --_textarea_trn: var(--textarea_trn, var(--input-container-transition-duration) var(--input-container-transition-timing-function));
+  --_textarea_f-f: var(--textarea_f-f, var(--input-control-font-family));
+  --_textarea_f-s: var(--textarea_f-s, var(--input-control-font-size-md));
+  --_textarea_l-h: var(--textarea_l-h, var(--input-control-line-height-md));
+  --_textarea_f-w: var(--textarea_f-w, var(--input-control-font-weight));
+  --_textarea_c: var(--textarea_c, var(--input-default-text-default));
+  --_textarea_placeholder_c: var(--textarea_placeholder_c, var(--input-default-text-placeholder));
+  --_textarea_bg: var(--textarea_bg, var(--input-default-background-default));
+  --_textarea_b-c: var(--textarea_b-c, var(--input-default-border-default));
+  --_textarea_b-c_h: var(--textarea_b-c_h, var(--input-default-border-hover));
+  --_textarea_b-c_f: var(--textarea_b-c_f, var(--input-default-border-focus));
+  --_textarea_bs_f: var(--textarea_bs_f, 0 0 0 var(--input-container-focus-ring-width) var(--input-default-focus-ring));
 
-  /* Variables — field focus */
-  --_textarea-field_b-c_focus: var(--textarea-field_b-c_focus, var(--c_primary));
+  /* dezactivat */
+  --_textarea_bg_d: var(--textarea_bg_d, var(--input-default-background-disabled));
+  --_textarea_b-c_d: var(--textarea_b-c_d, var(--input-default-border-disabled));
+  --_textarea_c_d: var(--textarea_c_d, var(--input-default-text-disabled));
 
-  /* Variables — field error */
-  --_textarea-field_b-c_error: var(--textarea-field_b-c_error, var(--c_danger));
+  /* read-only */
+  --_textarea_readonly_bg: var(--textarea_readonly_bg, var(--input-default-background-read-only));
+  --_textarea_readonly_b-c: var(--textarea_readonly_b-c, var(--input-default-border-read-only));
 
-  /* Variables — helper / error text */
-  --_textarea-helper_f-s: var(--textarea-helper_f-s, var(--f-s_sm));
-  --_textarea-helper_c: var(--textarea-helper_c, var(--c_muted));
-  --_textarea-error-msg_c: var(--textarea-error-msg_c, var(--c_danger));
+  /* text ajutător */
+  --_textarea_assistive_f-f: var(--textarea_assistive_f-f, var(--input-assistive-font-family));
+  --_textarea_assistive_f-s: var(--textarea_assistive_f-s, var(--input-assistive-font-size));
+  --_textarea_assistive_l-h: var(--textarea_assistive_l-h, var(--input-assistive-line-height));
+  --_textarea_assistive_f-w: var(--textarea_assistive_f-w, var(--input-assistive-font-weight));
+  --_textarea_assistive_c: var(--textarea_assistive_c, var(--input-assistive-color-default));
+
+  /* eroare */
+  --_textarea_error_c: var(--textarea_error_c, var(--input-assistive-color-error));
+  --_textarea_error_b-c: var(--textarea_error_b-c, var(--input-destructive-border-default));
+  --_textarea_error_b-c_h: var(--textarea_error_b-c_h, var(--input-destructive-border-hover));
+  --_textarea_error_b-c_f: var(--textarea_error_b-c_f, var(--input-destructive-border-focus));
+  --_textarea_error_bs_f: var(--textarea_error_bs_f, 0 0 0 var(--input-container-focus-ring-width) var(--input-destructive-focus-ring));
 
   display: flex;
   flex-direction: column;
   gap: var(--_textarea_gap);
-  margin-block-end: var(--_textarea_m-b);
 
   .textarea-label {
-    display: block;
-    font-size: var(--_textarea-label_f-s);
-    font-weight: var(--_textarea-label_f-w);
-    color: var(--_textarea-label_c);
+    display: flex;
+    align-items: center;
+    gap: var(--_textarea_label_gap);
+    font-family: var(--_textarea_label_f-f);
+    font-size: var(--_textarea_label_f-s);
+    line-height: var(--_textarea_label_l-h);
+    font-weight: var(--_textarea_label_f-w);
+    color: var(--_textarea_label_c);
+  }
+
+  &.is-disabled .textarea-label {
+    color: var(--_textarea_label_c_d);
   }
 
   .textarea-required {
-    color: var(--_textarea-required_c);
-    margin-inline-start: var(--_textarea-required_m-i-s);
+    font-size: var(--_textarea_required_f-s);
+    color: var(--_textarea_required_c);
   }
 
   .textarea-field {
     display: block;
-    width: var(--_textarea-field_w);
-    padding-block: var(--_textarea-field_p-b);
-    padding-inline: var(--_textarea-field_p-i);
-    font-size: var(--_textarea-field_f-s);
-    line-height: var(--_textarea-field_l-h);
-    color: var(--_textarea-field_c);
-    background-color: var(--_textarea-field_bg);
-    border: var(--_textarea-field_b-w) solid var(--_textarea-field_b-c);
-    border-radius: var(--_textarea-field_b-r);
-    transition: var(--_textarea-field_t-t);
+    width: 100%;
+    padding-block: var(--_textarea_p-b);
+    padding-inline: var(--_textarea_p-i);
+    font-family: var(--_textarea_f-f);
+    font-size: var(--_textarea_f-s);
+    line-height: var(--_textarea_l-h);
+    font-weight: var(--_textarea_f-w);
+    color: var(--_textarea_c);
+    background-color: var(--_textarea_bg);
+    border: var(--_textarea_b-w) solid var(--_textarea_b-c);
+    border-radius: var(--_textarea_b-r);
+    transition:
+      border-color var(--_textarea_trn),
+      box-shadow var(--_textarea_trn);
     resize: vertical;
+    appearance: none;
 
-    &:focus {
-      border-color: var(--_textarea-field_b-c_focus);
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+    &::placeholder {
+      color: var(--_textarea_placeholder_c);
+    }
+
+    &:hover:not(:disabled, :read-only, :focus) {
+      border-color: var(--_textarea_b-c_h);
+    }
+
+    &:focus-visible {
+      border-color: var(--_textarea_b-c_f);
+      outline-color: transparent;
+      box-shadow: var(--_textarea_bs_f);
     }
 
     &:disabled {
-      opacity: 0.6;
+      background-color: var(--_textarea_bg_d);
+      border-color: var(--_textarea_b-c_d);
+      color: var(--_textarea_c_d);
       cursor: not-allowed;
     }
 
     &:read-only {
-      background-color: color-mix(in oklch, var(--_textarea-field_bg), transparent 20%);
+      background-color: var(--_textarea_readonly_bg);
+      border-color: var(--_textarea_readonly_b-c);
     }
   }
 
   .textarea-helper-text {
-    font-size: var(--_textarea-helper_f-s);
-    color: var(--_textarea-helper_c);
     margin: 0;
+    font-family: var(--_textarea_assistive_f-f);
+    font-size: var(--_textarea_assistive_f-s);
+    line-height: var(--_textarea_assistive_l-h);
+    font-weight: var(--_textarea_assistive_f-w);
+    color: var(--_textarea_assistive_c);
   }
 
   .textarea-error-message {
-    font-size: var(--_textarea-helper_f-s);
-    color: var(--_textarea-error-msg_c);
     margin: 0;
+    font-family: var(--_textarea_assistive_f-f);
+    font-size: var(--_textarea_assistive_f-s);
+    line-height: var(--_textarea_assistive_l-h);
+    font-weight: var(--_textarea_assistive_f-w);
+    color: var(--_textarea_error_c);
   }
 }
 
-/* Error state */
+/* === Eroare === */
 .c--textarea.textarea-error .textarea-field {
-  border-color: var(--_textarea-field_b-c_error);
+  border-color: var(--_textarea_error_b-c);
 
-  &:focus {
-    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
+  &:hover:not(:disabled, :read-only, :focus) {
+    border-color: var(--_textarea_error_b-c_h);
+  }
+
+  &:focus-visible {
+    border-color: var(--_textarea_error_b-c_f);
+    box-shadow: var(--_textarea_error_bs_f);
   }
 }
 
-/* Size — md (explicit, same as default) */
-.c--textarea.c--textarea--md {
-  --_textarea-field_p-b: var(--textarea-field_p-b--md, var(--size_200));
-  --_textarea-field_p-i: var(--textarea-field_p-i--md, var(--size_300));
-  --_textarea-field_f-s: var(--textarea-field_f-s--md, var(--f-s_base));
+/* === Mărimi === */
+.c--textarea.c--textarea--lg {
+  --_textarea_p-b: var(--textarea_lg_p-b, var(--textarea-container-padding-block-lg));
+  --_textarea_p-i: var(--textarea_lg_p-i, var(--input-container-padding-inline-lg));
+  --_textarea_f-s: var(--textarea_lg_f-s, var(--input-control-font-size-lg));
+  --_textarea_l-h: var(--textarea_lg_l-h, var(--input-control-line-height-lg));
 }
 
-/* Size — lg */
-.c--textarea.c--textarea--lg {
-  --_textarea-field_p-b: var(--textarea-field_p-b--lg, var(--size_300));
-  --_textarea-field_p-i: var(--textarea-field_p-i--lg, var(--size_400));
-  --_textarea-field_f-s: var(--textarea-field_f-s--lg, 1.125rem);
+@media (prefers-reduced-motion: reduce) {
+  .c--textarea .textarea-field {
+    transition: none;
+  }
 }

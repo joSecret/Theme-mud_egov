@@ -8,7 +8,7 @@
   /* Variables — main */
   --_layoutFn_d: var(--layoutFn_d, grid);
   --_layoutFn_f-d: var(--layoutFn_f-d, column);
-  --_layoutFn_gap: var(--layoutFn_gap, var(--gap));
+  --_layoutFn_gap: var(--layoutFn_gap, var(--spacing-16));
 
   /* Variables — banner */
   --_layoutFn-banner_m-b: var(--layoutFn-banner_m-b, 0px);
@@ -16,14 +16,14 @@
   /* Variables — content */
 
   /* Variables — main */
-  --_layoutFn-main_p-b: var(--layoutFn-main_p-b, var(--size_600));
+  --_layoutFn-main_p-b: var(--layoutFn-main_p-b, var(--spacing-24));
   --_layoutFn-main_p-i: var(--layoutFn-main_p-i, 0px);
 
   /* Variables — sidebar */
-  --_layoutFn-sidebar_p-b: var(--layoutFn-sidebar_p-b, var(--size_1300) 0px);
+  --_layoutFn-sidebar_p-b: var(--layoutFn-sidebar_p-b, var(--spacing-48) 0px);
   --_layoutFn-sidebar_p-i: var(--layoutFn-sidebar_p-i, 0px);
-  --_layoutFn-sidebar_b-w: var(--layoutFn-sidebar_b-w, var(--b-w));
-  --_layoutFn-sidebar_b-c: var(--layoutFn-sidebar_b-c, var(--b-c));
+  --_layoutFn-sidebar_b-w: var(--layoutFn-sidebar_b-w, var(--border-width-1));
+  --_layoutFn-sidebar_b-c: var(--layoutFn-sidebar_b-c, var(--color-border-base-default));
 
   container-name: layoutFn;
   container-type: inline-size;

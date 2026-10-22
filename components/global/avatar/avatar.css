@@ -119,13 +119,13 @@
 }
 
 .avatar-secondary {
-  --_avatar_bg: var(--color-background-secondary-default);
+  --_avatar_bg: var(--color-background-base-secondary);
   --_avatar_c: var(--color-text-base-default);
   --_avatar_icon-c: var(--color-text-base-default);
 }
 
 .avatar-success {
-  --_avatar_bg: var(--color-background-success-default);
+  --_avatar_bg: var(--color-background-positive-default);
   --_avatar_c: var(--palette-white-1000);
   --_avatar_icon-c: var(--palette-white-1000);
 }
@@ -143,7 +143,7 @@
 }
 
 .avatar-info {
-  --_avatar_bg: var(--color-background-info-default);
+  --_avatar_bg: var(--color-background-brand-default);
   --_avatar_c: var(--palette-white-1000);
   --_avatar_icon-c: var(--palette-white-1000);
 }

@@ -3,18 +3,18 @@
 .c--timelineItem {
   --_timelineItem_gap: var(--timelineItem_gap, 20px);
   --_timelineItem_content_m-w: var(--timelineItem_content_m-w, 1000px);
-  --_timelineItem_year_c: var(--timelineItem_year_c, var(--body-c));
+  --_timelineItem_year_c: var(--timelineItem_year_c, var(--color-text-base-default));
   --_timelineItem_year_f-w: var(--timelineItem_year_f-w, 400);
   --_timelineItem_year_f-s: var(--timelineItem_year_f-s, 16px);
 
-  --_timelineItem_title_c: var(--timelineItem_title_c, var(--c_primary_500));
+  --_timelineItem_title_c: var(--timelineItem_title_c, var(--palette-blue-sky-500));
 
-  --_timelineItem_description_c: var(--timelineItem_description_c, var(--body-c));
+  --_timelineItem_description_c: var(--timelineItem_description_c, var(--color-text-base-default));
 
   --_timelineItem_node_w: var(--timelineItem_node_w, 58px);
   --_timelineItem_node_m-b-e: var(--timelineItem_node_m-b-e, calc(var(--_grid_gap) * -1));
   --_timelineItem_node_b-w: var(--timelineItem_node_b-w, 3px);
-  --_timelineItem_node_b-c: var(--timelineItem_node_b-c, var(--c_primary_500));
+  --_timelineItem_node_b-c: var(--timelineItem_node_b-c, var(--palette-blue-sky-500));
   --_timelineItem_node_m-b-s: var(--timelineItem_node_m-b-s, 0px);
   --_timelineItem_node_m-b-e: var(--timelineItem_node_m-b-e, calc(var(--_grid_gap) * -1));
 
@@ -113,8 +113,8 @@
     }
 
 .c--timelineItem.is-highlighted {
-    --timelineItem_node_highlighted_c: var(--c_white);
-    --timelineItem_node_highlighted_bg: var(--c_primary_700);
+    --timelineItem_node_highlighted_c: var(--palette-white-1000);
+    --timelineItem_node_highlighted_bg: var(--palette-blue-sky-700);
     --timelineItem_node_highlighted_b-r: 0.5rem;
     --timelineItem_node_highlighted_s: 1.875rem;
     --timelineItem_node_highlighted_i-i-s: 3.125rem;
@@ -166,7 +166,7 @@
 .timelineItem-dot {
   width: var(--_timelineItem_dot_s);
   height: var(--_timelineItem_dot_s);
-  background-color: var(--c_white);
+  background-color: var(--palette-white-1000);
   border-radius: 50%;
   border: var(--timelineItem_dot_b-w, var(--_timelineItem_node_b-w)) solid var(--_timelineItem_node_b-c);
   inset-block: var(--timelineItem_dot_i-b-s, 0px) var(--timelineItem_dot_i-b-e, auto);

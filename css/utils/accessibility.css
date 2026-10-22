@@ -9,7 +9,7 @@
   white-space: nowrap;
   border-width: 0;
 
-  &.focusable:focus,
+  &.focusable:focus-visible,
   &.focusable:active {
     position: static;
     width: auto;

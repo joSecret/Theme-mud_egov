@@ -8,7 +8,7 @@
   display: block;
   margin-top: var(--description-margin-top, 0.25rem);
   font-size: var(--description-font-size, 0.875em);
-  color: var(--description-color, var(--c_fg-muted));
+  color: var(--description-color, var(--color-text-base-secondary));
   line-height: var(--description-line-height, 1.5);
 }
 

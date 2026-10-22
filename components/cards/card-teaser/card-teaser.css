@@ -1,8 +1,8 @@
 .c--cardTeaser {
-  --_cardTeaser-title_c: var(--cardTeaser-title_c, var(--body_c));
-  --_cardTeaser_c_h: var(--cardTeaser_c_h, var(--c_white));
-  --_cardTeaser-icon_c: var(--cardTeaser-icon_c, var(--body_c));
-  --_cardTeaser-icon_c_h: var(--cardTeaser-icon_c_h, var(--c_primary));
+  --_cardTeaser-title_c: var(--cardTeaser-title_c, var(--color-text-base-default));
+  --_cardTeaser_c_h: var(--cardTeaser_c_h, var(--palette-white-1000));
+  --_cardTeaser-icon_c: var(--cardTeaser-icon_c, var(--color-text-base-default));
+  --_cardTeaser-icon_c_h: var(--cardTeaser-icon_c_h, var(--color-text-brand-default));
 
   --cardTeaser_t-t: 0.2s;
   --_cardTeaser-imgWrapper_h: var(--cardTeaser-imgWrapper_h, 200px);
@@ -12,7 +12,7 @@
   --_cardTeaser-content_f-w: var(--cardTeaser-content_f-w, 300);
   --_cardTeaser-content_p-i: var(--cardTeaser-content_p-i, 24px);
 
-  --_cardTeaser-link_c: var(--cardTeaser-link_c, var(--c_fg));
+  --_cardTeaser-link_c: var(--cardTeaser-link_c, var(--color-text-base-default));
   --_cardTeaser-link_gap: var(--cardTeaser-link_gap, 4px);
   --_cardTeaser-link_f-s: var(--cardTeaser-link_f-s, 15px);
   --_cardTeaser-link_f-w: var(--cardTeaser-link_f-w, 400);

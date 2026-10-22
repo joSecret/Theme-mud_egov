@@ -14,7 +14,7 @@
   --notification_close-s: initial;
 
   /* Internal resolved properties */
-  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-brand-default)));
   --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
   --_notification_b-r: var(--notification_b-r, var(--notification-container-border-radius, 8px));
   --_notification_w: var(--notification_w, var(--notification-container-width));
@@ -112,12 +112,12 @@
    ============================================================ */
 
 .notification-info {
-  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_notification_bg: var(--notification_bg, var(--notification-info-background, var(--color-background-brand-default)));
   --_notification_c: var(--notification_c, var(--notification-info-text, #fff));
 }
 
 .notification-success {
-  --_notification_bg: var(--notification_bg, var(--notification-success-background, var(--color-background-success-default, #12b76a)));
+  --_notification_bg: var(--notification_bg, var(--notification-success-background, var(--color-background-positive-default)));
   --_notification_c: var(--notification_c, var(--notification-success-text, #fff));
 }
 
@@ -137,12 +137,12 @@
 
 .notification-emphasis-subtle {
   &.notification-info {
-    --_notification_bg: color-mix(in srgb, var(--color-background-info-default, #0ba5ec) 10%, transparent);
+    --_notification_bg: color-mix(in srgb, var(--color-background-brand-default) 10%, transparent);
     --_notification_c: var(--color-text-info, #0058d2);
   }
 
   &.notification-success {
-    --_notification_bg: color-mix(in srgb, var(--color-background-success-default, #12b76a) 10%, transparent);
+    --_notification_bg: color-mix(in srgb, var(--color-background-positive-default) 10%, transparent);
     --_notification_c: var(--color-text-success, #027a48);
   }
 

@@ -5,10 +5,10 @@
   font-size: var(--_h-fs);
   margin-top: 0;
   font-family: var(--h_f-f, var(--font-family_base));
-  font-style: var(--h_f-style);
+  font-style: var(--h_f-st, normal);
   font-weight: var(--h_f-w);
   line-height: var(--h_l-h, 1.444);
-  color: var(--h-c);
+  color: var(--h_c, inherit);
 
   &:first-child {
     margin-block-start: 0;
@@ -57,10 +57,9 @@
 }
 
 .lead {
-  --f-s_lead: calc(var(--f-s_base) * .125);
   --lead-font-weight: 300;
 
-  font-size: var(--f-s_lead);
+  font-size: var(--lead_f-s, var(--font-size-20));
   font-weight: var(--lead-font-weight);
 }
 
@@ -80,12 +79,12 @@ p {
 }
 
 :where(small, .small) {
-  font-size: var(--f-s_sm);
+  font-size: var(--font-size_sm);
 }
 
 :where(mark, .mark) {
   padding: var(--mark-padding, 0.1875em);
-  background-color: var(--highlight-bg, var(--c_gray_200));
+  background-color: var(--highlight-bg, var(--color-background-base-tertiary));
 }
 
 :where(sub, sup) {
@@ -117,7 +116,7 @@ sup {
 
   margin: 0;
   margin-block-end: var(--blockquote_m-b-e);
-  font-size: var(--blockquote-font-size);
+  font-size: var(--_blockquote_f-s);
 
   & > :last-child {
     margin-bottom: 0;
@@ -126,7 +125,7 @@ sup {
 
 .blockquote-footer {
   --blockquote-footer_f-s: var(--font-size_sm);
-  --blockquote-footer_c: var(--c_gray);
+  --blockquote-footer_c: var(--color-text-base-secondary);
 
   margin-top: calc(var(--blockquote_m-b-e) * -1);
   margin-bottom: var(--blockquote_m-b-e);

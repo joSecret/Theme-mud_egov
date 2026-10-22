@@ -1,14 +1,14 @@
 .card {
   --_card_s: var(--card_s, 0px);
   --_card_gap: var(--card_gap, 0px);
-  --_card_c: var(--card_c, var(--body_c));
+  --_card_c: var(--card_c, var(--color-text-base-default));
   --_card_f-w: var(--card_f-w, normal);
   --_card_pb: var(--card_pb, var(--_card_s));
   --_card_pi: var(--card_pi, var(--_card_s));
-  --_card_bg: var(--card_bg, var(--c_gray_ultralight));
-  --_card_br: var(--card_br, var(--b-r));
-  --_card_bw: var(--card_bw, var(--b-w));
-  --_card_bc: var(--card_bc, var(--b-c));
+  --_card_bg: var(--card_bg, var(--palette-gray-50));
+  --_card_br: var(--card_br, var(--border-radius-8));
+  --_card_bw: var(--card_bw, var(--border-width-1));
+  --_card_bc: var(--card_bc, var(--color-border-base-default));
   --_card_f-d: var(--card_f-d, column);
 
   --_card-cap_bg: var(
@@ -19,7 +19,7 @@
   --_card-cap_pb: var(--card-cap_pb, var(--_card_s));
   --_card-cap_pi: var(--card-cap_pi, var(--_card_s));
 
-  --_card-title_c: var(--card-title_c, var(--c_primary_700));
+  --_card-title_c: var(--card-title_c, var(--palette-blue-sky-700));
   --_card-subtitle_c: var(--_card-subtitle_c, var(--_card_c));
   --card-title-spacer-y: 0.5rem;
 
@@ -192,7 +192,7 @@
   flex-wrap: wrap;
   gap: 1.25rem;
   font-size: 0.875rem;
-  color: var(--c_fg-muted);
+  color: var(--color-text-base-secondary);
 }
 
 .card-title {
@@ -208,7 +208,7 @@
 }
 
 .card-link {
-  --link_c: var(--c_highlight);
+  --link_c: var(--color-text-brand-default);
   --btn-bg_h: transparent;
   --btn-fs: 0.75rem;
   --btn-c_h: var(--_card_bc);

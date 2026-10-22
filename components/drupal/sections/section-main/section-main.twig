@@ -36,6 +36,8 @@
 
 {#- Render component -#}
 <main {{ section_main_att.addClass(section_main_classes)}}>
+  {#- Ținta linkului „Salt la conținut” din html.html.twig (core). -#}
+  <a id="main-content" tabindex="-1"></a>
   {{- page.hero -}}
 
   {% block slot_highlighted %}

@@ -2,7 +2,7 @@
 
 :where(html) {
   /* Font */
-  --font-family_base: "Onest";
+  --font-family_base: var(--font-family-primary);
 
   --h_f-w: var(--font-weight-medium);
   --h1_font-size: clamp(32px, calc(29.091px + 0.909vw), 40px);
@@ -19,15 +19,9 @@
   --h5_margin-bottom: 16px;
   --h6_margin-bottom: 0px;
 
-  --font-size_lg: var(--font-size_4);
-  --font-size: var(--font-size_3);
-  --font-size_sm: var(--font-size_2);
-
-  --display-font-size-display: var(--font-size_10);
-  --display-font-size_md: var(--font-size_9);
-
-  --caption-font-size: var(--font-size_2);
-  --caption-font-size_sm: var(--font-size_1);
+  --font-size_lg: var(--font-size-18);
+  --font-size: var(--font-size-16);
+  --font-size_sm: var(--font-size-14);
 
   --gutter: 16px;
   --spacer: 1rem;

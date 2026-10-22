@@ -13,7 +13,7 @@
   --_field_m-b: var(--field_m-b, 0);
 
   /* Variables — label */
-  --_field-label_f-w: var(--field-label_f-w, var(--f-w_bold));
+  --_field-label_f-w: var(--field-label_f-w, var(--font-weight-bold));
   --_field-label_f-s: var(--field-label_f-s, inherit);
   --_field-label_c: var(--field-label_c, inherit);
   --_field-label_m-b: var(--field-label_m-b, 4px);

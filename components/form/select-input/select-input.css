@@ -8,50 +8,50 @@
 
 .c--select-input {
   /* Variables — wrapper */
-  --_select-input_gap: var(--select-input_gap, var(--size_100));
+  --_select-input_gap: var(--select-input_gap, var(--spacing-4));
   --_select-input_m-b: var(--select-input_m-b, 0);
 
   /* Variables — label */
-  --_select-input-label_f-s: var(--select-input-label_f-s, var(--f-s_sm));
-  --_select-input-label_f-w: var(--select-input-label_f-w, var(--f-w_semibold));
-  --_select-input-label_c: var(--select-input-label_c, var(--body_c));
+  --_select-input-label_f-s: var(--select-input-label_f-s, var(--font-size-14));
+  --_select-input-label_f-w: var(--select-input-label_f-w, var(--font-weight-semibold));
+  --_select-input-label_c: var(--select-input-label_c, var(--color-text-base-default));
 
   /* Variables — required indicator */
-  --_select-input-required_c: var(--select-input-required_c, var(--c_danger));
-  --_select-input-required_m-i-s: var(--select-input-required_m-i-s, var(--size_50));
+  --_select-input-required_c: var(--select-input-required_c, var(--color-text-danger-default));
+  --_select-input-required_m-i-s: var(--select-input-required_m-i-s, var(--spacing-2));
 
   /* Variables — control row */
   --_select-input-control_pos: relative;
 
   /* Variables — field */
   --_select-input-field_w: var(--select-input-field_w, 100%);
-  --_select-input-field_p-b: var(--select-input-field_p-b, var(--size_200));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s, var(--size_300));
+  --_select-input-field_p-b: var(--select-input-field_p-b, var(--spacing-8));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s, var(--spacing-12));
   --_select-input-field_p-i-e: var(--select-input-field_p-i-e, 2.5rem);
-  --_select-input-field_f-s: var(--select-input-field_f-s, var(--f-s_base));
+  --_select-input-field_f-s: var(--select-input-field_f-s, var(--font-size-16));
   --_select-input-field_l-h: var(--select-input-field_l-h, 1.5);
-  --_select-input-field_c: var(--select-input-field_c, var(--body_c));
-  --_select-input-field_bg: var(--select-input-field_bg, var(--c_white));
-  --_select-input-field_b-w: var(--select-input-field_b-w, var(--b-w, 1px));
-  --_select-input-field_b-c: var(--select-input-field_b-c, var(--c_gray_100, #d1d5db));
+  --_select-input-field_c: var(--select-input-field_c, var(--color-text-base-default));
+  --_select-input-field_bg: var(--select-input-field_bg, var(--palette-white-1000));
+  --_select-input-field_b-w: var(--select-input-field_b-w, var(--border-width-1));
+  --_select-input-field_b-c: var(--select-input-field_b-c, var(--color-border-base-default));
   --_select-input-field_b-r: var(--select-input-field_b-r, 6px);
-  --_select-input-field_t-t: var(--select-input-field_t-t, var(--t--b, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out));
+  --_select-input-field_t-t: var(--select-input-field_t-t, none);
 
   /* Variables — field focus */
-  --_select-input-field_b-c_focus: var(--select-input-field_b-c_focus, var(--c_primary));
+  --_select-input-field_b-c_focus: var(--select-input-field_b-c_focus, var(--color-border-brand-default));
 
   /* Variables — field error */
-  --_select-input-field_b-c_error: var(--select-input-field_b-c_error, var(--c_danger));
+  --_select-input-field_b-c_error: var(--select-input-field_b-c_error, var(--color-border-danger-default));
 
   /* Variables — chevron */
   --_select-input-chevron_size: var(--select-input-chevron_size, 1rem);
-  --_select-input-chevron_c: var(--select-input-chevron_c, var(--c_muted));
-  --_select-input-chevron_p-i-e: var(--select-input-chevron_p-i-e, var(--size_300));
+  --_select-input-chevron_c: var(--select-input-chevron_c, var(--color-text-base-secondary));
+  --_select-input-chevron_p-i-e: var(--select-input-chevron_p-i-e, var(--spacing-12));
 
   /* Variables — helper / error text */
-  --_select-input-helper_f-s: var(--select-input-helper_f-s, var(--f-s_sm));
-  --_select-input-helper_c: var(--select-input-helper_c, var(--c_muted));
-  --_select-input-error-msg_c: var(--select-input-error-msg_c, var(--c_danger));
+  --_select-input-helper_f-s: var(--select-input-helper_f-s, var(--font-size-14));
+  --_select-input-helper_c: var(--select-input-helper_c, var(--color-text-base-secondary));
+  --_select-input-error-msg_c: var(--select-input-error-msg_c, var(--color-text-danger-default));
 
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@
     &:focus {
       border-color: var(--_select-input-field_b-c_focus);
       outline: 0;
-      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_primary), transparent 75%);
+      box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--color-background-brand-default), transparent 75%);
     }
 
     &:disabled {
@@ -142,20 +142,20 @@
   border-color: var(--_select-input-field_b-c_error);
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--c_danger), transparent 75%);
+    box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--color-background-danger-default), transparent 75%);
   }
 }
 
 /* Size — md (explicit, same as default) */
 .c--select-input.c--select-input--md {
-  --_select-input-field_p-b: var(--select-input-field_p-b--md, var(--size_200));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--md, var(--size_300));
-  --_select-input-field_f-s: var(--select-input-field_f-s--md, var(--f-s_base));
+  --_select-input-field_p-b: var(--select-input-field_p-b--md, var(--spacing-8));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--md, var(--spacing-12));
+  --_select-input-field_f-s: var(--select-input-field_f-s--md, var(--font-size-16));
 }
 
 /* Size — lg */
 .c--select-input.c--select-input--lg {
-  --_select-input-field_p-b: var(--select-input-field_p-b--lg, var(--size_300));
-  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--lg, var(--size_400));
+  --_select-input-field_p-b: var(--select-input-field_p-b--lg, var(--spacing-12));
+  --_select-input-field_p-i-s: var(--select-input-field_p-i-s--lg, var(--spacing-16));
   --_select-input-field_f-s: var(--select-input-field_f-s--lg, 1.125rem);
 }

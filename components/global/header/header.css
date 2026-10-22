@@ -9,7 +9,7 @@
   --_header_b-b: var(--header_b-b, none);
   --_header_z: var(--header_z, 100);
   --_header_p-b: var(--header_p-b, 0px);
-  --_header_p-i: var(--header_p-i, var(--size_600, 24px));
+  --_header_p-i: var(--header_p-i, var(--spacing-24));
   --_header_shadow: var(--header_shadow, 0 1px 4px rgba(0 0 0 / 0.08));
 
   /* Pre-header */
@@ -20,7 +20,7 @@
 
   /* Bar */
   --_header_bar_h: var(--header_bar_h, 64px);
-  --_header_bar_gap: var(--header_bar_gap, var(--size_400, 16px));
+  --_header_bar_gap: var(--header_bar_gap, var(--spacing-16));
 
   /* Styles */
   background: var(--_header_bg);
@@ -79,7 +79,7 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: var(--header_actions_gap, var(--size_200, 8px));
+  gap: var(--header_actions_gap, var(--spacing-8));
 }
 
 .c--header__mobile-menu {

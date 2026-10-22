@@ -7,8 +7,8 @@
 .c--fieldIcon {
   /* Variables — main component */
   --_fieldIcon_gap: var(--fieldIcon_gap, 8px);
-  --_fieldIcon_c: var(--fieldIcon_c, var(--body_c));
-  --_fieldIcon_f-w: var(--fieldIcon_f-w, var(--f-w_light));
+  --_fieldIcon_c: var(--fieldIcon_c, var(--color-text-base-default));
+  --_fieldIcon_f-w: var(--fieldIcon_f-w, var(--font-weight-regular));
   --_fieldIcon_p-b: var(--fieldIcon_p-b, 0px);
 
   /* Variables — icon */

@@ -7,12 +7,12 @@
   --_footer_f-s: var(--footer_f-s, inherit);
   --_footer_l-h: var(--footer_l-h, inherit);
   --_footer_c: var(--footer_c, var(--footer-container-color));
-  --_footer_p-b: var(--footer_p-b, var(--size_1600) var(--size_1300));
+  --_footer_p-b: var(--footer_p-b, var(--spacing-64) var(--spacing-48));
   --_footer_p-i: var(--footer_p-i, 0px);
-  --_footer_gap: var(--footer_gap, var(--size_24));
+  --_footer_gap: var(--footer_gap, var(--spacing-24));
 
   --nav_link_c: var(--_footer_c);
-  --nav_link_c_h: var(--c_gray_500);
+  --nav_link_c_h: var(--palette-gray-500);
 
   --block_p: 0px;
   --block-label_c: var(--_footer_c);

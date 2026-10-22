@@ -163,7 +163,7 @@
    ============================================================ */
 
 .banner-info.banner-strong {
-  --_banner_bg: var(--banner_bg, var(--banner-strong-info-background, var(--color-background-info-default, #0ba5ec)));
+  --_banner_bg: var(--banner_bg, var(--banner-strong-info-background, var(--color-background-brand-default)));
   --_banner_c: var(--banner_c, var(--banner-strong-info-text, #fff));
 }
 

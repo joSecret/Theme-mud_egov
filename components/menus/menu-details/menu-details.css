@@ -1,38 +1,55 @@
+/**
+ * Menu details: meniu principal cu sub-meniuri pe <details>.
+ * Mobil: acordeon cu înălțime animată. Desktop (container body > 768px): bară orizontală
+ * cu panouri derulante și indicator de element activ.
+ */
 .c--menu-details {
   --_menu-details_m: var(--menu-details_m, 0);
   --_menu-details_p: var(--menu-details_p, 0);
-  --_menu-details_t: var(--menu-details_t, 300ms ease);
+  --_menu-details_trn: var(--menu-details_trn, 300ms ease);
 
-  /* Menu Ul */
-  --_menu-details_ul_d: flex;
-  --_menu-details_ul_f-d: column;
-  --_menu-details_ul_gap: var(--menu-details_ul_gap, 4px);
+  /* Liste */
+  --_menu-details_ul_d: var(--menu-details_ul_d, flex);
+  --_menu-details_ul_f-d: var(--menu-details_ul_f-d, column);
+  --_menu-details_ul_gap: var(--menu-details_ul_gap, var(--spacing-4));
   --_menu-details_ul_m: var(--menu-details_ul_m, 0);
   --_menu-details_ul_p: var(--menu-details_ul_p, 0);
+  --_menu-details_ul_o: var(--menu-details_ul_o, 0);
+  --_menu-details_ul_o_s: var(--menu-details_ul_o_s, 1);
 
-  /* Menu item */
+  /* Element (legătură sau summary) */
+  --_menu-details_item_d: var(--menu-details_item_d, flex);
+  --_menu-details_item_j-c: var(--menu-details_item_j-c, space-between);
+  --_menu-details_item_a-i: var(--menu-details_item_a-i, center);
+  --_menu-details_item_gap: var(--menu-details_item_gap, var(--spacing-6));
+  --_menu-details_item_w: var(--menu-details_item_w, 100%);
+  --_menu-details_item_w-s: var(--menu-details_item_w-s, normal);
+  --_menu-details_item_p-b: var(--menu-details_item_p-b, var(--spacing-12));
+  --_menu-details_item_p-i: var(--menu-details_item_p-i, var(--spacing-16));
   --_menu-details_item_c: var(--menu-details_item_c, var(--header-nav-item-color));
-  --_menu-details_item_c_a: var(--menu-details_item_c_a, var(--header-nav-item-active-color));
+  --_menu-details_item_c_h: var(--menu-details_item_c_h, currentcolor);
+  --_menu-details_item_c_s: var(--menu-details_item_c_s, var(--menu-item-text-selected));
   --_menu-details_item_bg: var(--menu-details_item_bg, transparent);
-  --_menu-details_item_bg_a: var(--menu-details_item_bg_a, var(--header-nav-item-active-background));
-  --_menu-details_item_p-b: var(--menu-details_item_p-b, 12px);
-  --_menu-details_item_p-i: var(--menu-details_item_p-i, 16px);
+  --_menu-details_item_bg_h: var(--menu-details_item_bg_h, transparent);
+  --_menu-details_item_bg_s: var(--menu-details_item_bg_s, transparent);
+  --_menu-details_item_trail_bg: var(--menu-details_item_trail_bg, var(--header-nav-item-hover-background));
 
-  /* panel (dropdown) */
-  --_menu-details_panel_shadow: var(--menu-details_panel_shadow, var(--menu-panel-shadow));
+  /* Pictograma de deschidere */
+  --_menu-details_item_icon_w: var(--menu-details_item_icon_w, 20px);
+  --_menu-details_item_icon_tr: var(--menu-details_item_icon_tr, 0deg);
 
-  /* layout — mobile defaults */
-  --_menu-details_item_w-s: normal;
-  --_menu-details_item_w: 100%;
+  /* Panou derulant (desktop) */
+  --_menu-details_panel_bg: var(--menu-details_panel_bg, var(--menu-panel-background));
+  --_menu-details_panel_b-r: var(--menu-details_panel_b-r, var(--menu-panel-border-radius));
+  --_menu-details_panel_bs: var(--menu-details_panel_bs, var(--menu-panel-shadow));
+  --_menu-details_panel_m-w: var(--menu-details_panel_m-w, var(--menu-panel-min-inline-size));
+  --_menu-details_panel_mx-w: var(--menu-details_panel_mx-w, var(--menu-panel-max-block-size));
 
-  /* dropdown — mobile defaults */
-  --_menu-details_dropdown_b-r: 0;
-  --_menu-details_dropdown_shadow: none;
-
-  /* active / open state */
-  --_menu-details_c_a: var(--menu-details_active_c, var(--color-text-brand-default));
-  --_menu-details_active_indicator_c: var(--menu-details_active_indicator_c, var(--color-text-brand-default));
-  --_menu-details_active_indicator_h: var(--menu-details_active_indicator_h, 3px);
+  /* Indicatorul elementului activ (desktop) */
+  --_menu-details_indicator_c: var(--menu-details_indicator_c, var(--color-text-brand-default));
+  --_menu-details_indicator_h: var(--menu-details_indicator_h, 3px);
+  --_menu-details_indicator_w: var(--menu-details_indicator_w, 0);
+  --_menu-details_indicator_w_s: var(--menu-details_indicator_w_s, 100%);
 
   display: grid;
   margin: var(--_menu-details_m);
@@ -53,23 +70,23 @@
   }
 
   .menu-item {
-    display: flex;
+    display: var(--_menu-details_item_d);
     text-decoration: none;
-    justify-content: var(--_menu-details_item_j-c, space-between);
-    gap: var(--_menu-details_item_gap, 6px);
-    align-items: var(--_menu-details_item_a-i, center);
+    justify-content: var(--_menu-details_item_j-c);
+    gap: var(--_menu-details_item_gap);
+    align-items: var(--_menu-details_item_a-i);
     width: var(--_menu-details_item_w);
     padding-block: var(--_menu-details_item_p-b);
     padding-inline: var(--_menu-details_item_p-i);
     color: var(--_menu-details_item_c);
     background: var(--_menu-details_item_bg);
     white-space: var(--_menu-details_item_w-s);
-    transition: background-color var(--_menu-details_t), color var(--_menu-details_t);
+    transition: background-color var(--_menu-details_trn), color var(--_menu-details_trn);
 
     svg {
-      transition: rotate var(--_menu-details_t);
-      rotate: var(--menu-details_item_icon_r, 0deg);
-      flex: 0 0 var(--menu-details_item_icon_w, 20px);
+      transition: rotate var(--_menu-details_trn);
+      rotate: var(--_menu-details_item_icon_tr);
+      flex: 0 0 var(--_menu-details_item_icon_w);
       height: auto;
     }
 
@@ -78,13 +95,13 @@
     }
 
     &:hover {
-      --_menu-details_item_c: var(--menu-details_item_c_h);
-      --_menu-details_item_bg: var(--menu-details_item_bg_h);
+      --_menu-details_item_c: var(--_menu-details_item_c_h);
+      --_menu-details_item_bg: var(--_menu-details_item_bg_h);
     }
 
     &.is-active {
-      --_menu-details_item_c: var(--menu-details_item_c_a, var(--menu-item-text-selected));
-      --_menu-details_item_bg: var(--menu-details_item_bg_a);
+      --_menu-details_item_c: var(--_menu-details_item_c_s);
+      --_menu-details_item_bg: var(--_menu-details_item_bg_s);
     }
   }
 
@@ -100,34 +117,34 @@
 
   & details {
     &[open] {
-      --menu-details_item_icon_r: -180deg;
+      --_menu-details_item_icon_tr: var(--menu-details_item_icon_tr_s, -180deg);
     }
   }
 
   @container body (width <= 768px) {
     .is-link_active-trail > details > summary,
     .is-link_active-trail > .menu-item {
-      --_menu-details_item_bg: var(--header-nav-item-hover-background);
-      --menu-details_item_bg_h: var(--header-nav-item-hover-background);
+      --_menu-details_item_bg: var(--_menu-details_item_trail_bg);
+      --_menu-details_item_bg_h: var(--_menu-details_item_trail_bg);
     }
 
     details {
       &[open] {
         & > summary {
-          --_menu-details_item_bg: var(--header-nav-item-hover-background);
-          --menu-details_item_bg_h: var(--header-nav-item-hover-background);
+          --_menu-details_item_bg: var(--_menu-details_item_trail_bg);
+          --_menu-details_item_bg_h: var(--_menu-details_item_trail_bg);
         }
       }
 
       & > ul {
-        --_menu-details_item_p-i: 32px 16px;
+        --_menu-details_item_p-i: var(--menu-details_sub_item_p-i, var(--spacing-32) var(--spacing-16));
       }
 
       /* smooth animation for height transition on details content */
       &::details-content {
         height: 0;
         overflow: clip;
-        transition: height var(--_menu-details_t), content-visibility var(--_menu-details_t) allow-discrete;
+        transition: height var(--_menu-details_trn), content-visibility var(--_menu-details_trn) allow-discrete;
       }
 
       &[open]::details-content {
@@ -144,10 +161,10 @@
   }
 
   @container body (768px < width) {
-    --_menu-details_ul_f-d: row;
-    --menu-details_item_icon_w: 16px;
-    --_menu-details_item_p-b: var(--menu-details_item_md_p-b, 24px);
-    --menu-details_item_bg_h: var(--menu-item-background-hover);
+    --_menu-details_ul_f-d: var(--menu-details_ul_f-d, row);
+    --_menu-details_item_icon_w: var(--menu-details_item_icon_w, 16px);
+    --_menu-details_item_p-b: var(--menu-details_item_p-b, var(--spacing-24));
+    --_menu-details_item_bg_h: var(--menu-details_item_bg_h, var(--menu-item-background-hover));
 
     & > ul > li > .menu-item,
     & > ul > li > details > .menu-item {
@@ -156,79 +173,92 @@
         position: absolute;
         inset-block-end: -1px;
         inset-inline-start: 0;
-        height: var(--_menu-details_active_indicator_h);
-        width: var(--_menu-details_indicator_w_a, 0);
-        background-color: var(--_menu-details_active_indicator_c);
-        transition: width var(--_menu-details_t);
+        height: var(--_menu-details_indicator_h);
+        width: var(--_menu-details_indicator_w);
+        background-color: var(--_menu-details_indicator_c);
+        transition: width var(--_menu-details_trn);
       }
     }
 
     & > ul {
-      --_menu-details_ul_gap: 16px;
+      --_menu-details_ul_gap: var(--menu-details_ul_gap, var(--spacing-16));
     }
 
     .menu-item {
       line-height: 23px;
 
       &.is-active {
-        --_menu-details_indicator_w_a: 100%;
+        --_menu-details_indicator_w: var(--_menu-details_indicator_w_s);
       }
     }
 
     summary {
       & + ul {
-        --_menu-details_ul_p: 16px 20px;
-        --_menu-details_item_p-b: 12px;
-        --_menu-details_item_p-i: 16px;
-        --_menu-details_ul_f-d: column;
-        --_menu-details_ul_gap: 4px;
-        --menu-details_item_bg_h: transparent;
-        --menu-details_item_c_h: var(--menu-item-text-selected);
+        --_menu-details_ul_p: var(--menu-details_ul_p, var(--spacing-16) var(--spacing-20));
+        --_menu-details_item_p-b: var(--menu-details_item_p-b, var(--spacing-12));
+        --_menu-details_item_p-i: var(--menu-details_item_p-i, var(--spacing-16));
+        --_menu-details_ul_f-d: var(--menu-details_ul_f-d, column);
+        --_menu-details_ul_gap: var(--menu-details_ul_gap, var(--spacing-4));
+        --_menu-details_item_bg_h: var(--menu-details_item_bg_h, transparent);
+        --_menu-details_item_c_h: var(--_menu-details_item_c_s);
 
         position: absolute;
         top: calc(100% + 1px);
         left: -20px;
-        opacity: var(--_menu-details_ul_o, 0);
-        min-width: var(--menu-panel-min-inline-size);
-        max-width: var(--menu-panel-max-block-size);
-        background: var(--menu-details_dropdown_bg, var(--menu-panel-background));
-        border-radius: var(--menu-panel-border-radius);
-        box-shadow: var(--_menu-details_panel_shadow);
-        transition: opacity var(--_menu-details_t);
+        opacity: var(--_menu-details_ul_o);
+        min-width: var(--_menu-details_panel_m-w);
+        max-width: var(--_menu-details_panel_mx-w);
+        background: var(--_menu-details_panel_bg);
+        border-radius: var(--_menu-details_panel_b-r);
+        box-shadow: var(--_menu-details_panel_bs);
+        transition: opacity var(--_menu-details_trn);
       }
     }
 
     /* Flyout: nested (level 1+) dropdowns open to the inline-end instead of below. */
-    .mItem_l_1 > details > summary + ul {
+    .menu-details_level_1 > details > summary + ul {
       top: 0;
       left: calc(100% + 4px);
     }
 
     /* Flip to inline-start when the flyout would overflow the viewport. */
-    .mItem_l_1 > details.opens-inline-start > summary + ul {
+    .menu-details_level_1 > details.opens-inline-start > summary + ul {
       left: auto;
       right: calc(100% + 4px);
     }
 
     .is-link_active-trail > details > summary,
     .is-link_active-trail > .menu-item {
-      --_menu-details_item_c: var(--menu-item-text-selected);
-      --menu-details_item_c_h: var(--menu-item-text-selected);
-      --_menu-details_indicator_w_a: 100%;
+      --_menu-details_item_c: var(--_menu-details_item_c_s);
+      --_menu-details_item_c_h: var(--_menu-details_item_c_s);
+      --_menu-details_indicator_w: var(--_menu-details_indicator_w_s);
     }
 
     details {
       position: relative;
 
       &[open] {
-        --_menu-details_ul_o: 1;
+        --_menu-details_ul_o: var(--_menu-details_ul_o_s);
 
         & > summary {
-          --_menu-details_item_c: var(--menu-item-text-selected);
-          --menu-details_item_c_h: var(--menu-item-text-selected);
-          --_menu-details_indicator_w_a: 100%;
+          --_menu-details_item_c: var(--_menu-details_item_c_s);
+          --_menu-details_item_c_h: var(--_menu-details_item_c_s);
+          --_menu-details_indicator_w: var(--_menu-details_indicator_w_s);
         }
       }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--menu-details {
+    .menu-item,
+    .menu-item svg,
+    & > ul > li > .menu-item::after,
+    & > ul > li > details > .menu-item::after,
+    details::details-content,
+    summary + ul {
+      transition: none;
     }
   }
 }

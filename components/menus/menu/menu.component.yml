@@ -1,10 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Menu
 status: stable
-
-version: 1.0.0
-group: Layout
-description: '[component description]'
+version: 1.1.0
+group: Navigation
+description: 'Listă de legături de navigare, orizontală sau verticală, construită din arborele de meniu Drupal (items cu title, url, in_active_trail, below).'
 
 # Props.
 props:
@@ -23,6 +22,7 @@ props:
     menu_tag_nav:
       type: ['boolean']
       title: Add tab nav
+      description: 'Wraps the list in a <nav> element that receives the component classes.'
       default: false
 
     # fields values
@@ -30,6 +30,7 @@ props:
       type: ['array', 'null']
       title: 'Menu Items'
       description: 'An array of menu items to display in the menu.'
+      default: null
 
     # uc -> utility_classes
     menu_uc:
@@ -45,13 +46,6 @@ props:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       description: A list of HTML attributes for the Menu.
-
       default: null
   required:
     - menu_items
-
-# Slots.
-slots:
-  slot_content:
-    title: Content
-    description: Default content text for the Menu.

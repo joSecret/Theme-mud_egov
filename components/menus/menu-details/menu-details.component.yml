@@ -1,39 +1,40 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Menu Details
 status: stable
-
-version: 1.0.0
-group: Menus
-description: 'Collapsible menu using the native <details> element.'
+version: 1.1.0
+group: Navigation
+description: 'Meniu principal cu sub-meniuri pe elementul nativ <details>: acordeon pe mobil, bară orizontală cu panouri derulante pe desktop.'
 
 # Props.
 props:
   type: object
   properties:
     # fields values
-    menu_items:
+    menu_details_items:
       type: ['array']
       title: 'Menu Items'
-      description: 'An array of menu items to display in the menu.'
+      description: 'An array of menu items (title, url, in_active_trail, below) to display in the menu.'
+      default: []
 
     # uc -> utility_classes
-    menu_uc:
+    menu_details_uc:
       type: array
       items:
         type: string
-      title: Menu Utility Classes
+      title: Menu Details Utility Classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
     # att -> attributes
-    menu_att:
+    menu_details_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
-      description: A list of HTML attributes for the Menu.
+      description: A list of HTML attributes for the Menu Details.
+      default: null
   required:
-    - menu_items
+    - menu_details_items
 
 libraryOverrides:
   dependencies:
     - core/drupal
-
-# Slots.
+    - core/once

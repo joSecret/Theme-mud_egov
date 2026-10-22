@@ -1,9 +1,19 @@
+/**
+ * Navbar: bara de sus a paginii (branding, meniu principal, căutare, utilizator).
+ * Mobil: meniul principal e un panou care se deschide din butonul #js-nav-mob-toggle.
+ * Desktop (container body > 768px): o singură bară; când meniul nu încape (.js_long-main-menu),
+ * meniul trece pe un rând propriu.
+ */
 .border_b-e {
-  border-block-end: 1px solid var(--menu-panel-border-color);
+  --_navbar_border_b-c: var(--navbar_border_b-c, var(--menu-panel-border-color));
+
+  border-block-end: 1px solid var(--_navbar_border_b-c);
 }
 
 .border_b {
-  border-block: 1px solid var(--menu-panel-border-color);
+  --_navbar_border_b-c: var(--navbar_border_b-c, var(--menu-panel-border-color));
+
+  border-block: 1px solid var(--_navbar_border_b-c);
 }
 
 [class*="border_"]:has(> .c--navbar) {
@@ -16,82 +26,99 @@
 .c--navbar {
   --_navbar_bg: var(--navbar_bg, var(--color-background-base-default));
   --_navbar_h: var(--navbar_h, var(--navbar_desktop_heigh));
-  --_navbar_p-i: var(--navbar_p-i, 16px);
+  --_navbar_p-i: var(--navbar_p-i, var(--spacing-16));
+  --_navbar_w: var(--navbar_w, var(--wrapper_w));
+  --_navbar_g-t-c: var(--navbar_g-t-c, 1fr auto);
+  --_navbar_rows_h: var(--navbar_rows_h, var(--_navbar_h) 0fr);
+  --_navbar_col_gap: var(--navbar_col_gap, var(--spacing-6));
+  --_navbar_row_gap: var(--navbar_row_gap, 0);
+  --_navbar_trn: var(--navbar_trn, 0.3s ease);
+  --_navbar_scroll_inset: var(--navbar_scroll_inset, 0px);
   --_navbar_branding_w: var(--navbar_branding_w, 150px);
+  --_navbar_branding_p-i: var(--navbar_branding_p-i, 0px);
+  --_navbar_mob_d: var(--navbar_mob_d, flex);
+  --_navbar_mob_gap: var(--navbar_mob_gap, var(--spacing-8));
+  --_navbar_main_bg: var(--navbar_main_bg, transparent);
+  --_navbar_additional_b-c: var(--navbar_additional_b-c, var(--color-border-base-default));
+  --_navbar_additional_gap: var(--navbar_additional_gap, var(--spacing-4));
+  --_navbar_additional_m-b: var(--navbar_additional_m-b, var(--spacing-16));
+  --_navbar_additional_p-b: var(--navbar_additional_p-b, var(--spacing-16));
+  --_navbar_header_p: var(--navbar_header_p, var(--spacing-16));
+  --_navbar_header_gap: var(--navbar_header_gap, var(--spacing-12));
+  --_navbar_search_p: var(--navbar_search_p, var(--spacing-16) var(--spacing-12));
+  --_navbar_menu_p-b: var(--navbar_menu_p-b, var(--spacing-12));
 
   isolation: isolate;
   container-type: inline-size;
   container-name: navbar00;
   display: grid;
   position: relative;
-
-  grid-template-columns: var(--navbar_g-t-c, 1fr auto);
-  grid-template-rows: var(--navbar_g-t-r, var(--_navbar_h) 0fr);
-  column-gap: var(--navbar_col-gap, 6px);
-  row-gap: var(--navbar_row-gap, 0px);
+  grid-template-columns: var(--_navbar_g-t-c);
+  grid-template-rows: var(--_navbar_rows_h);
+  gap: var(--_navbar_row_gap) var(--_navbar_col_gap);
   height: var(--_navbar_h);
-  transition: grid-template-rows 0.3s ease;
-  background: var(--navbar_bg, var(--color-background-base-default));
+  transition: grid-template-rows var(--_navbar_trn);
+  background: var(--_navbar_bg);
 
   .nav_brand {
     position: relative;
     z-index: 1;
-    grid-area: var(--nav-brand-g-a, 1 / 1 / 2 / 2);
-    padding-inline-start: var(--nav-brand_p-i-s, 0px);
+    grid-area: 1 / 1 / 2 / 2;
+    padding-inline-start: var(--_navbar_branding_p-i);
     align-self: center;
   }
 
   .nav_mob {
-    grid-area: var(--nav-mob_g-a, 1 / 2 / 2 / 3);
-    display: var(--nav-mob_d, flex);
-    padding-inline-end: var(--nav-mob_p-i-e, var(--_navbar_p-i));
-    gap: var(--nav-mob_gap, 8px);
+    grid-area: 1 / 2 / 2 / 3;
+    display: var(--_navbar_mob_d);
+    padding-inline-end: var(--_navbar_p-i);
+    gap: var(--_navbar_mob_gap);
     align-self: center;
   }
 
   .w-main {
-    grid-area: var(--nav-menu_g-a, 2 / 1 / 3 / 3);
-    background: var(--navbar_w-main_bg, transparent);
+    grid-area: 2 / 1 / 3 / 3;
+    background: var(--_navbar_main_bg);
 
-    @media (max-width: 767px) {
+    @media (width <= 767px) {
       position: absolute;
       inset: 0;
       inset-block-end: auto;
       height: 0;
       overflow: auto;
-      transition: height 0.3s ease;
+      transition: height var(--_navbar_trn);
       overscroll-behavior: contain;
       anchor-name: --w-main;
     }
   }
 
   .nav_search {
-    padding-inline:0px;
+    padding-inline: 0;
   }
 
   .nav_additional {
     display: flex;
   }
 
-  &:has(#js_nav-mob-toggle[aria-expanded="true"]) {
-    @media (min-width: 768px) {
+  &:has(#js-nav-mob-toggle[aria-expanded="true"]) {
+    @media (width >= 768px) {
       grid-template-rows: var(--_navbar_h) 1fr;
     }
 
     .w-main {
       @container body (width <= 767px) {
-        height: min(calc(100dvh - var(--_navbar_h) + var(--_scroll_y, 0px)), 100dvh);
+        height: min(calc(100dvh - var(--_navbar_h) + var(--_navbar_scroll_inset)), 100dvh);
       }
     }
   }
 
   @container body (768px < width) {
-    --navbar_g-t-c: var(--navbar_g-t-c_md, var(--_navbar_branding_w) 1fr);
-    --navbar_g-t-r: var(--navbar_g-t-r_md, auto);
-    --_navbar_h: var(--navbar_h_md, 72px);
+    --_navbar_g-t-c: var(--navbar_g-t-c, var(--_navbar_branding_w) 1fr);
+    --_navbar_rows_h: var(--navbar_rows_h, auto);
+    --_navbar_h: var(--navbar_h, 72px);
 
     align-items: center;
-    width: var(--wrapper_w);
+    width: var(--_navbar_w);
     margin-inline: auto;
 
     .nav_brand {
@@ -103,8 +130,11 @@
     }
 
     .region--nav-additional {
-      gap: 8px;
-      padding-inline-start: 2px;
+      --_navbar_additional_gap: var(--navbar_additional_gap, var(--spacing-8));
+      --_navbar_additional_p-i: var(--navbar_additional_p-i, var(--spacing-2));
+
+      gap: var(--_navbar_additional_gap);
+      padding-inline-start: var(--_navbar_additional_p-i);
     }
 
     .nav_mob {
@@ -125,11 +155,20 @@
     }
 
     &:has(.js_long-main-menu) {
-      --navbar_g-t-c_md: var(--_navbar_branding_w) 1fr auto auto;
-      --navbar_g-t-r_md: 72px auto;
-      --navbar_h_md: auto;
-      --menu-details_item_md_p-b: 12px;
-      --menu-details_ul_m: 0px -16px;
+      --_navbar_g-t-c: var(--navbar_g-t-c, var(--_navbar_branding_w) 1fr auto auto);
+      --_navbar_rows_h: var(--navbar_rows_h, 72px auto);
+      --_navbar_h: var(--navbar_h, auto);
+
+      /* Meniul principal pe rând propriu: elemente mai joase, liste întinse până la margini. */
+      .c--menu-details {
+        .menu-item {
+          padding-block: var(--_navbar_menu_p-b);
+        }
+
+        ul {
+          margin: 0 -16px;
+        }
+      }
 
       .w-main {
         grid-area: 1 / 1 / 3 / 5;
@@ -161,33 +200,49 @@
 
   /* Custom styles */
   @container body (width <= 768px) {
-    --nav-brand_p-i-s: var(--_navbar_p-i);
-    --navbar_w-main_bg: var(--menu-panel-background);
+    --_navbar_main_bg: var(--navbar_main_bg, var(--menu-panel-background));
+
+    .nav_brand {
+      padding-inline-start: var(--_navbar_p-i);
+    }
 
     .nav_search {
-      padding: 16px 12px;
+      padding: var(--_navbar_search_p);
     }
+
+    /* Meniul și butoanele din regiunea header, pe coloană și pe toată lățimea. */
     .region--header {
-      --menu_f-d: column;
-      --menu_p-b: 16px;
-      --menu_p-i: 16px;
-      --menu_gap: 12px;
-      --btn_w: 100%;
+      .c--menu {
+        flex-direction: column;
+        padding: var(--_navbar_header_p);
+        gap: var(--_navbar_header_gap);
+      }
+
+      .button {
+        width: 100%;
+      }
     }
 
     .region--nav-additional {
       flex-direction: column;
-      gap: 4px;
-      margin-block-start: 16px;
-      padding-block-start: 16px;
-      border-block-start: 1px solid var(--color-border-base-default);
+      gap: var(--_navbar_additional_gap);
+      margin-block-start: var(--_navbar_additional_m-b);
+      padding-block-start: var(--_navbar_additional_p-b);
+      border-block-start: 1px solid var(--_navbar_additional_b-c);
     }
   }
 }
 
-@media (max-width: 767px) {
-  body:has(.c--navbar #js_nav-mob-toggle[aria-expanded="true"]) {
+@media (width <= 767px) {
+  body:has(.c--navbar #js-nav-mob-toggle[aria-expanded="true"]) {
     overflow: hidden;
     scrollbar-gutter: stable;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c--navbar,
+  .c--navbar .w-main {
+    transition: none;
   }
 }

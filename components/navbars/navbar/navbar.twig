@@ -1,18 +1,31 @@
 {#-
 /**
  * @file
- * Frontend Component.
+ * Navbar component.
+ *
+ * Available Utility classes -> uc
+ * - navbar_uc (array) (default: [''])
+ *
+ * Available attributes -> att
+ * - navbar_att (Drupal\Core\Template\Attribute)
+ *
+ * Renders the page regions: page.branding, page.header_mobil, page.nav_search,
+ * page.nav_main, page.nav_additional, page.header and page.header_notifications.
+ *
+ * usage example: @see navbar.md
  */
 -#}
 
-{% set navbar_attribute = create_attribute() %}
+{#- Create attributes -#}
+{% set navbar_att = navbar_att ?: create_attribute() %}
 
+{#- Component classes -#}
 {% set navbar_classes = [
   'c--navbar',
-] %}
+]|merge(navbar_uc ?: []) %}
 
 <div class="border_b bg-white">
-  <div{{navbar_attribute.addclass(navbar_classes)}}>
+  <div{{navbar_att.addclass(navbar_classes)}}>
     {{- page.branding|merge({'#attributes': {'class': ['nav_brand']}}) -}}
 
     <div class='nav_mob'>
@@ -20,7 +33,7 @@
 
       <div>
         {% include "mud_egov:button" with {
-          id:'js_nav-mob-toggle',
+          id:'js-nav-mob-toggle',
           aria_expanded: false,
           label: "Show main menu",
           variant: 'secondary',
@@ -45,4 +58,3 @@
 </div>
 
 {{- page.header_notifications -}}
-

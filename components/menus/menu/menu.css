@@ -1,19 +1,52 @@
+/**
+ * Menu: listă de legături, orizontală sau verticală, pentru meniurile Drupal.
+ * Legăturile sunt <a> simple; culorile implicite vin din variabilele --link-* (MUD).
+ * Clasa .sidebar-menu (menu_uc) aplică varianta pentru bara laterală.
+ */
 .c--menu {
-  --_c-menu_bg: var(--c-menu_bg, inherit);
-  --_c-menu_c: var(--c-menu_c, var(--c_fg-muted));
+  /* Listă */
+  --_menu_d: var(--menu_d, flex);
+  --_menu_f-d: var(--menu_f-d, row);
+  --_menu_gap: var(--menu_gap, var(--spacing-16));
+  --_menu_bg: var(--menu_bg, transparent);
+  --_menu_b-r: var(--menu_b-r, 0);
+  --_menu_p-b: var(--menu_p-b, 0);
+  --_menu_p-i: var(--menu_p-i, 0);
+  --_menu_m: var(--menu_m, 0);
 
-  --_c-menu_link_bg: var(--c-menu_link_bg, transparent);
+  /* Sub-liste */
+  --_menu_ul_m: var(--menu_ul_m, 0);
+  --_menu_ul_p-b: var(--menu_ul_p-b, 0);
+  --_menu_ul_p-i: var(--menu_ul_p-i, 0);
 
-  display: var(--menu_d, flex);
-  flex-direction: var(--menu_f-d, row);
-  gap: var(--menu_gap, 16px);
+  /* Element de listă */
+  --_menu_item_c: var(--menu_item_c, currentcolor);
+  --_menu_item_bg: var(--menu_item_bg, transparent);
+  --_menu_item_b-r: var(--menu_item_b-r, 0);
 
-  background: var(--c-menu_ul_bg, var(--_c-menu_bg));
-  border-radius: var(--c-menu_ul_b-r, 0);
+  /* Legătură */
+  --_menu_link_d: var(--menu_link_d, inline);
+  --_menu_link_t-d: var(--menu_link_t-d, none);
+  --_menu_link_b-r: var(--menu_link_b-r, 0);
+  --_menu_link_p-b: var(--menu_link_p-b, 0);
+  --_menu_link_p-i: var(--menu_link_p-i, 0);
+  --_menu_link_c: var(--menu_link_c, var(--link-primary-label-default));
+  --_menu_link_c_h: var(--menu_link_c_h, var(--link-primary-label-hover));
+  --_menu_link_c_a: var(--menu_link_c_a, var(--link-primary-label-active));
+  --_menu_link_c_s: var(--menu_link_c_s, currentcolor);
+  --_menu_link_bg: var(--menu_link_bg, transparent);
+  --_menu_link_bg_h: var(--menu_link_bg_h, transparent);
+  --_menu_link_bg_a: var(--menu_link_bg_a, transparent);
+  --_menu_link_bg_s: var(--menu_link_bg_s, transparent);
 
-  padding-block: var(--menu_p-b, 0);
-  padding-inline: var(--menu_p-i, 0);
-  margin: var(--menu_m, 0);
+  display: var(--_menu_d);
+  flex-direction: var(--_menu_f-d);
+  gap: var(--_menu_gap);
+  background: var(--_menu_bg);
+  border-radius: var(--_menu_b-r);
+  padding-block: var(--_menu_p-b);
+  padding-inline: var(--_menu_p-i);
+  margin: var(--_menu_m);
 
   &,
   ul {
@@ -21,57 +54,64 @@
   }
 
   ul {
-    margin: var(--menu_m_ul, 0px);
-    padding-block: var(--menu_p-b_ul, 0px);
-    padding-inline: var(--menu_p-i_ul, 0px);
+    margin: var(--_menu_ul_m);
+    padding-block: var(--_menu_ul_p-b);
+    padding-inline: var(--_menu_ul_p-i);
   }
 
   li {
-    color: var(--c-menu_li_c);
-    background: var(--c-menu_bg_c);
-    border-radius: var(--c-menu_li_b-r);
+    color: var(--_menu_item_c);
+    background: var(--_menu_item_bg);
+    border-radius: var(--_menu_item_b-r);
   }
 
   a {
-    --link_c: var(--c-menu_link_c, var(--_c-menu_c));
-    --link_bg: var(--_c-menu_link_bg);
-    --link_d: var(--c-menu_link_d, none);
-    --link_b-r: var(--c-menu_link_b-r, var(--size_100));
-    --link_p-b: var(--c-menu_link_p-b, var(--size_150));
-    --link_p-i: var(--c-menu_link_p-i, var(--size_300));
+    display: var(--_menu_link_d);
+    color: var(--_menu_link_c);
+    background: var(--_menu_link_bg);
+    text-decoration: var(--_menu_link_t-d);
+    border-radius: var(--_menu_link_b-r);
+    padding-block: var(--_menu_link_p-b);
+    padding-inline: var(--_menu_link_p-i);
 
-    --link_c_h: var(--c-menu_link_c_h, var(--c_neutral_fg));
-    --_link_bg_h: var(--c-menu_link_bg_h, var(--c_hover-bg));
+    &:hover {
+      --_menu_link_c: var(--_menu_link_c_h);
+      --_menu_link_bg: var(--_menu_link_bg_h);
+    }
 
-    --_link_bg_a: var(--c-menu_link_bg_a, var(--c_hover-bg));
-
-    display: var(--c-menu_link_display);
+    &:active,
+    &:focus-visible {
+      --_menu_link_c: var(--_menu_link_c_a);
+      --_menu_link_bg: var(--_menu_link_bg_a);
+    }
 
     &.is-active {
-      --_link_c: var(--c-menu_link_c_a, var(--c_neutral));
-      --_link_bg: var(--c-menu_link_bg_a, var(--c_hover-bg));
+      --_menu_link_c: var(--_menu_link_c_s);
+      --_menu_link_bg: var(--_menu_link_bg_s);
     }
   }
 
   &.has-direction_vertical {
-    --menu_f-d: column;
+    --_menu_f-d: var(--menu_f-d, column);
   }
 }
 
+/* Bara laterală */
 .sidebar-menu {
-  --sidebar-menu_p-i: 24px;
-
-  --menu_gap: 0;
-  --c-menu_link_c: var(--color-text-base-secondary);
-  --c-menu_link_display: flex;
-  --c-menu_link_p-b: 12px;
-  --c-menu_link_p-i: var(--sidebar-menu_p-i) 16px;
+  --_menu_gap: var(--menu_gap, 0);
+  --_menu_link_d: var(--menu_link_d, flex);
+  --_menu_link_c: var(--menu_link_c, var(--color-text-base-secondary));
+  --_menu_link_p-b: var(--menu_link_p-b, var(--spacing-12));
+  --_menu_link_p-i: var(--menu_link_p-i, var(--spacing-24) var(--spacing-16));
+  --_menu_link_trail_bg: var(--menu_link_trail_bg, var(--color-background-brand-secondary));
+  --_menu_link_trail_b-c: var(--menu_link_trail_b-c, var(--color-text-brand-default));
+  --_menu_link_trail_c: var(--menu_link_trail_c, var(--color-text-brand-default));
 
   .is-link_active-trail {
-    --c-menu_link_c: var(--color-text-brand-default);
-    --c-menu_link_c_a: var(--color-text-brand-default);
-    --c-menu_link_b-r: none;
-    background: var(--color-background-brand-secondary);
-    border-inline-start: 3px solid var(--c-menu_link_c);
+    --_menu_link_c: var(--_menu_link_trail_c);
+    --_menu_link_c_s: var(--_menu_link_trail_c);
+
+    background: var(--_menu_link_trail_bg);
+    border-inline-start: 3px solid var(--_menu_link_trail_b-c);
   }
 }

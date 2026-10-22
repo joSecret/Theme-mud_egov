@@ -1,16 +1,17 @@
 /**
  * @file
- * Navbar scroll behavior.
+ * Navbar: deschide/închide panoul meniului pe mobil (reține poziția de scroll) și marchează
+ * regiunea meniului principal cu .js_long-main-menu când meniul nu încape pe un singur rând.
  */
 
-(function (Drupal, once) {
+((Drupal, once) => {
   Drupal.behaviors.navbar = {
-    attach: function (context) {
-      once('navbar', '.c--navbar', context).forEach(function (navbar) {
+    attach(context) {
+      once('navbar', '.c--navbar', context).forEach((navbar) => {
         navbar.querySelector('.nav_mob button')?.addEventListener('click', function () {
           this.toggleAttribute('open');
           if (this.hasAttribute('open')) {
-            navbar.style.setProperty('--_scroll_y', window.scrollY + 'px');
+            navbar.style.setProperty('--_navbar_scroll_inset', `${window.scrollY}px`);
           }
         });
 

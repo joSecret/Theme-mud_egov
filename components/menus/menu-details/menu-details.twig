@@ -1,20 +1,18 @@
 {#-
 /**
   * @file
-  * Menu component.
+  * Menu details component.
   *
   * Available values:
-  * - menu_items (array) required
+  * - menu_details_items (array) required
   *
   * Available Utility classes -> uc
-  * - menu_uc (array) (default: [''])
+  * - menu_details_uc (array) (default: [''])
   *
   * Available attributes -> att
-  * - menu_att (Drupal\Core\Template\Attribute)
+  * - menu_details_att (Drupal\Core\Template\Attribute)
   *
-  * Available slots
-  *
-  * usage example: @see README.md
+  * usage example: @see menu-details.md
   *
   */
 -#}
@@ -22,19 +20,19 @@
 {#- Set default value -#}
 
 {#- Create attributes -#}
-{% set menu_att = menu_att ?: create_attribute() %}
+{% set menu_details_att = menu_details_att ?: create_attribute() %}
 
 {#- Component classes -#}
-{% set menu_classes = [
+{% set menu_details_classes = [
   'c--menu-details',
-]|merge(menu_uc ?: []) %}
+]|merge(menu_details_uc ?: []) %}
 
 {#- Change attributes -#}
 
 {#- Render component -#}
-<div{{ menu_att.addClass(menu_classes) }}>
+<div{{ menu_details_att.addClass(menu_details_classes) }}>
   {%- import _self as menus -%}
-  {{- menus.menu_links(menu_items, 0) -}}
+  {{- menus.menu_links(menu_details_items, 0) -}}
 </div>
 
 {% macro menu_links(menu_items, menu_level) %}
@@ -43,7 +41,7 @@
     <ul>
       {% for item in menu_items -%}
         {%- set item_classes = [
-          'mItem_l_' ~ menu_level,
+          'menu-details_level_' ~ menu_level,
           item.in_active_trail ? 'is-link_active-trail',
           item.below ? 'is-link_has-children',
         ] -%}

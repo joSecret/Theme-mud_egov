@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Menu
+name: Menu Dropdown
 status: stable
-group: Globals
-version: 1.0.0
+version: 1.1.0
+group: Navigation
 description: Dropdown/context menu with keyboard navigation, ARIA roles, and outside-click dismiss.
 
 # Props.
@@ -10,7 +10,7 @@ props:
   type: object
   properties:
     # fields values
-    menu_items:
+    menu_dropdown_items:
       type: ['array', 'null']
       title: Menu items
       description: 'Array of items: [{label, url, icon, disabled, divider}]'
@@ -29,14 +29,14 @@ props:
           divider:
             type: boolean
 
-    menu_trigger_label:
+    menu_dropdown_trigger_label:
       type: ['string', 'null']
       title: Trigger label
       description: Label for the default trigger button when slot_trigger is not used.
       default: null
 
     # component variations
-    menu_type:
+    menu_dropdown_type:
       type: ['string', 'null']
       title: Type
       description: contextual (action menu) or selection (single-select list).
@@ -46,7 +46,7 @@ props:
         - contextual
         - selection
 
-    menu_position:
+    menu_dropdown_position:
       type: ['string', 'null']
       title: Position
       description: Panel placement relative to the trigger.
@@ -58,22 +58,23 @@ props:
         - top-start
         - top-end
 
-    menu_open:
+    menu_dropdown_open:
       type: boolean
       title: Open
       description: Initial open state.
       default: false
 
     # uc -> utility_classes
-    menu_uc:
+    menu_dropdown_uc:
       type: array
       items:
         type: string
       title: Utility Classes
+      description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
       default: []
 
     # att -> attributes
-    menu_att:
+    menu_dropdown_att:
       type: Drupal\Core\Template\Attribute
       title: Attributes
       default: null
@@ -82,4 +83,5 @@ props:
 slots:
   slot_trigger:
     title: Trigger
-    description: Custom trigger element. Falls back to a default button using menu_trigger_label.
+    description: Custom trigger element (must include data-menu-trigger). Falls back to a default button using menu_dropdown_trigger_label.
+

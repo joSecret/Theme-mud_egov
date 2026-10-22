@@ -1,64 +1,68 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Navbar
-status: experimental
-description: 'Navbar description'
+status: stable
+version: 1.1.0
+group: Navigation
+description: 'Bara de sus a paginii: branding, meniu principal, căutare și zona utilizatorului, cu panou pentru meniul principal pe mobil.'
 
 props:
   type: object
   properties:
-    comp_att:
-      type: Drupal\Core\template\Attribute
+    navbar_att:
+      type: Drupal\Core\Template\Attribute
       title: Component attribute
       description: Wrapper component attributes
       default: null
 
-    slotBranding_att:
-      type: Drupal\Core\template\Attribute
+    navbar_branding_att:
+      type: Drupal\Core\Template\Attribute
       title: Component branding attribute
       description: Component Branding attributes
       default: null
 
-    slotNav_att:
-      type: Drupal\Core\template\Attribute
+    navbar_nav_att:
+      type: Drupal\Core\Template\Attribute
       title: Component navigation attribute
       description: Component navigation attributes
       default: null
 
-    slotSearch_att:
-      type: Drupal\Core\template\Attribute
+    navbar_search_att:
+      type: Drupal\Core\Template\Attribute
       title: Component search attribute
       description: Component search attributes
       default: null
 
-
-    comp_classes:
+    navbar_uc:
       type: array
       items:
         type: string
       title: Navbar classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
-    slotBranding_classes:
+    navbar_branding_uc:
       type: array
       items:
         type: string
       title: Navbar branding classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
-    slotNav_classes:
+    navbar_nav_uc:
       type: array
       items:
         type: string
       title: Navbar navigation classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
+      default: []
 
-    slotSearch_classes:
+    navbar_search_uc:
       type: array
       items:
         type: string
       title: Navbar Search classes
       description: An array of utility classes. Use to add extra classes or custom CSS classes over to this component.
-
+      default: []
 
 libraryOverrides:
   dependencies:
@@ -68,16 +72,16 @@ libraryOverrides:
 slots:
   slot_branding:
     title: Branding
-    description: Slot branding description.
+    description: Not rendered by the template; the branding comes from the page.branding region.
 
   slot_nav:
     title: Content
-    description: Slot content description.
+    description: Not rendered by the template; the main menu comes from the page.nav_main region.
 
   slot_header:
     title: Content
-    description: Slot search description.
+    description: Not rendered by the template; the user area comes from the page.header region.
 
   slot_search_dropdown:
     title: Search Dropdown
-    description: Slot search dropdown description.
+    description: Not rendered by the template; the search comes from the page.nav_search region.

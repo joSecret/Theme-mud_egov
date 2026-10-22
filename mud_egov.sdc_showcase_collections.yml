@@ -800,29 +800,42 @@ egov_navigation:
       group_label: 'Breadcrumb'
       props:
         breadcrumb_items:
-          - { label: 'Acasă', url: '/' }
-          - { label: 'Servicii', url: '/servicii' }
-          - { label: 'Acte de stare civilă', active: true }
+          - { text: 'Acasă', url: '/' }
+          - { text: 'Servicii', url: '/servicii' }
+          - { text: 'Acte de stare civilă', url: null }
 
     # ── Tabs ────────────────────────────────────────────────────────────────
     - component: 'mud_egov:tabs'
-      group: tabs_variant
-      group_label: 'Tabs — variant'
+      group: tabs_direction
+      group_label: 'Tabs — direction'
       props:
-        tabs_items:
-          - { id: t1, label: 'Date personale', content: 'Conținut secțiunii Date personale.', active: true }
-          - { id: t2, label: 'Documente', content: 'Conținut secțiunii Documente.' }
-          - { id: t3, label: 'Confirmare', content: 'Conținut secțiunii Confirmare.' }
-        tabs_variant: underlined
+        tabs_direction: horizontal
+        tabs_tabs:
+          - { title: 'Date personale', content: 'Conținut secțiunii Date personale.' }
+          - { title: 'Documente', content: 'Conținut secțiunii Documente.' }
+          - { title: 'Confirmare', content: 'Conținut secțiunii Confirmare.' }
 
     - component: 'mud_egov:tabs'
-      group: tabs_variant
+      group: tabs_direction
       props:
-        tabs_items:
-          - { id: tc1, label: 'Activ', content: 'Conținut tab activ.', active: true }
-          - { id: tc2, label: 'Al doilea', content: 'Conținut tab doi.' }
-          - { id: tc3, label: 'Al treilea', content: 'Conținut tab trei.' }
-        tabs_variant: contained
+        tabs_direction: vertical
+        tabs_tabs:
+          - { title: 'Activ', content: 'Conținut tab activ.' }
+          - { title: 'Al doilea', content: 'Conținut tab doi.' }
+          - { title: 'Al treilea', content: 'Conținut tab trei.' }
+
+    # ── Nav Scroll ──────────────────────────────────────────────────────────
+    # Conținutul listei vine prin slot_content (embed Twig); în showcase se vede doar rama și butoanele.
+    - component: 'mud_egov:nav-scroll'
+      group: nav_scroll_navigation
+      group_label: 'Nav Scroll — navigation'
+      props:
+        nav_scroll_navigation: true
+
+    - component: 'mud_egov:nav-scroll'
+      group: nav_scroll_navigation
+      props:
+        nav_scroll_navigation: false
 
     # ── Pagination ──────────────────────────────────────────────────────────
     - component: 'mud_egov:pagination'
@@ -858,15 +871,47 @@ egov_navigation:
 
     # ── Menu ────────────────────────────────────────────────────────────────
     - component: 'mud_egov:menu'
-      group: menu_position
-      group_label: 'Menu — position'
+      group: menu_variant
+      group_label: 'Menu — variant'
       props:
-        menu_trigger_label: 'Deschide meniu'
-        menu_position: bottom-start
+        menu_variant: horizontal
         menu_items:
+          - { title: 'Despre', url: 'internal:/despre' }
+          - { title: 'Servicii', url: 'internal:/servicii' }
+          - { title: 'Contact', url: 'internal:/contact' }
+
+    - component: 'mud_egov:menu'
+      group: menu_variant
+      props:
+        menu_variant: vertical
+        menu_items:
+          - { title: 'Despre', url: 'internal:/despre' }
+          - { title: 'Servicii', url: 'internal:/servicii' }
+          - { title: 'Contact', url: 'internal:/contact' }
+
+    # ── Menu Dropdown ───────────────────────────────────────────────────────
+    - component: 'mud_egov:menu-dropdown'
+      group: menu_dropdown_position
+      group_label: 'Menu Dropdown — position'
+      props:
+        menu_dropdown_trigger_label: 'Deschide meniu'
+        menu_dropdown_position: bottom-start
+        menu_dropdown_items:
           - { label: 'Profil', url: '/profil' }
           - { label: 'Setări', url: '/setari' }
+          - { divider: true }
           - { label: 'Deconectare', url: '/logout' }
+
+    - component: 'mud_egov:menu-dropdown'
+      group: menu_dropdown_position
+      props:
+        menu_dropdown_trigger_label: 'Alege opțiunea'
+        menu_dropdown_type: selection
+        menu_dropdown_position: bottom-end
+        menu_dropdown_items:
+          - { label: 'Română', url: '/ro' }
+          - { label: 'English', url: '/en' }
+          - { label: 'Русский', url: '/ru', disabled: true }
 
     # ── Sidebar ─────────────────────────────────────────────────────────────
     - component: 'mud_egov:sidebar'

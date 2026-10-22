@@ -1,25 +1,23 @@
-((Drupal) => {
-  Drupal.behaviors.btn = {
+/**
+ * @file
+ * Button: comută aria-expanded și arată spinner-ul pentru butoanele is-loading.
+ */
+((Drupal, once) => {
+  Drupal.behaviors.button = {
     attach(context) {
-      context.querySelectorAll('.button[aria-expanded]').forEach((btn) => {
-        if (btn.hasAttribute('data-btn-initialized')) return;
-        btn.setAttribute('data-btn-initialized', 'true');
-
+      once('button-expanded', '.button[aria-expanded]', context).forEach((btn) => {
         btn.addEventListener('click', () => {
-          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !isExpanded);
+          btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
         });
       });
 
-      context.querySelectorAll('.button.is-loading').forEach((btn) => {
+      // La click spinner-ul apare până pleacă pagina (trimiterea formularului) sau 3 s.
+      once('button-loading', '.button.is-loading', context).forEach((btn) => {
         btn.addEventListener('click', () => {
           btn.setAttribute('aria-busy', 'true');
-
-          setTimeout(() => {
-            btn.setAttribute('aria-busy', 'false');
-          }, 3000);
+          setTimeout(() => btn.setAttribute('aria-busy', 'false'), 3000);
         });
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

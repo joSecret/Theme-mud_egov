@@ -2,100 +2,101 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Button
 status: stable
 group: Globals
-version: 2.0.0
+version: 3.0.0
 description: Button component aligned with MUD design system. Supports multiple variants, appearances, sizes, shapes and states.
 
 # Props.
 props:
   type: object
   required:
-    - label
+    - button_label
 
   properties:
     # fields values
-    label:
+    button_label:
       type: string
       title: Label
       description: Visible text content.
       default: ''
 
-    url:
+    button_url:
       type: ['string', 'null']
       title: URL
       description: Renders the button as `<a>` when set.
       default: null
 
-    id:
+    button_id:
       type: ['string', 'null']
       title: ID
       default: null
 
-    target:
+    button_target:
       type: ['string', 'null']
       title: Target
       description: anchor target. Used only when url is set.
       default: null
 
-    rel:
+    button_rel:
       type: ['string', 'null']
       title: Rel
       description: anchor rel. Used only when url is set.
       default: null
 
-    name:
+    button_name:
       type: ['string', 'null']
       title: Name
       description: Form control name. Used when type=submit.
       default: null
 
-    value:
+    button_value:
       type: ['string', 'null']
       title: Value
       description: Form control value submitted alongside name.
       default: null
 
-    icon:
+    button_icon:
       type: ['string', 'null']
       title: Icon
       description: SVG icon code. Include aria-hidden="true".
       default: null
 
-    icon_second:
+    button_icon_second:
       type: ['string', 'null']
-      title: Icon
+      title: Second icon
       description: SVG icon code. Include aria-hidden="true".
       default: null
 
     # component variations
-    tag:
-      type: string
+    button_tag:
+      type: ['string', 'null']
       title: Button tag
-      description: HTML tag. Defaults to `button`, or `a` when url is set.
-      default: button
+      description: HTML tag. Defaults to `button`, or `a` when button_url is set.
+      default: null
       enum:
+        - null
         - a
         - button
         - span
         - input
         - summary
 
-    variant:
+    button_variant:
       type: ['string', 'null']
       title: Variant
-      description: Color treatment.
+      description: Color treatment. null = primary. Outlined and text exist only for primary, strict and destructive.
       default: null
       enum:
         - null
-        - ''
         - primary
         - secondary
         - strict
+        - neutral
         - destructive
 
-    appearance:
+    button_appearance:
       type: ['string', 'null']
       title: Appearance
-      description: Visual treatment. filled | outlined | text
+      description: Visual treatment. null = filled.
       default: null
       enum:
         - null
@@ -103,7 +104,7 @@ props:
         - outlined
         - text
 
-    size:
+    button_size:
       type: ['string', 'null']
       title: Size
       default: null
@@ -113,7 +114,7 @@ props:
         - md
         - lg
 
-    shape:
+    button_shape:
       type: ['string', 'null']
       title: Shape
       description: Container silhouette. circular = fully rounded.
@@ -124,47 +125,47 @@ props:
         - rectangular
         - circular
 
-    icon_position:
-      type: string
+    button_icon_position:
+      type: ['string', 'null']
       title: Icon position
-      description: Icon position relative to label.
-      default: 'right'
+      description: Icon position relative to label. null = right when an icon is set.
+      default: null
       enum:
-        - ''
+        - null
         - right
         - left
         - only
 
-    disabled:
+    button_disabled:
       type: boolean
       title: Disabled
       default: false
 
-    loading:
+    button_loading:
       type: boolean
       title: Loading
       description: Shows a spinner and blocks interactivity. Sets aria-busy on the control.
       default: false
 
-    full_width:
+    button_full_width:
       type: boolean
       title: Full width
       description: Expands the button to fill its container.
       default: false
 
-    aria_expanded:
+    button_aria_expanded:
       type: ['boolean', 'null']
       title: Aria expanded
       description: Use only for buttons that toggle visibility (dropdown, accordion).
       default: null
 
-    role:
+    button_role:
       type: ['string', 'null']
       title: Role
       description: ARIA role.
       default: null
 
-    aria_label:
+    button_aria_label:
       type: ['string', 'null']
       title: Aria label
       description: Accessible name forwarded to aria-label. Required for icon-only buttons.
@@ -187,19 +188,16 @@ props:
 libraryOverrides:
   dependencies:
     - core/drupal
+    - core/once
 
 slots:
-  slot_icon_before:
-    title: Icon Before
-    description: Icon when position is left.
-
   slot_content:
     title: Content
     description: Main button content.
 
   slot_icon:
     title: Icon
-    description: Icon when position is right or only.
+    description: Icon (left, right or only).
 
   slot_icon_second:
     title: Second icon

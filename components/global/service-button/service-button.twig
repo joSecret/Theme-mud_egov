@@ -7,7 +7,7 @@
  * - service_button_label: (string) required — visible label text
  * - service_button_description: (string|null) default: (null)
  * - service_button_url: (string|null) default: (null) — renders as <a>
- * - service_button_icon: (string|null) default: (null) — mud-logo asset name
+ * - service_button_icon: (string|null) default: (null) — MUD logo name (see mud_egov:logo)
  * - service_button_target: (string|null) default: (null)
  * - service_button_rel: (string|null) default: (null)
  * - service_button_aria_label: (string|null) default: (null)
@@ -87,7 +87,7 @@
 <{{ tag }}{{ service_button_att.addClass(service_button_classes) }}>
   {%- if service_button_icon -%}
     <span class="c--service-button__badge" aria-hidden="true">
-      <mud-logo name="{{ service_button_icon }}"></mud-logo>
+      {%- include 'mud_egov:logo' with { logo_name: service_button_icon, logo_size: 'sm' } only -%}
     </span>
   {%- endif -%}
 

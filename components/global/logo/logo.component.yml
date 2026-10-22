@@ -2,8 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Logo
 status: stable
 group: Globals
-version: 1.0.0
-description: Government / brand logo component backed by MUD mud-logo assets.
+version: 2.0.0
+description: Brand logo image. Ships the MUD M-service logos (assets/, from MUD JS 1.2.1) or renders a custom image URL.
 
 # Props.
 props:
@@ -13,7 +13,7 @@ props:
     logo_src:
       type: ['string', 'null']
       title: Image Source
-      description: URL for a custom image logo (used when not relying on mud-logo assets).
+      description: URL for a custom image logo. Takes precedence over logo_name.
       default: null
 
     logo_alt:
@@ -37,7 +37,7 @@ props:
     logo_name:
       type: ['string', 'null']
       title: MUD Logo Name
-      description: "MUD mud-logo asset identifier (e.g. \"mpay-logo-logomark-only\"). When set, renders a <mud-logo> web component instead of <img>."
+      description: "MUD logo asset name, the file name in assets/ without .svg (e.g. \"mpay-logo-with-name\"). Ignored when logo_src is set."
       default: null
 
     # component variations

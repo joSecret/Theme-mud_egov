@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: Service Button
 status: stable
 group: Globals
-version: 1.0.0
+version: 2.0.0
 description: Service portal button with an embedded logo badge, aligned with MUD mud-service-button.
 
 # Props.
@@ -33,7 +33,7 @@ props:
     service_button_icon:
       type: ['string', 'null']
       title: Icon
-      description: MUD mud-logo asset name for the badge (e.g. "mpay-logo-logomark-only").
+      description: MUD logo name for the 24px badge (e.g. "mpay-logo-logomark-only"), rendered by mud_egov:logo.
       default: null
 
     service_button_target:

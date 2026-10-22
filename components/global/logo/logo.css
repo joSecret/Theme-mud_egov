@@ -1,64 +1,53 @@
 /**
- * Logo Component Styles
+ * Logo: imaginea logo-ului (MUD: assets/<nume>.svg, sau un URL propriu).
+ * Fără mărime, logo-ul păstrează dimensiunile din SVG; sm, md, lg fixează înălțimea.
  */
-
 .c--logo {
-  /* Public API */
-  --_logo_d: var(--logo_d, inline-flex);
-  --_logo_a-i: var(--logo_a-i, center);
+  --_logo_h: var(--logo_h, auto);
+  --_logo_sm_h: var(--logo_sm_h, 24px);
+  --_logo_lg_h: var(--logo_lg_h, 64px);
+  --_logo_ol-o: var(--logo_ol-o, var(--spacing-4));
 
-  /* Size tokens */
-  --_logo_h_sm: var(--logo_h_sm, 24px);
-  --_logo_h_md: var(--logo_h_md, 40px);
-  --_logo_h_lg: var(--logo_h_lg, 64px);
-
-  display: var(--_logo_d);
-  align-items: var(--_logo_a-i);
+  display: inline-flex;
+  align-items: center;
 }
 
-/* Link wrapper */
 .c--logo__link {
   display: inherit;
   align-items: inherit;
-  text-decoration: none;
   color: inherit;
-  outline-offset: var(--logo_link_o-o, 4px);
+  text-decoration: none;
+  outline-offset: var(--_logo_ol-o);
 }
 
-/* Image */
 .c--logo__img {
   display: block;
-  height: var(--_logo_img_h, auto);
-  width: var(--logo_img_w, auto);
-  max-width: 100%;
+  max-inline-size: 100%;
+  block-size: var(--_logo_h);
+  inline-size: auto;
+
+  /* Culorile brandului rămân și în modul forced-colors (ca în mud-logo). */
+  forced-color-adjust: none;
 }
 
-/* mud-logo web component */
-mud-logo {
-  display: var(--logo_mud_d, block);
+/* === Mărimi === */
+.c--logo--sm {
+  --_logo_h: var(--_logo_sm_h);
 }
 
-/* === Sizes === */
-.c--logo--sm mud-logo,
-.c--logo--sm .c--logo__img {
-  height: var(--_logo_h_sm);
+.c--logo--md {
+  --_logo_h: var(--logo_h, 40px);
 }
 
-.c--logo--md mud-logo,
-.c--logo--md .c--logo__img {
-  height: var(--_logo_h_md);
+.c--logo--lg {
+  --_logo_h: var(--_logo_lg_h);
 }
 
-.c--logo--lg mud-logo,
-.c--logo--lg .c--logo__img {
-  height: var(--_logo_h_lg);
-}
-
-/* === Variants === */
-.c--logo--palette-white-1000 {
-  filter: var(--logo_white_filter, brightness(0) invert(1));
+/* === Variante === */
+.c--logo--white {
+  filter: brightness(0) invert(1);
 }
 
 .c--logo--black {
-  filter: var(--logo_black_filter, brightness(0));
+  filter: brightness(0);
 }

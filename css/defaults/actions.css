@@ -4,8 +4,8 @@
  */
 :root {
   /* Din MUD JS 1.2.1 (@egov-moldova/mud), lipseau din temă. */
-  --button-group-gap-horizontal: var(--spacing-12); /* nefolosit */
-  --button-group-gap-vertical: var(--spacing-12); /* nefolosit */
+  --button-group-gap-horizontal: var(--spacing-12);
+  --button-group-gap-vertical: var(--spacing-12);
   --button-container-height-sm: 32px;
   --button-container-height-md: 40px;
   --button-container-height-lg: 48px;

@@ -3,9 +3,8 @@
   * @file
   * Button Close — icon-only dismiss control.
   *
-  * Reuses global button utility classes (button, button-text, button-icon-only,
-  * button-circular, button-sm) for structure and overrides only color to
-  * inherit from the parent context via currentColor.
+  * Self-contained 32px icon button; the color comes from the parent context
+  * (currentcolor). Closes the nearest [data-dismissable] ancestor.
   *
   * Props:
   * - button_close_label (string)     aria-label. Default: "Închide".
@@ -23,11 +22,6 @@
 
 {#- Classes -#}
 {% set button_close_classes = [
-  'button',
-  'button-text',
-  'button-icon-only',
-  'button-circular',
-  'button-sm',
   'button-close',
 ]|merge(button_close_uc ?: []) %}
 

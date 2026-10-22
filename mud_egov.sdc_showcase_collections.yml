@@ -1187,18 +1187,22 @@ egov_layout:
       group_label: 'Logo — size'
       group_layout: row
       props:
-        logo_name: 'moldova'
+        logo_name: 'mpay-logo-with-name'
+        logo_alt: 'MPay'
         logo_size: sm
 
     - component: 'mud_egov:logo'
       group: logo_size
       props:
-        logo_name: 'moldova'
+        logo_name: 'msign-logo-with-name'
+        logo_alt: 'MSign'
+        logo_size: md
 
     - component: 'mud_egov:logo'
       group: logo_size
       props:
-        logo_name: 'moldova'
+        logo_name: 'mpass-logo-with-name'
+        logo_alt: 'MPass'
         logo_size: lg
 
     # ── Service Button ────────────────────────────────────────────────────────

@@ -1,6 +1,13 @@
+---
+title: Service Button
+group: Globals
+version: 2.0.0
+css_prefix: svc-btn
+---
+
 # Service Button
 
-Service portal button with an embedded logo badge. Aligned with MUD `mud-service-button`. Fixed 48 px height with asymmetric padding per the Figma spec. Renders as `<button>` by default or as `<a>` when `service_button_url` is set.
+Service portal button with an embedded logo badge. Uses the `--service-button-*` defaults (48 px height, asymmetric padding). The badge is rendered by `mud_egov:logo`, without web components. Renders as `<button>` by default or as `<a>` when `service_button_url` is set.
 
 ## Usage
 
@@ -21,7 +28,7 @@ Service portal button with an embedded logo badge. Aligned with MUD `mud-service
 | `service_button_label` | string | `''` | **Required.** Visible label text |
 | `service_button_description` | string\|null | `null` | Secondary description below the label |
 | `service_button_url` | string\|null | `null` | Renders as `<a>` when set |
-| `service_button_icon` | string\|null | `null` | MUD mud-logo asset name for the badge |
+| `service_button_icon` | string\|null | `null` | MUD logo name for the 24px badge (rendered by `mud_egov:logo`) |
 | `service_button_variant` | string\|null | `null` | `primary` (brand, default) / `neutral` (light surface) |
 | `service_button_external` | boolean | `false` | Opens in new tab with `rel="noopener noreferrer"` |
 | `service_button_disabled` | boolean | `false` | Disables interactivity |
@@ -32,11 +39,22 @@ Service portal button with an embedded logo badge. Aligned with MUD `mud-service
 | `service_button_uc` | array | `[]` | Extra utility classes |
 | `service_button_att` | Attribute | `null` | Additional HTML attributes |
 
-## CSS custom properties
+No slots.
+
+## CSS overrides
 
 ```css
-.c--service-button {
-  --service-button_h: 48px;
-  --service-button_b-r: 8px;
+.my-section .c--service-button {
+  --svc-btn_b-r: 0;
+  --svc-btn_neutral_bg: var(--color-background-base-default);
 }
 ```
+
+Pattern: `--svc-btn_<variant>_<property>_<state>` (`--svc-btn_bg_h`, `--svc-btn_neutral_c`, `--svc-btn_badge_size`).
+
+## Accessibility
+
+- Focus: the MUD ring (`--focus-ring`) on `:focus-visible`.
+- The badge is decorative (`aria-hidden`); the label is the accessible name unless `service_button_aria_label` is set.
+- External links announce "(se deschide într-un tab nou)" to screen readers.
+- Disabled links get `aria-disabled="true"` and `tabindex="-1"`.

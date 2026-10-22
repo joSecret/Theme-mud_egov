@@ -1,29 +1,60 @@
-/* ============================================================
-   Button Close — overrides only what differs from base .button
-   Inherits color from parent context via currentColor.
-   ============================================================ */
-
+/**
+ * Button Close: butonul de închidere (X) din notificări, info-box, banner, modal.
+ * Ia culoarea contextului (currentcolor); pe fundal colorat se setează
+ * --btn-close_bg_h, de ex. var(--color-background-alpha-overlay-dark).
+ */
 .button-close {
-  --btn-color_c: currentColor;
-  --_btn_c: currentColor;
-  --btn-text_o-c: currentColor;
+  --_btn-close_size: var(--btn-close_size, var(--button-container-height-sm));
+  --_btn-close_m-h: var(--btn-close_m-h, var(--button-container-touch-target-sm));
+  --_btn-close_icon_size: var(--btn-close_icon_size, var(--button-icon-size-sm));
+  --_btn-close_b-r: var(--btn-close_b-r, var(--border-radius-4));
+  --_btn-close_c: var(--btn-close_c, currentcolor);
+  --_btn-close_bg_h: var(--btn-close_bg_h, var(--color-background-base-tertiary-hover));
+  --_btn-close_trn: var(--btn-close_trn, var(--button-container-transition-duration) var(--button-container-transition-timing-function));
 
-  opacity: 0.8;
-  margin-left: auto;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_btn-close_size);
+  block-size: var(--_btn-close_size);
+  margin-inline-start: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--_btn-close_b-r);
+  background-color: transparent;
+  color: var(--_btn-close_c);
+  cursor: pointer;
+  transition: background-color var(--_btn-close_trn);
+
+  & > svg {
+    inline-size: var(--_btn-close_icon_size);
+    block-size: var(--_btn-close_icon_size);
+    fill: currentColor;
+    pointer-events: none;
+  }
 
   &:hover {
-    opacity: 1;
-    background-color: color-mix(in srgb, currentColor 12%, transparent);
+    background-color: var(--_btn-close_bg_h);
   }
 
   &:focus-visible {
-    opacity: 1;
+    outline-color: transparent;
+    box-shadow: var(--focus-ring);
   }
 
-  & > svg {
-    width: var(--button-close_svg-s, 16px);
-    height: var(--button-close_svg-s, 16px);
-    fill: currentColor;
-    pointer-events: none;
+  @media (pointer: coarse) {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc((var(--_btn-close_size) - var(--_btn-close_m-h)) / 2);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-close {
+    transition: none;
   }
 }

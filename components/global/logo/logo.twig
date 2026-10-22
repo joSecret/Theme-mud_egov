@@ -4,7 +4,7 @@
  * Template for the Logo component.
  *
  * Props:
- * - logo_name: (string|null) default: (null) — MUD mud-logo asset name
+ * - logo_name: (string|null) default: (null) — MUD logo asset (assets/<name>.svg)
  * - logo_src: (string|null) default: (null) — custom image URL
  * - logo_alt: (string|null) default: (null) — accessible alt text
  * - logo_url: (string|null) default: (null) — wraps in <a> when set
@@ -30,26 +30,24 @@
 {% set logo_att = logo_att ?: create_attribute() %}
 
 {#- Component classes -#}
+{#- MUD logos ship with the component (assets/, from MUD JS 1.2.1). -#}
+{% if logo_name and not logo_src %}
+  {% set logo_src = file_url(componentMetadata.path ~ '/assets/' ~ logo_name ~ '.svg') %}
+{% endif %}
+
 {% set logo_classes = [
   'c--logo',
   logo_size ? 'c--logo--' ~ logo_size,
   logo_variant ? 'c--logo--' ~ logo_variant,
 ]|merge(logo_uc ?: []) %}
 
-{#- Inner markup — mud-logo web component or <img> -#}
-{%- if logo_name -%}
-  {% set logo_inner %}
-    <mud-logo
-      name="{{ logo_name }}"
-      {%- if logo_alt -%} aria-label="{{ logo_alt }}"{%- endif -%}
-    ></mud-logo>
-  {% endset -%}
-{%- elseif logo_src -%}
+{#- Inner markup -#}
+{%- if logo_src -%}
   {% set logo_inner %}
     <img
       src="{{ logo_src }}"
-      {%- if logo_alt -%} alt="{{ logo_alt }}"{%- else -%} alt="" aria-hidden="true"{%- endif -%}
-      {%- if logo_title -%} title="{{ logo_title }}"{%- endif -%}
+      {%- if logo_alt %} alt="{{ logo_alt }}"{% else %} alt="" aria-hidden="true"{% endif -%}
+      {%- if logo_title %} title="{{ logo_title }}"{% endif %}
       class="c--logo__img"
     >
   {% endset -%}
@@ -61,11 +59,11 @@
     <a
       href="{{ logo_url }}"
       class="c--logo__link"
-      {%- if logo_title -%} title="{{ logo_title }}"{%- endif -%}
+      {%- if logo_title %} title="{{ logo_title }}"{% endif -%}
     >
-      {{- logo_inner|raw -}}
+      {{- logo_inner -}}
     </a>
   {%- else -%}
-    {{- logo_inner|raw -}}
+    {{- logo_inner -}}
   {%- endif -%}
 </div>

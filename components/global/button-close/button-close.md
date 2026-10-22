@@ -1,3 +1,10 @@
+---
+title: Button Close
+group: Globals
+version: 2.0.0
+css_prefix: btn-close
+---
+
 # Button Close
 
 Icon-only dismiss control. Composable across `notification`, `info-box`, `banner`, modals, drawers, dismissable chips.
@@ -21,16 +28,28 @@ With custom icon:
 } only %}
 ```
 
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `button_close_label` | string | `'Închide'` | `aria-label` of the button |
+| `button_close_icon` | string, null | built-in X | SVG override with `aria-hidden="true"` |
+| `button_close_uc` | array | `[]` | Utility classes |
+| `button_close_att` | Attribute | `null` | Extra attributes |
+
+No slots.
+
 ## Styling
 
-Reuses global utility classes from `css/utils/button.css`:
+Self-contained: 32px square, 16px icon, 4px radius, transparent background with a tint on hover (`--color-background-base-tertiary-hover`). On colored backgrounds set the public override, for example:
 
-- `button` — base sizing, transitions, focus outline
-- `button-text` — transparent bg, no border
-- `button-icon-only` — square, aspect-ratio 1, no padding-inline
-- `button-circular` — pill border-radius
-- `button-sm` — compact padding
-- `button-close` — color override (currentColor), hover overlay, SVG sizing
+```css
+.notification-emphasis-solid {
+  --btn-close_bg_h: var(--color-background-alpha-overlay-dark);
+}
+```
+
+Public overrides: `--btn-close_size`, `--btn-close_icon_size`, `--btn-close_b-r`, `--btn-close_c`, `--btn-close_bg_h`.
 
 ## Color
 
@@ -39,3 +58,10 @@ Because color inherits from the parent via `currentColor`, the same component lo
 - `notification-emphasis-solid` (colored bg, white text) → close is white
 - `notification-emphasis-subtle` (tint bg, colored text) → close matches variant color
 - `info-box`, `banner`, modal, drawer — same rule
+
+## Accessibility
+
+- `button_close_label` becomes the `aria-label`; the icon is hidden from assistive tech.
+- Focus: the MUD ring (`--focus-ring`) on `:focus-visible`.
+- On touch screens the hit area grows to 40px without changing the visual size.
+- The transition is off under `prefers-reduced-motion: reduce`.

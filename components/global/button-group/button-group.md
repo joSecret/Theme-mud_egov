@@ -1,3 +1,10 @@
+---
+title: Button Group
+group: Globals
+version: 1.1.0
+css_prefix: btn-group
+---
+
 # Button Group
 
 Layout container for grouping multiple buttons with consistent spacing. Aligned with `mud-button-group`. Pure layout primitive — does not propagate props to children.
@@ -10,8 +17,8 @@ Layout container for grouping multiple buttons with consistent spacing. Aligned 
   button_group_label: 'Acțiuni formular',
 } %}
   {% block slot_buttons %}
-    {% include 'mud_egov:button' with { label: 'Salvează', button_variant: 'primary', button_appearance: 'filled' } %}
-    {% include 'mud_egov:button' with { label: 'Anulează', button_appearance: 'outlined' } %}
+    {% include 'mud_egov:button' with { button_label: 'Salvează', button_variant: 'primary', button_appearance: 'filled' } %}
+    {% include 'mud_egov:button' with { button_label: 'Anulează', button_appearance: 'outlined' } %}
   {% endblock %}
 {% endembed %}
 ```
@@ -21,9 +28,9 @@ Attached (merged borders):
 ```twig
 {% embed 'mud_egov:button-group' with { button_group_attached: true } %}
   {% block slot_buttons %}
-    {% include 'mud_egov:button' with { label: 'Zi' } %}
-    {% include 'mud_egov:button' with { label: 'Lună' } %}
-    {% include 'mud_egov:button' with { label: 'An' } %}
+    {% include 'mud_egov:button' with { button_label: 'Zi' } %}
+    {% include 'mud_egov:button' with { button_label: 'Lună' } %}
+    {% include 'mud_egov:button' with { button_label: 'An' } %}
   {% endblock %}
 {% endembed %}
 ```
@@ -44,8 +51,15 @@ Attached (merged borders):
 |------|-------------|
 | `slot_buttons` | Button components |
 
-## CSS variables
+## CSS overrides
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `--button-group_gap` | 12px | Space between buttons |
+| `--btn-group_gap` | `--button-group-gap-horizontal` (12px) | Space between buttons (horizontal) |
+| `--btn-group_vertical_gap` | `--button-group-gap-vertical` (12px) | Space between buttons (vertical) |
+| `--btn-group_attached_gap` | `0` | Space when attached |
+
+## Accessibility
+
+- Rendered with `role="group"`; pass `button_group_label` when no visible label names the group.
+- Keyboard order follows the DOM order of the buttons.

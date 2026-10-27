@@ -1,0 +1,20 @@
+{
+  "name": "mud-egov-tooling",
+  "private": true,
+  "description": "Unelte de dezvoltare pentru tema mud_egov: Stylelint și auditul componentelor. Nu fac parte din livrare.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true",
+    "lint:css": "stylelint \"components/**/*.css\" \"css/**/*.css\"",
+    "audit": "node tools/audit/audit.js",
+    "audit:check": "node tools/audit/audit.js --check"
+  },
+  "devDependencies": {
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
+    "yaml": "^2.9.1"
+  }
+}

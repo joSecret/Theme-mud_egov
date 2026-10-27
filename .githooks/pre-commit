@@ -1,0 +1,14 @@
+#!/bin/sh
+# Verificarea standardului la commit. Se activează automat prin `npm install`
+# (scriptul prepare setează core.hooksPath = .githooks).
+[ -d node_modules ] || { echo "pre-commit: rulează npm install ca să activezi verificarea standardului."; exit 0; }
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.css')
+if [ -n "$files" ]; then
+  # --quiet: blochează doar erorile (componente aliniate); avertismentele se văd în VS Code.
+  echo "$files" | xargs npx --no-install stylelint --quiet --allow-empty-input || exit 1
+fi
+
+if git diff --cached --name-only | grep -qvE '^(tools|\.github|\.githooks|\.vscode)/'; then
+  npm run --silent audit:check || exit 1
+fi

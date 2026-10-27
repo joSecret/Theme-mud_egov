@@ -126,3 +126,20 @@ The theme includes dedicated styles for the CKEditor 5 editor, defined in `css/c
 ## License
 
 Proprietary — Government of the Republic of Moldova.
+
+## Dezvoltare
+
+Tema se editează doar în acest repo. Site-urile o primesc prin Composer:
+
+```json
+"repositories": [
+    {"type": "vcs", "url": "https://github.com/joSecret/Theme-mud_egov", "no-api": true}
+],
+"require": {
+    "mud/mud_egov": "^1.0"
+}
+```
+
+Unelte (Node 20+): `npm install` o dată (activează hook-ul de pre-commit), apoi `npm run lint:css`, `npm run audit` și `npm run audit:check`. Regulile sunt în `CLAUDE.md`.
+
+O versiune nouă e un tag `vX.Y.Z` pe `main`.

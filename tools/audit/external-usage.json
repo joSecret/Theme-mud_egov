@@ -1,0 +1,6 @@
+{
+  "_": "Componente apelate din afara temei, din repo-ul joSecret/mud-modules. Auditul nu le marchează ca nefolosite.",
+  "mud_egov:footer-contact": "mud_core: src/Plugin/Block/FooterContactBlock.php",
+  "mud_egov:footer-copyright": "mud_core: src/Plugin/Block/FooterCopyrightBlock.php",
+  "mud_egov:gov-branding": "mud_core: src/Plugin/Block/GovBrandingBlock.php"
+}

@@ -1,0 +1,31 @@
+name: Standard componente
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Stylelint (erorile blochează; avertismentele sunt cod încă nealiniat)
+        run: npm run lint:css -- --quiet
+      - name: Audit față de baseline
+        run: npm run audit:check
+      - name: Matricea de audit
+        if: always()
+        run: |
+          npm run audit
+          cat tools/audit/report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-componente
+          path: tools/audit/report.*

@@ -14,8 +14,8 @@
 
 .region--bottom-fixed {
   --_page-layout_bottom-fixed_gap: var(--page-layout_bottom-fixed_gap, var(--spacing-16));
-  --_page-layout_bottom-fixed_p-b: var(--page-layout_bottom-fixed_p-b, var(--_page-layout_bottom-fixed_gap));
-  --_page-layout_bottom-fixed_p-i: var(--page-layout_bottom-fixed_p-i, var(--_page-layout_bottom-fixed_gap));
+  --_page-layout_bottom-fixed_p-b: var(--page-layout_bottom-fixed_p-b, 0px);
+  --_page-layout_bottom-fixed_p-i: var(--page-layout_bottom-fixed_p-i, 0px);
   --_page-layout_bottom-fixed_w: var(--page-layout_bottom-fixed_w, 400px);
 
   position: fixed;

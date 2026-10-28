@@ -153,8 +153,13 @@
   --header-mobile-language-color: var(--color-text-base-default); /* nefolosit */
   --header-mobile-language-icon-size: 20px; /* nefolosit */
 
-  --footer-container-background: var(--palette-gray-100); /* nefolosit */
+  --footer-container-font-size: inherit;
+  --footer-container-line-height: inherit;
+  --footer-container-padding-block: var(--spacing-40);
+  --footer-container-background: var(--palette-gray-100);
   --footer-container-color: var(--color-text-base-default);
+  --footer-gray-container-link-color: var(--color-text-base-secondary);
+  --footer-dark-container-link-color: var(--color-text-base-inverse-default);
   --footer-divider-color: var(--color-border-base-default);
   --footer-divider-width: 1px; /* nefolosit */
   --footer-column-gap: var(--spacing-16); /* nefolosit */

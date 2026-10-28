@@ -45,26 +45,26 @@
   -%}
     <div class="wrapper grid-footer">
       {%- block slot_footer_left -%}
-        {{- page.footer_left -}}
+        {{- page.footer_left|merge({'#attributes': {'class': ['footer--region-left']}}) -}}
       {%- endblock -%}
 
       {%- block slot_footer -%}
-        {{- page.footer -}}
+        {{- page.footer|merge({'#attributes': {'class': ['footer--region-footer']}}) -}}
       {%- endblock -%}
 
       {%- block slot_footer_right -%}
-        {{- page.footer_right -}}
+        {{- page.footer_right|merge({'#attributes': {'class': ['footer--region-right']}}) -}}
       {%- endblock -%}
     </div>
   {%- endif -%}
 
   {%- if block('slot_footer_middle') is not empty or page.footer_middle -%}
     {%- block slot_footer_middle -%}
-      {{- page.footer_middle -}}
+      {{- page.footer_middle|merge({'#attributes': {'class': ['footer--region-middle']}}) -}}
     {%- endblock -%}
   {%- endif -%}
 
   {%- block slot_footer_bottom -%}
-    {{- page.footer_bottom -}}
+    {{- page.footer_bottom|merge({'#attributes': {'class': ['footer--region-bottom']}}) -}}
   {%- endblock -%}
 </footer>

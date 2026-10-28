@@ -4,14 +4,19 @@
 
 .c--footer {
   --_footer_c: var(--footer_c, var(--footer-container-color));
-  --_footer_f-s: var(--footer_f-s, inherit);
-  --_footer_l-h: var(--footer_l-h, inherit);
-  --_footer_p-b: var(--footer_p-b, var(--spacing-40));
+  --_footer_f-s: var(--footer_f-s, var(--footer-container-font-size));
+  --_footer_l-h: var(--footer_l-h, var(--footer-container-line-height));
+  --_footer_p-b: var(--footer_p-b, var(--footer-container-padding-block));
+  --_footer_bg: var(--footer_bg, var(--footer-container-background));
 
-  padding-block-start: var(--_footer_p-b);
+  /* menu changes */
+  --menu_link_c: var(--footer-gray-container-link-color);
+
+  background: var(--_footer_bg);
   color: var(--_footer_c);
   font-size: var(--_footer_f-s);
   line-height: var(--_footer_l-h);
+  padding-block-start: var(--_footer_p-b);
 
   .grid-footer {
     --_footer_grid_p-b: var(--footer_grid_p-b, var(--spacing-32));
@@ -45,7 +50,7 @@
   }
 }
 
-.region--footer {
+.footer--region-footer {
   --_footer_nav_gap: var(--footer_nav_gap, var(--spacing-48) var(--spacing-24));
 
   &:has(nav:nth-child(2)) {
@@ -84,9 +89,10 @@
   }
 }
 
-.region--footer-bottom {
+.footer--region-bottom {
   --_footer_bottom_gap: var(--footer_bottom_gap, var(--spacing-20));
   --_footer_bottom_p-b: var(--footer_bottom_p-b, var(--spacing-12));
+  --menu_link_c: var(--footer-dark-container-link-color);
 
   > .wrapper {
     display: flex;

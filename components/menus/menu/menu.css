@@ -66,8 +66,8 @@
   }
 
   a {
+    --link_c: var(--_menu_link_c);
     display: var(--_menu_link_d);
-    color: var(--_menu_link_c);
     background: var(--_menu_link_bg);
     text-decoration: var(--_menu_link_t-d);
     border-radius: var(--_menu_link_b-r);
